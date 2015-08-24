@@ -1,0 +1,5 @@
+INDEX VERSION 1.126+F:\ArroyoWorkspace\.metadata\.plugins\org.eclipse.jdt.core
+633038560.index
+215055770.index
+2903087684.index
+3264458469.index

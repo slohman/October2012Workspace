@@ -1,0 +1,5 @@
+#Sun Jul 29 11:44:48 PDT 2012
+__DEFAULT__=false
+org.eclipse.sdk.Eclipse.master=true
+org.eclipse.help.ui.localSearch.master=true
+expression=Java Editor

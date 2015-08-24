@@ -1,0 +1,26 @@
+what,kind,bundleId,bundleVersion,description,time
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311729513544
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311729513544
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311729513622
+opened,editor,org.eclipse.jdt.ui,3.5.2.r352_v20100106-0800,"org.eclipse.jdt.ui.CompilationUnitEditor",1311729525169
+activated,editor,org.eclipse.jdt.ui,3.5.2.r352_v20100106-0800,"org.eclipse.jdt.ui.CompilationUnitEditor",1311729525294
+started,bundle,org.eclipse.jdt.junit,3.5.2.r352_v20100113-0800,"org.eclipse.jdt.junit",1311729525357
+activated,view,org.eclipse.ui.navigator.resources,3.4.1.M20090826-0800,"org.eclipse.ui.navigator.ProjectExplorer",1311729529701
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311729576499
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311729579295
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311729579311
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311729579389
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311729579405
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311729579405
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311729579405
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311729581327
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311729592327
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311729614593
+error,log,,,"Problems occurred when invoking code from plug-in: ""org.eclipse.jface"".",1311729614593
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311729617468
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311729622234
+closed,editor,org.eclipse.jdt.ui,3.5.2.r352_v20100106-0800,"org.eclipse.jdt.ui.CompilationUnitEditor",1311729624359
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311729624390
+executed,command,org.eclipse.ltk.ui.refactoring,3.4.101.r352_v20100209,"org.eclipse.ltk.ui.refactoring.commands.deleteResources",1311729624390
+executed,command,org.eclipse.ui,3.5.2.M20100120-0800,"org.eclipse.ui.edit.delete",1311729624390
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311729627406

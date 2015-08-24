@@ -1,0 +1,26 @@
+what,kind,bundleId,bundleVersion,description,time
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311728864172
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311728870782
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311728874548
+error,log,,,"Problems occurred when invoking code from plug-in: ""org.eclipse.jface"".",1311728874548
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311728895485
+error,log,,,"java.lang.NullPointerException",1311728895485
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311728895517
+executed,command,org.eclipse.ui.ide,3.5.2.M20100113-0800,"org.eclipse.ui.project.properties",1311728895532
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311728912017
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311728920548
+executed,command,org.eclipse.ui.ide,3.5.2.M20100113-0800,"org.eclipse.ui.project.properties",1311728920564
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311728924908
+error,log,,,"Problems occurred when invoking code from plug-in: ""org.eclipse.jface"".",1311728924908
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311728924908
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311728927127
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311728927142
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311728938861
+error,log,,,"java.lang.NullPointerException",1311728938861
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311728938893
+executed,command,org.eclipse.ui.ide,3.5.2.M20100113-0800,"org.eclipse.ui.project.properties",1311728938908
+activated,view,org.eclipse.ui.console,3.4.0.v20090513,"org.eclipse.ui.console.ConsoleView",1311728941721
+activated,view,org.eclipse.ui.navigator.resources,3.4.1.M20090826-0800,"org.eclipse.ui.navigator.ProjectExplorer",1311728946986
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311728950486
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311728951846
+error,log,,,"Problems occurred when invoking code from plug-in: ""org.eclipse.jface"".",1311728951846

@@ -1,0 +1,269 @@
+package com.ocbiofuel;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
+
+
+public class OilCollectionCalcActivity extends Activity {
+	/** Called when the activity is first created. */
+
+	// RadioButton rb1, rb2, rb3, rb4, rb5;
+	double qty;
+	double oildensity = 6.8026;
+	int pos, pounds;
+	Spinner Spinner1;
+	float depth = 0;
+
+	public static final int ClearForm = 0;
+	public static final int TankQty = 1;
+	public static final int RatioCalc = 3;
+	public static final int PostReg = 4;
+
+	/** Called when the activity is first created. */
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.main);
+
+		final TextView oq = (TextView) findViewById(R.id.oilqty);
+		final EditText odepth = (EditText) findViewById(R.id.oildepth);
+		Button cb = (Button) findViewById(R.id.calcoilqty);
+
+		addItemsOnSpinner1();
+
+		// addListenerOnSpinnerItemSelection();
+		Spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+			@Override
+			public void onItemSelected(AdapterView<?> arg0, View arg1,
+					int arg2, long arg3) {
+				// TODO Auto-generated method stub
+				EditText etW = (EditText) findViewById(R.id.etWidth);
+				EditText etL = (EditText) findViewById(R.id.etLength);
+				if (arg2 != 5) {
+					etW.setVisibility(android.view.View.INVISIBLE);
+					etL.setVisibility(android.view.View.INVISIBLE);
+				} else {
+					etW.setVisibility(android.view.View.VISIBLE);
+					etL.setVisibility(android.view.View.VISIBLE);
+				}
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+				// TODO Auto-generated method stub
+
+			}
+		});
+
+		cb.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+
+				double oildensity = 6.8026;
+				double wvodensity = 7.5700;
+				
+				
+
+				String SText = Spinner1.getSelectedItem().toString();
+
+				if (SText == "Barrel") {
+					// calc oilqty for barrel
+
+					// r2xHxD = cuft x 6.82011
+					// use 397.406* depth in inches/1728
+
+					depth = Float.valueOf(odepth.getText().toString());
+
+					qty = ((depth / 33) * 7.7) * oildensity;
+					int dqty = (int) qty;
+					pounds = (int) (dqty * 7.57);
+					String sqty = Double.toString(dqty);
+					oq.setText(sqty + " / " + pounds);
+
+				}
+				if (SText == "Roller Bin") {
+					// calc oilqty for Roller bin
+					// 3x2x?
+
+					float depth = Float.valueOf(odepth.getText().toString());
+
+					qty = (depth * 481.3125) / 1728 * oildensity;
+					int dqty = (int) qty;
+					pounds = (int) (dqty * 7.57);
+					String sqty = Double.toString(dqty);
+					oq.setText(sqty + " / " + pounds);
+
+				}
+				// small bin
+				if (SText == "Small Bin") {
+					// calc oilqty for 89 bin bin
+					// 3x2x?
+
+					float depth = Float.valueOf(odepth.getText().toString());
+
+					qty = (depth * 576) / 1728 * oildensity;
+					int dqty = (int) qty;
+
+					pounds = (int) (dqty * 7.57);
+					String sqty = Double.toString(dqty);
+					oq.setText(sqty + " / " + pounds);
+
+				}
+				// large bin
+				if (SText == "Large Bin") {
+					// calc oilqty for 89 bin bin
+					// 3x2x?
+
+					float depth = Float.valueOf(odepth.getText().toString());
+
+					qty = (depth * 864) / 1728 * oildensity;
+					int dqty = (int) qty;
+					pounds = (int) (dqty * 7.57);
+					String sqty = Double.toString(dqty);
+					oq.setText(sqty + " / " + pounds);
+
+				}
+				// other
+				if (SText == "Other") {
+					// calc oilqty non-standard bin
+					// 3x2x?
+					final EditText manwidth = (EditText) findViewById(R.id.etWidth);
+					final EditText manlen = (EditText) findViewById(R.id.etLength);
+					float mW = Float.valueOf(manwidth.getText().toString());
+					float mL = Float.valueOf(manlen.getText().toString());
+					float depth = Float.valueOf(odepth.getText().toString());
+
+					qty = (mW * mL * depth) / 1728 * oildensity;
+					int dqty = (int) qty;
+					pounds = (int) (dqty * 7.57);
+					String sqty = Double.toString(dqty);
+					oq.setText(sqty + " / " + pounds);
+
+				}
+				// Knotts Reg
+				if (SText == "KnottsReg") {
+					// calc oilqty for 89 bin bin
+					// 3x2x?
+
+					float depth = Float.valueOf(odepth.getText().toString());
+
+					qty = (depth * 1296) / 1728 * wvodensity;
+					int dqty = (int) qty;
+					pounds = (int) (dqty * 7.57);
+					String sqty = Double.toString(dqty);
+					oq.setText(sqty + " / " + pounds);
+
+				}
+
+				// Knotts CDR
+				if (SText == "KnottsCDR") {
+					// calc oilqty for 89 bin bin
+					// 3x2x?
+
+					float depth = Float.valueOf(odepth.getText().toString());
+
+					qty = (depth * 1728) / 1728 * wvodensity;
+					int dqty = (int) qty;
+					pounds = (int) (dqty * 7.57);
+					String sqty = Double.toString(dqty);
+					oq.setText(sqty + " / " + pounds);
+
+				}
+			}
+
+		});
+
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		menu.add(0, ClearForm, 1, "Clear Data");
+		menu.add(0, TankQty, 2, "Tank QTY");
+		menu.add(0, RatioCalc, 3, "Ratio Calc");
+		menu.add(0, PostReg, 4, "Post Reg Acct");
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case ClearForm:
+
+			final TextView oq = (TextView) findViewById(R.id.oilqty);
+			final EditText odepth = (EditText) findViewById(R.id.oildepth);
+			final EditText manwidth = (EditText) findViewById(R.id.etWidth);
+			final EditText manlen = (EditText) findViewById(R.id.etLength);
+
+			odepth.setText("");
+			oq.setText("");
+			manwidth.setText("");
+			manlen.setText("");
+			return true;
+
+		case TankQty:
+
+			final TCP sc = new TCP();
+			String inputLine = sc.SendCommand2("@63");
+			alertuser(inputLine);
+
+			return true;
+			
+		case RatioCalc:
+			
+			Intent myIntent = new Intent(getBaseContext(), RatioCalc.class);
+            startActivityForResult(myIntent, 0);
+		return true;
+		
+		case PostReg:
+			
+			Intent myIntent1 = new Intent(getBaseContext(), RegDataPost.class);
+            startActivityForResult(myIntent1, 0);
+		    return true;
+		}
+		return false;
+
+	}
+
+	public void addItemsOnSpinner1() {
+
+		Spinner1 = (Spinner) findViewById(R.id.spinner1);
+		List<String> list = new ArrayList<String>();
+		list.add("Select Container");
+		list.add("Barrel");
+		list.add("Small Bin");
+		list.add("Large Bin");
+		list.add("Roller Bin");
+		list.add("Other");
+		list.add("KnottsReg");
+		list.add("KnottsCDR");
+
+		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+				android.R.layout.simple_spinner_item, list);
+		dataAdapter
+				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		Spinner1.setAdapter(dataAdapter);
+	}
+
+	public void alertuser(String inputLine) {
+		TextView tankqty = (TextView)findViewById(R.id.oilqty);
+		tankqty.setText(inputLine);
+	}
+
+}

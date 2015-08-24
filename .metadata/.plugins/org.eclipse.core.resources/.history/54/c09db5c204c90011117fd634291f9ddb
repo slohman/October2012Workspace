@@ -1,0 +1,66 @@
+package com.ocbiofuel;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+public class RatioCalc extends Activity {
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.ratiocalc);
+	
+
+	
+	
+	
+	Button calc = (Button)findViewById(R.id.calcratio);
+	
+	
+	
+	calc.setOnClickListener(new View.OnClickListener() {
+		@Override
+		public void onClick(View view) {   
+ 
+		//calculate ratio for oil logging
+			
+			final EditText tgc = (EditText)findViewById(R.id.totalgallons);
+			final EditText tp = (EditText)findViewById(R.id.totalpounds);
+			final EditText tlg = (EditText)findViewById(R.id.locationgallons);
+			
+			final TextView locationRatioPounds = (TextView)findViewById(R.id.locationpounds);
+			
+			//turn this locations gallons into pounds and then divide by the total pounds to
+			// get a ratio. Then mult ratio times total pounds collected to get location pounds
+		String stotalGallons = tgc.getText().toString();	
+		String sTotLocationGallons = tlg.getText().toString();
+		String stotLoadPounds = tp.getText().toString();
+		
+		
+		int igalForLoad = Integer.parseInt(stotalGallons);
+		double itotalLocationGallons = Integer.parseInt(sTotLocationGallons);
+		double itotalPounds = Integer.parseInt(stotLoadPounds);
+		
+		double dGalratio = (itotalLocationGallons/igalForLoad);
+		
+		int inetPounds = (int) (dGalratio * itotalPounds );
+		String sNetLBSLocation = Integer.toString(inetPounds);
+		
+		locationRatioPounds.setText(sNetLBSLocation);
+		
+		
+		
+		};
+	
+
+	});
+
+	}
+	
+
+}	
+	

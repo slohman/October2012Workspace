@@ -1,0 +1,154 @@
+package com.yctc.alpaware;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+
+public class jumpseatdetails extends Activity {
+
+	
+	
+	
+	
+	 public static final int Main_Menu =0; //no more R.ids   
+		
+		public static final int Main_MENU=1;
+		public static final int Jumpseat_MENU=2;
+		public static final int Add_Edit=3;
+		
+		public String cursordata;
+	/** Called when the activity is first created. */
+@Override
+public void onCreate(Bundle Icicle) {
+  super.onCreate(Icicle);
+  setContentView(R.layout.jumpseatdetails1);
+  
+  
+  Bundle bun = this.getIntent().getExtras();  
+  Long jsid = bun.getLong("pID");
+  
+  AlpaDataBaseHelper mdbh = new AlpaDataBaseHelper(this.getApplicationContext());
+  final SQLiteDatabase db = mdbh.getWritableDatabase(); 
+   
+
+  Cursor cursor = db.rawQuery("Select _id, airline,website,contact1,contact2,list,chkin,dress,intl,jmpseats,comm from cass where _id = " + jsid,null);	
+		  
+	  		
+	 startManagingCursor(cursor);
+	 cursor.moveToFirst();
+	
+	
+
+  
+	 final TextView tvairl = (TextView)findViewById(R.id.jumpseatairline);
+		 tvairl.setText(cursor.getString(cursor.getColumnIndex("airline")));
+  
+		 final TextView tvjsweb = (TextView)findViewById(R.id.jmpwebsite);
+		 tvjsweb.setText(cursor.getString(cursor.getColumnIndex("website")));
+		 
+		 tvjsweb.setOnClickListener(new View.OnClickListener() {
+	        	public void onClick(View view) {
+	        		
+	        		String website = tvjsweb.getText().toString();
+	        		Uri TargetURL =  Uri.parse(website );
+	        		Intent launchbrowser = new Intent(android.content.Intent.ACTION_VIEW, TargetURL);
+	        		
+	        		 
+	        		
+	        		 
+			 		startActivity(launchbrowser);
+	        		finish();}});
+	 		 
+  
+		 final TextView tvctc1 = (TextView)findViewById(R.id.contact_1);
+		 tvctc1.setText(cursor.getString(cursor.getColumnIndex("contact1")));
+		 
+		 tvctc1.setOnClickListener(new View.OnClickListener() {
+	        	public void onClick(View view) {
+	        		final String toDial;
+	        		toDial = tvctc1.getText().toString();
+	        		
+	        		 Intent call = new Intent(android.content.Intent.ACTION_CALL);
+	        		 call.setData( Uri.parse("tel:"+ toDial));
+	        		 
+	        		 
+			 		startActivity(call);
+	        		finish();}});
+		 
+		 final TextView tvctc2 = (TextView)findViewById(R.id.contact_2);
+		 tvctc2.setText(cursor.getString(cursor.getColumnIndex("contact2")));
+		 
+		 tvctc2.setOnClickListener(new View.OnClickListener() {
+	        	public void onClick(View view) {
+	        		final String toDial;
+	        		toDial = tvctc2.getText().toString();
+	        		
+	        		 Intent call = new Intent(android.content.Intent.ACTION_CALL);
+	        		 call.setData( Uri.parse("tel:"+ toDial));
+	        		 
+	        		 
+			 		startActivity(call);
+	        		finish();}});
+		 
+		 final TextView  listr = (TextView)findViewById(R.id.listreq);
+		 listr.setText(cursor.getString(cursor.getColumnIndex("list")));
+		 
+		 final TextView  chkin = (TextView)findViewById(R.id.chkin);
+		 String schkin = Integer.toString(cursor.getInt(cursor.getColumnIndex("chkin")));
+		 chkin.setText(schkin);
+	 		 
+		  final TextView tvdress = (TextView)findViewById(R.id.dress);
+		 tvdress.setText(cursor.getString(cursor.getColumnIndex("dress")));
+		 
+		 final TextView  intl = (TextView)findViewById(R.id.intl);
+		 String sintl = Integer.toString(cursor.getInt(cursor.getColumnIndex("intl")));
+		 intl.setText(sintl);
+		 
+		 final TextView numjs = (TextView)findViewById(R.id.numjs);
+		 numjs.setText(cursor.getString(cursor.getColumnIndex("jmpseats")));
+		 
+		 
+		 final TextView tvjscomm = (TextView)findViewById(R.id.jumpseatcomments);
+		 tvjscomm.setText(cursor.getString(cursor.getColumnIndex("comm")));
+  
+		
+}
+  
+		 public boolean onCreateOptionsMenu(Menu menu){
+				menu.add(0,Main_Menu,0,"Main Menu");
+				menu.add(0,Jumpseat_MENU,0,"Jumpseat  Menu");
+				menu.add(0,Add_Edit,0,"Edit Current");
+				return true;
+				}
+
+			public boolean onOptionsItemSelected (MenuItem item ){
+				switch (item.getItemId()){
+				case Main_Menu :
+					
+					Intent myIntent = new Intent(getBaseContext(), PocketCal20.class);	
+					startActivityForResult(myIntent, 0);
+					
+				return true;
+				case Jumpseat_MENU :
+					
+					 myIntent = new Intent(getBaseContext(), jumpseatmain.class);	
+					startActivityForResult(myIntent, 0);
+					
+					
+				
+				}
+				return false;
+				}
+
+  
+  
+  
+  
+}

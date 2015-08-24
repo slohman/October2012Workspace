@@ -1,0 +1,719 @@
+
+package com.yctc.alpaware;
+
+
+
+
+
+
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.CookieStore;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.client.protocol.ClientContext;
+import org.apache.http.cookie.Cookie;
+import org.apache.http.entity.BufferedHttpEntity;
+import org.apache.http.impl.client.BasicCookieStore;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.protocol.BasicHttpContext;
+import org.apache.http.protocol.HttpContext;
+import org.apache.http.util.EntityUtils;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
+
+import com.actionbarsherlock.app.SherlockActivity;
+
+import com.actionbarsherlock.view.MenuInflater;
+
+import android.app.AlertDialog;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.AlertDialog.Builder;
+import android.content.Context;
+import android.content.DialogInterface;
+
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
+
+import android.os.AsyncTask;
+import android.os.Bundle;
+
+
+import android.text.format.DateFormat;
+import android.util.Log;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
+
+
+import android.view.MenuItem;
+import android.view.View;
+
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
+import android.widget.AdapterView.AdapterContextMenuInfo;
+
+
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
+import android.widget.Toast;
+
+
+
+
+       
+	        
+	public class triplist extends SherlockActivity {
+		
+		
+		
+		Context ctx = triplist.this;
+		CookieStore cookieStore = new BasicCookieStore();
+		
+		public static final int EGRID_Menu =0;
+		public static final int Main_Menu =1;
+		
+		String tripselected, tripshowdate;
+		String Month = "";
+		HttpContext localContext = new BasicHttpContext();
+
+		   
+
+	        
+	  
+		@Override
+		 public void onCreate(Bundle savedInstanceState) {
+	        super.onCreate(savedInstanceState);
+	        setContentView(R.layout.fltlist);
+	        
+	         
+	       
+	        Bundle b = this.getIntent().getExtras();
+	         Month = b.getString("mnth");
+	        
+	      
+	         AlpaDataBaseHelper mdbh = new AlpaDataBaseHelper(this.getApplicationContext());
+		      final SQLiteDatabase db = mdbh.getWritableDatabase();
+		
+		      int names[] = {android.R.id.text1,android.R.id.text2};
+		  	final Cursor c = db.rawQuery("Select _id, pairing, showdate ||'  '|| showtime  AS Fdata from trips where bidMonth = '" + Month  +  "' order by _id" ,null);		  
+		 		  		
+		 	 		  	  	 
+		 		final ListAdapter  adapter = new SimpleCursorAdapter(this,android.R.layout.simple_list_item_2,c,	
+		 				new String[] {"pairing","Fdata"},names);		  
+		 		  	
+		 		 startManagingCursor(c);
+		 		 ListView lv = (ListView)findViewById(android.R.id.list);
+		 		 lv.setAdapter(adapter);
+		 		 registerForContextMenu(lv);
+		 		 
+	   	
+	       
+
+
+
+	 
+	  } // end on create
+		
+		 
+      
+	    
+		@Override
+		public void onCreateContextMenu(ContextMenu menu, View v,
+		                                ContextMenuInfo menuInfo) {
+		    super.onCreateContextMenu(menu, v, menuInfo);
+		    android.view.MenuInflater inflater = getMenuInflater();
+		    inflater.inflate(R.layout.context_menu, menu);
+		}
+	 
+		
+		@Override
+		public boolean onContextItemSelected(MenuItem item) {
+		    AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
+		     long data =  info.id; // should be item selected from underlying adapter!
+		   
+		     
+		    
+		 
+		
+		  	 
+		  	 
+		  	 
+
+		    switch (item.getItemId()) {
+		    
+		    
+		    case R.id.back :
+		    	super.onBackPressed();
+		    	
+		    	return true;
+		    	
+		        case R.id.view:
+		        	//select data from database to get filename and pass it to the viewtrip object
+		        
+		        	 AlpaDataBaseHelper mdbh = new AlpaDataBaseHelper(this.getApplicationContext());
+			 	     final SQLiteDatabase db = mdbh.getWritableDatabase(); 
+			 	     
+			 	     Cursor cursor = db.rawQuery("Select pairing,tripdate from trips where _id = " + data,null);	
+					  
+			  		
+			 		 startManagingCursor(cursor);
+			 		 cursor.moveToFirst();
+			 		 String pairingNumber = cursor.getString(cursor.getColumnIndex("pairing"));
+			 		 String tripDate = cursor.getString(cursor.getColumnIndex("tripdate"));
+		        	Bundle b = new Bundle();
+		        	b.putString("prg", pairingNumber);
+		        	b.putString("tripdate", tripDate);
+		        	
+		        	
+		        	Intent myIntent = new Intent(getBaseContext(), tripview.class);	
+		        	myIntent.putExtras(b);
+					startActivityForResult(myIntent, 0);
+
+		            return true;
+		        case R.id.add:
+		            //  add to phone calendar
+		        	//select data from database to get filename and pass it to the viewtrip object
+		        	
+		       
+		        	
+		        	 AlpaDataBaseHelper mdbh1 = new AlpaDataBaseHelper(this.getApplicationContext());
+			 	     final SQLiteDatabase db1 = mdbh1.getWritableDatabase(); 
+			 	     
+			 	  
+	      		 	
+			 	     
+			 	     Cursor c = db1.rawQuery("Select pairing,showdate,showtime,enddate,endtime, pay, blok from trips where _id = " + data,null);	
+					  
+			  		
+			 		 startManagingCursor(c);
+			 		 c.moveToFirst();
+			 		 
+			 		 String pairing = c.getString(c.getColumnIndex("pairing"));
+			 		 String showtime = c.getString(c.getColumnIndex("showtime"));
+			 		String showdate = c.getString(c.getColumnIndex("showdate"));
+			 		String tripendtime = c.getString(c.getColumnIndex("endtime"));
+			 		String tripenddate = c.getString(c.getColumnIndex("enddate"));
+			 		String pay = c.getString(c.getColumnIndex("pay"));
+			 		String blok = c.getString(c.getColumnIndex("blok"));
+			 		
+			 		// convert times to 2011-08-17 04:57:38
+			 		String showHR = showtime.substring(0,2);
+			 		String showmin = showtime.substring(2,showtime.length());
+			 		String showday = showdate.substring(0,2);
+			 		String showMonth = showdate.substring(2,5);
+			 		String showYear = showdate.substring(5,7);
+			 		String endHR = tripendtime.substring(0,2);
+			 		String endMin = tripendtime.substring(2,tripendtime.length());
+			 		String endday = tripenddate.substring(0,2);
+			 		String endMonth = tripenddate.substring(2,5);
+			 		String endYear = tripenddate.substring(5,7);
+			 		
+			 		
+			 		String sDate = showday + "-" + showMonth + "-" + showYear + "," + showHR + ":" + showmin + ":" + "00";
+			 		String sEnd =  endday + "-" + endMonth + "-" + endYear + "," + endHR + ":" + endMin + ":" + "00";
+			 		
+			
+			 	long start = new Date(sDate).getTime();
+			 	long end = new Date(sEnd).getTime();
+
+
+			 		
+
+   Intent l_intent = new Intent(Intent.ACTION_EDIT);
+
+   l_intent.setType("vnd.android.cursor.item/event");
+   l_intent.putExtra("title", "FDX Trip" + pairing);
+   l_intent.putExtra("description", "Prg" + pairing + " Pay" + pay + " Blok" + blok);
+   l_intent.putExtra("beginTime", start);
+   l_intent.putExtra("endTime", end);
+   l_intent.putExtra("allDay", 0);
+   l_intent.putExtra("visibility", 0);
+   l_intent.putExtra("transparency", 0);
+   l_intent.putExtra("hasAlarm", 1);
+
+   try {
+       startActivity(l_intent);
+          } catch (Exception e) {
+       Toast.makeText(this.getApplicationContext(), "Sorry, no compatible calendar is found!", Toast.LENGTH_LONG).show();
+       }
+
+
+   	return true;
+		            
+		        case R.id.erase:
+		        	// delete from device
+		        	
+		        
+		        	 AlpaDataBaseHelper mdbh2 = new AlpaDataBaseHelper(this.getApplicationContext());
+			 	     final SQLiteDatabase db2 = mdbh2.getWritableDatabase(); 
+			 	     
+			 	     Cursor cu = db2.rawQuery("Select pairing,showdate from trips where _id = " + data,null);	
+					  
+			  		
+			 	//	 startManagingCursor(cu);
+			 		 cu.moveToFirst();
+			 		 final String prgNumber = cu.getString(cu.getColumnIndex("pairing"));
+			 		 final String shDate = cu.getString(cu.getColumnIndex("showdate"));
+		        	Builder builder =  new AlertDialog.Builder(this);
+						
+					 builder.setTitle("Are You Sure You Want to Delete This File ?");
+					
+					  builder.setPositiveButton("OK", new DialogInterface.OnClickListener(){
+					    	      public void onClick(DialogInterface d, int which) {
+					    	    	 
+								
+					    	 	
+					    	 	   d.dismiss();
+					    	 	String tsql = "Delete from trips where pairing = '" + prgNumber + "' and showdate = '" + shDate + "'";
+					   			db2.execSQL(tsql );
+					   			db2.close();
+					   			Bundle b = new Bundle();
+					   			b.putString("mnth", Month);
+					   			
+					   			Intent myIntent = new Intent(getBaseContext(), triplist.class);
+					   			myIntent.putExtras(b);
+				 	 		    startActivityForResult(myIntent, 0);
+					    	      }});
+					       
+					     					
+					      builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
+								public void onClick(DialogInterface d, int which) {
+								d.dismiss();
+								Bundle b = new Bundle();
+					   			b.putString("mnth", Month);
+								Intent myIntent = new Intent(getBaseContext(), triplist.class);
+								myIntent.putExtras(b);
+				 	 		    startActivityForResult(myIntent, 0);
+				 	 		    }});
+					 
+					     builder.create().show();
+				      
+		        	
+		        	return true;
+		        	
+		        case R.id.update :
+		        	// get new trip details and store them in the database....
+		        	
+		        	 AlpaDataBaseHelper mdbh3 = new AlpaDataBaseHelper(this.getApplicationContext());
+			 	     SQLiteDatabase db3 = mdbh3.getWritableDatabase(); 
+			 	    
+			 	     Cursor cu_update = db3.rawQuery("Select pairing,showdate,showtime from trips where _id = " + data,null);
+			 	     cu_update.moveToFirst();
+		        	// download trip details with pairing and showdate and overwite the db
+			 	     String tripnum = cu_update.getString(cu_update.getColumnIndex("pairing")).substring(0, 4);
+			 	     tripnum = tripnum.replace(" ","");
+			 	     
+			 		String showDate = cu_update.getString(cu_update.getColumnIndex("showdate"));
+			 		String origShowDate = showDate;
+			 		String show = cu_update.getString(cu_update.getColumnIndex("showtime"));
+			 		
+			 	// convert string to date and add 60 minutes. Then convert back to string and pull the trip start date
+			 		
+			 		 String dateString = showDate + " " + show;
+			 	    SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMMyy hhmm");
+			 	    Date curTripShowDate = new Date(); 
+			 	    
+			 	   try {
+			 		  
+					curTripShowDate = dateFormat.parse(dateString);
+					
+					// now add 60 minutes to the datetime string
+					
+					
+					GregorianCalendar cal = new GregorianCalendar();
+					cal.setTime(curTripShowDate);
+					cal.add(GregorianCalendar.HOUR, 1);
+					
+					String tripStartDate = dateFormat.format(cal.getTime());
+					
+					showDate = tripStartDate.substring(0,7);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			 	    
+			 	    
+			 		
+			 	     
+		        	new LongGetTripDetails().execute(tripnum,showDate,origShowDate);
+		        	cu_update.close();
+		        	db3.close();
+		        	
+		        	
+		        	
+		        	return true;
+		        
+		        
+		        default:
+		            return super.onContextItemSelected(item);
+		    }
+		}
+		
+		
+		
+		
+		
+		
+		
+		public boolean onCreateOptionsMenu(com.actionbarsherlock.view.Menu menu){
+			
+			
+			
+			
+			MenuInflater inflater=getSupportMenuInflater();
+			inflater.inflate(R.menu.triplistmenubar, menu);
+			return super.onCreateOptionsMenu(menu);
+			}
+
+			public boolean onOptionsItemSelected (com.actionbarsherlock.view.MenuItem item ){
+				switch (item.getItemId()){
+				
+				case R.id.home :
+					
+					Intent myIntent1 = new Intent(getBaseContext(), PocketCal20.class);	
+					startActivityForResult(myIntent1, 0);
+				return true;	
+					
+				case R.id.pfcmenu :
+					Intent myIntent11 = new Intent(getBaseContext(), PocketCal20.class);	
+					startActivityForResult(myIntent11, 0);
+					
+					return true;
+					
+					
+				case R.id.back :
+					
+					Intent myIntent12 = new Intent(getBaseContext(), onlinemenu1.class);	
+					startActivityForResult(myIntent12, 0);
+			
+		}
+				return false;
+		
+		
+		
+		}
+			
+			@Override
+			public void onBackPressed() {
+				Intent myIntent2 = new Intent(getBaseContext(), PocketCal20.class);	
+				startActivityForResult(myIntent2, 0);
+			}
+
+			
+	
+			 private class LongGetTripDetails extends AsyncTask<String, Void, String> {
+				 
+				 @Override
+				  protected String doInBackground(String... params) {
+				    // perform long running operation operation
+					 
+					 String[] trips = params[0].toString().split(" ");
+					 String tripnum = trips[0];
+					 
+					 String showDate = params[1].toString();
+					 String origShowDate = params[2].toString();
+					
+					  
+					 String tripDetails = getTripDetails(tripnum,showDate);
+					  
+					 
+				        
+				         
+				       return tripDetails+"::"+tripnum+"::"+showDate+"::"+origShowDate;  
+				 } 
+				  @Override
+				  protected void onPostExecute(String result) 
+				  {
+					 // store the trip in the database
+					  String[] tripInfo = result.split("::");
+					  String tripImagetoStore = tripInfo[0];
+					  String tripnum = tripInfo[1];
+					  String showDate = tripInfo[2];
+					  String OrigShowDate = tripInfo[3];
+					  
+					  
+					  
+					     int startAt = tripImagetoStore.indexOf("<!--  B E G I N   M A I N   C O N T E N T  -->");
+						 int endAt = tripImagetoStore.indexOf("<!-- Trip|Recap");
+				         String TripDetails = tripImagetoStore.substring(startAt, endAt);  
+				         
+				          AlpaDataBaseHelper mdbh3 = new AlpaDataBaseHelper(triplist.this.getApplicationContext());
+				 	     final SQLiteDatabase db4 = mdbh3.getWritableDatabase(); 
+				 		
+				 	    String TripDetails1 = TripDetails.replace("'","");
+				 	     String tsql = "update trips set details = '"+TripDetails1+"' where pairing = '"+tripnum+"' and showdate = '"+OrigShowDate+"'";
+						db4.execSQL(tsql);
+				        db4.close();
+					 Toast.makeText(ctx, "trip Image Updated", Toast.LENGTH_LONG).show();
+						
+					}
+				 @Override
+				  protected void onPreExecute()
+				  {
+				
+				  
+				  }
+				  @Override
+				  protected void onProgressUpdate(Void... values) 
+				  {
+				      // Things to be done while execution of long running operation is in progress. For example updating ProgessDialog
+				   }
+			}
+	
+	 
+	 private static void generateTripUpdateNotification(Context context, String message, String sound) {
+		    int icon = R.drawable.alpalogo;
+		    long when = System.currentTimeMillis();
+		    NotificationManager notificationManager = (NotificationManager)
+		            context.getSystemService(Context.NOTIFICATION_SERVICE);
+		    Notification notification = new Notification(icon, message, when);
+
+		    String title = context.getString(R.string.app_name);
+
+		    Intent notificationIntent = new Intent(context, OpenTimeList.class);
+		    // set intent so it does not start a new activity
+		    notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+		            Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+		    PendingIntent intent =
+		            PendingIntent.getActivity(context, 100, notificationIntent, 0);
+		    notification.setLatestEventInfo(context, title, message, intent);
+		    notification.flags |= Notification.FLAG_AUTO_CANCEL;
+
+		    // Play default notification sound
+		    if (sound.equals("true")){
+		    notification.defaults |= Notification.DEFAULT_SOUND;
+		    }
+		    // Vibrate if vibrate is enabled
+		    notification.defaults |= Notification.DEFAULT_VIBRATE;
+		    notificationManager.notify(0, notification);      
+
+		}   
+	 public String getTripDetails(String tripnum,String dte){
+
+			
+
+			// tripnum shoud be like 83Sep12
+			
+			String data2 = readuserdata();
+		  	final String[] logdata2 = data2.split(",");
+		  	String base = logdata2[2].trim();
+		   	String equip= logdata2[3].trim();
+		  	String zululocal = logdata2[5].trim();
+		  	String tripDetails = "";
+		  	
+		  	DefaultHttpClient httpClient = AppSettings.getClient();
+		  	
+		  
+		  	try {
+			String postString = "https://pilot.fedex.com/vips-bin/vipscgi?webtr?"+ tripnum +"?"+base.trim()+"?"+ equip + "?" + dte + "?N?Y?"+zululocal+"?";
+		    HttpPost httpPost3 = new HttpPost(postString); // gets scheduled month details
+		    HttpResponse hResponse1 = httpClient.execute(httpPost3);
+		    
+		    HttpEntity resEntity = hResponse1.getEntity();
+		    tripDetails = EntityUtils.toString(resEntity);
+		   resEntity.consumeContent();
+		  
+		   
+		   String src = "triprq";
+			  String botCode = Botchecker(tripDetails,src);
+			  
+			  if (botCode != null){
+				  // resubmit with botcode
+				 
+				   
+			  HttpPost httpPost2 = new HttpPost("https://pilot.fedex.com/vips-bin/vipscgi?webtr"); // + tripnum.trim()+"?" + base.trim()+"?"+equip.trim()+"?"+dte.trim()+"?"+"N?Y?"+botCode.toString()+"?"+ zululocal + "?");
+			   List<NameValuePair> nameValuePairs2 = new ArrayList<NameValuePair>(9);
+
+			    nameValuePairs2.add(new BasicNameValuePair("n001", tripnum.trim()));// base
+			    nameValuePairs2.add(new BasicNameValuePair("n002", base.trim())); //equip
+			    nameValuePairs2.add(new BasicNameValuePair("n003", equip.trim())); //equip
+			    nameValuePairs2.add(new BasicNameValuePair("n004", dte.trim())); // trip date
+			    nameValuePairs2.add(new BasicNameValuePair("n005", "Recap Format")); 
+			   nameValuePairs2.add(new BasicNameValuePair("n006", "on")); 
+			   
+			   nameValuePairs2.add(new BasicNameValuePair("nCTL", botCode.toString()));	
+			    nameValuePairs2.add(new BasicNameValuePair("nTRN", "webtr   "));
+			    nameValuePairs2.add(new BasicNameValuePair("n999", " Submit "));
+			    
+			  
+			    httpPost2.setEntity(new UrlEncodedFormEntity(nameValuePairs2, "UTF-8"));
+			    HttpResponse response2 = httpClient.execute(httpPost2);
+			    
+		        HttpEntity resEntity2 = response2.getEntity();
+		        tripDetails =  EntityUtils.toString(resEntity2);
+		        resEntity2.consumeContent();	
+			   
+			   }
+			   
+			   
+				      
+				      
+				      
+		  	} catch (IOException e) {
+		           Log.e("Exception", "IOException", e);
+		     } catch (Exception e) {
+		           Log.e("Exception", "General Exception", e);      
+			}
+		  	
+		  	
+			return tripDetails;
+		  	
+		} 
+	 
+		public String readuserdata(){
+			String usrdata = null;
+			 FileInputStream fis = null;
+		        try {
+					fis = openFileInput("PcalData");
+		        	} catch (FileNotFoundException e) {
+					
+				   
+					return "File Missing";
+				}
+					 StringBuffer fileContent = new StringBuffer("");
+
+				        byte[] buffer = new byte[1024];
+				        
+				        
+				        	@SuppressWarnings("unused")
+							int length = 0;
+							try {
+								while ((length = fis.read(buffer)) != -1) {
+								    fileContent.append(new String(buffer));
+								}
+							} catch (IOException e) {
+								return "File Missing";
+							}
+							
+							usrdata = (fileContent.toString());
+						    
+				      
+					
+					
+					
+				
+		        return usrdata;
+				
+			
+		}
+		public String Botchecker(String pageData, String src){
+			
+			String LinkToDigits;
+			String botCode = null ;
+			Bitmap bm = null;
+			// search the string for occurance of ....  Please enter the control code shown below
+			
+			if (pageData.contains("Please enter the control code shown below to submit your request")) {
+				
+				// this a botpage
+				if (src.equals("otrq")){
+				LinkToDigits = "/vips-bin/vipscgi?webdgts??webdd";
+				}else{
+				LinkToDigits = "/vips-bin/vipscgi?webdgts??webtr";	
+				}
+				// go get the digits and display in alert dialog
+				
+				
+				
+
+				
+				 DefaultHttpClient httpClient = AppSettings.getClient();
+					 Cookie sessionInfo;
+						List<Cookie> cookies = httpClient.getCookieStore().getCookies();
+
+						if (! cookies.isEmpty()){
+						        CookieSyncManager.createInstance(ctx);
+						        CookieManager cookieManager = CookieManager.getInstance();
+
+						        for(Cookie cookie : cookies){
+				        	
+						        	   sessionInfo = cookie;
+						                String cookieString = sessionInfo.getName() + "=" + sessionInfo.getValue() + "; domain=" + sessionInfo.getDomain();
+						                cookieManager.setCookie("pilot.fedex.com", cookieString);
+						                CookieSyncManager.getInstance().sync();
+						        }
+						}
+					 	
+						try {
+						    HttpPost httpPost1 = new HttpPost("https://pilot.fedex.com/" + LinkToDigits);
+						    HttpResponse response = httpClient.execute(httpPost1);
+							localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
+						    HttpEntity resEntity = response.getEntity();
+						    String data1 = EntityUtils.toString(resEntity); //  this string should have links to digits
+						    resEntity.consumeContent();
+			
+						    Document doc = Jsoup.parse(data1);
+						    Elements media = doc.select("[SRC]");
+					   	 	
+					   	 	
+						    
+					   	  StringBuilder sb = new StringBuilder();
+					   	  for (org.jsoup.nodes.Element src1 : media) {  // get path of EGRID image from webpage
+					   		  
+					   		  String attrval = src1.attributes().toString();
+					             if (attrval.contains("/vipsfiles/bots/")){
+					           	  
+					           	  attrval = attrval.substring(attrval.length() - 11);
+					           	  attrval = attrval.substring(0,attrval.length()- 1);
+					           	 String ImageURL = "https://pilot.fedex.com/vipsfiles/bots/" + attrval.trim();
+					         
+					           	HttpUriRequest request = new HttpGet(ImageURL);
+					           	HttpResponse response1 = httpClient.execute(request);
+					           
+					             BufferedHttpEntity bufferedHttpEntity = new BufferedHttpEntity(response1.getEntity());
+
+					              bm = BitmapFactory.decodeStream(bufferedHttpEntity.getContent());
+					              	utilities u = new utilities();
+					                  String digit = u.readBotCode(bm);
+					                  sb.append(digit.toString());
+					            }
+					             
+					   	  } // end for loop
+					   	
+					   	  botCode = sb.toString();
+					   	  return botCode;
+						
+						
+						
+						} catch (ClientProtocolException e) {
+							return "Protocol Exception";
+							} catch (IOException e) {
+							return "IOException";
+							}
+						
+			
+						} else {
+							
+						return null;
+
+						}
+			
+			
+		}
+		
+	}
+	   

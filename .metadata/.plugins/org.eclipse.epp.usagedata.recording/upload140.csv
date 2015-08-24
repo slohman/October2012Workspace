@@ -1,0 +1,26 @@
+what,kind,bundleId,bundleVersion,description,time
+executed,command,org.eclipse.ui,3.5.2.M20100120-0800,"org.eclipse.ui.file.import",1312382785044
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312382787591
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312382808763
+activated,view,org.eclipse.mylyn.tasks.ui,3.6.0.v20110608-1400,"org.eclipse.mylyn.tasks.ui.views.tasks",1312382808794
+activated,view,org.eclipse.ui.navigator.resources,3.4.1.M20090826-0800,"org.eclipse.ui.navigator.ProjectExplorer",1312382811794
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312382837967
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312382839045
+executed,command,org.eclipse.ui,3.5.2.M20100120-0800,"org.eclipse.ui.edit.delete",1312382839060
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312382842138
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312382852123
+executed,command,org.eclipse.ui,3.5.2.M20100120-0800,"org.eclipse.ui.file.import",1312382852154
+executed,command,org.eclipse.ui,3.5.2.M20100120-0800,"org.eclipse.ui.file.import",1312382852154
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312382852967
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312382856061
+activated,view,org.eclipse.mylyn.tasks.ui,3.6.0.v20110608-1400,"org.eclipse.mylyn.tasks.ui.views.tasks",1312382856061
+activated,view,org.eclipse.ui.navigator.resources,3.4.1.M20090826-0800,"org.eclipse.ui.navigator.ProjectExplorer",1312382858701
+error,log,,,"jumpsetmain.xml: Paint.setShadowLayer is not supported.",1312382884905
+error,log,,,"jumpsetmain.xml: Paint.setShadowLayer is not supported.",1312382884905
+error,log,,,"jumpsetmain.xml: Paint.setShadowLayer is not supported.",1312382884905
+opened,editor,com.android.ide.eclipse.adt,12.0.0.v201106281929-138431,"com.android.ide.eclipse.editors.layout.LayoutEditor",1312382884952
+activated,editor,com.android.ide.eclipse.adt,12.0.0.v201106281929-138431,"com.android.ide.eclipse.editors.layout.LayoutEditor",1312382884983
+activated,view,org.eclipse.ui.navigator.resources,3.4.1.M20090826-0800,"org.eclipse.ui.navigator.ProjectExplorer",1312382901405
+activated,editor,org.eclipse.jdt.ui,3.5.2.r352_v20100106-0800,"org.eclipse.jdt.ui.CompilationUnitEditor",1312382907171
+activated,view,org.eclipse.ui.navigator.resources,3.4.1.M20090826-0800,"org.eclipse.ui.navigator.ProjectExplorer",1312382917609
+opened,editor,org.eclipse.jdt.ui,3.5.2.r352_v20100106-0800,"org.eclipse.jdt.ui.CompilationUnitEditor",1312382927281

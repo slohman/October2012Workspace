@@ -1,0 +1,139 @@
+package com.yctc.alpaware;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+
+import android.app.Activity;
+import android.content.Context;
+import android.os.Bundle;
+import android.os.Environment;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class ocrsettings extends Activity {
+	
+	@Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.ocrsettings);
+        
+        
+	
+	 
+	
+	
+      Button savData = (Button)findViewById(R.id.btnSaveSettings);
+      Button readData = (Button)findViewById(R.id.btnReadSettings);
+      
+      
+      savData.setOnClickListener(new View.OnClickListener() {
+          public void onClick(View view) {
+        	  
+        	  EditText BWThresh = (EditText)findViewById(R.id.etBWLevel);
+              EditText lineSize = (EditText)findViewById(R.id.etLsize);
+              EditText penalty = (EditText)findViewById(R.id.etPenalty);
+              
+              String BW = BWThresh.getText().toString();
+              String lSize = lineSize.getText().toString();
+              String pen = penalty.getText().toString();
+        	  String Result = savData(BW,lSize,pen);
+        	  Toast.makeText(ocrsettings.this, Result, Toast.LENGTH_LONG).show();
+        	  
+        	  
+          	
+          
+      }});
+      
+      readData.setOnClickListener(new View.OnClickListener() {
+          public void onClick(View view) {
+        	  
+        	  EditText BWThresh = (EditText)findViewById(R.id.etBWLevel);
+              EditText lineSize = (EditText)findViewById(R.id.etLsize);
+              EditText penalty = (EditText)findViewById(R.id.etPenalty);
+              
+              String StoreData = readOCRdata();
+              String[] Stdata = StoreData.split(",");
+              
+              
+              BWThresh.setText(Stdata[0].toString().trim());
+              lineSize.setText(Stdata[1].toString().trim());
+              penalty.setText(Stdata[2].toString().trim());
+              
+              
+      }});
+
+}
+	
+	
+	public String savData(String BW,String lSize ,  String pen)  {
+		
+		String fileName = "ocrsettings.txt";
+		File sd = new File(Environment.getExternalStorageDirectory().toString() + "/PocketCalDatabases/");
+		
+		if (sd.exists()){
+			//do Nothing
+		}else{
+			sd.mkdirs();
+			}
+		
+	File ocrdat = new File(sd,  fileName);
+		
+		FileOutputStream fos;
+		byte[] data = new String(BW.trim() + "," + lSize.trim() + "," + pen.trim()).getBytes();
+		try {
+		    fos = new FileOutputStream(ocrdat);
+		    fos.write(data);
+		    fos.flush();
+		    fos.close();
+		} catch (FileNotFoundException e) {
+		    return "File Not Found";
+		} catch (IOException e) {
+		    return "I/O error";
+		}
+
+
+		return "Data Saved";
+	}
+	
+	public String readOCRdata(){
+		String fileName = "ocrsettings.txt";
+		
+		File sd = new File(Environment.getExternalStorageDirectory().toString() + "/PocketCalDatabases/");
+		File file = new File(sd,fileName);
+		
+		if (file.exists()){
+		
+		 StringBuilder text = new StringBuilder();
+		 try {
+			    BufferedReader br = new BufferedReader(new FileReader(file));
+			    String line;
+
+			    while ((line = br.readLine()) != null) {
+			        text.append(line);
+			        text.append('\n');
+			    }
+			}
+			catch (IOException e) {
+			   Toast.makeText(ocrsettings.this, "File Not Found", Toast.LENGTH_LONG).show();
+			}
+		 
+		 
+
+	        return text.toString();
+			
+		
+	}else{
+		
+		return null;
+	}
+	
+	
+}
+}	

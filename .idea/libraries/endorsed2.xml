@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="endorsed2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Copy of PocketCal20/assets/.metadata/.plugins/org.eclipse.wst.xsl.jaxp.launching/endorsed/END_1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Copy of PocketCal20/assets/.metadata/.plugins/org.eclipse.wst.xsl.jaxp.launching/endorsed/END_3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Copy of PocketCal20/assets/.metadata/.plugins/org.eclipse.wst.xsl.jaxp.launching/endorsed/END_0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Copy of PocketCal20/assets/.metadata/.plugins/org.eclipse.wst.xsl.jaxp.launching/endorsed/END_2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

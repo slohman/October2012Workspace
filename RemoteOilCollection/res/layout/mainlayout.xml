@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <EditText
+            android:id="@+id/etDate"
+            android:layout_width="200dp"
+            android:layout_height="54dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:ems="10"
+            android:hint="@string/date"
+            android:inputType="date"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size18" />
+
+        <EditText
+            android:id="@+id/etTime"
+            android:layout_width="200dp"
+            android:layout_height="54dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:ems="10"
+            android:hint="@string/time"
+            android:inputType="time"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size18" />
+
+        <EditText
+            android:id="@+id/etType"
+            android:layout_width="200dp"
+            android:layout_height="54dp"
+            android:layout_marginRight="2dp"
+            android:background="@color/white"
+            android:hint="@string/type"
+            android:text="IKG"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size18" />
+
+        <EditText
+            android:id="@+id/etManifest"
+            android:layout_width="200dp"
+            android:layout_height="54dp"
+            android:layout_weight="1.00"
+            android:background="@color/white"
+            android:ems="10"
+            android:hint="@string/manifest"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size18" >
+
+            <requestFocus />
+        </EditText>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:orientation="horizontal" >
+
+        <EditText
+            android:id="@+id/etgenName"
+            android:layout_width="200dp"
+            android:layout_height="54dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:ems="10"
+            android:hint="@string/GenName"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size18" />
+
+       
+
+        <EditText
+            android:id="@+id/etgenAddr"
+            android:layout_width="200dp"
+            android:layout_height="54dp"
+            android:layout_weight="1.00"
+            android:background="@color/white"
+            android:ems="10"
+            android:textColor="@color/black"
+            android:hint="@string/genAddr"
+            android:textSize="@dimen/size18" >
+        </EditText>
+    </LinearLayout>
+    <LinearLayout 
+         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:orientation="horizontal" >
+        
+        	<EditText
+            android:id="@+id/etFacility"
+            android:layout_width="0dip"
+            android:layout_height="54dp"
+           
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:ems="10"
+            android:hint="@string/recFacility"
+            android:text="LSW Enterprises, LLC."
+            android:textColor="@color/black"
+            android:textSize="@dimen/size18" />
+        
+        
+    </LinearLayout>
+    <LinearLayout 
+         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:orientation="horizontal" >
+        	
+        
+         <EditText
+         android:id="@+id/etTotalIKG"
+         android:layout_width="200dp"
+         android:layout_height="85dp"
+         android:layout_weight="1"
+         android:layout_marginRight="2dp"
+         android:hint="@string/totIKG"
+         android:background="@color/white"
+         android:ems="10"
+         android:textSize="@dimen/size18" />
+        
+          <Spinner
+            android:id="@+id/spMethod"
+            android:layout_width="200dp"
+            android:layout_height="85dp"
+            android:background="@color/white"
+            android:layout_weight="1"
+            android:prompt="@string/sMethodPrompt"
+            android:drawSelectorOnTop="true"
+            android:clickable="true"
+            android:layout_marginRight="2dp"
+            android:entries="@array/methods"
+            android:popupBackground="@color/white"
+            android:spinnerMode="dropdown"
+            android:dropDownSelector="@color/black"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size18" />        
+        
+        <EditText
+            android:id="@+id/etcontCap"
+            android:layout_width="200dp"
+            android:layout_height="85dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:ems="10"
+            android:hint="@string/contCap"
+            android:inputType="number"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size18" />
+        
+       <EditText
+            android:id="@+id/etpFill"
+            android:layout_width="200dp"
+            android:layout_height="85dp"
+          
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:ems="10"
+            android:hint="@string/fill"
+            android:inputType="numberDecimal"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size18" /> 
+        
+    </LinearLayout>
+    <LinearLayout 
+         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:orientation="horizontal" >
+        
+         <EditText
+            android:id="@+id/etTransName"
+            android:layout_width="200dp"
+            android:layout_height="65dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:ems="10"
+            android:hint="@string/transName"
+            android:inputType="text"
+            android:text="LSW Enterprises, LLC."
+            android:textColor="@color/black"
+            android:textSize="@dimen/size18" />
+        
+         <EditText
+            android:id="@+id/etTransSig"
+            android:layout_width="200dp"
+            android:layout_height="65dp"
+            
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:ems="10"
+            android:hint="@string/transSig"
+            android:inputType="text"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size18" />
+        
+        
+        
+        
+        
+    </LinearLayout>
+    <LinearLayout 
+       android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:orientation="horizontal"  >
+        
+        
+         <EditText
+            android:id="@+id/etGenRep"
+            android:layout_width="200dp"
+            android:layout_height="65dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:ems="10"
+            android:hint="@string/genRep"
+            android:inputType="text"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size18" />
+        
+         <EditText
+            android:id="@+id/etGenSig"
+            android:layout_width="200dp"
+            android:layout_height="65dp"
+           
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:ems="10"
+            android:hint="@string/genSig"
+            android:inputType="text"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size18" />
+        
+        
+        
+        
+        
+    </LinearLayout>
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:orientation="horizontal">
+         
+               <EditText
+            android:id="@+id/etComm"
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:ems="10"
+            android:hint="@string/Comments"
+            android:inputType="text"
+            android:textColor="@color/black"
+            android:textSize="@dimen/size18" />        
+        
+        
+        </LinearLayout>
+
+</LinearLayout>

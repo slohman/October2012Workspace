@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+
+xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content">
+	
+	<LinearLayout
+  	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical"
+	android:padding="5px">
+  
+  <TextView 
+     android:id="@+id/tcontactdata"
+      android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:gravity="center"
+          android:paddingRight="5px"
+          android:text="@string/officeaddress"
+          android:textSize="@dimen/size14"/>
+          
+          <TextView 
+          android:id="@+id/lphones"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:gravity="center"
+          android:paddingRight="5px"
+          android:text="Telephone Contacts:"  
+          android:textSize="@dimen/size14"/>
+  
+    <TextView 
+     android:id="@+id/tphonemain"
+      android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:gravity="center"
+          android:textColor="#3366CC"
+          android:background="@drawable/alpabtn"
+          android:paddingRight="5px"
+          android:text="@string/officetel"   
+          android:textSize="@dimen/size14"/>
+  <TextView 
+     android:id="@+id/tphonealt"
+      android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:gravity="center"
+          android:textColor="#3366CC"
+          android:background="@drawable/alpabtn"
+          android:paddingRight="5px"
+          android:text="@string/officetel1"
+          android:textSize="@dimen/size14"/>
+          
+          <TextView 
+          android:id="@+id/laspen"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:gravity="center"
+          android:paddingRight="5px"
+          android:text="ASPEN Contacts:"  
+          android:textSize="@dimen/size14"/>
+          
+     <TextView
+     android:id="@+id/tphoneaspen"
+      android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:gravity="center"
+          android:textColor="#3366CC"
+          android:background="@drawable/alpabtn"
+          android:paddingRight="5px"
+          android:text="@string/aspen"
+          android:textSize="@dimen/size14"/>
+          
+       <TextView
+           android:id="@+id/tphoneaspen1"
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content"
+           android:gravity="center"
+           android:textColor="#3366CC"
+           android:background="@drawable/alpabtn"
+           android:paddingRight="5px"
+           android:text="@string/aspen1"	
+           android:textSize="@dimen/size14"/>
+           
+           <TextView 
+          android:id="@+id/lfax"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:gravity="center"
+          android:paddingRight="5px"
+          android:text="FAX:"  
+          android:textSize="@dimen/size14"/>
+           <TextView
+           android:id="@+id/tofficefax"
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content"
+           android:gravity="center"
+           android:textColor="#3366CC"
+           android:background="@drawable/alpabtn"
+           android:paddingRight="5px"
+           android:text="@string/officefax"	
+           android:textSize="@dimen/size14"/>
+           <TextView 
+          android:id="@+id/lweb"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:gravity="center"
+          android:paddingRight="5px"
+          android:text="WEB Address:"  
+          android:textSize="@dimen/size14"/>
+           <TextView
+           android:id="@+id/tweb"
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content"
+           android:gravity="center"
+           android:textColor="#3366CC"
+           android:background="@drawable/alpabtn"
+           android:paddingRight="5px"
+           android:text="@string/web"	
+           android:textSize="@dimen/size14"/>
+</LinearLayout>
+</ScrollView>

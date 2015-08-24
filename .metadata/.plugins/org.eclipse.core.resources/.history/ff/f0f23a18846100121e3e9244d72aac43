@@ -1,0 +1,404 @@
+package com.yctc.alpaware;
+
+import java.io.File;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Environment;
+import android.view.View;
+import android.widget.Button;
+// license checker imports
+
+
+
+
+public class PocketCal20 extends Activity {
+    /** Called when the activity is first created. */
+	
+		public String DBpath = "/data/data/com.yctc.alpaware/databases/";
+	
+		
+		
+		
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+   
+       // ocr settings //
+       ocrsettings ocr = new ocrsettings();
+       String data = ocr.readOCRdata();
+       if (data == "no file"){
+    	  // create the file
+    	   ocr.savData("1000", "1.5",".1" );
+       }
+         
+        try {
+        	installCBAFiles();
+        	copyMiscFiles();
+        //	db.close();
+        	
+		} catch (IOException e) {
+		    e.printStackTrace();
+		}
+        
+       
+
+        Button next = (Button) findViewById(R.id.CBA);
+        next.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent myIntent = new Intent(view.getContext(), cba.class);
+                startActivityForResult(myIntent, 0);
+            }});;
+    Button bmec = (Button) findViewById(R.id.MEC);
+    bmec.setOnClickListener(new View.OnClickListener() {
+        public void onClick(View view) {
+            Intent myIntent = new Intent(view.getContext(), mec.class);
+            startActivityForResult(myIntent, 0);
+        }});;
+        Button bie = (Button) findViewById(R.id.INTEMER);
+        bie.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent myIntent = new Intent(view.getContext(), iemain.class);
+                startActivityForResult(myIntent, 0);
+            }});;
+               
+                
+               
+                Button acdata = (Button) findViewById(R.id.ACCDATA);
+                acdata.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View view) {
+                        Intent myIntent = new Intent(view.getContext(), acequiplaunch.class);
+                        startActivityForResult(myIntent, 0);
+                    }});;
+                    Button hoteldata = (Button) findViewById(R.id.RampHotel);
+                    hoteldata.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View view) {
+                            Intent myIntent = new Intent(view.getContext(), ramphotelmain.class);
+                            startActivityForResult(myIntent, 0);
+                        }});;     
+                    Button begridcalc = (Button) findViewById(R.id.egridcalc);
+                    begridcalc.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View view) {
+                            Intent myIntent = new Intent(view.getContext(), onlinelauncher.class);
+                            startActivityForResult(myIntent, 0);
+                        }});;
+        Button bmaint = (Button) findViewById(R.id.FileMaint);
+        bmaint.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent myIntent = new Intent(view.getContext(), filemaintmain.class);
+                startActivityForResult(myIntent, 0);
+            }});;
+            Button blogbook = (Button) findViewById(R.id.LogBook);
+            blogbook.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View view) {
+                    Intent myIntent = new Intent(view.getContext(), fltlogmain.class);
+                    startActivityForResult(myIntent, 0);
+                }});;
+                Button bExpLog = (Button) findViewById(R.id.ExpLogLogBook);
+                bExpLog.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View view) {
+                        Intent myIntent = new Intent(view.getContext(), explogmain.class);
+                        startActivityForResult(myIntent, 0);
+                    }});;
+                    Button babout= (Button) findViewById(R.id.About);
+                    babout.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View view) {
+                            Intent myIntent = new Intent(view.getContext(), about.class);
+                            startActivityForResult(myIntent, 0);
+                        }});;
+               Button bfedex= (Button) findViewById(R.id.FedExpress);
+               bfedex.setOnClickListener(new View.OnClickListener() {
+               public void onClick(View view) {
+            	   String s = "FedEx.pdf";
+           			ShowFile(s);
+                            }});;
+                        
+          Button jseat= (Button) findViewById(R.id.JmpSeat);
+          jseat.setOnClickListener(new View.OnClickListener() {
+               public void onClick(View view) {
+                     Intent myIntent = new Intent(view.getContext(), jumpseatmain.class);
+                     startActivityForResult(myIntent, 0);
+                            }});;
+                            
+          Button pdf= (Button) findViewById(R.id.PDFFILES);
+          pdf.setOnClickListener(new View.OnClickListener() {
+          public void onClick(View view) {
+                  Intent myIntent = new Intent(view.getContext(),pdf.class);
+                  startActivityForResult(myIntent, 0);
+            }});;
+            
+            Button help= (Button) findViewById(R.id.help);
+            help.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+            	String s = "Help.pdf";
+            	ShowFile(s);
+        	 }});;
+              
+              Button freq= (Button) findViewById(R.id.freq);
+              freq.setOnClickListener(new View.OnClickListener() {
+              public void onClick(View view) {
+                      Intent myIntent = new Intent(view.getContext(),freqs.class);
+                      startActivityForResult(myIntent, 0);
+                }});;   
+
+}
+
+	
+
+			
+	public void installCBAFiles(){    
+		// install files to system if they don't already exist
+	File sd = new File(Environment.getExternalStorageDirectory().toString() + "/cba/");
+	
+	
+	//File cbadir = new File(CBApath);
+	if (sd.exists() == false) {
+	sd.mkdir(); }
+	
+	
+	 for (int i = 1; i <= 31;i++) {
+		 String filename = "Section" + i + ".pdf";
+	 File cbafile = new File(sd,filename);
+	 
+	 if (cbafile.exists()){
+		 
+	 }else{
+	
+	try {
+		InputStream in = this.getResources().getAssets().open(filename);
+		OutputStream out = new FileOutputStream(sd + "/" + filename); // Transfer bytes from in to out
+	    byte[] buf = new byte[1024]; 
+	    int len;
+	    while ((len = in.read(buf)) != -1)
+		{ out.write(buf, 0, len); 
+		}  in.close(); 
+	    out.flush();
+     	out.close();
+     	
+     	if (i==31){
+     	utilities util = new utilities();
+     	Context ctx = getApplicationContext();
+     	util.showaction("CBA files Installed to Sd Card",ctx);
+     	}
+	} catch (IOException e) {
+		
+		e.printStackTrace();
+	utilities util = new utilities();
+ 	Context ctx = getApplicationContext();
+ 	
+ 	util.showaction(" CBA file " + filename + " Install failed",ctx);}
+	} }
+	 
+	 for (int i = 1; i <= 7;i++) {
+		 String filename = "LOA" + i + ".pdf";
+	 File cbafile = new File(sd,filename);
+	 
+	 if (cbafile.exists()){
+		 
+	 }else{
+	
+	try {
+		InputStream in = this.getResources().getAssets().open(filename);
+		OutputStream out = new FileOutputStream(sd + "/" + filename); // Transfer bytes from in to out
+	    byte[] buf = new byte[1024]; 
+	    int len;
+	    while ((len = in.read(buf)) != -1)
+		{ out.write(buf, 0, len); 
+		}  in.close(); 
+	    out.flush();
+     	out.close();
+     	
+     	if (i==7){
+     	utilities util = new utilities();
+     	Context ctx = getApplicationContext();
+     	util.showaction("LOA files Installed to Sd Card",ctx);
+     	}
+	} catch (IOException e) {
+		
+		e.printStackTrace();
+	utilities util = new utilities();
+ 	Context ctx = getApplicationContext();
+ 	
+ 	util.showaction(" LOA Install failed",ctx);}
+	} }
+	 
+	 }
+	
+	
+	 void copyMiscFiles() throws IOException { 
+		 File sd = new File(Environment.getExternalStorageDirectory().toString() + "/cba/");
+     	
+     	if (sd.canWrite() == false) {
+     	sd.mkdir(); }
+     	
+     	
+     	
+    	
+    	
+    	 
+    	 File cbafile = new File(sd,"/TOC.pdf");
+    	 
+    	 if (cbafile.exists() == true){
+    		 // do nothing
+    	 }else{
+     	 InputStream in = getResources().getAssets().open("TOC.pdf"); 
+      	OutputStream out = new FileOutputStream(sd + "/TOC.pdf"); // Transfer bytes from in to out
+      	byte[] buf = new byte[1024]; 
+      	int len; 
+      	while ((len = in.read(buf)) > 0)
+      	{ out.write(buf, 0, len); 
+      	}  in.close(); 
+	    out.flush();
+     	out.close(); 
+    	 }     	
+     
+    	
+ 	
+    	
+ 	
+    	 File cbafile3 = new File(sd,"/cbaIndex.pdf");
+    	 
+    	 if (cbafile3.exists()){
+    		 // do nothing
+    	 }else{
+     	 InputStream in = getResources().getAssets().open("cbaIndex.pdf"); 
+      	OutputStream out = new FileOutputStream(sd + "/cbaIndex.pdf"); // Transfer bytes from in to out
+      	byte[] buf = new byte[1024]; 
+      	int len; 
+      	while ((len = in.read(buf)) > 0)
+      	{ out.write(buf, 0, len); 
+      	}  in.close(); 
+	    out.flush();
+     	out.close();
+     	
+    	 }
+     	
+     	File pdf1 = new File(sd,"/FedEx.pdf");
+   	 
+   	 if (pdf1.exists()){
+   		 // do nothing
+   	 }else{
+    	 InputStream in = getResources().getAssets().open("FedEx.pdf"); 
+     	OutputStream out = new FileOutputStream(sd + "/FedEx.pdf"); // Transfer bytes from in to out
+     	byte[] buf = new byte[1024]; 
+     	int len; 
+     	while ((len = in.read(buf)) > 0)
+     	{ out.write(buf, 0, len); 
+     	}  in.close(); 
+	    out.flush();
+    	out.close();
+    	
+    	
+   	 }
+    	File pdf2 = new File(sd,"/FTDTv2.pdf");
+      	 
+      	 if (pdf2.exists()){
+      		 // do nothing
+      	 }else{
+       	 InputStream in = getResources().getAssets().open("FTDTv2.pdf"); 
+        	OutputStream out = new FileOutputStream(sd + "/FTDTv2.pdf"); // Transfer bytes from in to out
+        	byte[] buf = new byte[1024]; 
+        	int len; 
+        	while ((len = in.read(buf)) > 0)
+        	{ out.write(buf, 0, len); 
+        	}  in.close(); 
+   	    out.flush();
+       	out.close();
+       	
+      	}
+     	File pdf3 = new File(sd,"/Jumpseat_Guide.pdf");
+       	 
+       	 if (pdf3.exists()){
+       		 // do nothing
+       	 }else{
+        	 InputStream in = getResources().getAssets().open("Jumpseat_Guide.pdf"); 
+         	OutputStream out = new FileOutputStream(sd + "/Jumpseat_Guide.pdf"); // Transfer bytes from in to out
+         	byte[] buf = new byte[1024]; 
+         	int len; 
+         	while ((len = in.read(buf)) > 0)
+         	{ out.write(buf, 0, len); 
+         	}  in.close(); 
+    	    out.flush();
+        	out.close();
+        	
+       	 }
+        	File pdf4 = new File(sd,"/Contract_Info.pdf");
+          	 
+          	 if (pdf4.exists()){
+          		 // do nothing
+          	 }else{
+           	 InputStream in = getResources().getAssets().open("Contract_Info.pdf"); 
+            	OutputStream out = new FileOutputStream(sd + "/Contract_Info.pdf"); // Transfer bytes from in to out
+            	byte[] buf = new byte[1024]; 
+            	int len; 
+            	while ((len = in.read(buf)) > 0)
+            	{ out.write(buf, 0, len); 
+            	}  in.close(); 
+       	    out.flush();
+           	out.close();
+           	
+          	}
+         	File pdf5 = new File(sd,"/Travel_Info.pdf");
+           	 
+           	 if (pdf5.exists()){
+           		 // do nothing
+           	 }else{
+            	 InputStream in = getResources().getAssets().open("Travel_Info.pdf"); 
+             	OutputStream out = new FileOutputStream(sd + "/Travel_Info.pdf"); // Transfer bytes from in to out
+             	byte[] buf = new byte[1024]; 
+             	int len; 
+             	while ((len = in.read(buf)) > 0)
+             	{ out.write(buf, 0, len); 
+             	}  in.close(); 
+        	    out.flush();
+            	out.close();
+           	 }
+           	File pdf6 = new File(sd,"/Help.pdf");
+          	 
+          	 if (pdf6.exists()){
+          		 // do nothing
+          	 }else{
+           	 InputStream in = getResources().getAssets().open("Help.pdf"); 
+            	OutputStream out = new FileOutputStream(sd + "/Help.pdf"); // Transfer bytes from in to out
+            	byte[] buf = new byte[1024]; 
+            	int len; 
+            	while ((len = in.read(buf)) > 0)
+            	{ out.write(buf, 0, len); 
+            	}  in.close(); 
+       	    out.flush();
+           	out.close();
+   
+        	
+       	utilities util = new utilities();
+       	Context ctx = getApplicationContext();
+       	
+     	util.showaction("Misc files Installed to Sd Card",ctx);}
+     	
+    	 }
+	
+	 void ShowFile(String s) {
+	    	
+	    	
+	    	Intent intent = new Intent();
+	    	 intent.setAction(android.content.Intent.ACTION_VIEW);
+	    	 File file = new File("mnt/sdcard/cba/" + s);
+	    	 intent.setDataAndType(Uri.fromFile(file), "application/pdf");  
+	    	 startActivity(intent);
+	    }
+	
+	
+}	 
+	
+
+
+	
+

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+      <item android:id="@+id/home"
+	    android:title="@string/titleHome"
+	    android:orderInCategory="0"
+	    android:icon="@drawable/ic_menu_home"
+	    android:showAsAction="ifRoom">
+	   		 
+	</item>
+	<item android:id="@+id/back"
+	    android:title="@string/titleBack"
+	    android:orderInCategory="0"
+	    android:icon="@drawable/back1"
+	    android:showAsAction="ifRoom">
+	   		 
+	</item>
+    
+    <item android:id="@+id/acmainmenu"
+	    android:title="Actions"
+	    android:icon="@drawable/icmenu"
+	    android:orderInCategory="0"
+	    
+	   
+	    android:showAsAction="ifRoom">
+	   		 <menu>
+	   		     <item android:id="@+id/acmenu"
+	   		           android:title="@string/acMenu"/>
+	   		     
+				 <item android:id="@+id/addac"
+	   		           android:title="@string/acaddnew"/>
+				 
+				 <item android:id="@+id/viewOther"
+	   		           android:title="@string/acviewother"/>
+				  
+				   <item android:id="@+id/delac"
+	   		           android:title="@string/acDel"/>
+				   
+				    <item android:id="@+id/updac"
+	   		           android:title="@string/acUpd"/>
+				    
+
+			</menu>
+</item>
+
+</menu>

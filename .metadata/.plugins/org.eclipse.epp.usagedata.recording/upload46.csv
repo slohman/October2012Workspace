@@ -1,0 +1,26 @@
+what,kind,bundleId,bundleVersion,description,time
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311729184913
+executed,command,org.eclipse.ui,3.5.2.M20100120-0800,"org.eclipse.ui.file.properties",1311729184928
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311729189163
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311729192085
+executed,command,org.eclipse.ui,3.5.2.M20100120-0800,"org.eclipse.ui.file.properties",1311729192101
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311729198476
+started,bundle,org.eclipse.wst.server.core,1.1.102.v20100123,"org.eclipse.wst.server.core",1311729200523
+started,bundle,org.eclipse.wst.server.ui,1.1.103.v20100123,"org.eclipse.wst.server.ui",1311729200538
+started,bundle,org.eclipse.ui.externaltools,3.2.0.v20090504,"org.eclipse.ui.externaltools",1311729217617
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311729219601
+error,log,,,"Problems occurred when invoking code from plug-in: ""org.eclipse.jface"".",1311729219601
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311729251774
+error,log,,,"java.lang.NullPointerException",1311729251774
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311729251805
+executed,command,org.eclipse.ui.ide,3.5.2.M20100113-0800,"org.eclipse.ui.project.properties",1311729251836
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311729263586
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311729269508
+executed,command,org.eclipse.ui,3.5.2.M20100120-0800,"org.eclipse.ui.file.properties",1311729269524
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311729271305
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311729376713
+activated,editor,com.android.ide.eclipse.adt,12.0.0.v201106281929-138431,"com.android.ide.eclipse.editors.manifest.ManifestEditor",1311729380010
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311729389886
+executed,command,org.eclipse.ui,3.5.2.M20100120-0800,"org.eclipse.ui.file.save",1311729389901
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311729389995
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311729389995

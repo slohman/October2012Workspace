@@ -1,0 +1,39 @@
+<LinearLayout android:id="@+id/LinearLayout01" 
+android:layout_width="fill_parent" 
+android:layout_height="fill_parent"
+ xmlns:android="http://schemas.android.com/apk/res/android" 
+ android:orientation="vertical"
+ >
+ 
+ <Button android:id="@+id/findhotelByCity" 
+ android:layout_width="match_parent" 
+ android:layout_height="wrap_content"
+ android:textSize="@dimen/size14"
+ android:paddingBottom="5pt"
+android:layout_gravity="center_horizontal" 
+android:text="@string/rampfindbycity"/>
+  
+  
+  
+<Button android:id="@+id/listall" 
+
+android:layout_width="match_parent" 
+ android:textSize="@dimen/size14"
+android:layout_height="wrap_content" 
+ android:paddingBottom="5pt"
+android:layout_gravity="center_horizontal"
+android:text="@string/rampshowall"/>
+ 
+ <Button android:id="@+id/addnewHotel" 
+
+android:layout_width="match_parent" 
+ android:textSize="@dimen/size14"
+android:layout_height="wrap_content" 
+android:layout_gravity="center_horizontal"
+ android:paddingBottom="5pt"
+ android:text="@string/rampaddnew"/>
+ 
+ 
+ 
+ 
+</LinearLayout>

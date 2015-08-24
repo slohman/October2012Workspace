@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename field &apos;mins&apos; in &apos;com.yctc.alpaware.R.id&apos; to &apos;mnth&apos;&#x0A;- Original project: &apos;PocketCal20&apos;&#x0A;- Original element: &apos;com.yctc.alpaware.R.id.mins&apos;&#x0A;- Renamed element: &apos;com.yctc.alpaware.R.id.mnth&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" delegate="false" deprecate="true" description="Rename field &apos;mins&apos;" flags="589830" getter="false" id="org.eclipse.jdt.ui.rename.field" input="/gen&lt;com.yctc.alpaware{R.java[R[id^mins" name="mnth" references="true" setter="false" stamp="1391879952174" textual="false" version="1.0"/>
+</session>

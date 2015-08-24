@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="dexedLibs">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/PocketCal20/bin/dexedLibs/wheel-8bfc605feeac2e4f5bd8a0240d4181bc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/PocketCal20/bin/dexedLibs/android-async-http-1.4.3-df3bfac72f94d081bf88f54e4fcb3ee4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/PocketCal20/bin/dexedLibs/androidjhlabs-30f2e48350b8b0e909df0257b9819d42.jar!/" />
+      <root url="jar://$PROJECT_DIR$/PocketCal20/bin/dexedLibs/android-support-v4-15aedbc7072cd2dfe1289342ae4df687.jar!/" />
+      <root url="jar://$PROJECT_DIR$/PocketCal20/bin/dexedLibs/tess-two-5761e9f41499ea7cb460be92267e11da.jar!/" />
+      <root url="jar://$PROJECT_DIR$/PocketCal20/bin/dexedLibs/actionbarsherlock-2adafffd334515133cfa73eba5a9a49a.jar!/" />
+      <root url="jar://$PROJECT_DIR$/PocketCal20/bin/dexedLibs/jsoup-1.7.1-966e931986116e14210916d8eff8e6a5.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

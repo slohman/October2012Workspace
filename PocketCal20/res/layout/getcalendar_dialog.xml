@@ -1,0 +1,50 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:baselineAligned="true"
+    android:gravity="bottom"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/wheel"
+        android:layout_width="376dp"
+        android:layout_height="340dp" >
+
+        <Button
+            android:id="@+id/dialogGetOpenTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@+id/block_month"
+            android:text="Get Cal" />
+
+        <Button
+            android:id="@+id/dialogCancel1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/block_month"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:text="@string/cancel" />
+
+        <kankan.wheel.widget.WheelView
+            android:id="@+id/mnth"
+            android:layout_width="125dp"
+            android:layout_height="200dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="34dp" />
+
+        <kankan.wheel.widget.WheelView
+            android:id="@+id/block_month"
+            android:layout_width="125dp"
+            android:layout_height="200dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="29dp"
+            android:layout_toRightOf="@+id/mnth" />
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,89 @@
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/setUID"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:ems="10"
+            android:hint="UserID"
+            android:text="UID" />
+
+        <EditText
+            android:id="@+id/setPWD"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:ems="10"
+            android:hint="Vips Password"
+            android:inputType="textPassword"
+            android:text="VipsPassWord" />
+
+        <RelativeLayout
+            android:id="@+id/relLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="355dp" >
+
+            <Button
+                android:id="@+id/saveData"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginBottom="84dp"
+                android:text="Save Data" />
+
+            <EditText
+                android:id="@+id/etBase"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:ems="10"
+                android:hint="Base (LAX,MEM,ANC,HKG,EUR)"
+                android:text="Base" >
+
+                <requestFocus />
+            </EditText>
+
+            <EditText
+                android:id="@+id/etEq"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/etBase"
+                android:ems="10"
+                android:hint="Equiment ( 11,77,72,30,57)"
+                android:text="Equipment" />
+
+            <EditText
+                android:id="@+id/seat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/etEq"
+                android:ems="10"
+                android:hint="Cap/FO"
+                android:inputType="textPersonName"
+                android:text="Cap/FO" />
+
+            <EditText
+                android:id="@+id/tzorlocal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/seat"
+                android:ems="10"
+                android:hint="Z - Zulu L - Local"
+                android:inputType="textPersonName"
+                android:text="Z or Local Time" />
+
+        </RelativeLayout>
+
+    </LinearLayout>

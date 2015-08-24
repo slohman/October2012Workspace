@@ -1,0 +1,26 @@
+what,kind,bundleId,bundleVersion,description,time
+closed,view,org.eclipse.help.ui,3.4.1.v20090819_35x,"org.eclipse.help.ui.HelpView",1311733689374
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311733693671
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311733701500
+executed,command,org.eclipse.ui.ide,3.5.2.M20100113-0800,"org.eclipse.ui.project.properties",1311733701531
+started,bundle,org.eclipse.wst.server.core,1.1.102.v20100123,"org.eclipse.wst.server.core",1311733706406
+started,bundle,org.eclipse.wst.server.ui,1.1.103.v20100123,"org.eclipse.wst.server.ui",1311733706422
+started,bundle,org.eclipse.wst.xsl.debug.ui,1.0.0.v200904240436,"org.eclipse.wst.xsl.debug.ui",1311733706422
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311733709531
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311733715828
+executed,command,org.eclipse.ui.ide,3.5.2.M20100113-0800,"org.eclipse.ui.project.properties",1311733715844
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311733761251
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311733810580
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311733813783
+no handler,command,org.eclipse.ui,3.5.2.M20100120-0800,"org.eclipse.ui.edit.paste",1311733814596
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311733820596
+executed,command,org.eclipse.ui,3.5.2.M20100120-0800,"org.eclipse.ui.edit.paste",1311733831861
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311733858346
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311733869753
+executed,command,org.eclipse.ui,3.5.2.M20100120-0800,"org.eclipse.ui.edit.paste",1311733873925
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311733940535
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311733947754
+executed,command,org.eclipse.ui.ide,3.5.2.M20100113-0800,"org.eclipse.ui.project.properties",1311733947770
+activated,view,org.eclipse.ui.navigator.resources,3.4.1.M20090826-0800,"org.eclipse.ui.navigator.ProjectExplorer",1311733957254
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311733971724
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311733981067

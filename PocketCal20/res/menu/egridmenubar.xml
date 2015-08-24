@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+	<item android:id="@+id/egridmenu"
+	    android:title="Actions"
+	    android:icon="@drawable/icmenu"
+	    android:orderInCategory="0"
+	    android:showAsAction="always">"
+	   		 <menu>
+	   		    
+				
+				   
+				    <item android:id="@+id/clearCode"
+	   		           android:title="Clear Code"/>
+
+			</menu>
+	</item>
+	<item android:id="@+id/getEgrid"
+	    android:title="Get Egrid"
+	    android:orderInCategory="0"
+	    android:icon="@drawable/new_picture"
+	    android:showAsAction="ifRoom">
+	   		 
+	</item>
+	<item android:id="@+id/back"
+	    android:title="Back"
+	    android:orderInCategory="0"
+	    android:icon="@drawable/back1"
+	    android:showAsAction="ifRoom">
+	   		 
+	</item>
+	        
+    <item android:id="@+id/home"
+	    android:title="Home"
+	    android:orderInCategory="0"
+	    android:icon="@drawable/ic_menu_home"
+	    android:showAsAction="ifRoom">
+	   		 
+	</item>
+	
+</menu>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="com.arroyoseco.Remote"
+      android:versionCode="1"
+      android:versionName="1.0">
+    <application android:icon="@drawable/arrlogo" android:label="Arroyo Remote Water">
+        <activity android:name=".Remote"
+                  android:label="Arroyo Remote Water">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <activity android:name=".PG"
+                  android:label="Putting Green Valves">
+        </activity>
+        <activity android:name=".Num2"
+                  android:label="Num 2 Tee Valves">
+        </activity>
+        <activity android:name=".pump"
+                  android:label="Pump Control">
+        </activity>
+         <activity android:name=".ThriteenFwy"
+                  android:label="13 Fairway Valves">
+        </activity>
+         <activity android:name=".FourteenTee"
+                  android:label="14 Valves">
+        </activity>
+         <activity android:name=".SeventeenTee"
+                  android:label="17 Valves">
+        </activity>
+         <activity android:name=".ThreeFwy"
+                  android:label="3 Fairway Valves">
+        </activity>
+        <activity android:name=".getip"
+                  android:label="get ip addr">
+        </activity>
+        <activity android:name=".Server"
+                  android:label="get ip addr">
+        </activity>
+        <activity android:name=".TCPServer"
+                  android:label="get ip addr">
+        </activity>
+
+    </application>
+    <uses-sdk android:minSdkVersion="6" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+</manifest> 

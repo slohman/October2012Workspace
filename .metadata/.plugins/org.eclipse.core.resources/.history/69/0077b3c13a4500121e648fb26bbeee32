@@ -1,0 +1,237 @@
+package com.yctc.alpaware;
+
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.CookieStore;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.protocol.ClientContext;
+import org.apache.http.impl.client.BasicCookieStore;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.protocol.BasicHttpContext;
+import org.apache.http.protocol.HttpContext;
+import org.apache.http.util.EntityUtils;
+
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.Service;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Handler;
+import android.os.IBinder;
+import android.os.Message;
+import android.os.Vibrator;
+import android.util.Log;
+import android.widget.Toast;
+
+
+
+
+public class OTUpdateSvc extends Service {
+	
+	    private NotificationManager mNM;
+
+	    // Unique Identification Number for the Notification.
+	    // We use it on Notification start, and to cancel it.
+	   DefaultHttpClient httpClient = AppSettings.getClient();
+	   
+	   CookieStore cookieStore = new BasicCookieStore();
+		 HttpContext localContext = new BasicHttpContext();
+		 utilities util = new utilities();
+		 HttpEntity tripDetailEntity;
+		 String tripDetails;
+		 int updateSec;
+	     Boolean isRunning;
+	     int notifID = 1;
+	     Message msg;
+	   
+	    
+	     
+	     
+	    @Override
+	    public void onCreate() {
+	        mNM = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+
+	      
+	      
+	       
+	    }
+
+	    @Override
+	    public int onStartCommand(Intent intent, int flags, int startId) {
+	    	isRunning = true; // change to false after seesion is started sucessfully
+	    	// get data from intent bundle
+	    	
+	    	  Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+		        vibrator.vibrate(100);
+		        
+		        
+	    	mNM = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+	    	
+	    	final String uid = intent.getStringExtra("UID");
+	    	final String pwd = intent.getStringExtra("PWD");
+	    	final String grid = intent.getStringExtra("GRID");
+	    	final String base = intent.getStringExtra("BASE");
+	    	final String equip = intent.getStringExtra("EQUIP");
+	    	final String stDate = intent.getStringExtra("StartDate");
+	    	final String enDate = intent.getStringExtra("EndDate");
+	    	final int updateSec = intent.getIntExtra("UPDATESEC", 240);
+	    	final String sessId = intent.getStringExtra("SESSID");
+	    	final String ImagePath = intent.getStringExtra("IP");
+	    	final String redirect = intent.getStringExtra("REDIRECT");
+	    	
+	    	 Intent i = new Intent("com.yctc.alpaware");
+	         i.putExtra("NotifID", notifID);  
+
+	    	final PendingIntent Intent =   PendingIntent.getActivity(this, 0, i, 0);
+	    		        	 
+	    	
+	    	
+	    		 
+	    		 Runnable runnable = new Runnable() {
+	    			 
+	    			 
+	    		        public void run() {
+	    		        // initial start session here !
+	    		        	
+	    		        	String loginResult = startSession(uid, pwd, ImagePath,redirect, sessId,grid  );
+	    		        	
+	    		        
+	    		        	if (loginResult != "login failed") {
+	    		        		 
+	    		        		
+	    		        			while (isRunning) {  // execute the OpenTime update routines every x seconds milisec = 1000 seconds * 1000 = delay time
+	    		        					synchronized (this) {
+	    		        					try {
+	    		        			
+	    		        			  
+	    		        			  
+	    		        			  
+	    		        						 Notification notif = new Notification(
+	    		 	    		        	            R.drawable.icon, 
+	    		 	    		        	            "Login Success, Service Started",
+	    		 	    		        	            System.currentTimeMillis());
+	    		 	    		        	 
+	    		 	    		        	        CharSequence from = "OTUpdate SVC - logged in";
+	    		 	    		        	        CharSequence message = "Alert from OTUpdate Svc";        
+	    		 	    		        	        notif.setLatestEventInfo(OTUpdateSvc.this, from, message, Intent);
+	    		 	    		        	               
+	    		 	    		        	        mNM.notify(notifID, notif);
+	    		 	    		        	        isRunning = false;
+	    		        			  
+	    		        		  } catch (Exception e) {}	
+	    		        	}
+	    		        	}				
+	    		        }else{
+	    		        	
+	    		        	// send message to let user know login failed and stop the service
+	    		        	
+	    		        	 Notification notif = new Notification(
+	    		        	            R.drawable.icon, 
+	    		        	            "Login Failed, Service not Started",
+	    		        	            System.currentTimeMillis());
+	    		        	 
+	    		        	        CharSequence from = "OTUpdate Service -- Failure";
+	    		        	        CharSequence message = "Alert from OTUpdate Svc";        
+	    		        	        notif.setLatestEventInfo(OTUpdateSvc.this, from, message, Intent);
+	    		        	               
+	    		        	        mNM.notify(notifID, notif);
+	    		        }
+	    		     
+	    		    }
+	    	      };
+	    	      
+	    	      Thread mythread = new Thread(runnable);
+	    	      mythread.start();
+	       
+	        
+	        return START_NOT_STICKY; // shouldnt restart if it is shutdown
+	    }
+
+	    @Override
+	    public void onDestroy() {
+	        // Cancel the persistent notification.
+	    	
+	    	
+	       super.onDestroy();
+	       
+	       Intent i = new Intent("com.yctc.alpaware");
+	         i.putExtra("NotifID", notifID);  
+
+	    	final PendingIntent Intent =   PendingIntent.getActivity(this, 0, i, 0);
+	       Notification notif = new Notification(
+    	            R.drawable.icon, 
+    	            "Service Stopped",
+    	            System.currentTimeMillis());
+    	 
+    	        CharSequence from = "OTUpdate SVC - Stopped";
+    	        CharSequence message = "Alert from OTUpdate Svc";        
+    	        notif.setLatestEventInfo(OTUpdateSvc.this, from, message, Intent);
+    	                
+    	        mNM.notify(notifID, notif);
+
+	        // Tell the user we stopped.
+	        Toast.makeText(this, "Service Stopped", Toast.LENGTH_SHORT).show();
+	    }
+
+	    @Override
+	    public IBinder onBind(Intent intent) {
+	        return null;
+	    }
+
+	    public String startSession(String UID, String GRID, String PATH, String REDIRECT, String SESSIONID, String GRD ){
+	    	
+		   	 try {
+		   // DefaultHttpClient httpClient = AppSettings.getClient();
+		   		 
+		   		  
+		   	       HttpPost httpPost = new HttpPost("https://pilot.fedex.com/TwoFactorAuthentication/AuthenticationController/secondfactor");
+		   		    List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(5);
+
+		   		    nameValuePairs.add(new BasicNameValuePair("userId", UID));
+		   		    nameValuePairs.add(new BasicNameValuePair("imagePath", PATH));
+		   		    nameValuePairs.add(new BasicNameValuePair("redirectPath",REDIRECT));
+		   		    nameValuePairs.add(new BasicNameValuePair("sessionID", SESSIONID));
+		   		    nameValuePairs.add(new BasicNameValuePair("gridResponse", GRD));
+		   		    // Encode the entities to UTF-8
+		   		    httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs, "UTF-8"));
+		   		    // Response from the Http Request
+		   		    
+		   			
+		   		    HttpResponse response1 = httpClient.execute(httpPost);
+		   		    localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
+		   	       HttpEntity resEntity1 = response1.getEntity();
+		   	       String data =  EntityUtils.toString(resEntity1);
+		   	       resEntity1.consumeContent();
+		   	   
+		   	    
+		   	     if (data.contains("SSO Login")){
+		   	    	 String errmsg = "login failed";
+		   	    	 
+		   	    	 return errmsg;
+		   	    	 
+		   	     }else{
+		   	
+		   	return data;}
+		   	
+		   	
+		   	
+		   	
+		   	 } catch (IOException e) {
+		            Log.e("Exception", "IOException", e);
+		      } catch (Exception e) {
+		            Log.e("Exception", "General Exception", e);
+		     }
+
+		   return null;
+		   }
+
+	}

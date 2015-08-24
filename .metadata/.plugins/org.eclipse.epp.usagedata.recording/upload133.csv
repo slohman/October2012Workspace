@@ -1,0 +1,26 @@
+what,kind,bundleId,bundleVersion,description,time
+ws,sysinfo,,,"win32",1312382126797
+locale,sysinfo,,,"en_US",1312382126797
+processors,sysinfo,,,"2",1312382126797
+java.runtime.name,sysinfo,,,"Java(TM) SE Runtime Environment",1312382126797
+java.runtime.version,sysinfo,,,"1.6.0_26-b03",1312382126797
+java.specification.name,sysinfo,,,"Java Platform API Specification",1312382126797
+java.specification.vendor,sysinfo,,,"Sun Microsystems Inc.",1312382126797
+java.specification.version,sysinfo,,,"1.6",1312382126797
+java.vendor,sysinfo,,,"Sun Microsystems Inc.",1312382126797
+java.version,sysinfo,,,"1.6.0_26",1312382126797
+java.vm.info,sysinfo,,,"mixed mode",1312382126797
+java.vm.name,sysinfo,,,"Java HotSpot(TM) Client VM",1312382126797
+java.vm.specification.name,sysinfo,,,"Java Virtual Machine Specification",1312382126797
+java.vm.specification.vendor,sysinfo,,,"Sun Microsystems Inc.",1312382126797
+java.vm.specification.version,sysinfo,,,"1.0",1312382126797
+java.vm.vendor,sysinfo,,,"Sun Microsystems Inc.",1312382126797
+java.vm.version,sysinfo,,,"20.1-b02",1312382126797
+started,bundle,com.android.ide.eclipse.traceview,12.0.0.v201106281929-138431,"com.android.ide.eclipse.traceview",1312382127953
+started,bundle,org.eclipse.jst.servlet.ui,1.1.301.v200908101600,"org.eclipse.jst.servlet.ui",1312382128890
+activated,view,org.eclipse.ui.navigator.resources,3.4.1.M20090826-0800,"org.eclipse.ui.navigator.ProjectExplorer",1312382145656
+opened,editor,org.eclipse.jdt.ui,3.5.2.r352_v20100106-0800,"org.eclipse.jdt.ui.CompilationUnitEditor",1312382150969
+activated,editor,org.eclipse.jdt.ui,3.5.2.r352_v20100106-0800,"org.eclipse.jdt.ui.CompilationUnitEditor",1312382151016
+activated,view,org.eclipse.ui.navigator.resources,3.4.1.M20090826-0800,"org.eclipse.ui.navigator.ProjectExplorer",1312382153188
+activated,editor,org.eclipse.jdt.ui,3.5.2.r352_v20100106-0800,"org.eclipse.jdt.ui.CompilationUnitEditor",1312382164141
+activated,view,org.eclipse.ui.navigator.resources,3.4.1.M20090826-0800,"org.eclipse.ui.navigator.ProjectExplorer",1312382193829

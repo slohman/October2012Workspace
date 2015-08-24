@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="com.android.ide.eclipse.adt.debug.LaunchConfigType">
+<intAttribute key="com.android.ide.eclipse.adt.action" value="1"/>
+<stringAttribute key="com.android.ide.eclipse.adt.activity" value="com.yctc.alpaware.PocketCal20"/>
+<stringAttribute key="com.android.ide.eclipse.adt.avd" value="AVD501"/>
+<stringAttribute key="com.android.ide.eclipse.adt.commandline" value="-partition-size 1024 -netspeed full -netdelay none"/>
+<intAttribute key="com.android.ide.eclipse.adt.delay" value="0"/>
+<stringAttribute key="com.android.ide.eclipse.adt.last.used.device" value="192.168.57.101:5555"/>
+<booleanAttribute key="com.android.ide.eclipse.adt.nobootanim" value="true"/>
+<booleanAttribute key="com.android.ide.eclipse.adt.reuse.last.used.device" value="true"/>
+<intAttribute key="com.android.ide.eclipse.adt.speed" value="0"/>
+<stringAttribute key="com.android.ide.eclipse.adt.target" value="MANUAL"/>
+<booleanAttribute key="com.android.ide.eclipse.adt.wipedata" value="false"/>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/PocketCal20"/>
+<listEntry value="/PocketCal20/AndroidManifest.xml"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="4"/>
+<listEntry value="1"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.ui.favoriteGroups">
+<listEntry value="org.eclipse.debug.ui.launchGroup.debug"/>
+<listEntry value="org.eclipse.debug.ui.launchGroup.run"/>
+</listAttribute>
+<booleanAttribute key="org.eclipse.jdt.launching.ALLOW_TERMINATE" value="true"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="PocketCal20"/>
+</launchConfiguration>

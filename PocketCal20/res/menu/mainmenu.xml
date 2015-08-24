@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/mainmenu"
+	    android:title="Actions"
+	    android:icon="@drawable/icmenu"
+	    android:orderInCategory="0"
+	    
+	    
+	   
+	    android:showAsAction="ifRoom">
+	   		 <menu>
+	   		     <item android:id="@+id/MECmnu"
+	   		           android:title = "@string/mecmenu">
+	   		          <menu  >
+           					 <item android:id="@+id/officerslist"
+                 				 android:title="Officers" />
+           					 <item android:id="@+id/repslist"
+                 				 android:title="Block Reps" />
+           					 <item android:id="@+id/fedexevp"
+                 				 android:title="EVP" />
+           					 <item android:id="@+id/meccommittee"
+                 				 android:title="Committees" />
+           					 <item android:id="@+id/mecstaff"
+                 				 android:title="MEC Staff" />
+           					 <item android:id="@+id/accidentinfo"
+                 				 android:title="Accident Info" />
+           					 <item android:id="@+id/nationalCtc"
+                 				 android:title="National Contatcs" />
+           					 <item android:id="@+id/memcontacts"
+                 				 android:title="MEM Office Contatcs" />
+           					 
+                     </menu>
+	   		           
+	   		           
+	   		           </item>
+	   		     
+				
+				 <item android:id="@+id/Onlinemnu"
+	   		           android:title="@string/OlineMenu">
+				 		 <menu>
+				     
+				     
+				     	 <item android:id="@+id/egridactivity"
+                 	  		android:title="Egrid Operations" />
+				     
+				      	<item android:id="@+id/pfcwebsite"
+                 	 		 android:title="Pilot.Fedex.com WebSite" />
+				     
+				      	<item android:id="@+id/viewsavedopentime"
+                 	  		android:title="View Saved Open Time" />
+				     
+				     	 <item android:id="@+id/viewsavedtrips"
+                 	 		 android:title="View Calendar" />
+				     	 
+				     	 <item android:id="@+id/getopenTime"
+                 	 		 android:title="Get Open Time" />
+				     	 
+				     	 <item android:id="@+id/getCalendar"
+                 	 		 android:title="Get/Update Pilot Calendar" />
+				     	 
+				     	  <item android:id="@+id/stopOpenTime"
+                 	 		 android:title="Stop Auto OpenTime" />
+				     	 
+				     	 
+				     
+				     </menu>
+				 </item>
+				 
+				
+				 
+				 
+				 <item android:id="@+id/KCMmnu"
+	   		           android:title="@string/kcmmenu"/>
+				 
+				  <item android:id="@+id/IEmnu"
+	   		           android:title="International Info">
+				 		 
+				      <menu>
+				           <item android:id="@+id/ifAlpaContacts"
+                 	 		 android:title="IFALPA Contacts" />
+				           
+				           <item android:id="@+id/usEmbassy"
+                 	 		 android:title="US Embassy Data" />
+				           
+				           <item android:id="@+id/emerRespData"
+                 	 		 android:title="International Emer Response" />
+				       </menu>
+				    </item>    
+				  
+				   <item android:id="@+id/CBAmnu"
+	   		           android:title="@string/cbamenu">
+				      <menu>
+				           <item android:id="@+id/cbaTOC"
+                 	 		 android:title="Table of Contents" />
+				           
+				       <item android:id="@+id/cbaSection1"
+                 	 		 android:title="Section 1 Scope" />
+				       
+				       <item android:id="@+id/cbaSection2"
+                 	 		 android:title="Section 2 Definitions" />
+				     
+				       <item android:id="@+id/cbaSection3"
+                 	 		 android:title="Section 3 Compensation" />
+				       
+				       <item android:id="@+id/cbaSection4"
+                 	 		 android:title="Section 4 Minimum Pay" />
+				       <item android:id="@+id/cbaSection5"
+                 	 		 android:title="Section 5 Traveling Expenses" />
+				       
+				       <item android:id="@+id/cbaSection6"
+                 	 		 android:title="Section 6 Relocation" />
+				       
+				       <item android:id="@+id/cbaSection7"
+                 	 		 android:title="Section 7 Vacation" />
+				       
+				       <item android:id="@+id/cbaSection8"
+                 	 		 android:title="Section 8 Deadheading" />
+				       <item android:id="@+id/cbaSection9"
+                 	 		 android:title="Section 9 Misc Expenses" />
+				       
+				       <item android:id="@+id/cbaSection10"
+                 	 		 android:title="Section 10 Pilots Transferred to Mgmt or Other Duties" />
+				       
+				       <item android:id="@+id/cbaSection11"
+                 	 		 android:title="Section 11 Training" />
+				       
+				       <item android:id="@+id/cbaSection12"
+                 	 		 android:title="Section 12 Hours of Services" />
+				         
+				       <item android:id="@+id/cbaSection13"
+                 	 		 android:title="Section 13 Leaves of Service" />
+				       
+				       <item android:id="@+id/cbaSection14"
+                 	 		 android:title="Section 14 Sick Leave" />
+				       
+				       <item android:id="@+id/cbaSection15"
+                 	 		 android:title="Section 15 Medical Standards" />
+				       
+				        <item android:id="@+id/cbaSection16"
+                 	 		 android:title="Section 16 Worker's Comp" />
+				       
+				       <item android:id="@+id/cbaSection17"
+                 	 		 android:title="Section 17 POW or Hostage Benefits" />
+				         
+				       <item android:id="@+id/cbaSection18"
+                 	 		 android:title="Section 18 Witness and Representatives" />
+				       
+				       <item android:id="@+id/cbaSection19"
+                 	 		 android:title="Section 19 Investigation and Discipline" />
+				       
+				       <item android:id="@+id/cbaSection20"
+                 	 		 android:title="Section 20 Grievances: Administration" />
+				       
+				        <item android:id="@+id/cbaSection21"
+                 	 		 android:title="Section 21 System Board of Adjustment" />
+				       
+				        <item android:id="@+id/cbaSection22"
+                 	 		 android:title="Section 22 Seniority" />
+				       
+				       <item android:id="@+id/cbaSection23"
+                 	 		 android:title="Section 23 Furlough and Recall" />
+				         
+				       <item android:id="@+id/cbaSection24"
+                 	 		 android:title="Section 24 Filling of Vacancies "/>
+				       
+				       <item android:id="@+id/cbaSection25"
+                 	 		 android:title="Section 25 Scheduling" />
+				       
+				       <item android:id="@+id/cbaSection26"
+                 	 		 android:title="Section 26 General" />
+				       
+				        <item android:id="@+id/cbaSection27"
+                 	 		 android:title="Section 27  Insurance" />
+				       
+				       <item android:id="@+id/cbaSection28"
+                 	 		 android:title="Section 28 Retirement ( Pension Benefits)" />
+				         
+				       <item android:id="@+id/cbaSection29"
+                 	 		 android:title="Section 29 Union Security and Checkoff "/>
+				       
+				       <item android:id="@+id/cbaSection30"
+                 	 		 android:title="Section 30 ALPA Pac Check-off" />
+				       
+				        <item android:id="@+id/cbaSection31"
+                 	 		 android:title="Section 31 Effect on Prior Agreements" />
+				       
+				       <item android:id="@+id/LOAAge65"
+                 	 		 android:title="LOA - Age 65" />
+				       
+				        <item android:id="@+id/LOAAdminGrv"
+                 	 		 android:title="LOA - Admin. Grievance" />
+				         
+				       <item android:id="@+id/LOAASAP"
+                 	 		 android:title="LOA - ASAP"/>
+				       
+				       <item android:id="@+id/LOAFDA"
+                 	 		 android:title="LOA - FDA" />
+				       
+				       <item android:id="@+id/LOAHumanPerf"
+                 	 		 android:title="LOA - Human Performance" />
+				       
+				        <item android:id="@+id/LOAIRAQ"
+                 	 		 android:title="LOA - IRAQ" />
+				       
+				       <item android:id="@+id/LOALetters"
+                 	 		 android:title="LOA - Letters" />
+                 	 		 
+                 	  <item android:id="@+id/LOAFOQA"
+                 	 		 android:title="LOA - FOQA" />
+				       
+				       
+				     </menu>
+				     </item>
+				     ///////////////////
+				     
+				     <item android:id="@+id/mainAC"
+	   		           android:title="A/C Info">
+				   <menu>
+				    <item android:id="@+id/findByAcNum"
+	   		           android:title="Find by Tail #"/>
+				    <item android:id="@+id/findByFleet"
+	   		           android:title="Find by Fleet"/>
+				    <item android:id="@+id/addNew"
+	   		           android:title="Add New A/C"/>
+				    
+				    
+				    
+				   		</menu>
+				    </item>
+				    
+				     
+				     ////////
+				     
+				     
+				     
+				     
+				    <item android:id="@+id/FLTmnu"
+	   		           android:title="@string/logbookmenu">
+				   <menu>
+				       
+				       <item android:id="@+id/enterFlt"
+	   		           android:title="Enter Flight"/>
+				       
+				        <item android:id="@+id/updateFlight"
+	   		           android:title="List/Update Flight"/>
+				       
+				        <item android:id="@+id/fltReports"
+	   		           android:title="Reports"/>
+				        
+				         <item android:id="@+id/fileMaintFlt"
+	   		           android:title="Email LogBook"/>
+				       
+				   </menu>
+				   
+				 </item>  
+				   
+				  ////// exp //////
+				   <item android:id="@+id/expMenu"
+				       android:title="Expense Tracking">
+				   
+				    <menu>  
+				    
+				     <item android:id="@+id/enterExp"
+	   		           android:title="@string/enterExpenses"/>
+				     
+				      <item android:id="@+id/listExpenses"
+	   		           android:title="@string/listExpenses"/>
+				      
+				       <item android:id="@+id/expReports"
+	   		           android:title="@string/expReports"/>
+				       
+				        <item android:id="@+id/expMaint"
+	   		           android:title="@string/expMaint"/>
+				     
+					</menu> 
+				 
+				    </item>
+				    
+				   
+				   
+				 /////end exp ////////    
+				     
+				     
+				     
+				     
+				     
+				     
+				     
+				     <item android:id="@+id/FRQmnu"
+	   		           android:title="@string/espnmenu"/>
+				     
+				      <item android:id="@+id/FDXmnu"
+	   		           android:title="@string/fdxmenu"/>
+				      
+				       <item android:id="@+id/RHGmnu"
+	   		           android:title="@string/rhotelmenu"/>
+				       
+				        <item android:id="@+id/JMPmnu"
+	   		           android:title="@string/jmpmenu"/>
+				        
+				         <item android:id="@+id/PDFmnu"
+	   		           android:title="@string/pdfmenu"/>
+				         
+				          <item android:id="@+id/FILmnu"
+	   		           android:title="@string/filemenu"/>
+				          
+				        <item android:id="@+id/HLPmnu"
+	   		           android:title="@string/help"/>
+				           
+				        <item android:id="@+id/ABTmnu"
+	   		           android:title="@string/abt"/>   
+
+			</menu>
+</item>
+
+     <item android:id="@+id/home"
+	    android:title="@string/titleHome"
+	    android:orderInCategory="100"
+	    android:icon="@drawable/ic_menu_home"
+	    android:showAsAction="ifRoom">
+	   		 
+	</item>
+</menu>

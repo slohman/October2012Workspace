@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;PocketCal20/res/menu/fltreports.xml&apos; to &apos;fltreportsmenu.xml&apos;" description="Rename resource &apos;fltreports.xml&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="res/menu/fltreports.xml" name="fltreportsmenu.xml" stamp="1362234500986" updateReferences="true"/>
+</session>

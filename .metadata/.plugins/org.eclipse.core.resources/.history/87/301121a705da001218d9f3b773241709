@@ -1,0 +1,830 @@
+package com.yctc.alpaware;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Locale;
+
+
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.CookieStore;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.client.protocol.ClientContext;
+
+
+import org.apache.http.conn.ClientConnectionManager;
+import org.apache.http.cookie.Cookie;
+import org.apache.http.entity.BufferedHttpEntity;
+import org.apache.http.impl.client.BasicCookieStore;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.protocol.BasicHttpContext;
+import org.apache.http.protocol.HttpContext;
+import org.apache.http.util.EntityUtils;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
+import android.annotation.SuppressLint;
+import android.app.AlarmManager;
+import android.app.AlertDialog;
+import android.app.PendingIntent;
+import android.app.ProgressDialog;
+
+import android.app.AlertDialog.Builder;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.View;
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.Toast;
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.MenuInflater;
+
+
+@SuppressLint("SimpleDateFormat")
+public class onlinelauncher extends SherlockActivity{
+	
+	
+	public static final int Main_Menu =0;
+String Month = "";
+String tripDetails = "";
+
+Context ctx = onlinelauncher.this;
+ProgressDialog pd;
+ClientConnectionManager connMgr;
+
+   
+//DefaultHttpClient httpClient = AppSettings.getClient();
+
+CookieStore cookieStore = new BasicCookieStore();
+HttpContext localContext = new BasicHttpContext();
+HttpPost httpPost = new HttpPost();
+utilities u = new utilities();
+	
+	 @Override
+	    public void onCreate(Bundle savedInstanceState) {
+	        super.onCreate(savedInstanceState);
+	        setContentView(R.layout.onlinelauncher);
+	        
+	        registerReceiver(egridrec, new IntentFilter("Action_Login"));
+	        registerReceiver(calrec, new IntentFilter("CalMsg"));
+	       
+	        
+	      Button pfc = (Button)findViewById(R.id.pfclogon);
+	      Button getCal= (Button)findViewById(R.id.getcal);
+	      Button getOpenTime = (Button)findViewById(R.id.getopentime);
+	      Button genEgrid= (Button)findViewById(R.id.genegridcode);
+	      Button viewcal= (Button)findViewById(R.id.viewCal);
+	      Button viewstot= (Button)findViewById(R.id.viewstoredopentime);
+	      Button startotsvc= (Button)findViewById(R.id.startotservice);
+	      Button stopotsvc= (Button)findViewById(R.id.stopotservice);
+	      
+	      
+	        pfc.setOnClickListener(new View.OnClickListener() {
+	            public void onClick(View view) {
+	            	
+	            	//new LongLoginDirectPFC().execute("");
+	            	
+	            	 Bundle bun = new Bundle();
+					
+					
+					 bun.putString("OPERATION", "PFC");
+					 
+					 // put value in bundle and pass to the httpclient svc
+					 
+					  Intent intent = new Intent("com.yctc.alpaware.httpClientIntentSvc");
+					  intent.putExtras(bun);
+					  startService(intent);
+	            }});
+	           
+	            
+	            
+	            startotsvc.setOnClickListener(new View.OnClickListener() {
+		            public void onClick(View view) {
+		            	
+		            	 String data2 = readuserdata();
+		             	  final String[] logdata2 = data2.split(",");
+		             
+		           	 Bundle bun = new Bundle();
+		           	     	
+		      
+		           			bun.putString("id", logdata2[0].toString());
+		           			bun.putString("pw",  logdata2[1].toString());
+		           			bun.putString("zl", logdata2[5].toString().trim());
+		           			
+		           		  
+		           			Intent myIntent1 = new Intent(getBaseContext(), OpenTimeR.class);
+		           			myIntent1.putExtras(bun);
+		           		    startActivityForResult(myIntent1, 0);
+		            }});;
+		            stopotsvc.setOnClickListener(new View.OnClickListener() {
+			            public void onClick(View view) {
+			            	 Intent intent = new Intent("com.yctc.alpaware.httpClientIntentSvc");
+							 
+							stopService(intent);
+							  
+			            }});;
+	            
+	            viewstot.setOnClickListener(new View.OnClickListener() {
+		            public void onClick(View view) {
+		            	
+		            
+		                Intent myIntent = new Intent(view.getContext(), OpenTimeList.class);
+		                startActivityForResult(myIntent, 0);
+		            }});;
+	
+	
+	            getCal.setOnClickListener(new View.OnClickListener() {
+		            @SuppressWarnings("deprecation")
+					public void onClick(View view) {
+		            	
+		            	
+		            		
+		            		// get the egrid value
+		            		
+		            		
+		            		 // try login direct
+		            		 String data2 = readuserdata();
+		            	  	  final String[] logdata2 = data2.split(",");
+		            	  	
+
+
+		            	  //	launch calendar object
+		            	    	
+		            				
+		            				 Builder builder =  new AlertDialog.Builder(onlinelauncher.this);
+		            				 FrameLayout fl = new FrameLayout(onlinelauncher.this); 
+		            				final EditText input = new EditText(onlinelauncher.this);
+		            			    
+		            			 
+		            			// SimpleDateFormat month_date = new SimpleDateFormat("MMMyy");
+		            			 String monthDate = new SimpleDateFormat("MMMyy",Locale.US).format(new java.util.Date()); 
+		            			   
+		            			 	//String monthDate = month_date.format(c.getTime());
+		            				
+		            				 input.setGravity(Gravity.CENTER);
+		            				      fl.addView(input, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.FILL_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT));
+		            				      input.setHint("Enter MMMYY to Load");
+		            				      input.setText(monthDate);
+		            				          
+		            				       builder.setView(fl);
+		            				       builder.setTitle("Enter Month");
+		            				          
+		            				        builder.setPositiveButton("OK", new DialogInterface.OnClickListener(){
+		            				    	      public void onClick(DialogInterface d, int which) {
+		            				    	    	 
+		            				    	 	   Month = input.getText().toString();
+		            				    	 	   d.dismiss();
+		            				    	 	   
+		            				    	 	Bundle bun = new Bundle();
+		            				    	 	bun.putString("OPERATION", "getCal");
+		      			            			bun.putString("id", logdata2[0].toString());
+		      			            			bun.putString("month",  Month);
+		      			            			
+		      			            		  Intent getCalIntent = new Intent("com.yctc.alpaware.httpClientIntentSvc");
+		      			                 	  getCalIntent.putExtras(bun);
+		      			      			      startService(getCalIntent);  
+		            				    	 	   
+		            				    	 	   
+		            				    	 	   
+		            				    	 //	  new getMonthCalData().execute(logdata2[0]);  // user ID is passed
+		            				          }});
+		            				        
+		            				        
+		            				        
+		            				     builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
+		            							public void onClick(DialogInterface d, int which) {
+		            							d.dismiss();
+		            							Intent myIntent = new Intent(getBaseContext(), PocketCal20.class);
+		            			 	 		    startActivityForResult(myIntent, 0);
+		            			 	 		    }});
+		            				 
+		            				     builder.create().show();
+		            		
+		            		 }});;
+
+		          
+		            
+		            
+		            
+		            
+		            getOpenTime.setOnClickListener(new View.OnClickListener() {
+			            public void onClick(View view) {
+			            	
+			            	
+			            	 // try login direct
+			            	 String data2 = readuserdata();
+			               	  final String[] logdata2 = data2.split(",");
+			               
+			             
+			            	 Bundle bun = new Bundle();
+			            	     	
+			            	     
+			            			bun.putString("id", logdata2[0].toString());
+			            			bun.putString("pw",  logdata2[1].toString());
+			            			bun.putString("zl", logdata2[5].toString().trim());
+			            			
+			            			//get open time for the next 30 days
+			            			
+			            	
+			            			
+			            			Intent myIntent1 = new Intent(getBaseContext(), OpenTime.class);
+			            			myIntent1.putExtras(bun);
+			            		    startActivityForResult(myIntent1, 0);
+			            }});;
+			           
+	
+			            genEgrid.setOnClickListener(new View.OnClickListener() {
+				            public void onClick(View view) {
+				            	
+				          
+				            	
+				            	Bundle bun = new Bundle();
+				            	bun.putString("AId", "genEgrid");
+				                Intent myIntent = new Intent(view.getContext(), egridcalculator.class);
+				                myIntent.putExtras(bun);
+				                startActivityForResult(myIntent, 0);
+				            }});;
+				            
+				            viewcal.setOnClickListener(new View.OnClickListener() {
+					            @SuppressWarnings("deprecation")
+								public void onClick(final View view) {
+					            	
+					            	 Bundle bun = new Bundle();
+					            	bun.putString("AId", "viewCal");
+					            	 Builder builder =  new AlertDialog.Builder(onlinelauncher.this);
+					    			 FrameLayout fl = new FrameLayout(onlinelauncher.this); 
+					    			final EditText input = new EditText(onlinelauncher.this);
+					    		    Calendar c = Calendar.getInstance();  
+					    		    SimpleDateFormat month_date = new SimpleDateFormat("MMMyy");
+					    		 	String monthDate = month_date.format(c.getTime());
+					    			
+					    			 input.setGravity(Gravity.CENTER);
+					    			      fl.addView(input, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.FILL_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT));
+					    			      input.setHint("Enter MMMYY to Load");
+					    			      input.setText(monthDate);
+					    			          
+					    			       builder.setView(fl);
+					    			       builder.setTitle("Enter Month");
+					    			          
+					    			        builder.setPositiveButton("OK", new DialogInterface.OnClickListener(){
+					    			    	      public void onClick(DialogInterface d, int which) {
+					    			    	 		
+					    			    	 	   Month = input.getText().toString();
+					    			    	 	   d.dismiss();
+					    			    	 	    Bundle bun = new Bundle();
+									            	bun.putString("AId", "viewCal"); 
+					    			    	 	    bun.putString("mnth", Month);
+					    			    	 	 
+					    			    	 	   Intent myIntent = new Intent(view.getContext(), triplist.class);
+					                                myIntent.putExtras(bun);
+					                               startActivityForResult(myIntent, 0);	
+					                               
+					                               pd = ProgressDialog.show(ctx, "Logging in to PFC to get Cal Data","please wait", true, false);
+					    			    	 	  }});
+					    			       
+					    			     					
+					    			      builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
+					    						public void onClick(DialogInterface d, int which) {
+					    						d.dismiss();
+					    						Intent myIntent = new Intent(getBaseContext(), PocketCal20.class);
+					    		 	 		    startActivityForResult(myIntent, 0);
+					    		 	 		 
+					    		 	 		    }});
+					    			 
+					    			     builder.create().show();
+					    			    
+					            	
+					            	
+					               
+					            	
+					            	
+					            	
+					            }});
+					            	
+					            	
+}
+	 
+	 
+		
+		
+		private class logOut extends AsyncTask<Void, Void, HttpResponse> {
+			 
+			  @Override
+			  protected HttpResponse doInBackground(Void... params) {
+			    // perform long running operation operation
+				  
+				  DefaultHttpClient httpClient = AppSettings.getClient();
+				 
+				 
+				  ClientConnectionManager cm = httpClient.getConnectionManager();
+				  cm.shutdown();
+				  return null;
+			    
+			  }
+			 
+			 
+			  @Override
+			  protected void onPostExecute(HttpResponse response2) {
+			    // execution of result of Long time consuming operation
+				// parse data and write to file
+				  	
+				
+						
+						Toast.makeText(onlinelauncher.this, "Update Svc Stopped, Session with PFC Killed",Toast.LENGTH_LONG).show();
+						Intent myIntent2 = new Intent(getBaseContext(), egridmain.class);	
+						startActivityForResult(myIntent2, 0);
+				  
+				
+			  }
+			 
+			 
+			  @Override
+			  protected void onPreExecute() {
+			 
+			  }
+			 
+			  
+			  @Override
+			  protected void onProgressUpdate(Void... values) {
+			      
+			   }
+		}
+		public boolean onCreateOptionsMenu(com.actionbarsherlock.view.Menu menu){
+			
+			
+			
+			
+	                			
+				MenuInflater inflater=getSupportMenuInflater();
+				inflater.inflate(R.menu.onlinelaunchermenubar, menu);
+				return super.onCreateOptionsMenu(menu);
+				}
+
+				public boolean onOptionsItemSelected (com.actionbarsherlock.view.MenuItem item ){
+					switch (item.getItemId()){
+					
+					case R.id.home :
+						
+						Intent myIntent1 = new Intent(getBaseContext(), PocketCal20.class);	
+						startActivityForResult(myIntent1, 0);
+					return true;	
+					case R.id.reset:
+						new logOut().execute();
+						
+
+						
+				
+						return true;
+					case R.id.egridmain :
+						Intent myIntent4 = new Intent(getBaseContext(), egridmain.class);	
+						startActivityForResult(myIntent4, 0);
+						
+			}
+					return false;
+				}	
+				
+				private class LongLoginDirectPFC extends AsyncTask<String, Void, String> {
+					 
+					  @Override
+					  protected String doInBackground(String... params) {
+					    // perform long running operation operation
+						  
+						
+						  
+						  DefaultHttpClient httpClient = AppSettings.getClient();
+						  
+						 
+								  
+								  HttpPost httpPost1 = new HttpPost("https://pilot.fedex.com/"); 
+								    HttpResponse response;
+									try {
+										response = httpClient.execute(httpPost1);
+									
+								    localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
+								    HttpEntity resEntity = response.getEntity();
+								    @SuppressWarnings("unused")
+									String data1 = EntityUtils.toString(resEntity);
+								    resEntity.consumeContent();
+								
+									   } catch (Exception e) { }
+									
+									return null;
+								
+						  
+						  
+								
+					    
+					  }	  
+					
+					 
+					  
+					  @Override
+					  protected void onPostExecute(String result) 
+					  {
+					    // execution of result of Long time consuming operation
+						// parse data and write to file
+						  	
+						  pd.dismiss();
+						  Intent myIntent1 = new Intent(getBaseContext(),  pcalbrows.class);
+							 startActivityForResult(myIntent1, 0);
+					  }
+					 
+					 
+					  @Override
+					  protected void onPreExecute()
+					  {
+					  // Things to be done before execution of long running operation. For example showing ProgessDialog
+						  
+						  pd = ProgressDialog.show(ctx, "Logging in to PFC","please wait", true, false);
+					  
+					  }
+					 
+					  
+					  @Override
+					  protected void onProgressUpdate(Void... values) 
+					  {
+					      // Things to be done while execution of long running operation is in progress. For example updating ProgessDialog
+					   }
+				}
+				
+				public String readuserdata(){
+					String usrdata = null;
+					 FileInputStream fis = null;
+				        try {
+							fis = openFileInput("PcalData");
+				        	} catch (FileNotFoundException e) {
+							
+						   
+							return "File Missing";
+						}
+							 StringBuffer fileContent = new StringBuffer("");
+
+						        byte[] buffer = new byte[1024];
+						        
+						        
+						        	@SuppressWarnings("unused")
+									int length = 0;
+									try {
+										while ((length = fis.read(buffer)) != -1) {
+										    fileContent.append(new String(buffer));
+										}
+									} catch (IOException e) {
+										return "File Missing";
+									}
+									
+									usrdata = (fileContent.toString());
+								    
+						      
+							
+							
+							
+						
+				        return usrdata;
+						
+					
+				}
+				
+				private class getMonthCalData extends AsyncTask<String, Void, String> {
+					 
+					  @Override
+					  protected String doInBackground(String... params) {
+					    // perform long running operation operation
+						  
+						 String CalendarData = params[0];
+						
+						
+							 
+					
+							
+							
+					       
+						    getTripDataFromCalDetail(CalendarData);
+						    String result = "success";
+						    return result;
+						    
+						    
+						 
+					  }
+					 
+					 
+					  @Override
+					  protected void onPostExecute(String result) {
+					    // execution of result of Long time consuming operation
+						  pd.dismiss();
+						  if (result.equals("success")){
+						  Bundle bun = new Bundle();
+						  bun.putString("mnth", Month);
+					
+					     
+						  Intent myIntent = new Intent(getBaseContext(), triplist.class);
+				          myIntent.putExtras(bun);
+					      startActivityForResult(myIntent, 0);}
+						//  CloseSession();
+					  }
+					 
+					 
+					  @Override
+					  protected void onPreExecute() {
+					  // Things to be done before execution of long running operation. For example showing ProgessDialog
+						  pd = ProgressDialog.show(ctx, "Loading Calendar for " + Month ,"please wait", true, false);
+					  }
+					 
+					  
+					  @Override
+					  protected void onProgressUpdate(Void... values) {
+					      // Things to be done while execution of long running operation is in progress. For example updating ProgessDialog
+					   }
+					}
+				
+				public  void getTripDataFromCalDetail(String calData){
+					
+					//parse and load data to triplist activity 
+
+				AlpaDataBaseHelper mdbh = new AlpaDataBaseHelper(onlinelauncher.this.getApplicationContext());
+				final SQLiteDatabase db = mdbh.getWritableDatabase(); 
+				String tsql = "Delete from trips where bidMonth = '" + Month + "'";
+				db.execSQL(tsql );
+				db.close();
+
+
+					
+					
+					 if (calData != null) { 
+						 int startAt = calData.indexOf("<!--  B E G I N   M A I N   C O N T E N T  -->");
+						 int endAt = calData.indexOf("<!-- E N D   O F   M A I N   C O N T E N T -->");
+				         String CalData = calData.substring(startAt, endAt);
+						
+				                	  
+				         String[] events = 	CalData.split("\n");
+				                	
+					 
+					  //parse array here and load calendar StrDate Show EndDate Etim Blok  Pay
+					 String pairing = null,showdate = null, showtime = null, enddate = null, endtime = null, Blok = null,  Pay = null, tripdate;
+					 //String[] tripData = new String[events.length];
+					
+					 
+					 int lines=(events.length - 3);
+					 for (int x = 0;x < lines; x++) {
+						
+						 	if(events[x].toString().contains("webtr")){
+						 		// parse relevant data from text
+						 		
+						 		int pairingStart = events[x].indexOf(">") + 1;
+						 		int pairingEnd = pairingStart + 4;
+						 		pairing = events[x].substring(pairingStart, pairingEnd).trim();
+						 		int tripdateStart = events[x].lastIndexOf("?") + 1;
+						 		tripdate = events[x].substring(tripdateStart,tripdateStart + 7);
+						 		showdate = events[x].substring(pairingEnd + 37, pairingEnd + 44).trim();
+						 		showtime = events[x].substring(pairingEnd + 45, pairingEnd + 49).trim();
+						 		enddate = events[x].substring(pairingEnd + 50, pairingEnd + 57).trim();
+						 		endtime = events[x].substring(pairingEnd + 58, pairingEnd + 62).trim();
+						 		Blok = events[x].substring(pairingEnd + 63, pairingEnd + 68).trim();
+						 		Pay = events[x].substring(pairingEnd + 69, pairingEnd + 74).trim();
+						 	
+						 		
+						 		
+						 	
+						 	
+						 	 String TripDetails = getTripDetails(pairing,tripdate);
+							 // parse out the data
+							
+						 	int StartAt = TripDetails.indexOf("<!--  B E G I N   M A I N   C O N T E N T  -->");
+							int EndAt = TripDetails.indexOf("<!-- E N D   O F   M A I N   C O N T E N T -->");
+							String tripdata = TripDetails.substring(StartAt, EndAt);
+							String TripId = pairing + tripdate;
+							SaveHtmlData(tripdata, TripId);  // save html data to load to image when listing out trips
+							 
+						
+						     final SQLiteDatabase db1 = mdbh.getWritableDatabase(); 
+							
+							  try {
+						    	   db1.execSQL("Insert into trips Values (" + null  + ", " + "'" + pairing + "','" + showdate + "','" + showtime + "','" + enddate + "','" +  endtime + "','" + Blok + "','"  + Pay   + "','" + Month + "','" + tripdate + "')");		  
+						    	   	db1.close();
+						    	   		  
+						       				}catch (Exception e){
+						    	   				// should not be any records !
+						    	   			
+						    	   	  } 
+						      }
+					       }
+
+				        }
+				  }
+				
+				public String getTripDetails(String tripnum,String dte){
+
+					
+
+					// tripnum shoud be like 83Sep12
+					String tripDetails= "";
+					String data2 = readuserdata();
+				  	final String[] logdata2 = data2.split(",");
+				  	String base = logdata2[2].trim();
+				   	String equip= logdata2[3].trim();
+				  	String zululocal = logdata2[5].trim();
+				  	
+				  	Bundle bun = new Bundle();
+				  	 bun.putString("OPERATION", "TripDetails");
+				  	bun.putString("pilotbase", base);
+				  	bun.putString("equipment", equip);
+				  	bun.putString("trpDate", dte);
+				  	bun.putString("trpNum", tripnum);
+				  	
+				  	 Intent getCalIntent = new Intent("com.yctc.alpaware.httpClientIntentSvc");
+	                 	  getCalIntent.putExtras(bun);
+	      			      startService(getCalIntent); 
+	      			      
+	      			     while (tripDetails.equals(""))
+	      			     { // do nothing wait for it !}
+	      			    	 // ???????????????????????? ////
+	      			     }
+	      			      return tripDetails;
+				  	
+				  	}
+				
+			
+				
+				
+				
+				public String SaveHtmlData(final String HtmlData, String TripId){
+					String Htmlresult = null;
+					
+					  //set the path where we want to save the file
+				File SDCardRoot = Environment.getExternalStorageDirectory();
+				File dir = new File (SDCardRoot.getAbsolutePath() + "/FdxTrips");
+				if(!dir.exists())
+				{
+				dir.mkdirs();
+				}
+
+
+				final File file = new File(dir, TripId);  //any name abc.html
+
+
+					    	 		byte[] data = new String(HtmlData).getBytes();
+					    	 			try {
+					    	 				FileOutputStream f = new FileOutputStream(file);
+					    	 	 
+					    	 				
+					    	 				f.write(data);
+					    	 				f.flush();
+					    	 				f.close();
+					    	 	Htmlresult = "Trip Updated";
+					    	 	} catch (IOException e) {
+					    	 	   Htmlresult = "Trip Update Failed";
+					    	 	}
+						
+				return Htmlresult;
+				}
+				public String Botchecker(String pageData, String src){
+					
+					String LinkToDigits;
+					String botCode = null ;
+					Bitmap bm = null;
+					// search the string for occurance of ....  Please enter the control code shown below
+					
+					if (pageData.contains("Please enter the control code shown below to submit your request")) {
+						
+						// this a botpage
+						if (src.equals("otrq")){
+						LinkToDigits = "/vips-bin/vipscgi?webdgts??webdd";
+						}else{
+						LinkToDigits = "/vips-bin/vipscgi?webdgts??webtr";	
+						}
+						// go get the digits and display in alert dialog
+						
+						
+						
+
+						
+						 DefaultHttpClient httpClient = AppSettings.getClient();
+							 Cookie sessionInfo;
+								List<Cookie> cookies = httpClient.getCookieStore().getCookies();
+
+								if (! cookies.isEmpty()){
+								        CookieSyncManager.createInstance(ctx);
+								        CookieManager cookieManager = CookieManager.getInstance();
+
+								        for(Cookie cookie : cookies){
+						        	
+								        	   sessionInfo = cookie;
+								                String cookieString = sessionInfo.getName() + "=" + sessionInfo.getValue() + "; domain=" + sessionInfo.getDomain();
+								                cookieManager.setCookie("pilot.fedex.com", cookieString);
+								                CookieSyncManager.getInstance().sync();
+								        }
+								}
+							 	
+								try {
+								    HttpPost httpPost1 = new HttpPost("https://pilot.fedex.com/" + LinkToDigits);
+								    HttpResponse response = httpClient.execute(httpPost1);
+									localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
+								    HttpEntity resEntity = response.getEntity();
+								    String data1 = EntityUtils.toString(resEntity); //  this string should have links to digits
+								    resEntity.consumeContent();
+					
+								    Document doc = Jsoup.parse(data1);
+								    Elements media = doc.select("[SRC]");
+							   	 	
+							   	 	
+								    
+							   	  StringBuilder sb = new StringBuilder();
+							   	  for (org.jsoup.nodes.Element src1 : media) {  // get path of EGRID image from webpage
+							   		  
+							   		  String attrval = src1.attributes().toString();
+							             if (attrval.contains("/vipsfiles/bots/")){
+							           	  
+							           	  attrval = attrval.substring(attrval.length() - 11);
+							           	  attrval = attrval.substring(0,attrval.length()- 1);
+							           	 String ImageURL = "https://pilot.fedex.com/vipsfiles/bots/" + attrval.trim();
+							         
+							           	HttpUriRequest request = new HttpGet(ImageURL);
+							           	HttpResponse response1 = httpClient.execute(request);
+							           
+							             BufferedHttpEntity bufferedHttpEntity = new BufferedHttpEntity(response1.getEntity());
+
+							              bm = BitmapFactory.decodeStream(bufferedHttpEntity.getContent());
+							            
+							                  String digit = u.readBotCode(bm);
+							                  sb.append(digit.toString());
+							            }
+							             
+							   	  } // end for loop
+							   	
+							   	  botCode = sb.toString();
+							   	  return botCode;
+								
+								
+								
+								} catch (ClientProtocolException e) {
+									return "Protocol Exception";
+									} catch (IOException e) {
+									return "IOException";
+									}
+								
+					
+								} else {
+									
+								return null;
+
+								}
+					
+					
+				}
+				private  BroadcastReceiver egridrec = new BroadcastReceiver(){
+					@Override
+					
+					public void onReceive(Context c, Intent i) {
+						String data = null;
+						
+						 data = i.getExtras().getString("value"); // get the OT Data string from the http Client
+						/// send the string to processing method
+						
+						Toast.makeText(onlinelauncher.this,data, Toast.LENGTH_LONG).show();
+					}};
+					
+					private  BroadcastReceiver calrec = new BroadcastReceiver(){
+						@Override
+						
+						public void onReceive(Context c, Intent i) {
+							String calData = null;
+							
+							 calData = i.getExtras().getString("MSG"); // get the OT Data string from the http Client
+							/// send the string to processing method
+							 pd = ProgressDialog.show(ctx, "Calendar Progress", calData, true, false);
+							 
+						}};
+						
+						
+								 
+						
+		
+}// end object

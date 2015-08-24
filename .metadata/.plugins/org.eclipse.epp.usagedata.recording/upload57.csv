@@ -1,0 +1,26 @@
+what,kind,bundleId,bundleVersion,description,time
+java.specification.name,sysinfo,,,"Java Platform API Specification",1311730332138
+java.specification.vendor,sysinfo,,,"Sun Microsystems Inc.",1311730332138
+java.specification.version,sysinfo,,,"1.6",1311730332138
+java.vendor,sysinfo,,,"Sun Microsystems Inc.",1311730332138
+java.version,sysinfo,,,"1.6.0_26",1311730332138
+java.vm.info,sysinfo,,,"mixed mode",1311730332138
+java.vm.name,sysinfo,,,"Java HotSpot(TM) Client VM",1311730332138
+java.vm.specification.name,sysinfo,,,"Java Virtual Machine Specification",1311730332138
+java.vm.specification.vendor,sysinfo,,,"Sun Microsystems Inc.",1311730332138
+java.vm.specification.version,sysinfo,,,"1.0",1311730332138
+java.vm.vendor,sysinfo,,,"Sun Microsystems Inc.",1311730332138
+java.vm.version,sysinfo,,,"20.1-b02",1311730332138
+started,bundle,org.eclipse.debug.core,3.5.1.v20091103_r352,"org.eclipse.debug.core",1311730332279
+started,bundle,org.eclipse.jdt.launching,3.5.1.v20100108_r352,"org.eclipse.jdt.launching",1311730332279
+started,bundle,org.eclipse.jdt.apt.core,3.3.202.R35x_v20091130-2300,"org.eclipse.jdt.apt.core",1311730332279
+started,bundle,org.eclipse.jdt.apt.pluggable.core,1.0.201.R35x_v20090925-1100,"org.eclipse.jdt.apt.pluggable.core",1311730332310
+started,bundle,com.android.ide.eclipse.traceview,12.0.0.v201106281929-138431,"com.android.ide.eclipse.traceview",1311730336544
+started,bundle,org.eclipse.wst.ws.service.policy,1.0.103.v200905151848,"org.eclipse.wst.ws.service.policy",1311730345763
+started,bundle,org.eclipse.wst.command.env,1.0.408.v200903110045,"org.eclipse.wst.command.env",1311730345779
+started,bundle,org.eclipse.wst.ws,1.1.103.v200903111822,"org.eclipse.wst.ws",1311730345779
+started,bundle,org.eclipse.compare,3.5.2.r35x_20100113-0800,"org.eclipse.compare",1311730345873
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311730348388
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311730350045
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311730350795
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311730352982

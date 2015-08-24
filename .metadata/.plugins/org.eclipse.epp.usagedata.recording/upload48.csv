@@ -1,0 +1,26 @@
+what,kind,bundleId,bundleVersion,description,time
+closed,editor,com.android.ide.eclipse.adt,12.0.0.v201106281929-138431,"com.android.ide.eclipse.editors.manifest.ManifestEditor",1311729466590
+started,bundle,org.eclipse.wst.validation.ui,1.2.104.v200904232035,"org.eclipse.wst.validation.ui",1311729472997
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311729473137
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311729475215
+started,bundle,org.eclipse.wst.common.snippets,1.1.301.v201001280015,"org.eclipse.wst.common.snippets",1311729478825
+started,bundle,org.eclipse.gef,3.5.1.v20090910-2020,"org.eclipse.gef",1311729478840
+started,bundle,org.eclipse.draw2d,3.5.2.v20091126-1908,"org.eclipse.draw2d",1311729478872
+opened,view,org.eclipse.wst.common.snippets,1.1.301.v201001280015,"org.eclipse.wst.common.snippets.internal.ui.SnippetsView",1311729479059
+activated,view,org.eclipse.wst.common.snippets,1.1.301.v201001280015,"org.eclipse.wst.common.snippets.internal.ui.SnippetsView",1311729479090
+activated,view,org.eclipse.ui.console,3.4.0.v20090513,"org.eclipse.ui.console.ConsoleView",1311729480715
+activated,view,org.eclipse.ui.navigator.resources,3.4.1.M20090826-0800,"org.eclipse.ui.navigator.ProjectExplorer",1311729484981
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311729487200
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311729490997
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311729497325
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311729498919
+error,log,,,"Problems occurred when invoking code from plug-in: ""org.eclipse.jface"".",1311729498919
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311729506669
+error,log,,,"java.lang.NullPointerException",1311729506669
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311729506700
+executed,command,org.eclipse.ui.ide,3.5.2.M20100113-0800,"org.eclipse.ui.project.properties",1311729506700
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311729511544
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311729512904
+executed,command,org.eclipse.ui.ide,3.5.2.M20100113-0800,"org.eclipse.ui.project.cleanAction",1311729512919
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311729513310
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311729513466

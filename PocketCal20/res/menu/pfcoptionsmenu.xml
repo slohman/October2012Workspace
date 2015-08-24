@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+    
+    
+     <item android:id="@+id/pfcmenu"
+	    android:title="Actions"
+	    android:icon="@drawable/icmenu"
+	    android:orderInCategory="0"
+	    android:showAsAction="always">"
+	   		 <menu>
+	   		     <item android:id="@+id/HomePage"
+	   		           android:title="Home Page"/>
+	   		     
+	   		     
+	   		     <item android:id="@+id/jumpseat"
+	   		           android:title="Jump Seats"/>
+	   		     
+	   		    
+				   <item android:id="@+id/checkin"
+	   		           android:title="Trip Check In"/>
+				   
+				    <item android:id="@+id/mail"
+	   		           android:title="Mailbox"/>
+				  
+				    <item android:id="@+id/vips" 
+				        android:title="VIPS">
+				     
+				        <menu>
+				        <item android:id="@+id/bids" 
+				        android:title="Bids"/>  
+				        <item android:id="@+id/bidspro" 
+				        android:title="Bid Processing"/> 
+				        <item android:id="@+id/crew" 
+				        android:title="Crew Info"/> 
+				        <item android:id="@+id/standbid" 
+				        android:title="Standing Bid"/> 
+				        <item android:id="@+id/vaca" 
+				        android:title="Vacation"/> 
+				        <item android:id="@+id/act" 
+				        android:title="Activites"/> 
+				        <item android:id="@+id/tripsserv" 
+				        android:title="Trips - Services"/> 
+				        <item android:id="@+id/bidadj" 
+				        android:title="Bid Line Adj"/> 
+				        
+				       </menu>
+				       </item>
+				   
+				      
+				      <item android:id="@+id/calendar"
+	   		           android:title="Pilot Calendar"/>
+				    
+				    <item android:id="@+id/triptrade"
+	   		           android:title="Trip Trade Menu"/>
+				    
+				    <item android:id="@+id/pilotlookup"
+	   		           android:title="Pilot Lookup"/>
+				    
+				    <item android:id="@+id/opentime"
+	   		           android:title="Open Time"/>
+				    
+				    <item android:id="@+id/fltplan"
+	   		           android:title="Flight Plans"/>
+				    
+				     <item android:id="@+id/refresh"
+	   		           android:title="Refresh"/>
+				     
+				     
+				     
+
+			</menu>
+	</item> 
+	
+       <item android:id="@+id/home"
+	    android:title="@string/titleHome"
+	    android:orderInCategory="0"
+	    android:icon="@drawable/ic_menu_home"
+	    android:showAsAction="ifRoom">
+	   		 
+	</item>
+	<item android:id="@+id/back"
+	    android:title="@string/titleBack"
+	    android:orderInCategory="0"
+	    android:icon="@drawable/back1"
+	    android:showAsAction="ifRoom">
+	   		 
+	</item>
+  
+
+</menu>

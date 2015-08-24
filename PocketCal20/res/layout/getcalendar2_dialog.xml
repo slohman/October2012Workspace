@@ -1,0 +1,65 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:baselineAligned="true"
+    android:gravity="bottom"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/wheel"
+        android:layout_width="344dp"
+        android:layout_height="340dp"
+        android:paddingLeft="15dp" >
+
+        <Button
+            android:id="@+id/dialogCancel1"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:text="@string/cancel" />
+
+        <kankan.wheel.widget.WheelView
+            android:id="@+id/block_yr"
+            android:layout_width="100dp"
+            android:layout_height="200dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+             />
+
+        <Button
+            android:id="@+id/dialogGetBlockHours"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:text="Get Hrs" />
+
+        <kankan.wheel.widget.WheelView
+            android:id="@+id/block_month"
+            android:layout_width="50dp"
+            android:layout_height="200dp"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/block_yr"
+            />
+
+        <kankan.wheel.widget.WheelView
+            android:id="@+id/block_day"
+            android:layout_width="80dp"
+            android:layout_height="200dp"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/block_month"
+            android:paddingRight="20dp" />
+
+        <kankan.wheel.widget.WheelView
+            android:id="@+id/block_typ"
+            android:layout_width="75dp"
+            android:layout_height="200dp"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/block_day" />
+
+    </RelativeLayout>
+
+</LinearLayout>

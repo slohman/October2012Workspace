@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+xmlns:android="http://schemas.android.com/apk/res/android"
+ android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+<LinearLayout 
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    >
+    
+<EditText
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/cityid"
+    android:hint="City ID, XXX"
+    android:textSize="@dimen/size14"
+    
+    android:padding="5px"/>
+    
+    <EditText
+    
+    android:id="@+id/city"
+    android:layout_width="fill_parent"
+        android:layout_below="@+id/cityid"
+      android:layout_alignParentLeft="true"
+    android:layout_height="wrap_content"
+    android:hint="City Name"
+     android:textSize="@dimen/size14"
+    
+    android:padding="5px"/>
+    
+     <EditText
+    
+    android:id="@+id/state"
+    android:layout_width="fill_parent"
+    android:hint="State"
+    android:layout_height="wrap_content"
+    android:textSize="@dimen/size14"
+    android:padding="5px"/>
+    
+   
+   
+   
+    
+    <EditText
+    android:id="@+id/ramptel"
+    android:gravity="center_vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:hint="Ramp Tel #"
+    android:textSize="@dimen/size14"
+    android:padding="5px"/>
+    
+    <EditText
+    android:id="@+id/ramptel1"
+    android:gravity="center_vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:hint="Ramp Tel #1"
+    android:textSize="@dimen/size14"
+    android:padding="5px"/>
+    
+    <EditText
+    android:id="@+id/ramptel2"
+    android:gravity="center_vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:hint="Ramp Tel #2"
+    android:textSize="@dimen/size14"
+    android:padding="5px"/>
+    
+     
+    
+   
+    
+   
+     <EditText
+    android:id="@+id/rampemail"
+    android:gravity="center_vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:hint="Ramp Email"
+    android:textSize="@dimen/size14"
+    android:padding="5px"/>
+    
+       
+    <EditText
+    android:id="@+id/hotelname"
+    android:gravity="center_vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:hint="Hotel Name"
+    android:textSize="@dimen/size14"
+    android:padding="5px"/>
+    
+     
+    
+    <EditText
+    android:id="@+id/hotelnum"
+    android:gravity="center_vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:hint="Hotel #"
+    android:textSize="@dimen/size14"
+    android:padding="5px"/>
+    
+        
+     <EditText
+    android:id="@+id/gtinfo"
+    android:gravity="center_vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:hint="GT Info"
+    android:textSize="@dimen/size14"
+    android:padding="5px"/>
+        
+     <EditText
+    android:id="@+id/notes"
+    android:gravity="center_vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:hint="Notes"
+    android:textSize="@dimen/size14"
+    android:padding="5px"/>
+    
+
+</LinearLayout>
+</ScrollView>

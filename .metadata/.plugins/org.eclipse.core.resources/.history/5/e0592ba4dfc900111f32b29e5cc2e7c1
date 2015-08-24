@@ -1,0 +1,103 @@
+package com.ocbiofuel;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.auth.AuthScope;
+import org.apache.http.auth.UsernamePasswordCredentials;
+
+
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.protocol.HTTP;
+import org.apache.http.util.EntityUtils;
+
+import android.app.Activity;
+import android.os.Bundle;
+
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class LookUpID extends Activity{
+
+	
+	
+	
+	
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.lookup);
+		
+		
+		Bundle b = this.getIntent().getExtras();  
+        String lookUpID = b.getString("lookUp");
+		 
+	       
+		 
+	        
+		
+	
+		
+		logonToSite(lookUpID);
+		
+		
+			
+	}
+	
+		public void logonToSite(String lookUpID) {
+			
+			
+	try {
+		String username, password;
+		username="scott"; password="2425SGl";
+		DefaultHttpClient client = new DefaultHttpClient();
+
+		UsernamePasswordCredentials creds = new UsernamePasswordCredentials(username, password);
+		client.getCredentialsProvider().setCredentials(AuthScope.ANY, creds);
+
+
+       
+        String postURL = "http://192.168.30.24/house/selectSiteID.htm";
+        HttpPost post = new HttpPost(postURL);
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            
+          
+        	
+           
+        	
+            params.add(new BasicNameValuePair("siteName", lookUpID));
+      
+           
+            
+            
+            UrlEncodedFormEntity ent = new UrlEncodedFormEntity(params,HTTP.UTF_8);
+            post.setEntity(ent);
+            HttpResponse responsePOST = client.execute(post);  
+            HttpEntity resEntity = responsePOST.getEntity();  
+            if (resEntity != null) {    
+             
+            EditText res = (EditText)findViewById(R.id.editText1);
+            
+            res.setText(EntityUtils.toString(resEntity));
+            	//Toast toast = Toast.makeText(this,EntityUtils.toString(resEntity),1 );
+            	//toast.show();
+            }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+	}
+
+		
+		
+		
+} // end of class
+
+

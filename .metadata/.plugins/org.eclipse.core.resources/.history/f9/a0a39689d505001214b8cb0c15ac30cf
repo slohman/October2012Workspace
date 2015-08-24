@@ -1,0 +1,100 @@
+
+package com.yctc.alpaware;
+
+
+
+import android.app.ListActivity;
+import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
+
+
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+
+
+       
+	        
+	public class triplist extends ListActivity {
+		
+		
+		public Cursor c;
+		Context mContext;
+		
+		public static final int Main_Menu =0;
+
+		/** Called when the activity is first created. */
+	    @Override
+	    public void onCreate(Bundle Icicle) {
+	        super.onCreate(Icicle);
+	        setContentView(R.layout.triplist);
+	        
+	        
+	        Bundle b = this.getIntent().getExtras();  
+	        String[] tripdat = b.getStringArray("aID");
+	        
+	        
+	        ListView lv = (ListView)findViewById(R.id.triplist);
+	  
+	        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+	        		  android.R.layout.simple_list_item_1,android.R.id.text1, tripdat);
+	        lv.setAdapter(adapter);
+	 		  		
+	 		
+	 	
+
+	 		  	  	 
+	 
+	    
+	 	
+	 	
+	    	
+	   
+	  lv.setOnItemClickListener( new AdapterView.OnItemClickListener() {
+	 	public void onItemClick(AdapterView<?> parent, View v, int position, long id)
+	 	{
+	 	// Display a messagebox.
+	 		Bundle b = new Bundle();
+	 		c.moveToPosition(position);
+	 		b.putLong("pID", c.getLong(c.getColumnIndex("_id")));
+	 		Intent myIntent = new Intent(getBaseContext(),fltupdate.class);
+	 		myIntent.putExtras(b);
+	 		
+            startActivityForResult(myIntent, 0);
+	 	//Toast.makeText(getBaseContext(),"item" + id + " checked",Toast.LENGTH_SHORT).show();
+	 	}
+	 	});
+	 	
+	 	
+	    }
+	    
+	
+	 public boolean onCreateOptionsMenu(Menu menu){
+				menu.add(0,Main_Menu,0,"Main Menu");
+				
+				return true;
+				}
+
+			public boolean onOptionsItemSelected (MenuItem item ){
+				switch (item.getItemId()){
+				case Main_Menu :
+					
+					Intent myIntent = new Intent(getBaseContext(), PocketCal20.class);	
+					startActivityForResult(myIntent, 0);
+					
+				return true;
+				
+				}
+				return false;
+				}
+			
+	
+	
+	}
+	   

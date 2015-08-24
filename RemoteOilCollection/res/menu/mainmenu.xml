@@ -1,0 +1,33 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+  
+    <item android:id="@+id/mainmenu"
+	    android:title="Actions"
+	    android:icon="@drawable/icmenu"
+	    android:orderInCategory="0"
+	    
+	    
+	   
+	    android:showAsAction="ifRoom">
+	   		 <menu>
+	   		    
+	   		  
+				 <item android:id="@+id/addCollection"
+	   		           android:title="Add New Collection"/>
+				  <item android:id="@+id/clearForm"
+	   		           android:title="Clear Form"/>
+				   <item android:id="@+id/upLoad"
+	   		           android:title="Upload Collections"/>
+				    <item android:id="@+id/showManifest"
+	   		           android:title="Show Manifest"/>
+				    <item android:id="@+id/print"
+	   		           android:title="Print Form"/>
+				      <item android:id="@+id/signaturePrint"
+	   		           android:title="Get Signature"/> 
+	   		            
+
+			</menu>
+</item>
+
+    
+</menu>	

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+<TextView 
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="8 in 24 Estimate"
+    android:padding="5px"
+    
+    />
+<EditText
+android:id="@+id/blkdtinput"
+android:inputType="date"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:textSize="@dimen/size14"
+android:hint="YYYY-MM-DD"
+/>
+
+<EditText
+android:id="@+id/blktimeinput"
+ android:inputType="time"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:textSize="@dimen/size14"
+android:hint="HH:MM"
+/>
+
+<Button
+    android:id="@+id/calc8n24button"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Calc 8 n 24 Estimate" />
+
+<Button
+    android:id="@+id/btn30n7"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Calc 30-in-7" />
+
+<Button
+    android:id="@+id/btn32n7"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Calc 32-in-7" />
+
+<TextView 
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:textSize="@dimen/size14"
+    android:text="Blk time remaining based on Est. landing time:"
+    android:padding="5px"
+    
+    />
+    
+    <TextView 
+    android:id="@+id/blkremaining"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text=""
+    android:textSize="@dimen/size14"
+    android:gravity="center_horizontal"
+    android:textColor="@color/white"
+    android:padding="5px"
+    
+    
+    />
+
+</LinearLayout>

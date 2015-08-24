@@ -1,0 +1,26 @@
+what,kind,bundleId,bundleVersion,description,time
+error,log,,,"Unhandled event loop exception",1312436032542
+error,log,,,"Unhandled event loop exception",1312436035120
+error,log,,,"Unhandled event loop exception",1312436039464
+executed,command,org.eclipse.ui,3.5.2.M20100120-0800,"org.eclipse.ui.edit.copy",1312436055246
+executed,command,org.eclipse.ui,3.5.2.M20100120-0800,"org.eclipse.ui.edit.paste",1312436057653
+error,log,,,"Unhandled event loop exception",1312436112733
+error,log,,,"Unhandled event loop exception",1312436116983
+executed,command,org.eclipse.ui,3.5.2.M20100120-0800,"org.eclipse.ui.file.save",1312436121874
+error,log,,,"Unhandled event loop exception",1312436124733
+error,log,,,"Unhandled event loop exception",1312436146453
+error,log,,,"Unhandled event loop exception",1312436148499
+error,log,,,"Unhandled event loop exception",1312436150937
+activated,editor,org.eclipse.jdt.ui,3.5.2.r352_v20100106-0800,"org.eclipse.jdt.ui.CompilationUnitEditor",1312436157422
+activated,editor,com.android.ide.eclipse.adt,12.0.0.v201106281929-138431,"com.android.ide.eclipse.editors.layout.LayoutEditor",1312436158609
+error,log,,,"Unhandled event loop exception",1312436179344
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312436182578
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312436195157
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312436215782
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312436222408
+error,log,,,"Unhandled event loop exception",1312436222439
+activated,view,org.eclipse.ui.navigator.resources,3.4.1.M20090826-0800,"org.eclipse.ui.navigator.ProjectExplorer",1312436234267
+opened,editor,com.android.ide.eclipse.adt,12.0.0.v201106281929-138431,"com.android.ide.eclipse.editors.layout.LayoutEditor",1312436236955
+activated,editor,com.android.ide.eclipse.adt,12.0.0.v201106281929-138431,"com.android.ide.eclipse.editors.layout.LayoutEditor",1312436236986
+activated,view,org.eclipse.ui.navigator.resources,3.4.1.M20090826-0800,"org.eclipse.ui.navigator.ProjectExplorer",1312436262830
+executed,command,org.eclipse.debug.ui,3.5.2.v20091028_r352,"org.eclipse.debug.ui.commands.RunLast",1312436282675

@@ -1,0 +1,23 @@
+<ScrollView android:id="@+id/ScrollView01" 
+android:layout_width="fill_parent" 
+android:layout_height="wrap_content" 
+xmlns:android="http://schemas.android.com/apk/res/android">
+		<LinearLayout 
+			android:id="@+id/LinearLayout01" 
+			android:layout_width="fill_parent" 
+			android:orientation="vertical"
+			android:layout_height="wrap_content">
+
+		<TextView
+			android:id="@+id/tvaboutpcal" 
+			android:layout_width="fill_parent" 
+			android:layout_height="wrap_content"
+			android:background="@color/white"
+			android:textColor="@color/black"
+			android:gravity="center_horizontal"
+			android:textSize="@dimen/size14"
+			android:paddingBottom="5pt"
+			android:text=""/>
+		
+		</LinearLayout>
+		</ScrollView>

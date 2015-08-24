@@ -1,0 +1,230 @@
+package com.yctc.alpaware;
+
+import java.io.File;
+import java.util.Calendar;
+
+import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
+import android.os.Bundle;
+import android.provider.MediaStore;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnFocusChangeListener;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class expentry extends Activity{
+
+	
+	private EditText mDateDisplay;
+    private Button mPickDate;
+
+    public int mYear;
+    public int mMonth;
+    public int mDay;
+    public String sMonth;
+    public String sYear;
+    public String sDay;
+    public String msg;
+    
+
+    static final int DATE_DIALOG_ID = 1;
+	protected static final String FILE_PATH = "file:///sdcard0/EXPIMAGES/";
+
+	
+	@Override
+	
+	 
+	
+	public void onCreate(Bundle savedInstanceState) {
+	    
+		super.onCreate(savedInstanceState);
+	    setContentView(R.layout.expentry);
+	    // capture our View elements
+       
+	    Button cam = (Button) findViewById(R.id.B_PIX);
+        cam.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+            	  Intent imageCaptureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                  imageCaptureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
+          Uri.fromFile(new File(FILE_PATH)));
+                  startActivityForResult(imageCaptureIntent, 1);
+
+            }});
+            
+	    	  
+	   
+	    	   
+	    Spinner s1 = (Spinner) findViewById(R.id.Exp_Cat);
+	    ArrayAdapter<?> adapter1 = ArrayAdapter.createFromResource(
+	            this, R.array.ExpenseCat, android.R.layout.simple_spinner_item);
+	    adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+	    s1.setAdapter(adapter1);
+	    
+	 // capture our View elements
+        mDateDisplay = (EditText) findViewById(R.id.Exp_date);
+        mPickDate = (Button) findViewById(R.id.B_setExpDate);
+        // add a click listener to the button
+        mPickDate.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                showDialog(DATE_DIALOG_ID);
+            }
+        });
+        
+     
+        // get the current date
+        final Calendar c = Calendar.getInstance();
+        mYear = c.get(Calendar.YEAR);
+        mMonth = c.get(Calendar.MONTH);
+        mDay = c.get(Calendar.DAY_OF_MONTH);
+
+        // display the current date
+        updateDisplay();
+    
+
+       }
+	   
+	//updates the date we display in the TextView
+	private void updateDisplay() {
+		if (mYear < 99) {
+			mYear = mYear + 2000;
+		}
+		if (mMonth < 10) {
+			sMonth = "0" + (mMonth + 1);
+		}else{sMonth = "" + mMonth;}
+		if (mDay < 10) {
+			sDay = "0" + mDay; 
+		}else{sDay = "" + mDay;}
+	    mDateDisplay.setText(
+	    		
+	    		
+	    		
+	        new StringBuilder()
+	                // Month is 0 based so add 1
+	        		
+	        		.append(mYear).append("-")	        
+	                .append(sMonth).append("-")
+	                .append(sDay)
+	                ) ;
+	   
+	}
+	
+
+	@Override
+	protected Dialog onCreateDialog(int id) {
+	    switch (id) {
+	    case DATE_DIALOG_ID:
+	        return new DatePickerDialog(this,
+	                    mDateSetListener,
+	                    mYear, mMonth, mDay);
+	    }
+	    return null;
+	}
+	// the callback received when the user "sets" the date in the dialog
+	private DatePickerDialog.OnDateSetListener mDateSetListener =
+	        new DatePickerDialog.OnDateSetListener() {
+
+	            public void onDateSet(DatePicker view, int year, 
+	                                  int monthOfYear, int dayOfMonth) {
+	                mYear = year;
+	                mMonth = monthOfYear;
+	                mDay = dayOfMonth;
+	                
+	                updateDisplay();
+	                
+	            }
+	            
+	        };
+	
+	        
+	            
+	            
+	            
+	        public static final int Save_exp = 0; //no more R.ids   
+			public static final int Clear_exp = 1;
+			
+			
+			public boolean onCreateOptionsMenu(Menu menu){
+				menu.add(0,Save_exp,0,"Save Exp");
+				menu.add(0,Clear_exp,0, "Clear Form");
+				
+				
+				return true;
+			}
+	        public boolean onOptionsItemSelected (MenuItem item){
+	    		switch (item.getItemId()){
+
+	    		case Save_exp: 	
+	    			
+	    			
+
+	  			  ExplogHelper mdbh = new ExplogHelper(this.getApplicationContext());
+	  		       final SQLiteDatabase db = mdbh.getWritableDatabase(); 
+	  		       
+	    			EditText expdte = (EditText)findViewById(R.id.Exp_date);
+	    			String sExpDte = expdte.getText().toString();
+	    			EditText expamt = (EditText)findViewById(R.id.Exp_amt);
+	    			String sExpAmt = expamt.getText().toString();
+	    			EditText expCity = (EditText)findViewById(R.id.Exp_City);
+	    			String sExpCity = expCity.getText().toString();
+	    			Spinner ExpCat = (Spinner) findViewById(R.id.Exp_Cat);
+	    			int intSpinnerPosExp = ExpCat.getSelectedItemPosition();
+	  		        String sExpCat = ExpCat.getItemAtPosition(intSpinnerPosExp).toString();
+	  		        EditText expcomm = (EditText)findViewById(R.id.Exp_comm);
+	  		        String sExpComm = expcomm.getText().toString();
+	  		        
+	  		        
+	  		      db.execSQL("Insert into EXP Values (" + null  + ", " + "'" + sExpDte + "','" + sExpAmt + "','" + sExpCat + "','" + sExpComm + "','" + sExpCity + "')");		  
+	  			msg = "Exp Added";
+	  			showaction(msg);
+	    		
+	    		return true;
+	    		
+	    		case Clear_exp :
+	    			/* Actions in case that Clear is pressed */
+	    			EditText expdte1 = (EditText)findViewById(R.id.Exp_date);
+	    			 expdte1.setText("");
+	    			 EditText expamt1 = (EditText)findViewById(R.id.Exp_amt);
+	    			expamt1.setText("");
+	    			EditText expcomm1 = (EditText)findViewById(R.id.Exp_comm);
+	    			expcomm1.setText("");
+	    			EditText expcity1 = (EditText)findViewById(R.id.Exp_City);
+	    			expcity1.setText("");
+	  		        
+	  		        
+	    			     
+	    			      
+	    					
+	    				
+
+	    			return true;
+	    		}
+				return false;
+				
+	        } 
+
+		
+		
+		
+
+public void showaction(String msg){
+	Context context = getApplicationContext();
+	int duration = Toast.LENGTH_SHORT;
+
+	Toast toast = Toast.makeText(context, msg, duration);
+	toast.show();
+	}
+
+
+}	

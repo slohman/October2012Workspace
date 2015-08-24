@@ -1,0 +1,26 @@
+what,kind,bundleId,bundleVersion,description,time
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311727824981
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311727832340
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311727836824
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311727899310
+started,bundle,org.eclipse.jdt.junit,3.5.2.r352_v20100113-0800,"org.eclipse.jdt.junit",1311727910045
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311727910154
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311727913467
+executed,command,org.eclipse.debug.ui,3.5.2.v20091028_r352,"org.eclipse.debug.ui.commands.RunLast",1311727913482
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311727918342
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311727926389
+error,log,,,"Referenced part does not exist yet: org.eclipse.ui.views.ProblemView.",1311727946967
+opened,view,org.eclipse.debug.ui,3.5.2.v20091028_r352,"org.eclipse.debug.ui.DebugView",1311727947264
+opened,view,org.eclipse.debug.ui,3.5.2.v20091028_r352,"org.eclipse.debug.ui.VariableView",1311727947358
+opened,view,com.android.ide.eclipse.ddms,12.0.0.v201106281929-138431,"com.android.ide.eclipse.ddms.views.LogCatView",1311727947514
+activated,perspective,org.eclipse.debug.ui,3.5.2.v20091028_r352,"org.eclipse.debug.ui.DebugPerspective",1311727947561
+activated,editor,com.android.ide.eclipse.adt,12.0.0.v201106281929-138431,"com.android.ide.eclipse.editors.manifest.ManifestEditor",1311727947577
+executed,command,org.eclipse.ui,3.5.2.M20100120-0800,"org.eclipse.ui.perspectives.showPerspective",1311727947686
+executed,command,org.eclipse.debug.ui,3.5.2.v20091028_r352,"org.eclipse.debug.ui.DebugPerspective",1311727947686
+activated,view,org.eclipse.debug.ui,3.5.2.v20091028_r352,"org.eclipse.debug.ui.DebugView",1311727952749
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311727954592
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311727956608
+activated,perspective,org.eclipse.jst.j2ee.ui,1.1.301.v201001252130,"org.eclipse.jst.j2ee.J2EEPerspective",1311727958280
+activated,editor,com.android.ide.eclipse.adt,12.0.0.v201106281929-138431,"com.android.ide.eclipse.editors.manifest.ManifestEditor",1311727958296
+activated,view,org.eclipse.ui.navigator.resources,3.4.1.M20090826-0800,"org.eclipse.ui.navigator.ProjectExplorer",1311727960499
+executed,command,org.eclipse.debug.ui,3.5.2.v20091028_r352,"org.eclipse.debug.ui.commands.RunLast",1311727972655

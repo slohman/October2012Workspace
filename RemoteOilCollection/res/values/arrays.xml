@@ -1,0 +1,13 @@
+<resources>
+
+    <string-array name="methods">
+        <item>Select Method</item>
+        <item>Estimate</item>
+        <item>Math</item>
+        
+        
+    </string-array>
+    
+    
+    
+</resources>

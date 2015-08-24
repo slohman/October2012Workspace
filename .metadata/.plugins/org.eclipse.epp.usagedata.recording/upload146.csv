@@ -1,0 +1,26 @@
+what,kind,bundleId,bundleVersion,description,time
+error,log,,,"main.xml: Paint.setShadowLayer is not supported.",1312383225818
+error,log,,,"main.xml: Paint.setShadowLayer is not supported.",1312383225818
+error,log,,,"main.xml: Paint.setShadowLayer is not supported.",1312383225818
+error,log,,,"main.xml: Paint.setShadowLayer is not supported.",1312383225833
+error,log,,,"main.xml: Paint.setShadowLayer is not supported.",1312383225833
+error,log,,,"main.xml: Paint.setShadowLayer is not supported.",1312383225833
+error,log,,,"main.xml: Paint.setShadowLayer is not supported.",1312383225833
+error,log,,,"main.xml: Paint.setShadowLayer is not supported.",1312383227318
+error,log,,,"main.xml: Paint.setShadowLayer is not supported.",1312383227318
+error,log,,,"main.xml: Paint.setShadowLayer is not supported.",1312383227318
+error,log,,,"main.xml: Paint.setShadowLayer is not supported.",1312383227318
+error,log,,,"main.xml: Paint.setShadowLayer is not supported.",1312383227333
+error,log,,,"main.xml: Paint.setShadowLayer is not supported.",1312383227333
+error,log,,,"main.xml: Paint.setShadowLayer is not supported.",1312383227333
+error,log,,,"main.xml: Paint.setShadowLayer is not supported.",1312383227333
+error,log,,,"main.xml: Paint.setShadowLayer is not supported.",1312383227333
+error,log,,,"main.xml: Paint.setShadowLayer is not supported.",1312383227333
+error,log,,,"main.xml: Paint.setShadowLayer is not supported.",1312383227349
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312383244552
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312387804841
+activated,view,org.eclipse.ui.navigator.resources,3.4.1.M20090826-0800,"org.eclipse.ui.navigator.ProjectExplorer",1312387808013
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312387811528
+closed,editor,org.eclipse.jdt.ui,3.5.2.r352_v20100106-0800,"org.eclipse.jdt.ui.CompilationUnitEditor",1312387815247
+closed,editor,org.eclipse.jdt.ui,3.5.2.r352_v20100106-0800,"org.eclipse.jdt.ui.CompilationUnitEditor",1312387815294
+closed,editor,org.eclipse.jdt.ui,3.5.2.r352_v20100106-0800,"org.eclipse.jdt.ui.CompilationUnitEditor",1312387815294

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item value="237" key="DIALOG_WIDTH"/>
+		<item value="184" key="DIALOG_Y_ORIGIN"/>
+		<item value="462" key="DIALOG_X_ORIGIN"/>
+		<item value="357" key="DIALOG_HEIGHT"/>
+		<item value="1|Tahoma|8.25|0|WINDOWS|1|-11|0|0|0|400|0|0|0|1|0|0|0|0|Tahoma" key="DIALOG_FONT_NAME"/>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item value="false" key="wrap"/>
+		<item value="false" key="casesensitive"/>
+		<item value="false" key="isRegEx"/>
+		<item value="false" key="incremental"/>
+		<item value="false" key="wholeword"/>
+		<item value="MiscTempMin" key="selection"/>
+		<list key="findhistory">
+			<item value="FairwayTempMin"/>
+			<item value=".g"/>
+			<item value="Green"/>
+			<item value="Fairway"/>
+			<item value="g2"/>
+			<item value="g1"/>
+			<item value="Green&quot;"/>
+			<item value="# Green"/>
+		</list>
+		<list key="replacehistory">
+			<item value="MiscTempMin"/>
+			<item value=".f"/>
+			<item value="Fairway"/>
+			<item value="Green"/>
+			<item value="f2"/>
+			<item value="f1"/>
+			<item value="Fairway&quot;"/>
+			<item value="FairwayTempMin"/>
+		</list>
+	</section>
+</section>

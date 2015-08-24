@@ -1,0 +1,8 @@
+
+**** Build of configuration Default for project OpenCV Sample - face-detection ****
+
+\ndk-build.cmd 
+
+Error: Cannot run program "\ndk-build.cmd": Launching failed
+
+**** Build Finished ****

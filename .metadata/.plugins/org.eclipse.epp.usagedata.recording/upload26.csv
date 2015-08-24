@@ -1,0 +1,26 @@
+what,kind,bundleId,bundleVersion,description,time
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311728552073
+executed,command,org.eclipse.ui.ide,3.5.2.M20100113-0800,"org.eclipse.ui.project.cleanAction",1311728552088
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311728552354
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311728552354
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311728552463
+activated,view,org.eclipse.ui.ide,3.5.2.M20100113-0800,"org.eclipse.ui.views.AllMarkersView",1311728558760
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311728562323
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311728599230
+activated,view,org.eclipse.ui.views,3.4.1.M20090826-0800,"org.eclipse.ui.views.ContentOutline",1311728599230
+activated,view,org.eclipse.ui.navigator.resources,3.4.1.M20090826-0800,"org.eclipse.ui.navigator.ProjectExplorer",1311728600824
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311728609308
+closed,editor,org.eclipse.jdt.ui,3.5.2.r352_v20100106-0800,"org.eclipse.jdt.ui.CompilationUnitEditor",1311728613277
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311728613324
+executed,command,org.eclipse.ltk.ui.refactoring,3.4.101.r352_v20100209,"org.eclipse.ltk.ui.refactoring.commands.deleteResources",1311728613324
+executed,command,org.eclipse.ui,3.5.2.M20100120-0800,"org.eclipse.ui.edit.delete",1311728613324
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311728616511
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311728619402
+executed,command,org.eclipse.ui.ide,3.5.2.M20100113-0800,"org.eclipse.ui.edit.text.openLocalFile",1311728619402
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311728622965
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311728640934
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311728640934
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311728640949
+executed,command,org.eclipse.ui,3.5.2.M20100120-0800,"org.eclipse.ui.file.import",1311728640965
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311728641074
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311728641074

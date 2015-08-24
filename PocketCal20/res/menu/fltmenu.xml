@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+    
+     <item android:id="@+id/fltmainmenu"
+	    android:title="Actions"
+	    android:icon="@drawable/icmenu"
+	    android:orderInCategory="0"
+	    
+	   
+	    android:showAsAction="ifRoom">
+	   		 <menu>
+	   		     
+	   		     
+				 <item android:id="@+id/saveflt"
+	   		           android:title="@string/saveFlt"/>
+				 
+				 <item android:id="@+id/clearFlight"
+	   		           android:title="@string/clearFlt"/>
+				  
+				  
+				    
+
+			</menu>
+</item>
+      <item android:id="@+id/home"
+	    android:title="@string/titleHome"
+	    android:orderInCategory="0"
+	    android:icon="@drawable/ic_menu_home"
+	    android:showAsAction="ifRoom">
+	   		 
+	</item>
+	<item android:id="@+id/back"
+	    android:title="@string/titleBack"
+	    android:orderInCategory="0"
+	    android:icon="@drawable/back1"
+	    android:showAsAction="ifRoom">
+	   		 
+	</item>
+    
+    
+   
+
+</menu>

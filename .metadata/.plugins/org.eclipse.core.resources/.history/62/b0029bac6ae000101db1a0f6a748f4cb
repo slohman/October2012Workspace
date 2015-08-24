@@ -1,0 +1,306 @@
+package com.yctc.alpaware;
+
+
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+
+
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+public class eightn24a extends Activity{
+	
+	String sblkHours,InDate,InTime,OutTime;
+	
+	public static final int Main_Menu =0;    
+	public static final int Menu_1 = 1;
+	 public void onCreate(Bundle Icicle) {
+	        super.onCreate(Icicle);
+	        setContentView(R.layout.eightn24);
+	        Bundle b = this.getIntent().getExtras();  
+	         InDate = b.getString("Dte");
+	         InTime = b.getString("IN");
+	         OutTime=b.getString("OUT");
+	         int iInStartYR = 0,iInStartDay = 0,iInStartMO = 0;
+	         
+	         String[] sInTime;
+	         String[] sOutTime;
+	         String[] sDate;
+	         sInTime = InTime.split(":");
+	         sOutTime = OutTime.split(":");
+	         sDate = InDate.split("-");
+	         int iInHrs = Integer.parseInt(sInTime[0]);
+	         int iOutHrs = Integer.parseInt(sOutTime[0]);
+	         int iYr = Integer.parseInt(sDate[0]);
+	         int iMo = Integer.parseInt(sDate[1]);
+	         int iDay = Integer.parseInt(sDate[2]);
+	         
+	         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	         GregorianCalendar cal = new GregorianCalendar();
+	         
+	         EditText etsrchDate = (EditText) findViewById(R.id.blkdtinput);
+	  	        EditText etsrchtime = (EditText) findViewById(R.id.blktimeinput);
+	         if (iInHrs < iOutHrs){
+	        	 // next day add i day to the date
+	        
+	         int newMonth = iMo -1;
+	         cal.set(GregorianCalendar.MONTH,newMonth);
+	         cal.set(GregorianCalendar.DAY_OF_MONTH,iDay);
+	         cal.set(GregorianCalendar.YEAR,iYr);
+	         cal.add(GregorianCalendar.DAY_OF_MONTH, 1);
+	         
+	         InDate = sdf.format(cal.getTime());
+	         
+	         
+	         
+	         	}else{
+	         		
+	        int newMonth = iMo -1;
+		    cal.set(GregorianCalendar.MONTH,(newMonth));
+		    cal.set(GregorianCalendar.DAY_OF_MONTH,iDay);
+		    cal.set(GregorianCalendar.YEAR,iYr);
+		    InDate = sdf.format(cal.getTime());
+	         }
+	
+	       // Bundle bun = this.getIntent().getExtras();  
+	   
+	        
+  	        
+  	        
+  	      etsrchDate.setText(InDate);
+	         etsrchtime.setText(InTime);
+  	       
+
+     
+      String srchDate, srchTime ;
+     
+      etsrchDate.setText(InDate);
+      etsrchtime.setText(InTime);
+	    
+	       
+	        
+	         final Button s1 = (Button) findViewById(R.id.calc8n24button);
+	        s1.setOnClickListener(new View.OnClickListener() {
+	        	public void onClick(View view) {
+	        		
+	        		 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+	                 imm.hideSoftInputFromWindow(s1.getApplicationWindowToken(), 0);
+
+
+	        		 EditText etsrchDate = (EditText) findViewById(R.id.blkdtinput);
+	     	        EditText etsrchtime = (EditText) findViewById(R.id.blktimeinput); 
+	     	       final DecimalFormat timeFormat = new DecimalFormat("00");
+
+	        
+	         String srchDate, srchTime ;
+	        
+	        
+	         
+	         
+	         srchDate = etsrchDate.getText().toString();
+		        srchTime = etsrchtime.getText().toString();
+	        String sBlockRemaining = null;
+	        
+	        String sOutMinutes,sinMinutes;
+	        int iTotalBlockMin,iTotalOutMin,iTotalInMin, iBlockRemaining;
+	        int iStartSrchHours,iStartSrchMin;
+	        int StartSrchMinutes,  iBlockRemainingMin;
+	        int iOutHours,iOutMin,iPartialMinToUse,iinHours,iinMin,iTotalMinFor24HourPeriod = 0;
+	        
+	        String[] sStartSchMinTemp;
+	         sStartSchMinTemp = srchTime.split(":");
+	         iStartSrchHours = Integer.parseInt(sStartSchMinTemp[0]);
+	         iStartSrchMin = Integer.parseInt(sStartSchMinTemp[1]);
+	         StartSrchMinutes = (iStartSrchHours * 60) + iStartSrchMin;
+	         
+	         	         
+	         String[] sStartDateTemp;
+	         String sAdjStartDy;
+	         sStartDateTemp = srchDate.split("-");
+	         int iStartYR = Integer.parseInt(sStartDateTemp[0]);
+	         int iStartMO = Integer.parseInt(sStartDateTemp[1]);
+	         int iStartDay = Integer.parseInt(sStartDateTemp[2]);
+	     
+	         
+	         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	         GregorianCalendar cal = new GregorianCalendar();
+	         cal.set(GregorianCalendar.MONTH,0);
+	         cal.set(GregorianCalendar.DAY_OF_MONTH,0);
+	         cal.set(GregorianCalendar.YEAR,0);
+	         cal.set(GregorianCalendar.MONTH,iStartMO - 1);
+	         cal.set(GregorianCalendar.DAY_OF_MONTH,iStartDay);
+	         cal.set(GregorianCalendar.YEAR,iStartYR);
+	         
+	         String sStartDate = sdf.format(cal.getTime());
+	         cal.add(GregorianCalendar.DAY_OF_MONTH, -1);
+	         String sAdjSrchDate = sdf.format(cal.getTime());
+	         sStartDateTemp = sAdjSrchDate.split("-");
+	         int iAdjStartDay = Integer.parseInt(sStartDateTemp[2]);
+	         
+	         
+	         
+	        UserDataHelper mdbh = new UserDataHelper(getApplicationContext());
+	      final SQLiteDatabase db = mdbh.getWritableDatabase(); 
+	      
+	      String qry = "Select inn,out,date,blk from fltlog where Date >= '" + sAdjSrchDate + "' and Date <= '" + sStartDate + "'  order by Date" ;
+	      final Cursor cu = db.rawQuery(qry ,null);
+	 		
+	        if (cu.getCount() > 0) {
+	        cu.moveToFirst();
+	 		int blkHours=0,blkMin=0;
+	 		iTotalOutMin=0;
+	 		iTotalInMin=0;
+	 		iPartialMinToUse = 0;
+	 		iTotalMinFor24HourPeriod=0;
+	 		String sblkHours;
+	 		String[] sblkTempHr;
+	 		String[] sOutMinutesTemp, sinMinutesTemp,sCurrentDay;
+	 		iTotalMinFor24HourPeriod = 0;
+	 		
+	 		 for (int i = 1; i <= cu.getCount();i++) {
+	 			 
+	 			 //turn blk time into minutes
+	 			sblkHours=cu.getString(cu.getColumnIndex("blk"));
+	 			sblkTempHr = sblkHours.split(":");
+	 			blkHours = Integer.parseInt(sblkTempHr[0]);
+	 			blkMin = Integer.parseInt(sblkTempHr[1]);
+	 			
+	 			
+	 			String CurrentDate = cu.getString(cu.getColumnIndex("Date"));
+	 			 sCurrentDay = CurrentDate.split("-");
+	 			int iCurDay = Integer.parseInt(sCurrentDay[2]);
+	 			
+	 			//get the in time minutes value
+	 			sinMinutes=cu.getString(cu.getColumnIndex("inn"));
+	 			sinMinutesTemp = sinMinutes.split(":");
+	 			iinHours = Integer.parseInt(sinMinutesTemp[0]);
+	 			iinMin = Integer.parseInt(sinMinutesTemp[1]);
+	 			
+	 			
+	 			
+	 			//get the out time minutes value
+	 			sOutMinutes=cu.getString(cu.getColumnIndex("out"));
+	 			sOutMinutesTemp = sOutMinutes.split(":");
+	 			iOutHours = Integer.parseInt(sOutMinutesTemp[0]);
+	 			iOutMin = Integer.parseInt(sOutMinutesTemp[1]);
+	 			iTotalInMin = 0;
+	 			iTotalOutMin = 0;
+	 			iTotalBlockMin = 0;
+	 			iTotalInMin = (iinHours * 60) + (iinMin);
+	 			iTotalOutMin = (iOutHours * 60) + (iOutMin);
+	 			iTotalBlockMin = (blkHours * 60) + (blkMin);
+	 			
+	 			
+	 			
+	 			// Examine minutes for several criteria
+	 			
+	 			//1. this starts and ends on the first day of the lookback
+	 			
+
+	 			    if ((  iTotalOutMin >= StartSrchMinutes) && (iTotalInMin > StartSrchMinutes) && (iAdjStartDay == iCurDay)) {
+	 				iTotalMinFor24HourPeriod = iTotalMinFor24HourPeriod + iTotalBlockMin;}
+	 			    
+	 			// Case 2 Trip started before the calc point and end after the start point but all before 0Z
+	 				if ((iTotalOutMin < StartSrchMinutes) && (iTotalInMin >= StartSrchMinutes) && (iAdjStartDay == iCurDay)){ 
+	 				iPartialMinToUse = iTotalInMin -  StartSrchMinutes;
+		 			iTotalMinFor24HourPeriod = iTotalMinFor24HourPeriod + iPartialMinToUse;}
+	 			
+	 				// Case 3. Trip start on previous day ends on the next day	
+	 				if ((iTotalOutMin >= StartSrchMinutes)  && (iTotalInMin <= StartSrchMinutes) && (iAdjStartDay == iCurDay)){ // just count the block before the blockout 24 earlier
+	 					iTotalMinFor24HourPeriod = iTotalMinFor24HourPeriod + iTotalBlockMin;}
+	 				
+	 				//Case 4. Trip occurs all during the current day of the 24hr lookback	
+	 				if ((iTotalOutMin < StartSrchMinutes)  && (iTotalInMin <= StartSrchMinutes) && (iTotalInMin > iTotalOutMin) && (iAdjStartDay != iCurDay)){
+	 					iTotalMinFor24HourPeriod = iTotalMinFor24HourPeriod + iTotalBlockMin;}
+	 				
+	 				//flt occurs on correct day but before the search period starts		
+	 					
+	 				if ((iTotalOutMin < StartSrchMinutes)  && (iTotalInMin < StartSrchMinutes)  && (iAdjStartDay == iCurDay)){
+	 					iTotalMinFor24HourPeriod = iTotalMinFor24HourPeriod + 0;}
+	 			    // Flt occurs after the end of the look back period 
+	 				
+	 				
+	 			    // Flt occurs after the end of the look back period 
+	 				if ((iTotalOutMin > StartSrchMinutes)  && (iTotalInMin > StartSrchMinutes)  && (iAdjStartDay != iCurDay)){
+	 					iTotalMinFor24HourPeriod = iTotalMinFor24HourPeriod + 0;}
+	 				 // Flt start before start of the blockin est but ends after ( OM<ss IM>ss AD!=CD 
+	 				if ((iTotalOutMin < StartSrchMinutes)  && (iTotalInMin >= StartSrchMinutes)  && (iAdjStartDay != iCurDay)){
+	 					iPartialMinToUse =  StartSrchMinutes - iTotalOutMin;
+			 			iTotalMinFor24HourPeriod = iTotalMinFor24HourPeriod + iPartialMinToUse;}
+	 			
+	 				
+	 				cu.moveToNext();// advance the recordset
+	 		   // end for loop
+	 		 }
+	 
+	        }
+	        
+	iBlockRemaining = (8 * 60) - iTotalMinFor24HourPeriod;
+	int iBlockRemainingHours = (iBlockRemaining/60);
+	if (iBlockRemainingHours == 0){
+		
+		iBlockRemainingMin = iBlockRemaining;
+	}else {
+		iBlockRemainingMin = (iBlockRemaining - (iBlockRemainingHours * 60));
+	}
+		 String TimeRem = timeFormat.format(iBlockRemainingHours) + ":" + timeFormat.format(iBlockRemainingMin) ;
+
+
+	
+	
+	
+	TextView BLKR = (TextView) findViewById(R.id.blkremaining);
+	BLKR.setText(TimeRem);
+	cu.close();
+	        	}});       
+	
+	
+}
+	 
+
+public boolean onCreateOptionsMenu(Menu menu){
+				menu.add(0,Main_Menu,0,"Main Menu");
+				menu.add(0,Menu_1,0,"LogBook Menu");
+				return true;
+				}
+
+			public boolean onOptionsItemSelected (MenuItem item ){
+				switch (item.getItemId()){
+				case Main_Menu :
+					
+					Intent myIntent = new Intent(getBaseContext(), PocketCal20.class);	
+					startActivityForResult(myIntent, 0);
+					
+				return true;
+				case Menu_1 :
+					
+					Intent myIntent1 = new Intent(getBaseContext(), fltlogmain.class);	
+					startActivityForResult(myIntent1, 0);
+					
+				return true;
+				
+				}
+				return false;
+				}
+		
+
+
+	
+
+
+}
+

@@ -1,0 +1,41 @@
+apply plugin: 'com.android.library'
+
+android {
+  compileSdkVersion 21
+  buildToolsVersion '21.1.2'
+
+  defaultConfig {
+    applicationId "com.yctcalpaware.PocketCal"
+    minSdkVersion 14
+    targetSdkVersion 21
+    versioncode 1
+    versionName "1.0"
+  }
+}
+
+
+
+buildscript {
+    repositories {
+      mavenCentral()
+    }
+  dependencies {
+    classpath 'com.android.tools.build:gradle:1.0.+'
+  }
+}
+
+
+
+  dependencies {
+    compile 'com.android.support:support-v4:21.0.+'
+    compile 'com.actionbarsherlock:actionbarsherlock:4.4.0@aar'
+  }
+  sourceSets {
+    main {
+
+      java.srcDirs = ['src']
+      manifest.srcFile 'AndroidManifest.xml'
+      res.srcDirs = ['res']
+    }
+  }
+

@@ -1,0 +1,26 @@
+what,kind,bundleId,bundleVersion,description,time
+started,bundle,org.eclipse.wst.ws.service.policy,1.0.103.v200905151848,"org.eclipse.wst.ws.service.policy",1311724426603
+started,bundle,org.eclipse.wst.command.env,1.0.408.v200903110045,"org.eclipse.wst.command.env",1311724426618
+started,bundle,org.eclipse.wst.ws,1.1.103.v200903111822,"org.eclipse.wst.ws",1311724426618
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311724426806
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311724445259
+executed,command,org.eclipse.ui.ide,3.5.2.M20100113-0800,"org.eclipse.ui.project.properties",1311724445291
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311724452009
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311724556183
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311724557074
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311725114741
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311725118944
+opened,view,org.eclipse.ui.console,3.4.0.v20090513,"org.eclipse.ui.console.ConsoleView",1311725166179
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311725173383
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311725182977
+error,log,,,"Error: null",1311725221259
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311725221259
+activated,view,org.eclipse.ui.console,3.4.0.v20090513,"org.eclipse.ui.console.ConsoleView",1311725221274
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311725248650
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311725258400
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311725275697
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311725283104
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311725286307
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311725300995
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311725304901
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311725315026

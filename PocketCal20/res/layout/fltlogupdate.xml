@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+android:id="@+id/widget88"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+xmlns:android="http://schemas.android.com/apk/res/android">
+
+<RelativeLayout
+    android:id="@+id/r1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+<EditText
+    android:id="@+id/Et_outdate"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:hint="YYYY-MM-DD"
+    android:textSize="@dimen/size14" >
+
+</EditText>
+<ScrollView android:layout_below="@+id/Et_outdate" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/ScrollView01"></ScrollView><Button
+            android:id="@+id/B_pDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Et_outdate"
+            android:text="Set Date"
+            android:textSize="@dimen/size14" >
+
+</Button>
+
+	<EditText
+	    android:id="@+id/Et_flt"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:layout_below="@+id/B_pDate"
+	    android:layout_toLeftOf="@+id/Et_to"
+	    android:layout_weight="0"
+	    android:hint="Flt #"
+	    android:inputType="number"
+	    android:textSize="@dimen/size14" />
+
+	<EditText
+	    android:id="@+id/Et_tail"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentRight="true"
+	    android:layout_below="@+id/B_pDate"
+	    android:layout_toRightOf="@+id/Et_flt"
+	    android:layout_weight="0"
+	    android:hint="AC #"
+	    android:inputType="number"
+	    android:textSize="@dimen/size14" >
+
+	</EditText>
+
+	<EditText
+	    android:id="@+id/Et_frm"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@+id/Et_flt"
+	    android:layout_toLeftOf="@+id/Et_in"
+	    android:layout_weight="1"
+	    android:hint="Org"
+	    android:inputType="textCapCharacters"
+	    android:textSize="@dimen/size14" >
+
+	</EditText>
+	
+<EditText
+    android:id="@+id/Et_to"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentRight="true"
+    android:layout_below="@+id/Et_flt"
+    android:layout_toRightOf="@+id/Et_frm"
+    android:layout_weight="1"
+    android:hint="Dest"
+    android:inputType="textCapCharacters"
+    android:textSize="@dimen/size14" >
+
+</EditText>
+
+	<EditText
+	    android:id="@+id/Et_out"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:layout_below="@+id/Et_frm"
+	    android:layout_toLeftOf="@+id/Et_typ"
+	    android:layout_weight="1"
+	    android:digits="0123456789:"
+	    android:hint="Out"
+	    android:inputType="none"
+	    android:textSize="@dimen/size14" >
+
+	</EditText>
+
+	<EditText
+	    android:id="@+id/Et_in"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentRight="true"
+	    android:layout_below="@+id/Et_to"
+	    android:layout_toRightOf="@id/Et_out"
+	    android:layout_weight="1"
+	    android:digits="0123456789:"
+	    android:hint="In"
+	    android:inputType="none"
+	    android:textSize="@dimen/size14" />
+		
+<TextView
+    android:id="@+id/Et_blk"
+    android:layout_width="240px"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/Et_in"
+    
+    android:layout_weight="1"
+    android:hint="Blk"
+    android:textSize="@dimen/size14" />
+	
+	<Spinner
+	    android:id="@+id/Et_land"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:layout_alignRight="@+id/Et_blk"
+	    android:layout_below="@+id/Et_blk"
+	    android:layout_weight="1"
+	    android:clickable="true"
+	    android:drawSelectorOnTop="true"
+	    android:prompt="@string/landprompt"
+	    android:textSize="@dimen/size14" >
+
+</Spinner>
+
+<Spinner
+    android:id="@+id/Et_typ"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentRight="true"
+    android:layout_below="@+id/Et_blk"
+    android:layout_toRightOf="@+id/Et_land"
+    android:layout_weight="1"
+    android:drawSelectorOnTop="true"
+    android:prompt="@string/acprompt"
+    android:textSize="@dimen/size14" >
+
+</Spinner>
+
+<EditText
+    android:id="@+id/Et_cargo"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/Et_typ"
+    android:hint="Cargo"
+    android:inputType="phone"
+    android:textSize="@dimen/size14" >
+
+</EditText>
+
+<EditText
+    android:id="@+id/Et_comm"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/Et_cargo"
+    android:hint="Notes"
+    android:textSize="@dimen/size14" >
+
+</EditText>
+
+</RelativeLayout>
+</ScrollView>
+

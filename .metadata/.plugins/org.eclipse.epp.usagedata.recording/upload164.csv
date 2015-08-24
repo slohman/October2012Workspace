@@ -1,0 +1,26 @@
+what,kind,bundleId,bundleVersion,description,time
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312394909643
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312394911237
+activated,view,org.eclipse.ui.console,3.4.0.v20090513,"org.eclipse.ui.console.ConsoleView",1312394916299
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312394918831
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312394976067
+executed,command,org.eclipse.debug.ui,3.5.2.v20091028_r352,"org.eclipse.debug.ui.commands.DebugLast",1312394978489
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312394978520
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312394980348
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312394982082
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312394983207
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312394985411
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312394999864
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312395006005
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312395018396
+activated,perspective,org.eclipse.debug.ui,3.5.2.v20091028_r352,"org.eclipse.debug.ui.DebugPerspective",1312395018521
+activated,perspective,org.eclipse.jst.j2ee.ui,1.1.301.v201001252130,"org.eclipse.jst.j2ee.J2EEPerspective",1312395020224
+activated,view,org.eclipse.ui.navigator.resources,3.4.1.M20090826-0800,"org.eclipse.ui.navigator.ProjectExplorer",1312395023037
+executed,command,org.eclipse.debug.ui,3.5.2.v20091028_r352,"org.eclipse.debug.ui.commands.RunLast",1312395026740
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312395026771
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312395029552
+error,log,,,"Unhandled event loop exception",1312395029599
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312395034709
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312395038084
+activated,view,org.eclipse.ui.console,3.4.0.v20090513,"org.eclipse.ui.console.ConsoleView",1312395038084
+activated,editor,org.eclipse.jdt.ui,3.5.2.r352_v20100106-0800,"org.eclipse.jdt.ui.CompilationUnitEditor",1312395042021

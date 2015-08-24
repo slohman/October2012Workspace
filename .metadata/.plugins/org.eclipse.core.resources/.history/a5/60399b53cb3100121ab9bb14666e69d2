@@ -1,0 +1,142 @@
+package com.yctc.alpaware;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
+import android.widget.AdapterView.AdapterContextMenuInfo;
+
+public class OpenTimeList extends Activity{
+	
+	
+	@Override
+	 public void onCreate(Bundle savedInstanceState) {
+       super.onCreate(savedInstanceState);
+       setContentView(R.layout.otlist);
+       
+       
+        Context mContext;
+		final int EMenu =0;
+		final int MMenu =1;
+		
+	
+		
+
+		     
+ 
+	        
+	      
+	         AlpaDataBaseHelper mdbh = new AlpaDataBaseHelper(this.getApplicationContext());
+		      final SQLiteDatabase db = mdbh.getWritableDatabase();
+		
+		      int names[] = {android.R.id.text1,android.R.id.text2};
+		  	final Cursor c = db.rawQuery("Select _id, pairing, showdate ||'  '|| showtime  AS Fdata from opentime  order by _id" ,null);		  
+		 		  		
+		 	 		  	  	 
+		 		final ListAdapter  adapter = new SimpleCursorAdapter(this,android.R.layout.simple_list_item_2,c,	
+		 				new String[] {"pairing","Fdata"},names);		  
+		 		  		
+		 		 startManagingCursor(c);
+		 		 ListView lv = (ListView)findViewById(android.R.id.list);
+		 		 lv.setAdapter(adapter);
+		 		 registerForContextMenu(lv);
+ 
+	     
+	     
+	        
+	   	
+	        
+
+
+
+	 
+	  } // end on create
+       
+       
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+	    AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
+	     long data =  info.id; // should be item selected from underlying adapter!
+	   
+	     
+	    
+	 
+	
+	  	 
+	  	 
+	  	 
+
+	    switch (item.getItemId()) {
+	        case R.id.view:
+	        	//select data from database to get filename and pass it to the viewtrip object
+	        
+	        	 AlpaDataBaseHelper mdbh = new AlpaDataBaseHelper(this.getApplicationContext());
+		 	     final SQLiteDatabase db = mdbh.getWritableDatabase(); 
+		 	     
+		 	     Cursor cursor = db.rawQuery("Select pairing,showdate from opentime where _id = " + data,null);	
+				  
+		  		
+		 		 startManagingCursor(cursor);
+		 		 cursor.moveToFirst();
+		 		 String pairingNumber = cursor.getString(cursor.getColumnIndex("pairing"));
+		 		 String showDate = cursor.getString(cursor.getColumnIndex("showdate"));
+	        	Bundle b = new Bundle();
+	        	b.putString("prg", pairingNumber);
+	        	b.putString("show", showDate);
+	        	
+	        	
+	        	Intent myIntent = new Intent(getBaseContext(), tripview.class);	
+	        	myIntent.putExtras(b);
+				startActivityForResult(myIntent, 0);
+
+	            return true;
+	
+	
+	        default:
+	            return super.onContextItemSelected(item);
+	    }
+	
+}
+	
+	public boolean onCreateOptionsMenu(Menu menu){
+		menu.add(0,EMenu,0,"Egrid Menu");
+		menu.add(0,MMenu,1,"Main Menu");
+		
+		return true;
+		}
+
+	public boolean onOptionsItemSelected (MenuItem item ){
+		switch (item.getItemId()){
+		case EGRID_Menu :
+			
+			Intent myIntent2 = new Intent(getBaseContext(), onlinelauncher.class);	
+			startActivityForResult(myIntent2, 0);
+			
+		return true;
+		
+		case Main_Menu :
+			
+			Intent myIntent1 = new Intent(getBaseContext(), PocketCal20.class);	
+			startActivityForResult(myIntent1, 0);
+			
+		return true;
+		
+		}
+		return false;
+		}
+
+
+
+
+
+
+
+
+}

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content" 
+	android:textSize="@dimen/size14">
+	
+	
+	
+<LinearLayout
+	
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical"
+	android:padding="5px">
+  
+  
+  <Button android:id="@+id/loadalpaabase"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center_horizontal"
+		android:background="@drawable/alpabtn"
+		android:textSize="@dimen/size14"
+		android:text="Install Main DB "
+		android:textColor="#ff9966"
+		android:paddingBottom="5pt" ></Button>
+		
+		
+		
+		
+		
+		<Button android:id="@+id/copydatabases"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center_horizontal"
+		android:background="@drawable/alpabtn"
+		android:textSize="@dimen/size14"
+		android:text="Save All DB's to SD"
+		android:textColor="#ff9966"
+		android:paddingBottom="5pt" 
+		 
+		android:clickable="true">
+		</Button>
+		</LinearLayout>
+		</ScrollView>

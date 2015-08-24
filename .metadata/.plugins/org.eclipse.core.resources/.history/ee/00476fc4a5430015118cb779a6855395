@@ -1,0 +1,817 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	 android:installLocation="auto"
+	package="com.yctc.alpaware"
+      
+      android:versionName="2.0.3.006" android:versionCode="57">
+       
+      <uses-sdk android:minSdkVersion="14" 
+          android:targetSdkVersion="21"/>
+     
+      
+   <uses-permission android:name="android.permission.INTERNET" />
+   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+   <uses-permission android:name="android.permission.CALL_PHONE"/>
+   <uses-permission android:name="android.intent.action.VIEW" />
+   <uses-permission android:name="android.permission.CAMERA" />
+   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+   <uses-permission android:name="android.permission.READ_CALENDAR"/>
+   <uses-permission android:name="android.permission.WRITE_CALENDAR"/>
+   <uses-permission android:name="android.permission.READ_LOGS"/>
+	<uses-permission android:name="android.permission.VIBRATE"/> 
+	<uses-permission android:name="android.permission.WAKE_LOCK"/>  
+      
+    <application android:label="@string/app_name" android:icon="@drawable/alpalogo1" android:allowClearUserData="true" android:allowBackup="true" 
+         android:theme="@style/Theme.Sherlock" android:hardwareAccelerated="true"> 
+ 
+        
+    
+         
+    
+        
+ <!-- New License Launch Activity with all intent filters from your previous main activity -->
+<!-- Translucent.NoTitleBar is so that this activity is never shown to the user -->		
+<activity android:label="@string/app_name" 
+    android:name=".PocketCal20" 
+    android:theme="@style/Theme.Sherlock"
+    
+	android:uiOptions="splitActionBarWhenNarrow"  >  
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		
+			
+		</activity>
+		
+	    
+		
+		<activity android:name=".OpenTimeList"
+        		  android:label="Open Time Listing"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+         </activity>
+         
+		<activity android:name=".onlinemenu"
+        		  android:label="Online Menu Options"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+         </activity>
+       
+         <activity android:name=".freqs"
+        		  android:label="ESPN USA &amp; Canada"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+         </activity>
+         
+          <activity android:name=".KCM"
+        		  android:label="KCM Data"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+         </activity>
+         <activity android:name=".egridmain"
+        		  android:label="Get Egrid"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+         </activity>
+          <activity android:name=".egridmain1"
+        		  android:label="Get Egrid"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+         </activity>
+          <activity android:name=".windcalc"
+        		  android:label="Wind Comp"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+         </activity>
+          <activity android:name=".kcmdetails"
+        		  android:label="KCM Details"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+         </activity>
+       
+          <activity android:name=".FreqListAll"
+        		  android:label="Frequencies"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+         </activity>
+          <activity android:name=".OpenTime1"
+        		  android:label="Open Time "
+        		   android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+         </activity>
+	
+		 <activity android:name=".tripdelete"
+        		  android:label="Delete Trip"
+        		  >
+         </activity>
+         
+         
+      
+         <activity android:name=".checkdbver"
+        		  android:label="Check Data Base Version"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+         </activity>
+          <activity android:name=".OpenTime"
+        		  android:label="Check Open TIme Trips"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+         </activity>
+         
+      
+        <activity android:name=".jumpseatmain"
+        		  android:label="Jumpseat Data"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+         </activity>
+          <activity android:name=".onlinelauncher"
+        		  android:label="PFC Functions"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+         </activity>
+         <activity android:name=".onlinemenu1"
+        		  android:label="Online Menu Options"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+         </activity>
+          <activity android:name=".tripview"
+        		  android:label="Trip Viewer"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+         </activity>
+         <activity android:name=".triplist"
+        		  android:label="Assigned Trip List"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+			</activity>
+			 <activity android:name=".ottripview"
+        		  android:label="Open Time List "
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+         </activity>
+          <activity android:name=".calendar"
+        		  android:label="Calendar"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+         </activity>
+          <activity android:name=".calenderParser"
+        		  android:label="CalendarParser"
+        		  >
+         </activity>
+          <activity android:name=".pcalbrows1"
+        		  android:label="Pocket Cal Browser"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		   android:configChanges="orientation|keyboardHidden|keyboard"
+        		  >
+         </activity>
+         <activity android:name=".eightn24a"
+        		  android:label="8 in 24 Calc"
+        		  android:configChanges="orientation|screenSize"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+         </activity>
+         
+         <activity android:name=".dutylimit"
+        		  android:label="Duty Limit Calc"
+        		  android:configChanges="orientation|screenSize"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+         </activity>
+          <activity android:name=".landings"
+        		  android:label="Landings"
+        		  android:configChanges="orientation|screenSize"
+        		  >
+         </activity>
+       
+         <activity android:name=".jupseataddnew"
+        		  android:label=" Add Jumpseat Data"
+        		  >
+             
+        		  
+        </activity>
+         <activity android:name=".jumpseatlistnoncass"
+        		  android:label=" Non CASS Jumpseats"
+        		  >
+             
+        		  
+        </activity>
+         <activity android:name=".jumpseatlist"
+        		  android:label="Jumpseat DataBase"
+        		  >
+             
+        		  
+        </activity>
+        <activity android:name=".loa"
+        		  android:label="LOA Files"
+        		  >
+             
+        		  
+        </activity>
+        <activity android:name=".jumpseatdetails"
+        		  android:label="Jumpseat List Data"
+        		  >
+             
+        		  
+        </activity>
+        <activity android:name=".jumpseatupdate"
+        		  android:label="Jumpseat Update"
+        		  >
+             
+        		  
+        </activity>
+        <activity android:name=".pdf"
+        		  android:label="PDF Files"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             
+        		  
+        </activity>
+       
+         <activity android:name=".mec"
+        		  android:label="MEC"
+        		  android:theme="@style/Theme.Sherlock"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             
+        		  
+        </activity>
+        <activity android:name=".addnotes"
+        		  android:label="Add Note"
+        		  >
+             
+        		  
+        </activity>
+       
+        <activity android:name=".listnotes"
+        		  android:label="List Notes"
+        		  >
+             
+        		  
+        </activity>
+        <activity android:name=".noteslaunch"
+        		  android:label="Note Select"
+        		  >
+             
+        		  
+        </activity>
+        <activity android:name=".notesupdate"
+        		  android:label="Update/Edit Notes"
+        		  >
+             
+        		  
+        </activity>
+        
+         <activity android:name=".gthoteldisplay"
+        		  android:label="Hotel GT Listing"
+        		  >
+             
+        		  
+        </activity>
+         <activity android:name=".gthotelupdate"
+        		  android:label="Hotel GT Update"
+        		  >
+             
+        		  
+        </activity>
+        <activity android:name=".gthoteladdnew"
+        		  android:label="Add New GT/Hotel"
+        		  >
+             
+        		  
+        </activity>
+         <activity android:name=".hotellistall"
+        		  android:label="Hotel GT Listing "
+        		  >
+             
+        		  
+        </activity>
+        
+         <activity android:name=".ramphotelmain"
+        		  android:label="Hotel GT Main"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             
+        		  
+        </activity>
+        <activity android:name=".hotellistout"
+        		  android:label="Hotel GT List by City"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             
+        		  
+        </activity>
+        <activity android:name=".hotelbycity"
+        		  android:label="Hotel GT List by City"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             
+        		  
+        </activity>
+        <activity android:name=".utilities"
+        		  android:label="Utilities"
+        		  >
+             
+        		  
+        </activity>
+        <activity android:name=".about"
+        		  android:label="About PocketCal"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             
+        		  
+        </activity>
+      
+        <activity android:name=".fltlogmaint"
+        		  android:label="Flight Log File Maint"
+        		  android:configChanges="orientation|screenSize"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             
+        		  
+        </activity>
+        
+        <activity android:name=".cba"
+        		  android:label="CBA"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+           	  
+        </activity>
+         <activity android:name=".acequiplistupdate"
+        		  android:label="Update A/C Equipment"
+        		  >
+           	  
+        </activity>
+        <activity android:name=".filemaintmain"
+        		  android:label="MAINTENANCE"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             <intent-filter>
+            	<category android:name="android.intent.action.SEND"/>
+             </intent-filter>
+        </activity>
+        <activity android:name=".staff"
+        		  android:label="Staff Listing"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             <intent-filter>
+            	<category android:name="android.intent.action.SEND"/>
+             </intent-filter>
+        </activity>
+       
+         <activity android:name=".acequipnew"
+        		  android:label="Add New A/C"
+        		  >
+             <intent-filter>
+            	<category android:name="android.intent.action.SEND"/>
+             </intent-filter>
+        </activity>
+       
+        <activity android:name=".Person"
+        		  android:label="Information Listing"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             <intent-filter>
+            	<category android:name="android.intent.action.SEND"/>
+             </intent-filter>
+        </activity>
+        <activity android:name=".MECPerson"
+        		  android:label="MEC Information Listing"
+        		  >
+             <intent-filter>
+             <category android:name="android.intent.action.DIAL"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".meclist"
+        		  android:label="MEC Info Listing"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             <intent-filter>
+            	<category android:name="android.intent.action.SEND"/>
+             </intent-filter>
+        </activity>
+        <activity android:name=".MECRepPerson"
+        		  android:label="MEC Rep Info Listing"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             <intent-filter>
+            	<category android:name="android.intent.action.SEND"/>
+             </intent-filter>
+        </activity>
+        <activity android:name=".repslist"
+        		  android:label="LEC Reps"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             <intent-filter>
+            	<category android:name="android.intent.action.SEND"/>
+             </intent-filter>
+        </activity>
+        
+         <activity android:name=".evp1"
+        		  android:label="EVP Info Listing"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             <intent-filter>
+            	<category android:name="android.intent.action.SEND"/>
+             </intent-filter>
+        </activity>
+        
+         <activity android:name=".evpdata"
+        		  android:label="EVP Info Listing"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             <intent-filter>
+            	<category android:name="android.intent.action.SEND"/>
+             </intent-filter>
+        </activity>
+        <activity android:name=".contact"
+        		  android:label="MEC Contact Informtion"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             <intent-filter>
+            	<category android:name="android.intent.action.SEND"/>
+             </intent-filter>
+        </activity>
+        <activity android:name=".committee"
+        		  android:label="MEC Committee Informtion"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             <intent-filter>
+            	<category android:name="android.intent.action.SEND"/>
+             </intent-filter>
+        </activity>
+        <activity android:name=".CommDetail"
+        		  android:label="MEC Committee Informtion"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             <intent-filter>
+            	<category android:name="android.intent.action.SEND"/>
+             </intent-filter>
+        </activity>
+         <activity android:name=".ieresponse"
+        		  android:label="Intl Emergency Response"
+        		   android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             <intent-filter>
+            	<category android:name="android.intent.action.SEND"/>
+             </intent-filter>
+        </activity>
+        <activity android:name=".ieresponsedetail"
+        		  android:label="Intl Emergency Response"
+        		   android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             <intent-filter>
+            	<category android:name="android.intent.action.SEND"/>
+             </intent-filter>
+        </activity>
+        <activity android:name=".ifalpa"
+        		  android:label="IFALPA Info"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             <intent-filter>
+            	<category android:name="android.intent.action.SEND"/>
+             </intent-filter>
+        </activity>
+        
+        <activity android:name=".ifalpadetail"
+        		  android:label="IFALPA Info"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             <intent-filter>
+            	<category android:name="android.intent.action.SEND"/>
+             </intent-filter>
+             </activity>
+             
+        <activity android:name=".usembassydetail" 
+            android:label="US Embassy/Consulate Info"
+            android:uiOptions="splitActionBarWhenNarrow"
+            >
+             <intent-filter>
+            	<category android:name="android.intent.action.SEND" />
+             </intent-filter>
+        </activity>
+        
+        <activity android:name=".usembassy"
+        		  android:label="US Embassy/Consulate Info"
+        		  android:uiOptions="splitActionBarWhenNarrow" >
+             <intent-filter>
+            	<category android:name="android.intent.action.SEND"/>
+             </intent-filter>
+        </activity>
+         
+         <activity android:name=".iemain"
+        		  android:label="International Emergency"
+        		  android:theme="@style/Theme.Sherlock"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             <intent-filter>
+            	<category android:name="android.intent.action.SEND"/>
+             </intent-filter>
+        </activity>
+        <activity android:name=".nationalctc"
+        		  android:label="ALPA National Info"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             <intent-filter>
+            	<category android:name="android.intent.action.SEND"/>
+             </intent-filter>
+        </activity>
+         <activity android:name=".nationalctcdetail"
+        		  android:label="ALPA National Info"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             <intent-filter>
+            	<category android:name="android.intent.action.SEND"/>
+             </intent-filter>
+        </activity>
+        <activity android:name=".accidentinfo"
+        		  android:label="Accident Info"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             <intent-filter>
+            	<category android:name="android.intent.action.SEND"/>
+             </intent-filter>
+        </activity>
+        <activity android:name=".accidentdisplay"
+        		  android:label="Accident Info"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             <intent-filter>
+            	<category android:name="android.intent.action.SEND"/>
+             </intent-filter>
+        </activity>
+       
+        
+      
+        <activity android:name=".fltlogmain"
+        		  android:label="Log Book Menu"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             <intent-filter>
+            	
+             </intent-filter>
+        </activity>
+        
+        <activity android:name=".fltentry"
+        		  android:label="Enter Flight Information"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             <intent-filter>
+            	
+             </intent-filter>
+        </activity>
+    <activity android:name=".fltlist"
+        		  android:label="Flight Information"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             <intent-filter>
+            	
+             </intent-filter>
+        </activity>
+        <activity android:name=".fltupdate"
+        		  android:label="Update Flt"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		
+        		  >
+             <intent-filter>
+            	
+             </intent-filter>
+        </activity>
+        <activity android:name=".fltreports"
+        		  android:label="Flt Reports"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             <intent-filter>
+            	
+             </intent-filter>
+        </activity>
+         <activity android:name=".fltreports2"
+        		  android:label="Flt Reports"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             <intent-filter>
+            	
+             </intent-filter>
+        </activity>
+        <activity android:name=".fltlistout"
+        		  android:label="Flt Listing"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             <intent-filter>
+            	
+             </intent-filter>
+        </activity>
+         <activity android:name=".fltreportlists"
+        		  android:label="Flt Block Hour Listing"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             <intent-filter>
+            	
+             </intent-filter>
+        </activity>
+         <activity android:name=".fltreportlists1"
+        		  android:label="Flt Block Hour Listing"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             <intent-filter>
+            	
+             </intent-filter>
+        </activity>
+      
+            	
+             
+       
+          <activity android:name=".explogmain"
+        		  android:label="Expenses"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             <intent-filter>
+            	
+             </intent-filter>
+        </activity>
+        
+         <activity android:name=".expentry"
+        		  android:label="Expense Entry"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             <intent-filter>
+            	<category android:name="android.intent.CAMERA"/>
+             </intent-filter>
+        </activity>
+        <activity android:name=".explistbydate"
+        		  android:label="Exp by Date"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             <intent-filter>
+            	
+             </intent-filter>
+        </activity>
+        <activity android:name=".explogmaint"
+        		  android:label="Exp Log Maint"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             <intent-filter>
+            	
+             </intent-filter>
+        </activity>
+        
+         <activity android:name=".explistout"
+        		  android:label="Exp Listing"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             <intent-filter>
+            	
+             </intent-filter>
+        </activity>
+         
+         <activity android:name=".explistbycity"
+        		  android:label="Exp Listing by City"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             <intent-filter>
+            	
+             </intent-filter>
+        </activity>
+          <activity android:name=".explist"
+        		  android:label="Exp Listing"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             <intent-filter>
+            	
+             </intent-filter>
+        </activity>
+         <activity android:name=".expupdate"
+        		  android:label="Exp Update"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             <intent-filter>
+            	
+             </intent-filter>
+        </activity>
+        
+          <activity android:name=".expupdate1"
+        		  android:label="Exp Update"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             <intent-filter>
+            	
+             </intent-filter>
+        </activity>
+        
+        <activity android:name=".expreports"
+        		  android:label="Exp Reports"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             <intent-filter>
+            	
+             </intent-filter>
+        </activity>
+        
+         <activity android:name=".aclistout"
+        		  android:label="AC Data Listing"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             <intent-filter>
+            	
+             </intent-filter>
+        </activity>
+         <activity android:name=".acequiplist"
+        		  android:label="AC Data Listing"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             <intent-filter>
+            	
+             </intent-filter>
+        </activity>
+        
+        
+        <activity android:name=".dhdreportlists"
+        		  android:label="DHD Report"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+             <intent-filter>
+            	
+             </intent-filter>
+        </activity>
+         <activity android:name=".acequiplaunch"
+        		  android:label="AC Equipment"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+            
+        </activity>
+        <activity android:name=".acequiplisybyfleet"
+        		  android:label="AC Equipment"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+            
+        </activity>
+        <activity android:name=".aclistbyfleet"
+        		  android:label="AC Equipment"
+        		   android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+            
+        </activity>
+        <activity android:name=".loadEGRID"
+        		  android:label="Init EGRID"
+        		  >
+            
+        </activity>
+        
+        <activity android:name=".egridcalculator"
+        		  android:label="EGRID"
+        		  android:theme="@style/Theme.Sherlock"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+            
+        </activity>
+        <activity android:name=".WebViewActivity"
+        		  android:label="Web"
+        		  android:theme="@style/Theme.Sherlock"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+            
+        </activity>
+        <activity android:name=".eightn24"
+        		  android:label="8 in 24 Calc"
+        		  android:configChanges="orientation|screenSize"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+            
+        </activity>
+         <activity android:name=".setUserPwd"
+        		  android:label="Set User/PWD"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+            
+        </activity>
+        <activity android:name=".pfcoptions"
+        		  android:label="Select Web Page"
+        		  android:uiOptions="splitActionBarWhenNarrow"
+        		  >
+            
+        </activity>
+        <receiver android:name=".AlarmReceiver"></receiver>
+         <service  android:name=".OTSvc" android:enabled="true">
+           <intent-filter><action android:name="com.yctc.alpaware.OTSvc"></action>
+   </intent-filter>
+ </service>
+ 
+  <service  android:name=".KeepAliveWakeful" android:enabled="true">
+           <intent-filter><action android:name="com.yctc.alpaware.KeepAliveWakeful"></action>
+   </intent-filter>
+ </service>
+  
+         
+         <service  android:name=".OTWakefulSvc" android:enabled="true">
+           <intent-filter><action android:name="com.yctc.alpaware.OTWakefulSvc"></action>
+   </intent-filter>
+ </service>
+ 
+ 
+  
+
+</application>
+    
+
+</manifest> 

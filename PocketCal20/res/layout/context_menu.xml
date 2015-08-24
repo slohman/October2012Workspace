@@ -1,0 +1,18 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+<item android:id="@+id/view"
+android:title="@string/viewpairing" />
+<item android:id="@+id/add"
+android:title="@string/addtocal" />
+<item android:id="@+id/erase"
+android:title="@string/erasetrip" />
+<item android:id="@+id/update"
+android:title="@string/updatetrip" />
+
+
+
+
+</menu>
+

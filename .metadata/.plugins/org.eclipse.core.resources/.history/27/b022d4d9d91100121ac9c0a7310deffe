@@ -1,0 +1,276 @@
+package com.yctc.alpaware;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.text.SimpleDateFormat;
+
+import java.util.Calendar;
+import java.util.Date;
+
+import java.util.TimeZone;
+import android.database.sqlite.SQLiteDatabase;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.CookieStore;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.protocol.ClientContext;
+import org.apache.http.impl.client.BasicCookieStore;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.protocol.BasicHttpContext;
+import org.apache.http.protocol.HttpContext;
+import org.apache.http.util.EntityUtils;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.content.ContentResolver;
+import android.content.ContentValues;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.ListAdapter;
+import android.widget.SimpleCursorAdapter;
+import android.widget.Spinner;
+
+public class calendar extends Activity {
+	
+	 String Month;
+	 String cal, calToUse;
+	 int cntr;
+	 String uid, pwd, base, equip,grid;
+	 
+	    
+	   
+		HttpClient httpClient = new DefaultHttpClient();  
+		 CookieStore cookieStore = new BasicCookieStore();
+		 HttpContext localContext = new BasicHttpContext();
+		 utilities fltmsg = new utilities();
+		 HttpEntity tripDetailEntity;
+		 String tripDetails;
+	
+	 @Override
+	    public void onCreate(Bundle Icicle) {
+		 super.onCreate(Icicle);
+	     setContentView(R.layout.calendarview);
+	     
+	       //get bundle and read grid code
+	       Bundle b = this.getIntent().getExtras();  
+	         grid  = b.getString("grd");
+	         uid = b.getString("id");
+     	     pwd = b.getString("pw");
+     	     base = b.getString("bse");
+     	     equip =b.getString("eq").toString();
+     	     Month = b.getString("mnth");
+     	    
+     	     
+     	   
+					
+					 Bundle b1 = new Bundle();
+     	             b1.putString("mnth", Month);
+					 String CalData = loginDirect(uid,pwd,grid,Month);
+		     	     getTripDataFromCalDetail(CalData);
+				     Intent myIntent = new Intent(getBaseContext(), triplist.class);
+     	             myIntent.putExtras(b1);
+	 		         startActivityForResult(myIntent, 0);
+				
+				
+				
+	 	 			
+	 	 		    
+	 	 		      
+	 }
+	 				         				
+	 				         
+	 	
+	 	 
+
+
+	       
+		
+	//******************* end get user month ******************************************//
+ public  void getTripDataFromCalDetail(String calData){
+			
+			//parse and load data to triplist activity 
+	 
+	 AlpaDataBaseHelper mdbh = new AlpaDataBaseHelper(this.getApplicationContext());
+     final SQLiteDatabase db = mdbh.getWritableDatabase(); 
+     String tsql = "Delete from trips where bidMonth = " + Month;
+     db.execSQL(tsql );
+     db.close();
+     
+     
+			
+			
+			 if (calData != null) { 
+				 int startAt = calData.indexOf("<!--  B E G I N   M A I N   C O N T E N T  -->");
+				 int endAt = calData.indexOf("<!-- E N D   O F   M A I N   C O N T E N T -->");
+		         String CalData = calData.substring(startAt, endAt);
+				
+		                	  
+		         String[] events = 	CalData.split("\n");
+		                	
+			 
+			  //parse array here and load calendar StrDate Show EndDate Etim Blok  Pay
+			 String pairing = null,showdate = null, showtime = null, enddate = null, endtime = null, Blok = null,  Pay = null, msg;
+			 //String[] tripData = new String[events.length];
+			 int y = 0;
+			 
+			 int lines=(events.length - 3);
+			 for (int x = 0;x < lines; x++) {
+				
+				 	if(events[x].toString().contains("webtr")){
+				 		// parse relevant data from text
+				 		
+				 		int pairingStart = events[x].indexOf(">") + 1;
+				 		int pairingEnd = pairingStart + 4;
+				 		pairing = events[x].substring(pairingStart, pairingEnd).trim();
+				 		showdate = events[x].substring(pairingEnd + 37, pairingEnd + 44).trim();
+				 		showtime = events[x].substring(pairingEnd + 45, pairingEnd + 49).trim();
+				 		enddate = events[x].substring(pairingEnd + 50, pairingEnd + 57).trim();
+				 		endtime = events[x].substring(pairingEnd + 58, pairingEnd + 62).trim();
+				 		Blok = events[x].substring(pairingEnd + 63, pairingEnd + 68).trim();
+				 		Pay = events[x].substring(pairingEnd + 69, pairingEnd + 74).trim();
+				 	
+				 		
+				 		
+				 	
+				 	
+				 	 String TripDetails = getTripDetails(pairing,showdate);
+					 // parse out the data
+					
+				 	int StartAt = TripDetails.indexOf("<!--  B E G I N   M A I N   C O N T E N T  -->");
+					int EndAt = TripDetails.indexOf("<!-- E N D   O F   M A I N   C O N T E N T -->");
+					String tripdata = TripDetails.substring(StartAt, EndAt);
+					String TripId = pairing + showdate;
+					SaveHtmlData(tripdata, TripId);  // save html data to load to image when listing out trips
+					 
+				
+				     final SQLiteDatabase db1 = mdbh.getWritableDatabase(); 
+					
+					  try {
+				    	   db1.execSQL("Insert into trips Values (" + null  + ", " + "'" + pairing + "','" + showdate + "','" + showtime + "','" + enddate + "','" +  endtime + "','" + Blok + "','"  + Pay   + "','" + Month + "')");		  
+				    	   	db1.close();
+				    	   		  
+				       				}catch (Exception e){
+				    	   				// should not be any records !
+				    	   			
+				    	   			} 
+				            }
+			     }
+		
+		   
+			 
+			 
+			 	}
+		  }
+				 
+	
+	 
+ public String loginDirect(String User, String PWD, String Grid, String Month) {
+		
+
+		 try {
+
+
+			 HttpPost httpPost = new HttpPost("https://pilot.fedex.com/passport/login_with_grid?uid="+User+"&password="+PWD+"&GRIDSTRING="+Grid);
+		   
+		  // *** logs into web site with grid and starts session *********//  
+		    localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
+		    HttpResponse response = httpClient.execute(httpPost,localContext);
+		    HttpEntity resEntity = response.getEntity();
+		    
+		    HttpPost httpPost1 = new HttpPost("https://pilot.fedex.com/vips-bin/vipscgi?webad?"+User+"?"+ Month.trim() + "?????Z?S"); // gets scheduled month details
+		    HttpResponse response1 = httpClient.execute(httpPost1,localContext);
+		    HttpEntity resEntity1 = response1.getEntity();
+		    String data = EntityUtils.toString(resEntity1);
+		    return data;
+		 
+		      } catch (IOException e) {
+		            Log.e("Exception", "IOException", e);
+		      } catch (Exception e) {
+		            Log.e("Exception", "General Exception", e);
+		     }
+		 
+		 return null;
+	
+}
+
+	
+	 
+	
+	 
+public String getTripDetails(String tripnum,String dte){
+	
+
+	// tripnum shoud be like 83Sep12
+	tripDetails= "";
+	
+	try {
+	    HttpPost httpPost1 = new HttpPost("https://pilot.fedex.com/vips-bin/vipscgi?webtr?"+ tripnum +"?"+ base + "?" + equip + "?" + dte + "?N?Y?L?"); // gets scheduled month details
+	    HttpResponse response1 = httpClient.execute(httpPost1,localContext);
+	    HttpEntity resEntity1 = response1.getEntity();
+	   tripDetails = EntityUtils.toString(resEntity1);
+	    return tripDetails;
+	 } catch (IOException e) {
+         Log.e("Exception", "IOException", e);
+   } catch (Exception e) {
+         Log.e("Exception", "General Exception", e);
+  }
+	return null;
+
+	
+	
+	
+	
+}
+
+public void SaveHtmlData(final String HtmlData, String TripId){
+	
+	
+	  //set the path where we want to save the file
+    File SDCardRoot = Environment.getExternalStorageDirectory();
+    File dir = new File (SDCardRoot.getAbsolutePath() + "/FdxTrips");
+    if(!dir.exists())
+    {
+    dir.mkdirs();
+    }
+    
+   
+    final File file = new File(dir, TripId);  //any name abc.html
+    
+ 
+	    	 		byte[] data = new String(HtmlData).getBytes();
+	    	 			try {
+	    	 				FileOutputStream f = new FileOutputStream(file);
+	    	 	 
+	    	 				f = new FileOutputStream(file);
+	    	 				f.write(data);
+	    	 				f.flush();
+	    	 				f.close();
+	    	 	
+	    	 	} catch (IOException e) {
+	    	 	   utilities util = new utilities();
+	    	 	   String msg = "Error Writing trip to SD card";
+	    	 	   util.showaction(msg, this);
+	    	 	}
+    		
+    
+}    	
+	 
+} // end class

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<ScrollView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content" 
+	android:textSize="@dimen/size14">
+	
+	
+	
+<LinearLayout
+	
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical"
+	android:padding="5px">
+
+<Button android:text="Fedex" 
+android:id="@+id/fedex" 
+android:layout_width="fill_parent" 
+android:layout_height="wrap_content"
+android:textSize="@dimen/size14"
+android:paddingTop="8pt" 
+android:gravity="center_horizontal">
+</Button>
+
+
+<Button android:text="Travel Guide" 
+android:id="@+id/travelguide" 
+android:layout_width="fill_parent" 
+android:layout_height="wrap_content"
+android:textSize="@dimen/size14"
+android:paddingTop="8pt" 
+android:gravity="center_horizontal">
+</Button>
+
+
+<Button android:text="Flt/Duty Time" 
+android:id="@+id/ftdt" 
+android:layout_width="fill_parent" 
+android:layout_height="wrap_content"
+android:textSize="@dimen/size14"
+android:paddingTop="8pt" 
+android:gravity="center_horizontal">
+</Button>
+
+<Button android:text="Contract" 
+android:id="@+id/contract" 
+android:layout_width="fill_parent" 
+android:layout_height="wrap_content"
+android:textSize="@dimen/size14"
+android:paddingTop="8pt" 
+android:gravity="center_horizontal">
+</Button>
+
+<Button android:text="Jumpseat Guide" 
+android:id="@+id/jmpguide" 
+android:layout_width="fill_parent" 
+android:layout_height="wrap_content"
+android:textSize="@dimen/size14"
+android:paddingTop="8pt" 
+android:gravity="center_horizontal">
+</Button>
+
+
+
+</LinearLayout>
+</ScrollView>

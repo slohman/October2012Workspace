@@ -1,0 +1,26 @@
+what,kind,bundleId,bundleVersion,description,time
+java.specification.vendor,sysinfo,,,"Sun Microsystems Inc.",1312152092494
+java.specification.version,sysinfo,,,"1.6",1312152092494
+java.vendor,sysinfo,,,"Sun Microsystems Inc.",1312152092494
+java.version,sysinfo,,,"1.6.0_26",1312152092494
+java.vm.info,sysinfo,,,"mixed mode",1312152092494
+java.vm.name,sysinfo,,,"Java HotSpot(TM) Client VM",1312152092494
+java.vm.specification.name,sysinfo,,,"Java Virtual Machine Specification",1312152092494
+java.vm.specification.vendor,sysinfo,,,"Sun Microsystems Inc.",1312152092494
+java.vm.specification.version,sysinfo,,,"1.0",1312152092494
+java.vm.vendor,sysinfo,,,"Sun Microsystems Inc.",1312152092494
+java.vm.version,sysinfo,,,"20.1-b02",1312152092494
+started,bundle,org.eclipse.jst.servlet.ui,1.1.301.v200908101600,"org.eclipse.jst.servlet.ui",1312152093416
+started,bundle,com.android.ide.eclipse.traceview,12.0.0.v201106281929-138431,"com.android.ide.eclipse.traceview",1312152093775
+activated,view,org.eclipse.ui.console,3.4.0.v20090513,"org.eclipse.ui.console.ConsoleView",1312152100479
+started,bundle,org.eclipse.draw2d,3.5.2.v20091126-1908,"org.eclipse.draw2d",1312152102713
+started,bundle,org.eclipse.wst.xsl.debug.ui,1.0.0.v200904240436,"org.eclipse.wst.xsl.debug.ui",1312152108167
+activated,view,org.eclipse.ui.navigator.resources,3.4.1.M20090826-0800,"org.eclipse.ui.navigator.ProjectExplorer",1312152110167
+started,bundle,org.eclipse.wst.server.core,1.1.102.v20100123,"org.eclipse.wst.server.core",1312152112870
+started,bundle,org.eclipse.wst.server.ui,1.1.103.v20100123,"org.eclipse.wst.server.ui",1312152112886
+started,bundle,org.eclipse.jdt.junit,3.5.2.r352_v20100113-0800,"org.eclipse.jdt.junit",1312152112902
+started,bundle,org.eclipse.jdt.debug,3.5.0.v20090526,"org.eclipse.jdt.debug",1312152112917
+started,bundle,org.eclipse.jdt.debug.ui,3.4.1.v20090811_r351,"org.eclipse.jdt.debug.ui",1312152112964
+executed,command,org.eclipse.debug.ui,3.5.2.v20091028_r352,"org.eclipse.debug.ui.commands.DebugLast",1312152112995
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312152113261
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312208605861

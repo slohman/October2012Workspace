@@ -1,0 +1,30 @@
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent" >
+
+     
+
+      <Button
+          android:id="@+id/btnByState"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_centerHorizontal="true"
+          android:layout_marginTop="15dp"
+          
+          android:text="Filter By State"
+          
+          android:textSize="@dimen/size14" />
+
+      <Button
+          android:id="@+id/btnListall"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/btnByState"
+          android:layout_centerHorizontal="true"
+          android:layout_marginTop="20dip"
+          
+          android:text="List All"
+          
+          android:textSize="@dimen/size14" />
+
+  </RelativeLayout>

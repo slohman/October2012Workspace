@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Copy of PocketCal20/Copy of PocketCal20.iml" filepath="$PROJECT_DIR$/Copy of PocketCal20/Copy of PocketCal20.iml" />
+      <module fileurl="file://$PROJECT_DIR$/OilCollectionCalc/OilCollectionCalc.iml" filepath="$PROJECT_DIR$/OilCollectionCalc/OilCollectionCalc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PocketCal20/PocketCal20.iml" filepath="$PROJECT_DIR$/PocketCal20/PocketCal20.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RemoteOilCollection/RemoteOilCollection.iml" filepath="$PROJECT_DIR$/RemoteOilCollection/RemoteOilCollection.iml" />
+      <module fileurl="file://$USER_HOME$/Downloads/PocketCal20/JakeWharton-ActionBarSherlock-5a15d92/actionbarsherlock/actionbarsherlock.iml" filepath="$USER_HOME$/Downloads/PocketCal20/JakeWharton-ActionBarSherlock-5a15d92/actionbarsherlock/actionbarsherlock.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wheel1/app/build/generated/source/buildConfig/androidTest/androidTest.iml" filepath="$PROJECT_DIR$/wheel1/app/build/generated/source/buildConfig/androidTest/androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wheel1/app/build/generated/source/r/androidTest/androidTest1.iml" filepath="$PROJECT_DIR$/wheel1/app/build/generated/source/r/androidTest/androidTest1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wheel1/app/build/generated/source/buildConfig/buildConfig.iml" filepath="$PROJECT_DIR$/wheel1/app/build/generated/source/buildConfig/buildConfig.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tess-two1/app/build/generated/source/buildConfig/buildConfig1.iml" filepath="$PROJECT_DIR$/tess-two1/app/build/generated/source/buildConfig/buildConfig1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tess-two/jni/com_googlecode_tesseract_android/src/com_googlecode_tesseract_android.iml" filepath="$PROJECT_DIR$/tess-two/jni/com_googlecode_tesseract_android/src/com_googlecode_tesseract_android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tess-two1/app/src/main/jni/com_googlecode_tesseract_android/src/com_googlecode_tesseract_android1.iml" filepath="$PROJECT_DIR$/tess-two1/app/src/main/jni/com_googlecode_tesseract_android/src/com_googlecode_tesseract_android1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tess-two1/app/build/intermediates/bundles/debug/debug.iml" filepath="$PROJECT_DIR$/tess-two1/app/build/intermediates/bundles/debug/debug.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MarketLicensesSource/market_licensing/library/library.iml" filepath="$PROJECT_DIR$/MarketLicensesSource/market_licensing/library/library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wheel1/app/src/main/main.iml" filepath="$PROJECT_DIR$/wheel1/app/src/main/main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tess-two1/app/src/main/main1.iml" filepath="$PROJECT_DIR$/tess-two1/app/src/main/main1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wheel1/app/build/generated/source/r/r.iml" filepath="$PROJECT_DIR$/wheel1/app/build/generated/source/r/r.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MarketLicensesSource/market_licensing/sample/sample.iml" filepath="$PROJECT_DIR$/MarketLicensesSource/market_licensing/sample/sample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tess-two/tess-two.iml" filepath="$PROJECT_DIR$/tess-two/tess-two.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MarketLicensesSource/market_licensing/test/test.iml" filepath="$PROJECT_DIR$/MarketLicensesSource/market_licensing/test/test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wheel/wheel.iml" filepath="$PROJECT_DIR$/wheel/wheel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wheel-demo/wheel-demo.iml" filepath="$PROJECT_DIR$/wheel-demo/wheel-demo.iml" />
+    </modules>
+  </component>
+</project>

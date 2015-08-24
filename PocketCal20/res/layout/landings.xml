@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:weightSum="1">
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/lDate"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Set Date"
+                android:textSize="@dimen/size14" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="5px"
+                android:text="3 in 3 Calc" />
+
+            <EditText
+                android:id="@+id/LandingStartDate"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="YYYY-MM-DD"
+                android:inputType="date"
+                android:textSize="@dimen/size12" >
+
+                <requestFocus />
+            </EditText>
+
+            <CheckBox
+                android:id="@+id/Capt"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Captain"
+                android:textColor="@color/white"
+                android:textSize="@dimen/size14" />
+
+            <CheckBox
+                android:id="@+id/FO"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="FO"
+                android:textColor="@color/white"
+                android:textSize="@dimen/size14" />
+
+            <Button
+                android:id="@+id/calcLandings"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Calc Landings" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="5px"
+                android:text="Landings in the Past 90 Days"
+                android:textSize="@dimen/size14" />
+
+            <TextView
+                android:id="@+id/totlandings"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:padding="5px"
+                android:textColor="@color/white"
+                android:textSize="@dimen/size14" />
+
+            <TextView
+                android:id="@+id/datesrch"
+                android:layout_width="224dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.56"
+                android:text="TextView"
+                android:visibility="invisible" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

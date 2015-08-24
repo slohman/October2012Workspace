@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+      <item android:id="@+id/home"
+	    android:title="@string/titleHome"
+	    android:orderInCategory="0"
+	    android:icon="@drawable/ic_menu_home"
+	    android:showAsAction="ifRoom">
+	   		 
+	</item>
+	
+    
+    <item android:id="@+id/userdatamnu"
+	    android:title="Actions"
+	    android:icon="@drawable/icmenu"
+	    android:orderInCategory="0"
+	    
+	   
+	    android:showAsAction="ifRoom">
+	   		 <menu>
+	   		     <item android:id="@+id/savedata"
+	   		           android:title="@string/saveData"/>
+	   		     
+				 <item android:id="@+id/readuserdata"
+	   		           android:title="@string/readData"/>
+				 
+				
+				    
+
+			</menu>
+</item>
+</menu>

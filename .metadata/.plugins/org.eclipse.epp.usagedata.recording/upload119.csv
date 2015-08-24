@@ -1,0 +1,26 @@
+what,kind,bundleId,bundleVersion,description,time
+opened,editor,org.eclipse.debug.ui,3.5.2.v20091028_r352,"org.eclipse.debug.ui.sourcelookup.CommonSourceNotFoundEditor",1312214963974
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312214963990
+activated,editor,org.eclipse.debug.ui,3.5.2.v20091028_r352,"org.eclipse.debug.ui.sourcelookup.CommonSourceNotFoundEditor",1312214964005
+activated,view,org.eclipse.debug.ui,3.5.2.v20091028_r352,"org.eclipse.debug.ui.DebugView",1312214972130
+executed,command,org.eclipse.debug.ui,3.5.2.v20091028_r352,"org.eclipse.debug.ui.commands.Terminate",1312214972240
+closed,editor,org.eclipse.debug.ui,3.5.2.v20091028_r352,"org.eclipse.debug.ui.sourcelookup.CommonSourceNotFoundEditor",1312214972630
+activated,perspective,org.eclipse.jst.j2ee.ui,1.1.301.v201001252130,"org.eclipse.jst.j2ee.J2EEPerspective",1312214977958
+activated,editor,org.eclipse.jdt.ui,3.5.2.r352_v20100106-0800,"org.eclipse.jdt.ui.CompilationUnitEditor",1312214977974
+activated,view,org.eclipse.ui.navigator.resources,3.4.1.M20090826-0800,"org.eclipse.ui.navigator.ProjectExplorer",1312214980177
+opened,editor,org.eclipse.jdt.ui,3.5.2.r352_v20100106-0800,"org.eclipse.jdt.ui.CompilationUnitEditor",1312215001599
+activated,editor,org.eclipse.jdt.ui,3.5.2.r352_v20100106-0800,"org.eclipse.jdt.ui.CompilationUnitEditor",1312215001678
+activated,view,org.eclipse.ui.navigator.resources,3.4.1.M20090826-0800,"org.eclipse.ui.navigator.ProjectExplorer",1312215020147
+opened,editor,org.eclipse.jdt.ui,3.5.2.r352_v20100106-0800,"org.eclipse.jdt.ui.CompilationUnitEditor",1312215024475
+activated,editor,org.eclipse.jdt.ui,3.5.2.r352_v20100106-0800,"org.eclipse.jdt.ui.CompilationUnitEditor",1312215024522
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312215104944
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312215143523
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312215143539
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312221254211
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312221256164
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312221257289
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312221257398
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312221258508
+closed,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312221261086
+error,log,,,"An internal error occurred during: ""Updating workspace"".",1312221261758
+stopped,bundle,org.eclipse.compare.win32,1.0.0.I20090430-0408,"org.eclipse.compare.win32",1312221263539

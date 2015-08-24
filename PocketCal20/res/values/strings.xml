@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+ <string name="mecmenu">MEC Menu</string> 
+ <string name="egridmenu">EGRID Menu</string>
+ <string name="kcmmenu">Known CM Data</string> 
+<string name="iemenu">Int\'l Emergency</string>
+<string name="cbamenu">CBA</string> 
+<string name="acmenu">A/C Menu</string>  
+<string name="logbookmenu">LogBook</string> 
+<string name="expmenu">Expense Log</string>
+<string name="espnmenu">ESPN Freq\'s</string>
+<string name="fdxmenu">Fedex Info</string>
+<string name="rhotelmenu">Ramp/Hotel/GT</string>
+<string name="jmpmenu">Jumpseats</string>
+<string name="pdfmenu">PDF Files</string>
+<string name="filemenu">File Maintenance</string>
+<string name="help">Help</string>
+<string name="abt">About FX Link</string>
+<string name="readData">Read Data     </string>
+<string name="saveData">Save Data     </string>
+<string name="Calendar">Show Calendar</string>
+<string name="openTime">Show Open Time</string>
+<string name="Mail">Mail</string>
+<string name="MainPage">Home Page</string>
+<string name="tripcheckin">Trip Check In</string>
+<string name="FltPLan">Flt Plans</string>
+<string name="fdxwebsite">FDX Website</string> 
+<string name="OlineMenu">Online Menu</string> 
+<string name="DaysForward">Day\'s Forward:</string>
+<string name="enterExpenses">Enter New Expense</string>
+<string name="listExpenses">List Expenses</string>
+<string name="expReports">Expense Reports</string>
+<string name="expMaint">Expense File Maint</string>
+<string name="cancel">Cancel</string>
+<string name="getOpen">Get Open Time</string>
+<string name="lblopentime">Open Time</string>
+ 
+<string name="jmpInfo">Jump Seat Info</string>
+<string name="cassjmp">CASS Jumpseats</string>  
+<string name="noncassjmp">Non-CASS Jumpseats</string> 
+<string name="addjmpdata">ADD Jumpseat Data</string>   
+<string name="seat">Select Seat</string>
+<string name="base">Select Base</string>
+<string name="equip">Select Equip</string>
+<string name="app_name">PocketCal</string>
+<string name="MECOfflbl">MEC Officers</string>
+<string name="MecReps">MEC Reps</string>
+<string name="evp">EVP</string>
+<string name="MecComm">Committies</string>
+<string name="staff">Staff</string>
+<string name="accident">Accident Info</string>
+<string name="national">ALPA National</string>
+<string name="MecCtc">MEC Contact Info</string>
+<string name="Home">Home</string>
+<string name="Back">Back</string>
+<string name="hotline">Hot Line Numbers</string>
+<string name="points">Points to Remember</string>
+<string name="incase">In Case of an Accident</string>
+<string name="involved">If you are in an Accident or Incident</string>
+<string name="guidlines">Guidelines for being Interviewed</string>
+<string name="logonPFC">Pilot Web Site </string>
+<string name="Cal">Pilot Calendar</string>
+<string name="trips">Saved Trips</string>
+<string name="opentime"> Get Open Time</string>
+<string name="savedopentime">Saved Open Time</string>
+<string name="genegrid">EGRID Calc</string>
+<string name="startotsvc">Start OT SVC</string>
+<string name="stopotsvc">Stop OT SVC</string>
+<string name="stopkalive">Stop PFC KeepAlive</string>
+<string name="ifalpactc">IFALPA Contacts</string>
+<string name="usembassy">US Embassy Contacts</string>
+<string name="ieresponse">Intl. Emer. Response</string>
+<string name="acbynum">Find By Ac#</string>
+<string name="acbyfleet">List By Fleet</string>
+<string name="acaddnew">Add New A/C</string>
+<string name="acviewother">View Other A/C</string>
+<string name="acMenu">A/C Menu</string>
+<string name="acDel">Del A/C</string>
+<string name="acUpd">Update A/C</string>
+<string name="titleHome">Home</string>
+<string name="titleBack">Back</string>
+<string name="enterFlt">Enter Flight</string>
+<string name="listeditFlt">List/Enter Flight</string>
+<string name="reports">Reports</string>
+<string name="fltfilemaint">File Maint</string>
+<string name="saveFlt">Save Flight</string>
+<string name="clearFlt">Clear Flight</string>
+<string name="listfltbyDate">List Flights By Date</string>
+<string name="blkhours">Block Hours</string>
+<string name="blkhoursbytype">Block Hours by Type</string>
+<string name="dhdreports">DeadHead Reports</string>
+<string name="eightn24">8-in-24, 30-7, 32-7</string>
+<string name="threeinthree">3-in-3</string>
+<string name="dutylimits">Duty Limits</string>
+<string name="emaildata">Email FltLog Data</string>
+<string name="enterexp">Enter Expense</string>
+<string name="listeditexp">List/Edit Expense</string>
+<string name="expreports">Exp Reports</string>
+<string name="expfilemaint">Exp File Maint</string>
+<string name="expclear">Clear Exp</string>
+<string name="expsave">Save Exp</string>
+<string name="expmaint">Exp File Maint</string>
+<string name="deleteFlt">Delete Flight</string>
+<string name="eightn24thisflt">8n24, 30n7, 32n7 w/ this Flt</string>
+<string name="explisting">List Expenses by Date</string>
+<string name="explistbycity">List Expenses by City</string>
+<string name="rampfindbycity">Find By City</string>
+<string name="rampshowall">Show All</string>
+<string name="rampaddnew">Add New Ramp/GT</string>
+<string name="rampfilemaint">File Maint</string>
+<string name="viewpairing">View Pairing</string>
+<string name="addtocal">Add to Cal</string>
+<string name="erasetrip">Erase From Device</string>
+<string name="updatetrip">Update Trip</string>
+<string name="cba">CBA</string>
+<string name="mec">FedEx MEC</string>
+<string name="cbasec1">CBA Section 1</string>
+<string name="cbasec2">CBA Section 2</string>
+<string name="officers">Officers</string>
+<string name="reps">Block Reps</string>
+<string name="officeaddress">1770 Kirby Parkway, Suite 300
+Memphis, Tennessee 38138</string>
+<string name="acprompt">Sel AC Type</string>
+<string name="tools">A/C Tools</string>
+<string name="windcomponent"> Wind Component Chart</string>
+<string name="gougesheet">Gouge Sheet</string>
+<string name="limitations">Limitations</string>
+
+
+
+<string name="landprompt">Landing By</string>
+<string name="ExpenseCat">Expense Category</string>
+<string name="ExpTyp">Expense Cat</string>
+<string name="officetel">901-752-8749</string>
+<string name="officetel1">866-339-2572</string>
+<string name="aspen">703-689-4220</string>
+<string name="aspen1">888-359-2572</string>
+<string name="officefax">703-689-4220</string>
+<string name="web">http://fdx.alpa.org</string>
+<string name="officeemail">fedex-mec@alpa.org</string>
+<string name="about"><b>PocketCal  \n Electronic version \n for Android devices \n</b> \n PocketCal for FedEx Pilots \n
+Please send comments and suggestions to : \n 
+ \n
+ 
+ 
+Capt. Scott Lohman \n
+Capt. Susie Latvala \n
+\n
+scott@pocketCal.net
+
+ \n
+Version 2012 2.0 \n
+OS versions 2.0, 2.01, 2.1 2.2 3.0 4.1 \n
+
+</string>
+<string name="ifalpadescr"><b>IFALPA EMERGENCY PHONE NUMBERS</b>
+The following Emergency Hotline Numbers are for IFALPA member organizations
+overseas. If necessary, they can be used as a backup for the ALPA
+Accident/Incident Hotline if involved in an accident or incident in a listed country.
+Download the whole IFALPA directory: crewroom.alpa.org/internationaldirectory
+IFALPA [44] 1202-653-110 (24 Hours)</string>
+<string name="usembassydescr">"U.S. consular officers assist Americans who encounter serious
+legal, medical, or financial difficulties. Although consular officers
+cannot act as your legal counsel or representative, they can
+provide the names of local attorneys and doctors, provide loans
+to destitute Americans, and provide information about dangerous
+conditions affecting your overseas travel or residence. Most
+embassies and consulates have web sites with more information
+and can be located from this link:
+<b>http://usembassy.state.gov</b>
+Travel registration is a free service provided by the U.S.
+government to U.S. citizens who are traveling to, or living in, a
+foreign country. Registration allows you to record information
+about your up-coming trip abroad that the Department of State
+can use to assist you in case of an emergency. Americans
+residing abroad can also get information from the nearest U.S.
+embassy or consulate. More information at the following link:
+http://travelregistration.state.gov/ibrs              
+
+
+IF AN AFTER-HOURS NUMBER IS NOT SPECIFICALLY SHOWN, CALL THE
+LISTED PHONE NUMBER AND ASK FOR THE EMBASSY DUTY OFFICER.
+ALTERNATIVELY, CALL 1-202-501-444 (US) FROM OVERSEAS
+TO REACH AN OVERSEAS CITIZEN SERVICES OPERATOR."</string>
+
+
+<string name="internationaltel"><b>INT’L EMERGENCY RESPONSE PHONE NUMBERS</b>
+<c>In Memory of Captain Marcel Beaudu
+www.sccfd.org/travel.html or
+www.wikipedia.org/wiki/emergency_telephone_number</c>
+"**112 or 999 Dials EMERGENCY from cell phones in many countries**"</string>
+
+
+<string name="two"><b>EIGHT POINTS YOU CAN’T AFFORD TO FORGET</b>
+1.<b> Do not volunteer statements to anyone</b>, including
+FedEx, FAA, or NTSB until you consult with ALPA FDX
+MEC Representation. Never surrender your certificate to
+any investigator.
+2. <b>Immediately ensure hospitalization and/or medical
+treatment for crew and jumpseaters.</b>
+3.<b> Notify the MEC by calling (888) 882-4911* or (901)
+752-8749. Notify FedEx by calling (901) 397-8040.
+4. Engage an ALPA attorney as soon as possible.</b>
+5. In a foreign country,<b> ensure compliance with their
+laws;</b> ask that FedEx and the U.S. Embassy be notified.
+Ask for an interpreter and an attorney.
+6.<b>Submit to drug/alcohol tests as requested by FedEx
+and authorized law enforcement agencies.</b> Federal
+regulations require that the employer may be required to
+test for drugs and/or alcohol. With MEC representation,
+ensure that you comply with the regulations.
+7. <b>Do no consume any alcohol or non-prescription
+medications.</b> If you need prescription medications, ensure
+you have a witness.
+8. <b>Remember NO STATEMENTS, NO ALCOHOL,
+and only medical attention need be in a hurry.</b>
+FDX MEC ACCIDENT/INCIDENT HOTLINE*
+(888) 882-4911 *(MAY BE DISCONTINUED IN 2010)
+INTERNATIONAL CALL (901) 752-8749
+ALPA WORLDWIDE ACCIDENT/INCIDENT HOTLINE
+(202) 797-4180 (PRIMARY)
+(703) 892-4180 (SECONDARY)</string>
+
+
+<string name="three">IN CASE OF ACCIDENT OR INCIDENT
+BE PREPARED! The “It will never happen to me” syndrome has
+repeatedly been shown as flawed in the harsh world of risk
+involvement, where an accident or incident is always a possibility.
+Therefore, the FDX MEC’s Accident Investigation Committee
+endorses the following guidelines for crewmembers who become
+involved in an accident or incident.</string>
+
+
+<string name="one">*** Accident Hotline Numbers Are Not For Contract Issues***
+FDX MEC ACCIDENT/INCIDENT HOTLINE*
+(888) 882-4911 *(MAY BE DISCONTINUED IN 2010)
+INTERNATIONAL CALL (901) 752-8749
+ALPA WORLDWIDE ACCIDENT/INCIDENT HOTLINE
+(202) 797-4180 (PRIMARY)
+(703) 892-4180 (SECONDARY)</string>
+
+
+<string name="four">IF YOU ARE INVOLVED IN AN ACCIDENT OR INCIDENT
+1. Contact the ALPA FDX MEC - As soon as you are assured
+the immediate needs of your fellow crewmembers are being met,
+call the MEC immediately on the accident/incident hotline and
+relay the following information:
+
+Your name
+Accident Location
+Approximate Date and time of the accident
+Aircraft Type
+Number of injuries and fatalities, if any
+Extent of aircraft damage (major, minor, hull loss)
+General description of accident (phase of flight, etc.)
+Weather conditions at accident location
+Names of crewmembers
+Phone contact at accident location
+
+Also report the accident to FedEx at (901) 397-8040. The sooner
+the MEC is brought into the loop, the better support it can provide.
+Any delay can really hurt later. All too often, what starts out as a
+minor incident that lulls the crew into believing no help is
+necessary suddenly blows up into a major event. The MEC then
+gets a late call and must play a catch-up game.
+2. It is best if you secure MEC representation immediately as
+there may be a potential for discipline. An ALPA attorney will be in
+contact with you to counsel you on the situational requirements
+prior to your talking to management.
+*If pressed for a statement or to be interviewed by the NTSB,
+FAA, or others, tell them you will make a statement after
+consultation with your MEC representative. If a safety of flight
+item needs correcting immediately, you can, of course, mention
+it - and stop right there until you have representation.
+
+*NEVER make a statement to the press.
+
+Your MEC
+representative will handle press requests.
+3. Keep your crew together and obtain rest facilities away
+from the airport for all crewmembers. If there are any fatalities,
+with the resultant media attention, one option available is to check
+into the nearest hospital. Tell the medical personnel of your
+situation and your desire to get some rest. Specify those persons
+whom you want to see (including ALPA representatives), and ask
+that no other visitors be allowed to see you.
+4. Contact your family if you wish, but do not automatically
+invite them to the scene or discuss the specifics of the
+accident/incident with them. Advise them that the ALPA FDX MEC
+will send someone to help them. If you feel that the news media
+or others will bother your family, the telephone company can install
+a temporary phone line for their private use until things quiet
+down.
+5. If possible, get the names, addresses, and telephone
+numbers of jumpseaters and make copies of all documents
+relating to your flight and retain them for your use only. These can
+prove invaluable when you are trying to reconstruct the various
+aspects of your flight. Remember: A hastily written statement
+initially designed to help you can be taken out of context and
+introduced as evidence against you at a future date.
+6. Prepare all written statements with the help of an ALPA
+attorney. You may be required to provide the Company and
+federal authorities with a written statement within a specified time.
+The MEC will advise you regarding their requests.
+7. Regardless of the circumstances, the crew nearly always
+suffers some post-accident or post-incident trauma. There is
+always a qualified critical response team specifically formed to
+assist with these issues, and help is available. All you have to do
+is ask the MEC or ALPA for it.
+8. Regarding incidents only - Remember to file a NASA
+ASRS report (even if the event if classified as an incident) within
+10 days. Send it registered mail and retain the receipt ASRS
+sends back to you. The burden of proof that you filed an ASRS
+report rests with you. Once ASRS de-identifies a report, not even
+NASA can provide you with a copy. DO NOT send a NASA report
+if in an accident until speaking with an MEC attorney.
+</string>
+
+<string name="five">InterView Guidelines
+1. Never talk to a federal inspector or agent without an MEC
+representative present.
+2. Always tell the truth - it is the most powerful weapon you have.
+3. Keep your answers short and to the point. Remember the ageold
+adage: “If they ask what time it is, don’t build them a clock.” If
+you find yourself saying, “I think...” you are already in trouble. Stick
+to the facts.
+4. DO NOT SURRENDER your certificate to a federal inspector. A
+formal set of procedures must be followed before you are required
+to relinquish your certificate. A copy of your certificate may be
+provided and allowing the inspector to look at your certificate is
+okay; you may want to specify that you are not surrendering your
+certificate when the inspector wants to look at it.
+</string>
+
+<string name="installMainDB">Install Main Database</string>
+<string name="installUserDB">Install User Database</string>
+<string name="saveUserDB">Save User DB to SD</string>
+<string name="restoreUserDB">Restore User DB</string>
+<string name="emailUserDB">Email User DB</string>
+<string name="loadEGRID">Load EGRID</string>
+<string name="setUserNamePwd">Set User Data</string>
+<string name="checkVer">Check DB Version</string>
+<string name="ocrsettings">OCR Settings</string>
+<string name="linesettings">1.5</string>
+<string name="bwthresh">900</string>
+<string name="pen">.1</string>
+<string name="lblPenalty">Penalty</string>
+<string name="lblBWThreshold">B/W Level</string>
+<string name="lblLinesize">Line Size</string>
+<string name="ReadSettings">Read Settings</string>
+<string name="SaveSettings">Save Settings</string>
+
+
+</resources>

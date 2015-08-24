@@ -1,0 +1,73 @@
+<ScrollView android:id="@+id/ScrollView01" 
+android:layout_width="fill_parent" 
+android:layout_height="wrap_content" 
+xmlns:android="http://schemas.android.com/apk/res/android">
+
+		<RelativeLayout
+		    android:id="@+id/LinearLayout01"
+		    android:layout_width="fill_parent"
+		    android:layout_height="427dp"
+		    android:orientation="vertical" >
+
+<EditText android:layout_height="wrap_content" 
+android:id="@+id/Exp_date" 
+android:layout_width="fill_parent" 
+android:layout_alignParentLeft="true"
+android:layout_alignParentTop="true"
+android:hint="YYYY-MM-DD"
+android:textSize="@dimen/size14">
+</EditText>
+
+<Button android:id="@+id/B_setExpDate" 
+android:layout_height="wrap_content" 
+android:text="Set Exp Date" 
+android:layout_width="wrap_content"  
+android:layout_below="@+id/Exp_date" 
+android:textSize="@dimen/size14"/>
+
+<EditText android:layout_height="wrap_content" 
+android:id="@+id/Exp_amt" 
+android:layout_width="fill_parent" 
+android:layout_alignParentLeft="true"
+android:hint="Exp Amount ###.##"
+android:inputType="numberDecimal"
+android:layout_below="@+id/B_setExpDate" 
+android:textSize="@dimen/size14"/>
+
+<EditText android:layout_height="wrap_content" 
+android:id="@+id/Exp_City" 
+android:inputType="textCapCharacters"
+android:layout_width="fill_parent" 
+android:layout_alignParentLeft="true"
+android:hint="City Code "
+android:layout_below="@+id/Exp_amt" 
+android:textSize="@dimen/size14"/>
+
+<Spinner
+    android:id="@+id/Exp_Cat"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/Exp_City"
+    android:drawSelectorOnTop="true"
+    android:prompt="@string/ExpTyp"
+    android:textSize="@dimen/size14" />
+
+<EditText
+    android:id="@+id/Exp_comm"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/Exp_Cat"
+    android:hint="Exp Notes"
+    android:textSize="@dimen/size14" />
+
+<Button
+    android:id="@+id/B_PIX"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_below="@+id/Exp_comm"
+    android:text="Camera"
+    android:textSize="@dimen/size14" />
+
+</RelativeLayout>
+</ScrollView>

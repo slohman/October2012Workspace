@@ -1,0 +1,929 @@
+package com.yctc.alpaware;
+
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+
+import java.util.List;
+
+
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.CookieStore;
+
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.client.protocol.ClientContext;
+import org.apache.http.cookie.Cookie;
+import org.apache.http.entity.BufferedHttpEntity;
+import org.apache.http.impl.client.BasicCookieStore;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.protocol.BasicHttpContext;
+import org.apache.http.protocol.HttpContext;
+import org.apache.http.util.EntityUtils;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
+
+import com.handlerexploit.prime.utils.ImageManager;
+
+
+
+
+
+
+
+import android.app.Activity;
+import android.app.AlertDialog;
+
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+
+import android.content.Intent;
+
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
+
+import android.view.View;
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.DatePicker;
+
+import android.widget.Spinner;
+
+
+public class OpenTime extends Activity {
+
+
+
+
+	
+	 CookieStore cookieStore = new BasicCookieStore();
+	 HttpContext localContext = new BasicHttpContext();
+	 utilities util = new utilities();
+	 HttpEntity tripDetailEntity;
+	 String tripDetails,grid,uid,pwd,base,equip,Month,stDate,enDate,seat,sessId,redirect,ImagePath;
+	 Context ctx= this;
+	 ProgressDialog pd;
+	String[] botlinks;
+	String nCTL = null;  // bot code holder
+	DefaultHttpClient httpClient = AppSettings.getClient();
+	
+
+
+
+	 @Override
+	    public void onCreate(Bundle Icicle) {
+		 super.onCreate(Icicle);
+	     setContentView(R.layout.opentime);
+	     
+	       //get bundle and read grid code
+	       Bundle b = this.getIntent().getExtras();  
+	        grid  = b.getString("grd");
+	         uid = b.getString("id");
+  	        pwd = b.getString("pw");
+  	        sessId = b.getString("sesID");
+  	        redirect="https://pilot.fedex.com";
+  	        ImagePath = b.getString("ip");
+  	        
+  	       // get the other values from the spinners
+  	        
+  	      final Calendar c = Calendar.getInstance();
+          int stday = c.get(Calendar.DAY_OF_MONTH);
+          int mon = c.get(Calendar.MONTH);
+          int yr = c.get(Calendar.YEAR);
+  	      
+          DatePicker sdate = (DatePicker)findViewById(R.id.otstartdate);
+ 		
+ 		 
+ 		 sdate.updateDate(yr, mon, stday);
+ 	
+  	        
+  	     
+  	        
+  	       
+  	        
+  	      Button getOT = (Button) findViewById(R.id.btngetOT);
+          getOT.setOnClickListener(new View.OnClickListener() {
+           	public void onClick(View view) {
+           
+           	  String[] srchDates =  getSpinnerDates();
+              String startDate = srchDates[0];
+   	          String endDate = srchDates[1];
+           	  String[] Data = null;
+           	  Data = new String[8];
+           	  Data[0] = uid;
+           	  Data[1] = pwd;
+           	  Data[2] = grid;
+           	  Spinner spbase = (Spinner)findViewById(R.id.spinnerBase);
+              Spinner spequip = (Spinner)findViewById(R.id.spinnerequip);
+              Spinner spseat = (Spinner)findViewById(R.id.spinnerseat);
+           	  Data[3] = spbase.getSelectedItem().toString();
+           	  Data[4] = spequip.getSelectedItem().toString();
+           	  Data[5] = spseat.getSelectedItem().toString();
+           	  Data[6] = startDate; // start Date
+           	  Data[7] = endDate; // end date
+           	  
+   
+     	       
+     	       //send data to list which will run he long op, parse the data  and load the listview with open time
+     	      new getOpenTime().execute(Data);
+     	       
+           		
+           		
+           	}});
+  	        
+  	      loadspinners();
+  	     
+  	   // new LongOperation().execute("");
+	 	 		    
+	 	 		      
+	 }
+	 
+	 public void loadspinners(){
+		 
+		  Spinner basespinner = (Spinner) findViewById(R.id.spinnerBase);
+		    ArrayAdapter<?> adapter1 = ArrayAdapter.createFromResource(
+		            this, R.array.Base, android.R.layout.simple_spinner_item);
+		    adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		    basespinner.setAdapter(adapter1);
+		    
+		    Spinner equipspinner = (Spinner) findViewById(R.id.spinnerequip);
+		    ArrayAdapter<?> adapter = ArrayAdapter.createFromResource(
+		            this, R.array.equip, android.R.layout.simple_spinner_item);
+		    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		    equipspinner.setAdapter(adapter);	 
+		   
+		    Spinner seatspinner = (Spinner) findViewById(R.id.spinnerseat);
+		    ArrayAdapter<?> adapter2 = ArrayAdapter.createFromResource( this, R.array.seat, android.R.layout.simple_spinner_item);
+		    adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		    seatspinner.setAdapter(adapter2);	
+		    
+		 
+	 }
+	 
+	 public String[] getSpinnerDates(){
+		
+		 String[] spinDates = null;
+		 DatePicker sdate = (DatePicker)findViewById(R.id.otstartdate);
+		 
+		 int stday = sdate.getDayOfMonth();
+		 int stmon = sdate.getMonth() + 1;
+		 int styr = (sdate.getYear());
+		 
+		 String dt = stday + "-" + stmon + "-" + styr;
+	
+		    SimpleDateFormat sdf = new SimpleDateFormat("ddMMMyy");
+		    Calendar c = Calendar.getInstance();
+		    String startdate = sdf.format(c.getTime());
+		    
+		    
+		    c.setTime(c.getTime());
+			c.add(Calendar.DATE, 30);  // number of days to add, can also use Calendar.DAY_OF_MONTH in place of Calendar.DATE
+			SimpleDateFormat sdf1 = new SimpleDateFormat("ddMMMyy");
+			String output = sdf1.format(c.getTime()); 
+   
+   
+   spinDates  = new String[2];
+   spinDates[0] = startdate;
+   spinDates[1] = output;
+   return spinDates;
+		   
+		    
+
+		
+		 
+		
+	 }
+	 public String IntMonthToString(int month){
+		 
+		 switch (month) {
+		 case 1 :
+			 Month = "Jan";
+			 return Month;
+	
+		 case 2 :
+			 Month = "Feb";
+			 return Month;
+		 case 3:
+			 Month = "Mar";
+			 return Month;
+		 case 4 :
+			 Month = "Apr";
+			 return Month;
+	
+		 case 5 :
+			 Month = "May";
+			 return Month;
+		 case 6:
+			 Month = "Jun";
+			 return Month;	 
+		 case 7 :
+			 Month = "Jul";
+			 return Month;
+	
+		 case 8 :
+			 Month = "Aug";
+			 return Month;
+		 case 9:
+			 Month = "Sep";
+			 return Month;		 
+		 case 10 :
+			 Month = "Oct";
+			 return Month;
+	
+		 case 11 :
+			 Month = "Nov";
+			 return Month;
+		 case 12:
+			 Month = "Dec";
+			 return Month;
+		 
+		  }
+		return null;
+		
+	 }
+
+	 
+	 private class getOpenTime extends AsyncTask<String, Void, String> {
+		 
+		  @Override
+		  protected String doInBackground(String... params) {
+		    // perform long running operation operation
+			  
+			 
+			
+	           String[] OTdata = null;
+	           OTdata = new String[8];
+	           OTdata[0] = params[0]; // uid
+	           OTdata[1] = params[1]; // password
+	           OTdata[2] = params[2]; // grid
+	           OTdata[3] = params[3]; // base
+	           OTdata[4] = params[4]; // equip
+	           OTdata[5] = params[5]; // seat
+	           OTdata[6] = params[6]; // start date
+	           OTdata[7] = params[7]; //end date
+	           
+	             String loginResult = startSession(OTdata[0].toString(),OTdata[2].toString());
+	             if (loginResult != "login failed"){
+				 String OTDataString = loginDirectGetOpenTime(OTdata);
+	  	        
+	  	         return OTDataString;
+	  	      
+	             }else{
+	            	 utilities util = new utilities();
+	            	 util.showaction("Error Logging into pFC", OpenTime.this);
+	             }
+		    return null;
+		  }
+		 
+		 
+		  @Override
+		  protected void onPostExecute(String result) {
+		    // execution of result of Long time consuming operation
+			  
+			  if (result != null){
+			  
+			   storeOpenTime(result);
+			   Intent myIntent = new Intent(getBaseContext(), OpenTimeList.class);
+		       startActivityForResult(myIntent, 0);
+				 
+			  }
+		  }
+		 
+		 
+		  @Override
+		  protected void onPreExecute() {
+		  // Things to be done before execution of long running operation. For example showing ProgessDialog
+			  pd = ProgressDialog.show(ctx, "Parsing Trips to Device...","please wait", true, false);
+			 
+		  
+		  
+		  }
+		 
+		  
+		  @Override
+		  protected void onProgressUpdate(Void... values) {
+		      // Things to be done while execution of long running operation is in progress. For example updating ProgessDialog
+		   }
+		}
+	 
+	 public String loginDirectGetOpenTime(String[] Data) {
+			
+
+
+		 try { 
+			 
+			
+			 
+			
+			// DefaultHttpClient httpClient = AppSettings.getClient();
+
+				Cookie sessionInfo;
+				List<Cookie> cookies = httpClient.getCookieStore().getCookies();
+
+				if (! cookies.isEmpty()){
+				        CookieSyncManager.createInstance(getApplicationContext());
+				        CookieManager cookieManager = CookieManager.getInstance();
+
+				        for(Cookie cookie : cookies){
+		        	
+				        	   sessionInfo = cookie;
+				                String cookieString = sessionInfo.getName() + "=" + sessionInfo.getValue() + "; domain=" + sessionInfo.getDomain();
+				                cookieManager.setCookie("pilot.fedex.com", cookieString);
+				                CookieSyncManager.getInstance().sync();
+				        }
+				}
+
+          
+         // change to get open time string
+				
+				   
+			        HttpPost httpPost = new HttpPost("https://pilot.fedex.com/vips-bin/vipscgi?webdd");
+				    List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(9);
+
+				    nameValuePairs.add(new BasicNameValuePair("n001", Data[3]));// base
+				    nameValuePairs.add(new BasicNameValuePair("n002", Data[4])); //equip
+				    nameValuePairs.add(new BasicNameValuePair("n003",Data[5])); //seat
+				    nameValuePairs.add(new BasicNameValuePair("n004", Data[6])); // start date
+				    nameValuePairs.add(new BasicNameValuePair("n005", Data[7])); //end date
+				    nameValuePairs.add(new BasicNameValuePair("n006", "Open+Time+Only")); 
+				    nameValuePairs.add(new BasicNameValuePair("n007", "on"));
+				    
+				    
+				    
+				    // Encode the entities to UTF-8
+				    httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs, "UTF-8"));
+				    // Response from the Http Request
+				    
+					
+				    HttpResponse response1 = httpClient.execute(httpPost);
+				    localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
+			       HttpEntity resEntity1 = response1.getEntity();
+			       String data =  EntityUtils.toString(resEntity1);
+			       resEntity1.consumeContent();	
+			       
+			       // check for bot and repost if necessary
+			    
+			      
+			      String botCode = Botchecker(data);
+			       if (botCode != null){
+			    	   
+			    	   // get bot code
+			    	 
+					
+
+
+				        HttpPost httpPost1 = new HttpPost("https://pilot.fedex.com/vips-bin/vipscgi?webdd");
+					    List<NameValuePair> nameValuePairs1 = new ArrayList<NameValuePair>(10);
+
+					    nameValuePairs1.add(new BasicNameValuePair("n001", Data[3]));// base
+					    nameValuePairs1.add(new BasicNameValuePair("n002", Data[4])); //equip
+					    nameValuePairs1.add(new BasicNameValuePair("n003", Data[5])); //seat
+					    nameValuePairs1.add(new BasicNameValuePair("n004", Data[6])); // start date
+					    nameValuePairs1.add(new BasicNameValuePair("n005", Data[7])); //end date
+					    nameValuePairs1.add(new BasicNameValuePair("n006", "Open Time Only")); 
+					    nameValuePairs1.add(new BasicNameValuePair("n007", "on"));
+					    nameValuePairs1.add(new BasicNameValuePair("nCTL", botCode.toString()));	
+					    nameValuePairs1.add(new BasicNameValuePair("nTRN", "webdd   "));
+					    nameValuePairs1.add(new BasicNameValuePair("n999", " Submit "));
+					    
+			    	  
+			    	   httpPost1.setEntity(new UrlEncodedFormEntity(nameValuePairs1, "UTF-8"));
+					    HttpResponse response2 = httpClient.execute(httpPost1);
+					    localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
+				       HttpEntity resEntity2 = response2.getEntity();
+				       String data2 =  EntityUtils.toString(resEntity2);
+				       resEntity2.consumeContent();	
+			    	   
+			    	
+			    	return data2;
+			    	 
+			    	   
+			    	 }else{
+			    		 
+			    		 //no bot blocker
+			    		 
+			    		 return data;
+			    	 }
+		
+	 
+	      } catch (IOException e) {
+	            Log.e("Exception", "IOException", e);
+	      } catch (Exception e) {
+	            Log.e("Exception", "General Exception", e);
+	     }
+		 
+	 
+	 return null;
+	
+}
+public  void storeOpenTime(String OpenTimeData){
+			
+			//parse and load data to triplist activity 
+		 
+		 
+		
+
+		AlpaDataBaseHelper mdbh = new AlpaDataBaseHelper(OpenTime.this.getApplicationContext());
+		final SQLiteDatabase db = mdbh.getWritableDatabase(); 
+		String tsql = "Delete from opentime";
+		db.execSQL(tsql );
+		db.close();
+
+
+			
+			
+			 if (OpenTimeData != null) { 
+				 int startAt = OpenTimeData.indexOf("<!--  B E G I N   M A I N   C O N T E N T  -->");
+				 int endAt = OpenTimeData.indexOf("<!-- E N D   O F   M A I N   C O N T E N T -->");
+		         String CalData = OpenTimeData.substring(startAt, endAt);
+				
+		                	  
+		         String[] events = 	OpenTimeData.split("\n");
+		                	
+			 
+			  //parse array here and load calendar StrDate Show EndDate Etim Blok  Pay
+			 String pairing = null,showdate = null, showtime = null, enddate = null, endtime = null, Pay = null, prgdate,RV,Type;
+			 //String[] tripData = new String[events.length];
+			  //set the path where we want to save the file
+			  File SDCardRoot = Environment.getExternalStorageDirectory();
+			  File dir = new File (SDCardRoot.getAbsolutePath() + "/FdxOTTrips");
+			  deleteDirectory(dir);
+			 
+			 int lines=(events.length - 3);
+			 for (int x = 0;x < lines; x++) {
+				
+				 	if(events[x].toString().contains("webtr")){
+				 		// parse relevant data from text
+				 		
+				 		int tripstart,tripend;
+				 		tripstart = events[x].indexOf(">");
+				 		tripend = events[x].indexOf("</A>");
+				 		
+				 		pairing = events[x].substring(tripstart + 2 , tripend).trim();
+				 		RV = events[x].substring(62,63).trim();
+				 		Type = events[x].substring(65, 68);
+				 		prgdate = events[x].substring(tripend + 13, tripend + 18).trim();
+				 		showdate = events[x].substring(75 , 80);
+				 		showtime = events[x].substring(81, 85);
+				 		enddate = events[x].substring(86, 91);
+				 		endtime = events[x].substring(92, 96);
+				 		Pay = events[x].substring(98, 102);
+				 		
+				 	
+				 	
+				 	 String TripDetails = getTripDetails(pairing,prgdate); // pass to ex and get trip deatils for database//
+					 // parse out the data
+					
+				 	int StartAt = TripDetails.indexOf("<!--  B E G I N   M A I N   C O N T E N T  -->");
+					int EndAt = TripDetails.indexOf("<!-- E N D   O F   M A I N   C O N T E N T -->");
+					// look for botcheck code //
+					
+					
+					String tripdata = TripDetails.substring(StartAt, EndAt);
+					String TripId = pairing + showdate;
+					SaveHtmlData(tripdata, TripId);  // save html data to load to image when listing out trips
+					 
+				
+				     final SQLiteDatabase db1 = mdbh.getWritableDatabase(); 
+					
+					  try {
+				    	   db1.execSQL("Insert into opentime Values (" + null  + ", " + "'" + pairing + "','" + RV + "','" + Type + "','" + prgdate + "','" +  showdate+ "','" +  showtime  + "','" + enddate + "','" + endtime + "','" + Pay +   "')");		  
+				    	   	db1.close();
+				    	   		  
+				       				}catch (Exception e){
+				    	   			
+				    	   			
+				    	   			}  
+				 	}}
+}}
+			 
+public void SaveHtmlData(final String HtmlData, String TripId){
+					
+					
+				  //set the path where we want to save the file
+			  File SDCardRoot = Environment.getExternalStorageDirectory();
+			  File dir = new File (SDCardRoot.getAbsolutePath() + "/FdxOTTrips");
+			  if(!dir.exists())
+			  {
+			  dir.mkdirs();
+			  }
+		
+			  
+			 
+			  final File file = new File(dir, TripId);  //any name abc.html
+			  
+
+				    	 		byte[] data = new String(HtmlData).getBytes();
+				    	 			try {
+				    	 				FileOutputStream f = new FileOutputStream(file);
+				    	 	 
+				    	 				f = new FileOutputStream(file);
+				    	 				f.write(data);
+				    	 				f.flush();
+				    	 				f.close();
+				    	 	
+				    	 	} catch (IOException e) {
+				    	 	   utilities util = new utilities();
+				    	 	   String msg = "Error Writing OT trip to SD card";
+				    	 	   util.showaction(msg, OpenTime.this);
+				    	 	}
+			  		
+			  
+			
+			 
+			 
+		  }
+
+
+
+
+
+public String startSession(String UID, String GRID){
+	
+	 try {
+	//	 DefaultHttpClient httpClient = AppSettings.getClient();
+	       HttpPost httpPost = new HttpPost("https://pilot.fedex.com/TwoFactorAuthentication/AuthenticationController/secondfactor");
+		    List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(5);
+
+		    nameValuePairs.add(new BasicNameValuePair("userId", UID));
+		    nameValuePairs.add(new BasicNameValuePair("imagePath", ImagePath));
+		    nameValuePairs.add(new BasicNameValuePair("redirectPath",redirect));
+		    nameValuePairs.add(new BasicNameValuePair("sessionID", sessId));
+		    nameValuePairs.add(new BasicNameValuePair("gridResponse", GRID));
+		    // Encode the entities to UTF-8
+		    httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs, "UTF-8"));
+		    // Response from the Http Request
+		    
+			
+		    HttpResponse response1 = httpClient.execute(httpPost);
+		    localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
+	       HttpEntity resEntity1 = response1.getEntity();
+	       String data =  EntityUtils.toString(resEntity1);
+	       resEntity1.consumeContent();
+	       
+	    
+	     if (data.contains("SSO Login")){
+	    	 String errmsg = "login failed";
+	    	 return errmsg;
+	    	 
+	     }else{
+	
+	return data;}
+	
+	
+	
+	
+	 } catch (IOException e) {
+         Log.e("Exception", "IOException", e);
+   } catch (Exception e) {
+         Log.e("Exception", "General Exception", e);
+  }
+
+return null;
+}
+
+public String Botchecker(String pageData){
+	
+	
+	String botCode = null ;
+	Bitmap bm = null;
+	// search the string for occurance of ....  Please enter the control code shown below
+	
+	if (pageData.contains("Please enter the control code shown below")) {
+		
+		// this a botpage
+		
+		String linkToDigits = "/vips-bin/vipscgi?webdgts??webdd";
+		// go get the digits and display in alert dialog
+		// make horn noise to alert user of bot
+		
+		
+
+		
+			 DefaultHttpClient httpClient = AppSettings.getClient();
+			 Cookie sessionInfo;
+				List<Cookie> cookies = httpClient.getCookieStore().getCookies();
+
+				if (! cookies.isEmpty()){
+				        CookieSyncManager.createInstance(ctx);
+				        CookieManager cookieManager = CookieManager.getInstance();
+
+				        for(Cookie cookie : cookies){
+		        	
+				        	   sessionInfo = cookie;
+				                String cookieString = sessionInfo.getName() + "=" + sessionInfo.getValue() + "; domain=" + sessionInfo.getDomain();
+				                cookieManager.setCookie("pilot.fedex.com", cookieString);
+				                CookieSyncManager.getInstance().sync();
+				        }
+				}
+			 	
+				try {
+				    HttpPost httpPost1 = new HttpPost("https://pilot.fedex.com/" + linkToDigits);
+				    HttpResponse response;
+					response = httpClient.execute(httpPost1);
+					localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
+				    HttpEntity resEntity = response.getEntity();
+				    String data1 = EntityUtils.toString(resEntity); //  this string should have links to digits
+				    resEntity.consumeContent();
+	
+				    Document doc = Jsoup.parse(data1);
+				    Elements media = doc.select("[SRC]");
+			   	 	
+			   	 	
+				    
+			   	  StringBuilder sb = new StringBuilder();
+			   	  for (org.jsoup.nodes.Element src : media) {  // get path of EGRID image from webpage
+			   		  
+			   		  String attrval = src.attributes().toString();
+			             if (attrval.contains("/vipsfiles/bots/")){
+			           	  
+			           	  attrval = attrval.substring(attrval.length() - 11);
+			           	  attrval = attrval.substring(0,attrval.length()- 1);
+			           	 String ImageURL = "https://pilot.fedex.com/vipsfiles/bots/" + attrval.trim();
+			          // 	 String ImageURL = "http://www.pocketcal.net/kids.gif";
+			           	   
+	
+			           	// ImageManager imageManager = ImageManager.getInstance(OpenTime.this);
+			           	HttpUriRequest request = new HttpGet(ImageURL);
+			           	HttpResponse response1 = httpClient.execute(request);
+			           	
+			           	// long contentLenght = response.getEntity().getContentLength();
+			             BufferedHttpEntity bufferedHttpEntity = new BufferedHttpEntity(response1.getEntity());
+
+			              bm = BitmapFactory.decodeStream(bufferedHttpEntity.getContent());
+			            
+			                  int pixelCount = pixelCounter(bm);
+			                  String digit = getBotDigit(pixelCount);
+			                  sb.append(digit.toString());
+			            }
+			             
+			   	  } // end for loop
+			   	  botCode = sb.toString();
+			   	  return botCode;
+				
+				
+				
+				} catch (ClientProtocolException e) {
+					return "Protocol Exception";
+					} catch (IOException e) {
+					return "IOException";
+					}
+				
+	
+				} else {
+					
+				return null;
+
+				}
+	
+}
+public int pixelCounter( Bitmap bm){
+	
+	
+	int y = 0; // x = width y = height
+	
+	int bitWidth = 0; int bitHeight = 0; int colorCount=0;
+	bitWidth = bm.getWidth();
+	bitHeight = bm.getHeight();
+	int totalCount = 0;
+	
+	
+	for (int x = 0;x <= bitWidth-1;x++ ){
+			for (y = 0;y<=bitHeight-1;y++){
+				colorCount = bm.getPixel(x, y);
+				totalCount= totalCount + colorCount;
+				}
+	}
+	
+	
+	
+	
+	
+	
+	return totalCount;
+}
+public String getBotDigit(int botBitmap){
+	String botCode = null;
+	
+		
+		
+		switch (botBitmap) {
+		
+		case -1358955535 :
+			botCode = "0";
+			return botCode;
+		case -721421365 :
+			botCode = "1";
+			return botCode;
+		case -1140851700 :
+			botCode = "2";
+			return botCode;
+		case -1124074485 :
+			botCode = "3";
+			return botCode;
+		case -1224737843 :
+			botCode = "4";
+			return botCode;
+		case -1241515044 :
+			botCode = "5";
+			return botCode;
+		case -1442841570 :
+			botCode = "6";
+			return botCode;
+		case -838861790 :
+			botCode = "7";
+			return botCode;
+		case -1409287167 :
+			botCode = "8";
+			return botCode;
+		case -1426064423 :
+			botCode = "9";
+			return botCode;
+					}
+	
+	return null;
+}
+
+public String getTripDetails(String tripnum,String dte){
+
+	
+
+	// tripnum shoud be like 83Sep12
+	tripDetails= "";
+	String data2 = readuserdata();
+  	final String[] logdata2 = data2.split(",");
+  	String base = logdata2[2].trim();
+   	String equip= logdata2[3].trim();
+  	String zululocal = logdata2[5].trim();
+  	
+  	Spinner spbase = (Spinner)findViewById(R.id.spinnerBase);
+    Spinner spequip = (Spinner)findViewById(R.id.spinnerequip);
+    
+ 	base = spbase.getSelectedItem().toString();
+ 	equip = spequip.getSelectedItem().toString();
+ 	
+  	
+	
+	try {
+		
+		
+		///sync cookies
+		
+		Cookie sessionInfo;
+		List<Cookie> cookies = httpClient.getCookieStore().getCookies();
+
+		if (! cookies.isEmpty()){
+		        CookieSyncManager.createInstance(getApplicationContext());
+		        CookieManager cookieManager = CookieManager.getInstance();
+
+		        for(Cookie cookie : cookies){
+		                sessionInfo = cookie;
+		                String cookieString = sessionInfo.getName() + "=" + sessionInfo.getValue() + "; domain=" + sessionInfo.getDomain();
+		                cookieManager.setCookie("pilot.fedex.com", cookieString);
+		                CookieSyncManager.getInstance().sync();
+		        }
+		}
+		
+		
+		String postString = "https://pilot.fedex.com/vips-bin/vipscgi?webtr?"+ tripnum +"?"+base.trim()+"?"+ equip + "?" + dte + "?N?Y?"+zululocal+"?";
+	    HttpPost httpPost = new HttpPost(postString); // gets scheduled month details
+	    HttpResponse response = httpClient.execute(httpPost);
+	    localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
+	    HttpEntity resEntity = response.getEntity();
+	   tripDetails = EntityUtils.toString(resEntity);
+	   resEntity.consumeContent();
+	   // check for bot code //
+	  String botCode = Botchecker(tripDetails);
+	  
+	  if (botCode != null){
+		  // resubmit with botcode
+		  postString = "https://pilot.fedex.com/vips-bin/vipscgi?webtr?"+ tripnum +"?"+base.trim()+"?"+ equip + "?" + dte + "?N?Y?" + botCode + "?" +zululocal+"?";
+		    HttpPost httpPost1 = new HttpPost(postString); // gets scheduled month details
+		    HttpResponse response1 = httpClient.execute(httpPost1);
+		    localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
+		    HttpEntity resEntity1 = response1.getEntity();
+		   tripDetails = EntityUtils.toString(resEntity1);
+		   resEntity.consumeContent();
+		   }
+	   
+	   
+	   
+	   
+	    return tripDetails;
+	
+	
+	
+	} catch (IOException e) {
+         Log.e("Exception", "IOException", e);
+   } catch (Exception e) {
+         Log.e("Exception", "General Exception", e);
+  }
+	return null;
+
+	
+	
+	
+	
+}
+
+public String readuserdata(){
+	String usrdata = null;
+	 FileInputStream fis = null;
+        try {
+			fis = openFileInput("PcalData");
+			
+			 StringBuffer fileContent = new StringBuffer("");
+
+		        byte[] buffer = new byte[1024];
+		        
+		        try {
+		        	@SuppressWarnings("unused")
+					int length = 0;
+					while ((length = fis.read(buffer)) != -1) {
+					    fileContent.append(new String(buffer));
+					}
+					
+					usrdata = (fileContent.toString());
+				    
+		        } catch (IOException e) {
+					return null;
+	}
+			
+			
+			
+		} catch (FileNotFoundException e) {
+			
+		    
+			AlertDialog.Builder builder = new AlertDialog.Builder(OpenTime.this);
+			builder.setMessage("User ID/Pswd Not found. Input Now?")
+			       .setCancelable(false)
+			       .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+			           public void onClick(DialogInterface dialog, int id) {
+			        	   Intent myIntent = new Intent(getBaseContext(), setUserPwd.class);	
+							startActivityForResult(myIntent, 0);   
+			           }
+			       })
+			       .setNegativeButton("No", new DialogInterface.OnClickListener() {
+			           public void onClick(DialogInterface dialog, int id) {
+			                dialog.cancel();
+			                Intent myIntent = new Intent(getBaseContext(), PocketCal20.class);	
+							startActivityForResult(myIntent, 0);   
+			               
+			           }
+			       });
+			
+			AlertDialog alert = builder.create();
+			alert.show();
+			return null;
+		}
+        return usrdata;
+		
+	
+}
+public static boolean deleteDirectory(File path) {
+    // TODO Auto-generated method stub
+    if( path.exists() ) {
+        File[] files = path.listFiles();
+        for(int i=0; i<files.length; i++) {
+            if(files[i].isDirectory()) {
+                deleteDirectory(files[i]);
+            }
+            else {
+                files[i].delete();
+            }
+        }
+    }
+    return(path.delete());
+}
+
+
+} // end Open Time ACtivity

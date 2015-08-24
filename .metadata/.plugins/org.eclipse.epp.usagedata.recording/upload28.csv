@@ -1,0 +1,26 @@
+what,kind,bundleId,bundleVersion,description,time
+executed,command,org.eclipse.ui.ide,3.5.2.M20100113-0800,"org.eclipse.ui.project.cleanAction",1311728742420
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311728742639
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311728742639
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311728742686
+activated,view,org.eclipse.ui.console,3.4.0.v20090513,"org.eclipse.ui.console.ConsoleView",1311728745373
+activated,view,org.eclipse.ui.navigator.resources,3.4.1.M20090826-0800,"org.eclipse.ui.navigator.ProjectExplorer",1311728752795
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311728755655
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311728783483
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311728783733
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311728783733
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311728783733
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311728783796
+executed,command,org.eclipse.ui.ide,3.5.2.M20100113-0800,"org.eclipse.ui.project.properties",1311728783921
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311728784858
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311728784858
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311728784905
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311728789077
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311728797327
+executed,command,org.eclipse.ui.ide,3.5.2.M20100113-0800,"org.eclipse.ui.project.properties",1311728797343
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311728804359
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311728864047
+executed,command,org.eclipse.ui,3.5.2.M20100120-0800,"org.eclipse.ui.file.properties",1311728864063
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311728864141
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311728864141
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311728864141

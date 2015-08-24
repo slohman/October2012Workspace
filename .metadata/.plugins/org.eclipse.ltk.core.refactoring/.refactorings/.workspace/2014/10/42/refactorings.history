@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Delete resource &apos;PocketCal20/res/drawable/767lds.png&apos;" deleteContents="false" description="Delete resource &apos;PocketCal20/res/drawable/767lds.png&apos;" element1="/PocketCal20/res/drawable/767lds.png" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1413139618279"/>&#x0A;<refactoring comment="Delete resource &apos;PocketCal20/res/drawable/lds.png&apos;" deleteContents="false" description="Delete resource &apos;PocketCal20/res/drawable/lds.png&apos;" element1="/PocketCal20/res/drawable/lds.png" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1413139623219"/>
+</session>

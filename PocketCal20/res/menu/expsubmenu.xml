@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+     <item android:id="@+id/fltmainmenu"
+	    android:title="Actions"
+	    android:icon="@drawable/icmenu"
+	    android:orderInCategory="0"
+	    
+	   
+	    android:showAsAction="ifRoom">
+	   		 <menu>
+	   		 
+	   		     
+				 <item android:id="@+id/expsave"
+	   		           android:title="@string/expsave"/>
+				 
+				 <item android:id="@+id/expmaint"
+	   		           android:title="@string/expmaint"/>
+				  
+				  <item android:id="@+id/expclear"
+	   		           android:title="@string/expclear"/> 
+				    
+
+			</menu>
+</item>
+      <item android:id="@+id/home"
+	    android:title="@string/titleHome"
+	    android:orderInCategory="0"
+	    android:icon="@drawable/ic_menu_home"
+	    android:showAsAction="ifRoom">
+	   		 
+	</item>
+	<item android:id="@+id/back"
+	    android:title="@string/titleBack"
+	    android:orderInCategory="0"
+	    android:icon="@drawable/back1"
+	    android:showAsAction="ifRoom">
+	   		 
+	</item>
+
+</menu>

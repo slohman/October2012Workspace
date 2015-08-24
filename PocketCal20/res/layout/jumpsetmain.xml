@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content">
+	
+
+<LinearLayout
+	
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical"
+	android:padding="5dp">
+
+	<Button
+	    android:id="@+id/viewjupseatinfo"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:paddingBottom="10dip"
+	    android:text="@string/jmpInfo"
+	    android:textSize="@dimen/size14" />
+
+	
+	<Button
+	    android:id="@+id/casdatabase"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:paddingBottom="10dip"
+	    android:text="@string/cassjmp"
+	    android:textSize="@dimen/size14" />
+
+	
+	<Button
+	    android:id="@+id/noncass"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:paddingBottom="10dip"
+	    android:text="@string/noncassjmp"
+	    android:textSize="@dimen/size14" />
+
+	
+	</LinearLayout>
+</ScrollView>

@@ -1,0 +1,218 @@
+package com.yctc.alpaware;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.URL;
+import java.nio.channels.FileChannel;
+import java.security.KeyStore;
+
+import android.app.Activity;
+import android.content.Context;
+import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
+import android.widget.Toast;
+import javax.net.ssl.*;
+
+
+public class utilities extends Activity{
+	
+	
+	
+	
+	public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        
+	}
+	
+	String response;
+	File sd = new File(Environment.getExternalStorageDirectory().toString() + "/PocketCalDatabases/");
+	File DataDir = new File(Environment.getDataDirectory().toString() + "/data/com.yctc.alpaware/databases/");
+	
+
+
+	public String saveDB(String dbase, Context ctx) throws IOException { 
+	try {	
+		if (sd.canWrite() == true){
+			//do Nothing
+		}else{sd.mkdirs();}
+			
+			File currentDB = new File(DataDir,  dbase);
+			File backupDB = new File(sd,  dbase);
+			FileChannel	src = new FileInputStream(currentDB).getChannel();
+			FileChannel	dst = new FileOutputStream(backupDB).getChannel();
+			dst.transferFrom(src, 0, src.size());
+			response = dbase + " Saved to SD Card";
+			
+			} catch (IOException e) {
+				
+				response = dbase + " Save Failed";
+			}
+				
+			
+			return response;
+
+		  	 		};
+ 
+
+		  	 		
+
+public String  restoreDB(String dbase, Context ctx) throws IOException {
+	String result = "";
+	try {
+
+		
+		if (sd.canWrite()) {
+		File currentDB = new File(DataDir, dbase);
+		File SDsrc = new File(sd, dbase);
+		if (SDsrc.exists()== true) {
+		FileChannel src1 = new FileInputStream(SDsrc).getChannel();
+		FileChannel dst1 = new FileOutputStream(currentDB).getChannel();
+		dst1.transferFrom(src1, 0, src1.size());
+		src1.close();
+		dst1.close();
+		result=dbase + " Restored";
+		}}
+
+		} catch (Exception e) {
+			result= dbase + " Restore failed";
+		}
+	return result;
+
+}
+
+public void showaction(String msg, Context ctx){
+	
+	int duration = Toast.LENGTH_SHORT;
+
+	Toast toast = Toast.makeText(ctx, msg, duration);
+	toast.show();
+	}	
+
+
+public String installDB(String dbase, Context ctx){    
+	// install files to system if they don't already exist
+	
+	String result = " ";
+			if( dbase.matches("PocketCal.mp3")){
+				try {
+					InputStream in = ctx.getResources().getAssets().open("PocketCal.mp3");
+					OutputStream out = new FileOutputStream(DataDir  + "/PocketCal.db"); 
+					byte[] buf = new byte[1024]; 
+		         	int len; 
+		         	while ((len = in.read(buf)) > 0)
+		         	{ out.write(buf, 0, len); 	}
+		         	 in.close(); 
+					  out.flush();
+			          out.close(); 
+			         
+			        result = "PocketCal DB Installed";
+			          
+			          
+				} catch (IOException e) {
+					
+					 result = " Install Failed";
+					e.printStackTrace();} 
+		         	
+					
+				
+			}else{
+				
+				
+			
+	 
+			try {
+				
+				InputStream in = ctx.getResources().getAssets().open(dbase);
+				OutputStream out = new FileOutputStream(DataDir + "/" + dbase); 
+				byte[] buf = new byte[1024]; 
+	         	int len; 
+	         	while ((len = in.read(buf)) > 0)
+	         	{ out.write(buf, 0, len); 	}
+	         	 in.close(); 
+				  out.flush();
+		          out.close(); 
+		         
+		       result =  dbase + " Installed"; 
+		          
+			} catch (IOException e) {
+				  result = dbase +  " Install Failed";
+				e.printStackTrace();} 
+	         	
+			}
+			return result;}
+
+public String calcDateString(int mYear, int mMonth, int mDay) {
+	String DateString="";
+	
+	if (mYear < 99) {
+		mYear = mYear + 2000;
+		DateString += mYear;
+	}
+	if (mYear > 99) {
+		
+		DateString += mYear;
+	}
+		
+		
+	if (mMonth <=8) {
+	String	sMonth = "-" + "0" + (mMonth + 1);
+	DateString += sMonth;}
+	else if (mMonth == 9) {
+	String	sMonth = "-" + (mMonth+1);
+	DateString += sMonth;}
+	else  {String sMonth = "-" + mMonth;
+	DateString += sMonth;}
+	if (mDay < 10) {
+	String	sDay ="-" + "0" + mDay;
+	DateString += sDay;
+	}else{String sDay = "-" + mDay;
+	DateString += sDay;}
+	
+	
+	return DateString;
+}
+// HTTPS handlers
+
+public InputStream downloadUrl(String UID) {
+    InputStream myInputStream =null;
+StringBuilder sb = new StringBuilder();
+    //adding some data to send along with the request to the server
+sb.append("User ID = " + UID);
+
+
+
+
+
+
+
+try {
+ URL url = new URL("https://pilot.fedex.com/passport/login_in_with_grid");
+
+HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
+conn.setDoOutput(true);
+conn.setRequestMethod("POST");
+OutputStreamWriter wr = new OutputStreamWriter(conn
+		.getOutputStream());
+            // this is were we're adding post data to the request
+            wr.write(sb.toString());
+wr.flush();
+myInputStream = conn.getInputStream();
+wr.close();
+} catch (Exception e) {
+            String TAG = null;
+//handle the exception !
+Log.d(TAG,e.getMessage());
+}
+    return myInputStream;
+}
+
+
+
+
+}// end of class

@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	 android:installLocation="preferExternal"
+package="com.yctc.alpaware"
+      
+      android:versionName="0.70" android:versionCode="16">
+       
+      <uses-sdk android:minSdkVersion="4" 
+          android:targetSdkVersion="12"/>
+          
+          
+          
+   
+      
+      
+      
+      
+     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.intent.action.VIEW" />
+   <uses-permission android:name="android.permission.CAMERA" />
+	<uses-permission android:name="android.permission.READ_LOGS"></uses-permission>
+	 /> 
+	 
+      
+    <application android:label="@string/app_name" android:icon="@drawable/alpalogo" android:allowClearUserData="true" android:allowBackup="true"  android:debuggable="false"> 
+    
+ <!-- New License Launch Activity with all intent filters from your previous main activity -->
+<!-- Translucent.NoTitleBar is so that this activity is never shown to the user -->		
+<activity android:label="@string/app_name" android:name=".PocketCal20"
+			android:theme="@android:style/Theme.Black">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+      
+        <activity android:name=".jumpseatmain"
+        		  android:label="Jumpseat Data"
+        		  android:theme="@android:style/Theme.Black">
+             
+        		  
+        </activity>
+       
+         <activity android:name=".jupseataddnew"
+        		  android:label=" Add Jumpseat Data"
+        		  android:theme="@android:style/Theme.Black">
+             
+        		  
+        </activity>
+         <activity android:name=".jumpseatlist"
+        		  android:label="Jumpseat DataBase"
+        		  android:theme="@android:style/Theme.Black">
+             
+        		  
+        </activity>
+        <activity android:name=".loa"
+        		  android:label="LOA Files"
+        		  android:theme="@android:style/Theme.Black">
+             
+        		  
+        </activity>
+        <activity android:name=".jumpseatdetails"
+        		  android:label="Jumpseat List Data"
+        		  android:theme="@android:style/Theme.Black">
+             
+        		  
+        </activity>
+        <activity android:name=".jumpseatupdate"
+        		  android:label="Jumpseat Update"
+        		  android:theme="@android:style/Theme.Black">
+             
+        		  
+        </activity>
+        <activity android:name=".pdf"
+        		  android:label="PDF Files"
+        		  android:theme="@android:style/Theme.Black">
+             
+        		  
+        </activity>
+       
+         <activity android:name=".mec"
+        		  android:label="MEC"
+        		  android:theme="@android:style/Theme.Black">
+             
+        		  
+        </activity>
+        <activity android:name=".addnotes"
+        		  android:label="Add Note"
+        		  android:theme="@android:style/Theme.Black">
+             
+        		  
+        </activity>
+       
+        <activity android:name=".listnotes"
+        		  android:label="List Notes"
+        		  android:theme="@android:style/Theme.Black">
+             
+        		  
+        </activity>
+        <activity android:name=".noteslaunch"
+        		  android:label="Note Select"
+        		  android:theme="@android:style/Theme.Black">
+             
+        		  
+        </activity>
+        <activity android:name=".notesupdate"
+        		  android:label="Update/Edit Notes"
+        		  android:theme="@android:style/Theme.Black">
+             
+        		  
+        </activity>
+        <activity android:name=".mec"
+        		  android:label="MEC"
+        		  android:theme="@android:style/Theme.Black">
+             
+        		  
+        </activity>
+         <activity android:name=".gthoteldisplay"
+        		  android:label="Hotel GT Listing"
+        		  android:theme="@android:style/Theme.Black">
+             
+        		  
+        </activity>
+         <activity android:name=".gthotelupdate"
+        		  android:label="Hotel GT Update"
+        		  android:theme="@android:style/Theme.Black">
+             
+        		  
+        </activity>
+        <activity android:name=".gthoteladdnew"
+        		  android:label="Add New GT/Hotel"
+        		  android:theme="@android:style/Theme.Black">
+             
+        		  
+        </activity>
+         <activity android:name=".hotellistall"
+        		  android:label="Hotel GT Listing "
+        		  android:theme="@android:style/Theme.Black">
+             
+        		  
+        </activity>
+        
+         <activity android:name=".ramphotelmain"
+        		  android:label="Hotel GT Main"
+        		  android:theme="@android:style/Theme.Black">
+             
+        		  
+        </activity>
+        <activity android:name=".hotellistout"
+        		  android:label="Hotel GT List by City"
+        		  android:theme="@android:style/Theme.Black">
+             
+        		  
+        </activity>
+        <activity android:name=".hotelbycity"
+        		  android:label="Hotel GT List by City"
+        		  android:theme="@android:style/Theme.Black">
+             
+        		  
+        </activity>
+        <activity android:name=".utilities"
+        		  android:label="Utilities"
+        		  android:theme="@android:style/Theme.Black">
+             
+        		  
+        </activity>
+        <activity android:name=".about"
+        		  android:label="About PocketCal"
+        		  android:theme="@android:style/Theme.Black">
+             
+        		  
+        </activity>
+      
+        <activity android:name=".fltlogmaint"
+        		  android:label="Flight Log File Maint"
+        		  android:theme="@android:style/Theme.Black">
+             
+        		  
+        </activity>
+        
+        <activity android:name=".cba"
+        		  android:label="CBA"
+        		  android:theme="@android:style/Theme.Black">
+           	  
+        </activity>
+         <activity android:name=".acequiplistupdate"
+        		  android:label="Update A/C Equipment"
+        		  android:theme="@android:style/Theme.Black">
+           	  
+        </activity>
+        <activity android:name=".filemaintmain"
+        		  android:label="MAINTENANCE"
+        		  android:theme="@android:style/Theme.Black">
+             <intent-filter>
+            	<category android:name="android.intent.action.SEND"/>
+             </intent-filter>
+        </activity>
+        <activity android:name=".staff"
+        		  android:label="Staff Listing"
+        		  android:theme="@android:style/Theme.Black">
+             <intent-filter>
+            	<category android:name="android.intent.action.SEND"/>
+             </intent-filter>
+        </activity>
+       
+         <activity android:name=".acequipnew"
+        		  android:label="Add New A/C"
+        		  android:theme="@android:style/Theme.Black">
+             <intent-filter>
+            	<category android:name="android.intent.action.SEND"/>
+             </intent-filter>
+        </activity>
+       
+        <activity android:name=".Person"
+        		  android:label="Information Listing"
+        		  android:theme="@android:style/Theme.Black">
+             <intent-filter>
+            	<category android:name="android.intent.action.SEND"/>
+             </intent-filter>
+        </activity>
+        <activity android:name=".MECPerson"
+        		  android:label="MEC Information Listing"
+        		  android:theme="@android:style/Theme.Black">
+             <intent-filter>
+             <category android:name="android.intent.action.DIAL"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".meclist"
+        		  android:label="MEC Info Listing"
+        		  android:theme="@android:style/Theme.Black">
+             <intent-filter>
+            	<category android:name="android.intent.action.SEND"/>
+             </intent-filter>
+        </activity>
+        <activity android:name=".MECRepPerson"
+        		  android:label="MEC Rep Info Listing"
+        		  android:theme="@android:style/Theme.Black">
+             <intent-filter>
+            	<category android:name="android.intent.action.SEND"/>
+             </intent-filter>
+        </activity>
+        <activity android:name=".repslist"
+        		  android:label="MEC Rep Info Listing"
+        		  android:theme="@android:style/Theme.Black">
+             <intent-filter>
+            	<category android:name="android.intent.action.SEND"/>
+             </intent-filter>
+        </activity>
+        
+         <activity android:name=".evp1"
+        		  android:label="EVP Info Listing"
+        		  android:theme="@android:style/Theme.Black">
+             <intent-filter>
+            	<category android:name="android.intent.action.SEND"/>
+             </intent-filter>
+        </activity>
+        
+         <activity android:name=".evpdata"
+        		  android:label="EVP Info Listing"
+        		  android:theme="@android:style/Theme.Black">
+             <intent-filter>
+            	<category android:name="android.intent.action.SEND"/>
+             </intent-filter>
+        </activity>
+        <activity android:name=".contact"
+        		  android:label="MEC Contact Informtion"
+        		  android:theme="@android:style/Theme.Black">
+             <intent-filter>
+            	<category android:name="android.intent.action.SEND"/>
+             </intent-filter>
+        </activity>
+        <activity android:name=".committee"
+        		  android:label="MEC Committee Informtion"
+        		  android:theme="@android:style/Theme.Black">
+             <intent-filter>
+            	<category android:name="android.intent.action.SEND"/>
+             </intent-filter>
+        </activity>
+        <activity android:name=".CommDetail"
+        		  android:label="MEC Committee Informtion"
+        		  android:theme="@android:style/Theme.Black">
+             <intent-filter>
+            	<category android:name="android.intent.action.SEND"/>
+             </intent-filter>
+        </activity>
+         <activity android:name=".ieresponse"
+        		  android:label="Intl Emergency Response"
+        		  android:theme="@android:style/Theme.Black">
+             <intent-filter>
+            	<category android:name="android.intent.action.SEND"/>
+             </intent-filter>
+        </activity>
+        <activity android:name=".ieresponsedetail"
+        		  android:label="Intl Emergency Response"
+        		  android:theme="@android:style/Theme.Black">
+             <intent-filter>
+            	<category android:name="android.intent.action.SEND"/>
+             </intent-filter>
+        </activity>
+        <activity android:name=".ifalpa"
+        		  android:label="IFALPA Info"
+        		  android:theme="@android:style/Theme.Black">
+             <intent-filter>
+            	<category android:name="android.intent.action.SEND"/>
+             </intent-filter>
+        </activity>
+        <activity android:name=".ifalpadetail"
+        		  android:label="IFALPA Info"
+        		  android:theme="@android:style/Theme.Black">
+             <intent-filter>
+            	<category android:name="android.intent.action.SEND"/>
+             </intent-filter>
+        </activity>
+        <activity android:name=".usembassy"
+        		  android:label="US Embassy/Consulate Info"
+        		  android:theme="@android:style/Theme.Black">
+             <intent-filter>
+            	<category android:name="android.intent.action.SEND"/>
+             </intent-filter>
+        </activity>
+         <activity android:name=".usembassydetail"
+        		  android:label="US Embassy/Consulate Info"
+        		  android:theme="@android:style/Theme.Black">
+             <intent-filter>
+            	<category android:name="android.intent.action.SEND"/>
+             </intent-filter>
+        </activity>
+         <activity android:name=".iemain"
+        		  android:label="International Emergency"
+        		  android:theme="@android:style/Theme.Black">
+             <intent-filter>
+            	<category android:name="android.intent.action.SEND"/>
+             </intent-filter>
+        </activity>
+        <activity android:name=".nationalctc"
+        		  android:label="ALPA National Info"
+        		  android:theme="@android:style/Theme.Black">
+             <intent-filter>
+            	<category android:name="android.intent.action.SEND"/>
+             </intent-filter>
+        </activity>
+         <activity android:name=".nationalctcdetail"
+        		  android:label="ALPA National Info"
+        		  android:theme="@android:style/Theme.Black">
+             <intent-filter>
+            	<category android:name="android.intent.action.SEND"/>
+             </intent-filter>
+        </activity>
+        <activity android:name=".accidentinfo"
+        		  android:label="Accident Info"
+        		  android:theme="@android:style/Theme.Black">
+             <intent-filter>
+            	<category android:name="android.intent.action.SEND"/>
+             </intent-filter>
+        </activity>
+        <activity android:name=".accidentdisplay"
+        		  android:label="Accident Info"
+        		  android:theme="@android:style/Theme.Black">
+             <intent-filter>
+            	<category android:name="android.intent.action.SEND"/>
+             </intent-filter>
+        </activity>
+        <activity android:name=".userdata"
+        		  android:label="Accident Info"
+        		  android:theme="@android:style/Theme.Black">
+             <intent-filter>
+            	
+             </intent-filter>
+        </activity>
+        
+        <activity android:name=".calmain"
+        		  android:label="Calendar Main Menu"
+        		  android:theme="@android:style/Theme.Black">
+             <intent-filter>
+            	
+             </intent-filter>
+        </activity>
+        <activity android:name=".fltlogmain"
+        		  android:label="Log Book Menu"
+        		  android:theme="@android:style/Theme.Black">
+             <intent-filter>
+            	
+             </intent-filter>
+        </activity>
+        
+        <activity android:name=".fltentry"
+        		  android:label="Enter Flight Information"
+        		  android:theme="@android:style/Theme.Black">
+             <intent-filter>
+            	
+             </intent-filter>
+        </activity>
+    <activity android:name=".fltlist"
+        		  android:label="Flight Information"
+        		  android:theme="@android:style/Theme.Black">
+             <intent-filter>
+            	
+             </intent-filter>
+        </activity>
+        <activity android:name=".fltupdate"
+        		  android:label="Update Flt"
+        		  android:theme="@android:style/Theme.Black">
+             <intent-filter>
+            	
+             </intent-filter>
+        </activity>
+        <activity android:name=".fltreports"
+        		  android:label="Flt Reports"
+        		  android:theme="@android:style/Theme.Black">
+             <intent-filter>
+            	
+             </intent-filter>
+        </activity>
+        <activity android:name=".fltlistout"
+        		  android:label="Flt Listing"
+        		  android:theme="@android:style/Theme.Black">
+             <intent-filter>
+            	
+             </intent-filter>
+        </activity>
+         <activity android:name=".fltreportlists"
+        		  android:label="Flt Block Hour Listing"
+        		  android:theme="@android:style/Theme.Black">
+             <intent-filter>
+            	
+             </intent-filter>
+        </activity>
+        <activity android:name=".fltlogmaint"
+        		  android:label="Flt Log Maint"
+        		  android:theme="@android:style/Theme.Black">
+             <intent-filter>
+            	
+             </intent-filter>
+        </activity>
+          <activity android:name=".explogmain"
+        		  android:label="Exp Log Maint"
+        		  android:theme="@android:style/Theme.Black">
+             <intent-filter>
+            	
+             </intent-filter>
+        </activity>
+        
+         <activity android:name=".expentry"
+        		  android:label="Exp Entry"
+        		  android:theme="@android:style/Theme.Black">
+             <intent-filter>
+            	<category android:name="android.intent.CAMERA"/>
+             </intent-filter>
+        </activity>
+        <activity android:name=".explistbydate"
+        		  android:label="Exp by Date"
+        		  android:theme="@android:style/Theme.Black">
+             <intent-filter>
+            	
+             </intent-filter>
+        </activity>
+        <activity android:name=".explogmaint"
+        		  android:label="Exp Log Maint"
+        		  android:theme="@android:style/Theme.Black">
+             <intent-filter>
+            	
+             </intent-filter>
+        </activity>
+        
+         <activity android:name=".explistout"
+        		  android:label="Exp Listing"
+        		  android:theme="@android:style/Theme.Black">
+             <intent-filter>
+            	
+             </intent-filter>
+        </activity>
+         <activity android:name=".explistbydate"
+        		  android:label="Exp Listing by Date"
+        		  android:theme="@android:style/Theme.Black">
+             <intent-filter>
+            	
+             </intent-filter>
+        </activity>
+         <activity android:name=".explistbycity"
+        		  android:label="Exp Listing by City"
+        		  android:theme="@android:style/Theme.Black">
+             <intent-filter>
+            	
+             </intent-filter>
+        </activity>
+          <activity android:name=".explist"
+        		  android:label="Exp Listing"
+        		  android:theme="@android:style/Theme.Black">
+             <intent-filter>
+            	
+             </intent-filter>
+        </activity>
+         <activity android:name=".expupdate"
+        		  android:label="Exp Update"
+        		  android:theme="@android:style/Theme.Black">
+             <intent-filter>
+            	
+             </intent-filter>
+        </activity>
+        
+        <activity android:name=".expreports"
+        		  android:label="Exp Reports"
+        		  android:theme="@android:style/Theme.Black">
+             <intent-filter>
+            	
+             </intent-filter>
+        </activity>
+        
+         <activity android:name=".aclistout"
+        		  android:label="AC Data Listing"
+        		  android:theme="@android:style/Theme.Black">
+             <intent-filter>
+            	
+             </intent-filter>
+        </activity>
+         <activity android:name=".acequiplist"
+        		  android:label="AC Data Listing"
+        		  android:theme="@android:style/Theme.Black">
+             <intent-filter>
+            	
+             </intent-filter>
+        </activity>
+        
+        
+        <activity android:name=".dhdreportlists"
+        		  android:label="DHD Report"
+        		  android:theme="@android:style/Theme.Black">
+             <intent-filter>
+            	
+             </intent-filter>
+        </activity>
+         <activity android:name=".acequiplaunch"
+        		  android:label="AC Equipment"
+        		  android:theme="@android:style/Theme.Black">
+            
+        </activity>
+        <activity android:name=".acequiplisybyfleet"
+        		  android:label="AC Equipment"
+        		  android:theme="@android:style/Theme.Black">
+            
+        </activity>
+        <activity android:name=".aclistbyfleet"
+        		  android:label="AC Equipment"
+        		  android:theme="@android:style/Theme.Black">
+            
+        </activity>
+        <activity android:name=".loadEGRID"
+        		  android:label="Init EGRID"
+        		  android:theme="@android:style/Theme.Black">
+            
+        </activity>
+        
+        <activity android:name=".egridcalculator"
+        		  android:label="EGRID Results"
+        		  android:theme="@android:style/Theme.Black">
+            
+        </activity>
+</application>
+    
+
+</manifest> 

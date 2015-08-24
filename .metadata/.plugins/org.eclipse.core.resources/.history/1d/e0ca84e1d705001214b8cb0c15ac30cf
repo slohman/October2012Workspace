@@ -1,0 +1,513 @@
+package com.yctc.alpaware;
+
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.TimeZone;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.CookieStore;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.protocol.ClientContext;
+import org.apache.http.impl.client.BasicCookieStore;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.protocol.BasicHttpContext;
+import org.apache.http.protocol.HttpContext;
+import org.apache.http.util.EntityUtils;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.content.ContentResolver;
+import android.content.ContentValues;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.text.format.DateFormat;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.Spinner;
+
+public class calendar extends Activity {
+	
+	 String Month;
+	 String cal, calToUse;
+	 int cntr;
+	 String uid, pwd, base, equip,grid;
+	    
+	   
+		HttpClient httpClient = new DefaultHttpClient();  
+		 CookieStore cookieStore = new BasicCookieStore();
+		 HttpContext localContext = new BasicHttpContext();
+
+	 int initLoad = 1;
+	
+	 @Override
+	    public void onCreate(Bundle Icicle) {
+		 super.onCreate(Icicle);
+	     setContentView(R.layout.calendarview);
+	     
+	       //get bundle and read grid code
+	       Bundle b = this.getIntent().getExtras();  
+	         grid  = b.getString("grd");
+	         uid = b.getString("id");
+     	     pwd = b.getString("pw");
+     	     base = b.getString("bse");
+     	     equip =b.getString("eq").toString();
+     	    final Builder builder =  new AlertDialog.Builder(this);
+     	   final FrameLayout fl = new FrameLayout(this);
+	       
+     	     
+	       final Spinner s1 = (Spinner) findViewById(R.id.calSelect);
+	       Button upCal = (Button) findViewById(R.id.button1);
+	       Button SelMonth = (Button)findViewById(R.id.button2);
+	       final EditText input = new EditText(this);
+	       
+	       final Calendar c = Calendar.getInstance();
+		  	  SimpleDateFormat month_date = new SimpleDateFormat("MMMyy");
+		  	   final String monthDate = month_date.format(c.getTime());
+		  	  
+		  	   
+	       
+	       
+	       String[] cals = getCalenders(); // get calendars and load spinner //
+	       
+	       if (cals == null) {
+	    	   Intent myIntent = new Intent(getBaseContext(), PocketCal20.class);	
+				startActivityForResult(myIntent, 0); 
+	       }else{
+	        loadspinner(cals); // load spinner with iinstalled calendars
+	       }
+	     
+	      
+	         s1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+	 	   		public void onItemSelected(AdapterView<?> arg0, View arg1,int arg2, long arg3) {
+					
+					 calToUse = s1.getSelectedItem().toString();
+					 // get calendar data ??
+			 
+		 	  
+		 	
+			
+					}
+
+				
+				public void onNothingSelected(AdapterView<?> arg0) {
+					
+
+				}
+			});
+	         
+	         
+	         
+	         
+	         SelMonth.setOnClickListener(new View.OnClickListener() {
+	 	 		public void onClick(View view) {  	     
+	 	 	    
+	 	 			
+	 	 		    
+	 	 		       input.setGravity(Gravity.CENTER);
+	 	 		  	      fl.addView(input, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.FILL_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT));
+	 	 		  	      input.setHint("Enter MMMYY to Load");
+	 	 		  	      input.setInputType(1);
+	 	 		  	      input.setText(monthDate);
+	 	 		  	          
+	 	 		  	          builder.setView(fl);
+	 	 		  	          builder.setTitle("Select Month");
+	 	 		  	          
+	 	 		  	      
+	 	 		  	
+
+	 	 		      
+	 	 		       
+	 	 		  	           
+	 	 		  	      
+	 	 		  	       builder.setPositiveButton("OK", new DialogInterface.OnClickListener(){
+	 	 		  	    	
+	 	 		  	    	 	public void onClick(DialogInterface d, int which) {
+	 	 		  	    	 		d.dismiss();
+	 	 		  	    	 	
+	 	 		  	    	 	     Month = input.getText().toString();
+	 	 		  	    	 		 }});
+	 	 		  	       
+	 	 		  	     					
+	 	 		  	      builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
+	 	 		 				public void onClick(DialogInterface d, int which) {
+	 	 		 				d.dismiss();
+	 	 		 				Intent myIntent = new Intent(getBaseContext(), PocketCal20.class);
+	 	 		    	 		    startActivityForResult(myIntent, 0);
+	 	 		    	 		    }});
+	 	 		 	 
+	 	 		 	     builder.create().show();
+	 				 	   
+	 				         				
+	 				         }});
+	 	
+	 	 
+
+
+	       
+		
+	//******************* end get user month ******************************************//
+	 	
+	 	 upCal.setOnClickListener(new View.OnClickListener() {
+	 		public void onClick(View view) {  	     
+	 	    
+	 			 
+				 	    String results = loginDirect(uid,pwd,grid,Month); // logs on and gets html from calender page at PFC. This is a monthly listing of trips
+				 	    loadCal(results); // get basic trip data and start list display
+				 	    
+				         				
+				         }});
+	
+	 
+}	
+	       
+	       
+	       
+	       
+	       public  void loadCal(String calData){
+			
+			//parse and load calendar data
+			
+			
+			 if (calData != null) { 
+				 
+				 int startAt = calData.indexOf("<!--  B E G I N   M A I N   C O N T E N T  -->");
+				int endAt = calData.indexOf("<!-- E N D   O F   M A I N   C O N T E N T -->");
+		        
+				String CalData = calData.substring(startAt, endAt);
+				
+		                	  
+		         String[] events = 	CalData.split("\n");
+		                	
+			 
+			  //parse array here and load calendar StrDate Show EndDate Etim Blok  Pay
+			 String pairing,StartDate, Show, EndDate, Etim, Blok,  Pay;
+			 String[] tripData = new String[events.length];
+			 int y = 0;
+			 
+			 int lines=(events.length - 3);
+			 for (int x = 0;x < lines; x++) {
+				 //get the trip number and retieve the pairing data and add to device calendar
+				 	if(events[x].toString().contains("webtr")){
+				 		// parse relevant data from text
+				 		
+				 		int pairingStart = events[x].indexOf(">") + 1;
+				 		int pairingEnd = pairingStart + 4;
+				 		pairing = events[x].substring(pairingStart, pairingEnd).trim();
+				 		StartDate = events[x].substring(pairingEnd + 37, pairingEnd + 44).trim();
+				 		Show = events[x].substring(pairingEnd + 45, pairingEnd + 49).trim();
+				 		EndDate = events[x].substring(pairingEnd + 50, pairingEnd + 57).trim();
+				 		Etim = events[x].substring(pairingEnd + 58, pairingEnd + 62).trim();
+				 		Blok = events[x].substring(pairingEnd + 63, pairingEnd + 68).trim();
+				 		Pay = events[x].substring(pairingEnd + 69, pairingEnd + 75).trim();
+				 		tripData[y] = pairing + "   " + StartDate + "  " + Show + "\n\r"+ EndDate + "," + Etim + "\n\r" + Blok + ","+ Pay;
+                        y++;				 	
+				 											}
+				 	}
+			 
+			 
+			
+   	 		Bundle bun = new Bundle();
+     		bun.putStringArray("aID", tripData);
+   	 		Intent myIntent = new Intent(getBaseContext(), triplist.class);
+   	 		myIntent.putExtras(bun);
+ 	 	    startActivityForResult(myIntent, 0);
+			 
+			 
+			 					}
+			 
+			 
+	       
+	       
+	       
+	       
+	       
+	       }
+				 
+				
+			 
+	
+			 
+			
+		
+	 
+	 public void addToCal(String[] tripData){
+			// get the trip details [] here
+		 
+		   
+		 try {
+			 // webtr?105?LAX?11?21AUG12?N?Y?Z?
+			 StringBuilder sb = new StringBuilder();
+		 String bse, uri, mod;
+		 bse = "https://pilot.fedex.com/vips-bin/vipscgi?webtr?";
+	//	uri =   Trip + "?" +base+"?"+ equip + "?" + Dte.trim() + "?";
+		mod =  "N?Y?L";
+		 
+		 sb.append(bse);
+		// sb.append(uri.toString());
+	     sb.append(mod.toString());
+		
+		 
+		 
+		 HttpPost httpPost1 = new HttpPost(sb.toString()); // gets scheduled month details in Z time
+		    HttpResponse response1 = httpClient.execute(httpPost1,localContext);
+		    HttpEntity resEntity1 = response1.getEntity();
+		    String data = EntityUtils.toString(resEntity1);
+		  calenderParser cp = new calenderParser();
+	        String[]  TripData = cp.parseData(data);
+	        String[] LegDetails;
+	        int dataType;
+	        Date dateObj;
+	        long START_TIME_MS, END_TIME_MS;
+	        // extract data line by line and pass to calender program
+	        
+	        // get the start and end time fields and parse into proper time format
+	        String stTime = TripData[TripData.length - 2].toString();
+	        String eTime = TripData[TripData.length - 1].toString();
+	        
+	        SimpleDateFormat formatter = new SimpleDateFormat("DDMMMYY hhmm"); 
+	        
+	        formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
+	        dateObj = formatter.parse(stTime);
+	        START_TIME_MS = dateObj.getTime();
+	        dateObj = formatter.parse(eTime);
+	        END_TIME_MS = dateObj.getTime();
+	        
+	        
+	        for ( int i = 0; i < TripData.length; i++){
+	        	
+	        	
+	        	
+	        	LegDetails = TripData[i].split(",");
+	        	dataType = Integer.parseInt(LegDetails[0].toString());
+	        	
+	        	ContentValues event = new ContentValues();
+	        	event.put("calendar_id", calToUse);
+	        	event.put("title", "Event Title");
+	        	event.put("description", "Event Desc");
+	        	event.put("eventLocation", "Event Location");
+	        	long startTime = START_TIME_MS;
+	        	long endTime = END_TIME_MS;
+	        	event.put("dtstart", startTime);
+	        	event.put("dtend", endTime);
+	        	event.put("allDay", 1);   // 0 for false, 1 for true
+	        	event.put("eventStatus", 1); //
+	        	event.put("visibility", 0);
+	        	event.put("transparency", 0);
+	        	event.put("hasAlarm", 1); // 0 for false, 1 for true
+	        	Uri eventsUri = Uri.parse("content://calendar/events");
+	        	Uri url = getContentResolver().insert(eventsUri, event);
+	        	
+	        	
+	        	switch (dataType)  {
+	        	
+	        	case 1: //This is trip data
+	        		// load
+	        		
+	        		
+	        		break;
+	        		
+	        	case 2: // This is Capt Data
+	        		
+	        		
+	        		
+	        		break;
+	        	case 3: //This is FO data
+	        		
+	        		
+	        		
+	        		
+	        		
+	        		break;
+	        	case 4:  // DHD money
+	        		
+	        		
+	        		
+	        		
+	        		break;
+	        		
+	        	case 5:  // start & end date /times
+	        		
+	        		
+	        		
+	        		
+	        		break;
+	        		
+	        	}
+	        	
+	        	
+	        	
+	        }
+		    
+		    
+	    
+		    
+		 } catch (IOException e) {
+	            Log.e("Exception", "IOException", e);
+	      } catch (Exception e) {
+	            Log.e("Exception", "General Exception", e);
+	     } 
+		 // if we have good trip data parse it
+		 // call to parser utility ??
+		
+		 
+         
+
+	 }
+	 
+	 public String[] getCalenders() {
+			
+			
+
+		 Cursor cursor = getContentResolver().query(Uri.parse("content://com.android.calendar/calendars"),
+	               new String[] { "_id", "displayName" }, "selected=1", null, null);
+	 
+		 if (cursor != null && cursor.moveToFirst()) {
+	        String[] calNames = new String[cursor.getCount()];
+	        final int[] calIds = new int[cursor.getCount()];
+	        
+	        
+	     					for (int i = 0; i < calNames.length; i++) {
+
+	     							calIds[i] = cursor.getInt(0);
+	     							calNames[i] = cursor.getString(1);
+	     							cursor.moveToNext();
+	                          }
+	         cursor.close();
+	         return calNames;
+	       
+	         }else{
+	        	 
+	        	 
+	        	utilities util = new utilities();
+	        	util.showaction("No Installed Calendar", this);
+	        	return null;
+		
+	         }
+		
+			
+		}
+	 
+ public String loginDirect(String User, String PWD, String Grid, String Month) {
+		
+
+		 try {
+
+
+			 HttpPost httpPost = new HttpPost("https://pilot.fedex.com/passport/login_with_grid?uid="+User+"&password="+PWD+"&GRIDSTRING="+Grid);
+		   
+		  // *** logs into web site with grid and starts session *********//  
+		    localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
+		    HttpResponse response = httpClient.execute(httpPost,localContext);
+		    HttpEntity resEntity = response.getEntity();
+		    
+		    HttpPost httpPost1 = new HttpPost("https://pilot.fedex.com/vips-bin/vipscgi?webad?"+User+"?"+ Month.trim() + "?????Z?S"); // gets scheduled month details
+		    HttpResponse response1 = httpClient.execute(httpPost1,localContext);
+		    HttpEntity resEntity1 = response1.getEntity();
+		    String data = EntityUtils.toString(resEntity1);
+		    return data;
+		 
+		      } catch (IOException e) {
+		            Log.e("Exception", "IOException", e);
+		      } catch (Exception e) {
+		            Log.e("Exception", "General Exception", e);
+		     }
+		 
+		 return null;
+	
+}
+
+	
+	 
+	 public void loadspinner(String[] data) {
+         if (data != null) {
+
+           try {
+             
+               // fill spinner from array
+               Spinner s1 = (Spinner) findViewById(R.id.calSelect);
+               ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this,   android.R.layout.simple_spinner_item, data);
+               spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+               s1.setAdapter(spinnerArrayAdapter);
+               }      catch (Exception e) {
+                          e.printStackTrace();
+                      }
+          }
+       
+     }
+	 
+	 private static void addToCalendar(Context ctx, final String title, final long dtstart, final long dtend) {
+		    final ContentResolver cr = ctx.getContentResolver();
+		    Cursor cursor ;
+		    if (Integer.parseInt(Build.VERSION.SDK) >= 8 )
+		        cursor = cr.query(Uri.parse("content://com.android.calendar/calendars"), new String[]{ "_id", "displayname" }, null, null, null);
+		    else
+		        cursor = cr.query(Uri.parse("content://calendar/calendars"), new String[]{ "_id", "displayname" }, null, null, null);
+		    if ( cursor.moveToFirst() ) {
+		        final String[] calNames = new String[cursor.getCount()];
+		        final int[] calIds = new int[cursor.getCount()];
+		        for (int i = 0; i < calNames.length; i++) {
+		            calIds[i] = cursor.getInt(0);
+		            calNames[i] = cursor.getString(1);
+		            cursor.moveToNext();
+		        }
+		 
+		        AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
+		        builder.setSingleChoiceItems(calNames, -1, new DialogInterface.OnClickListener() {
+		 
+		            public void onClick(DialogInterface dialog, int which) {
+		                ContentValues cv = new ContentValues();
+		                cv.put("calendar_id", calIds[which]);
+		                cv.put("title", title);
+		                cv.put("dtstart", dtstart );
+		                cv.put("hasAlarm", 1);
+		                cv.put("dtend", dtend);
+		 
+		                Uri newEvent ;
+		                if (Integer.parseInt(Build.VERSION.SDK) >= 8 )
+		                    newEvent = cr.insert(Uri.parse("content://com.android.calendar/events"), cv);
+		                else
+		                    newEvent = cr.insert(Uri.parse("content://calendar/events"), cv);
+		 
+		                if (newEvent != null) {
+		                    long id = Long.parseLong( newEvent.getLastPathSegment() );
+		                    ContentValues values = new ContentValues();
+		                    values.put( "event_id", id );
+		                    values.put( "method", 1 );
+		                    values.put( "minutes", 15 ); // 15 minutes
+		                    if (Integer.parseInt(Build.VERSION.SDK) >= 8 )
+		                        cr.insert( Uri.parse( "content://com.android.calendar/reminders" ), values );
+		                    else
+		                        cr.insert( Uri.parse( "content://calendar/reminders" ), values );
+		 
+		                }
+		                dialog.cancel();
+		            }
+		 
+		        });
+		 
+		        builder.create().show();
+		    }
+		    cursor.close();
+		}
+	 
+} // end class

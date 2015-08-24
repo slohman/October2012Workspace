@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+xmlns:android="http://schemas.android.com/apk/res/android"
+ android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+<LinearLayout 
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+    
+<EditText 
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:hint="Subject"
+    android:id="@+id/notesubj"
+    android:textSize="@dimen/size16"
+    android:padding="5px"/>
+    
+    
+    
+    
+<EditText 
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:hint="Comments"
+    android:id="@+id/notebody"
+    android:textSize="@dimen/size16"
+    android:padding="5px"/>
+    
+
+   
+   </LinearLayout>
+   </ScrollView>

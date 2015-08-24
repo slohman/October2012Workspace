@@ -1,0 +1,1798 @@
+package com.yctc.alpaware;
+
+import android.app.Activity;
+
+import android.app.AlertDialog;
+
+import android.app.ProgressDialog;
+
+import android.app.AlertDialog.Builder;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+
+import android.graphics.BitmapFactory;
+
+import android.graphics.drawable.Drawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.os.Environment;
+
+import android.util.Log;
+import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
+
+import android.webkit.WebView;
+
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import android.widget.ImageView;
+import android.widget.Toast;
+
+
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+
+
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+
+import java.util.List;
+
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+
+
+import org.apache.http.NameValuePair;
+
+
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.CookieStore;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.client.protocol.ClientContext;
+
+import org.apache.http.conn.ClientConnectionManager;
+import org.apache.http.cookie.Cookie;
+import org.apache.http.entity.BufferedHttpEntity;
+
+
+import org.apache.http.impl.client.BasicCookieStore;
+import org.apache.http.impl.client.DefaultHttpClient;
+
+
+import org.apache.http.message.BasicNameValuePair;
+
+import org.apache.http.protocol.BasicHttpContext;
+import org.apache.http.protocol.HttpContext;
+
+
+import org.apache.http.util.EntityUtils;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
+
+
+
+public class egridcalculator extends Activity{
+	
+	
+
+
+     String LoginResult;
+
+	 public static final int Main_Menu =0;
+	 public static final int New_Result=1;
+	 public static final int Do_action = 2;
+	 public static final int Clear = 3;
+	 public static final int goAuto = 4;
+	 public static final int clos = 5;
+	 public boolean SessionStarted = false;
+	 
+	 WebView myWebView;  
+	  
+		
+	
+	 String Col1;
+	 int row1;
+	 Drawable d;
+	 Bitmap b;
+	 
+	 String Month = "";
+	 String action;
+	 String imagePath;
+	  
+      String sessionId,gridcode;
+      String redirect,  tripDetails;
+      public static Cookie cookie = null;
+      boolean loggedIn;
+	
+	 Context ctx = egridcalculator.this;
+	 ProgressDialog pd;
+	 
+
+	    
+	static  DefaultHttpClient httpClient = AppSettings.getClient();
+	 
+	 CookieStore cookieStore = new BasicCookieStore();
+	 HttpContext localContext = new BasicHttpContext();
+	 HttpPost httpPost = new HttpPost();
+	 utilities u = new utilities();
+	
+	
+ public void onCreate(Bundle Icicle) {
+		 super.onCreate(Icicle);
+	     setContentView(R.layout.egridresult1);
+	     
+	   
+	  
+	    
+	     Bundle b = egridcalculator.this.getIntent().getExtras(); 
+		 action =  b.getString("AId");
+		 
+	 	     
+	     
+	     Button A = (Button) findViewById(R.id.A);
+         A.setOnClickListener(new View.OnClickListener() {
+             public void onClick(View view) {
+                 Col1="A";
+                 row1=0;
+             }});;
+        Button B = (Button) findViewById(R.id.B);
+        B.setOnClickListener(new View.OnClickListener() {
+              public void onClick(View view) {
+              Col1="B";
+              row1=0;
+                 }});;
+         Button C = (Button) findViewById(R.id.C);
+         C.setOnClickListener(new View.OnClickListener() {
+                     public void onClick(View view) {
+                      Col1="C";
+                         row1=0;
+                     }});;
+         Button D = (Button) findViewById(R.id.D);
+         D.setOnClickListener(new View.OnClickListener() {
+                      public void onClick(View view) {
+                      Col1="D";
+                      row1=0;
+                         }});;
+        Button E = (Button) findViewById(R.id.E);
+        E.setOnClickListener(new View.OnClickListener() {
+                      public void onClick(View view) {
+                      Col1="E";
+                      row1=0;
+                             }});;
+        Button F = (Button) findViewById(R.id.F);
+        F.setOnClickListener(new View.OnClickListener() {
+                      public void onClick(View view) {
+                      Col1="F";
+                      row1=0;
+                                 }});;
+        Button G = (Button) findViewById(R.id.G);
+        G.setOnClickListener(new View.OnClickListener() {
+                      public void onClick(View view) {
+                      Col1="G";
+                      row1=0;
+        }});;
+        Button H = (Button) findViewById(R.id.H);
+        H.setOnClickListener(new View.OnClickListener() {
+                     public void onClick(View view) {
+                     Col1="H";
+                     row1=0;
+        }});;
+        Button I = (Button) findViewById(R.id.I);
+        I.setOnClickListener(new View.OnClickListener() {
+                     public void onClick(View view) {
+                     Col1="I";
+                     row1=0;
+        }});;
+        Button J = (Button) findViewById(R.id.J);
+        J.setOnClickListener(new View.OnClickListener() {
+                     public void onClick(View view) {
+                     Col1="J";
+                     row1=0;
+        }});;
+        Button b1 = (Button) findViewById(R.id.num1);
+        b1.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                row1=1;
+                calcGrid(Col1,row1);
+                
+            }});;
+       Button b2 = (Button) findViewById(R.id.num2);
+       b2.setOnClickListener(new View.OnClickListener() {
+             public void onClick(View view) {
+             row1=2;
+             calcGrid(Col1,row1);
+                }});;
+        Button b3 = (Button) findViewById(R.id.num3);
+        b3.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View view) {
+                       row1=3;
+                       calcGrid(Col1,row1);
+                    }});;
+        Button b4 = (Button) findViewById(R.id.num4);
+        b4.setOnClickListener(new View.OnClickListener() {
+                     public void onClick(View view) {
+                    row1=4;
+                    calcGrid(Col1,row1);
+                        }});;
+       Button b5 = (Button) findViewById(R.id.num5);
+       b5.setOnClickListener(new View.OnClickListener() {
+                     public void onClick(View view) {
+                     row1=5;
+                     calcGrid(Col1,row1);
+                            }});
+                            
+  
+        	 
+                          
+
+        	 
+          
+        	
+          Button egridButton = (Button)findViewById(R.id.getegrid);
+          egridButton.setOnClickListener(new View.OnClickListener() {
+        	  public void onClick(View view) {
+        		 
+        		  
+        		  new LongOperationGetEGRID().execute("");
+        	 }}); 
+          
+          TextView fgc = (TextView)findViewById(R.id.tvEgridConvert);
+          fgc.setOnClickListener(new View.OnClickListener() {
+        	  public void onClick(View view) {
+        		  TextView gridResults = (TextView)findViewById(R.id.tvEgridConvert);
+        		  EditText finalGridCode = (EditText)findViewById(R.id.coderesult);
+					
+					// send data to computeEgrid
+					String OCRdata = gridResults.getText().toString();
+					String autoresults = computeEgrid(OCRdata);
+					finalGridCode.setText(autoresults);
+					 if (action.equals("pfc")) 
+					 {
+							StartPFC();
+					 }
+					 
+					 if (action.equals("otsvc"))
+					 {
+					        StartOTSvc();
+				    	
+				     }
+						
+					 if (action.equals("getCal"))
+					 {
+					         StartCal();
+			         }
+					 if (action.equals("getOpen")) 
+					 {
+					    	StartOpen();
+	      		 	 }
+					  if (action.equals("update")) 
+					 {
+							StartUpdate();
+					 }
+        	
+			 }});
+          
+          
+         
+          
+          
+	 } 
+      
+public boolean onCreateOptionsMenu(Menu menu){
+				menu.add(0,Main_Menu,0,"Main Menu");
+				menu.add(0,New_Result,1,"New Code");
+				menu.add(0,Do_action,2,"Go");
+				menu.add(0,Clear,3,"Clear Code");
+				menu.add(0,goAuto,4,"Calc Egrid & Go");
+				menu.add(0,clos,5,"Close Sess");
+				
+				
+				return true;
+				}
+
+		
+	  	  
+	  	  
+ public boolean onOptionsItemSelected (MenuItem item ){
+	 			
+				switch (item.getItemId()){
+				
+				case clos :
+					
+					new LogOut().execute();
+					
+				return true;
+				
+				case Main_Menu :
+					
+					
+					Intent myIntent = new Intent(getBaseContext(), PocketCal20.class);	
+					startActivityForResult(myIntent, 0);
+					
+				return true;
+				
+				case goAuto :
+					TextView gridResults = (TextView)findViewById(R.id.tvEgridConvert); // data from OCR
+					EditText finalGridCode = (EditText)findViewById(R.id.coderesult);
+					
+					// send data to computeEgrid
+					String OCRdata = gridResults.getText().toString();
+					String autoresults = computeEgrid(OCRdata);
+					finalGridCode.setText(autoresults);
+					
+					
+					 if (action.equals("pfc"))
+					 {
+							
+			           	StartPFC();
+		      		 }
+					 
+					 if (action.equals("otsvc"))
+					 {
+					    StartOTSvc();
+				      }
+						
+					  if (action.equals("getCal"))
+					 {
+						
+						StartCal();
+					 }
+					 
+					 if (action.equals("getOpen"))
+					     {
+					    	StartOpen();
+	      		 	 	 }
+					    
+					 
+				
+					    if (action.equals("update"))
+					    {
+							StartUpdate();
+					    }
+					
+					
+			
+					
+				return true;
+				
+			case New_Result :
+			
+      			  new LogOut().execute();
+				
+				  new LongOperationGetEGRID().execute("");
+				
+			return true;
+			
+			case Clear :
+				
+				TextView res = (TextView)findViewById(R.id.coderesult);
+				res.setText("");
+				
+			return true;
+			
+			case Do_action :
+				
+
+				
+				 
+				 
+				 if (action.equals("pfc")) 
+				 {
+					
+		           	StartPFC();
+
+
+	      		 }
+				 
+				 if (action.equals("otsvc"))
+				 {
+				    StartOTSvc();
+			    	
+			     }
+					
+				 
+				 
+				 
+				 
+				 if (action.equals("getCal"))
+				 {
+				  StartCal();
+		         }
+				 
+				 
+				 if (action.equals("getOpen")) 
+				    {
+				    	StartOpen();
+      		 	 	 }
+				    
+				 
+			
+				    if (action.equals("update")) 
+				    {
+						StartUpdate();
+				    }
+					    
+					    return true;
+					    
+					    
+					    
+			}
+				return false;			
+				
+		
+				
+}
+	
+	  	  	
+
+
+
+private void  calcGrid(String Col1, int row){
+	// read data from egrid table with or statements
+	
+	UserDataHelper mdbh = new UserDataHelper(egridcalculator.this.getApplicationContext());
+    final SQLiteDatabase db = mdbh.getWritableDatabase();
+	
+	final Cursor c = db.rawQuery("Select " + Col1 + " from egrid where _id = " + row1  ,null);
+	if (c.getCount() > 0) {
+		
+		
+		
+	
+	c.moveToFirst();
+	String Result =  c.getString(0).toString();
+	
+	
+	TextView res = (TextView)findViewById(R.id.coderesult);
+	
+	res.setText ( res.getText().toString() +  Result) ;
+	c.close();
+	db.close();
+	}else{
+		
+		utilities util = new utilities();
+		util.showaction("Please load EGIRD or restore USER DB from SD",egridcalculator.this);
+		finish();}
+	
+	
+	
+}
+
+
+
+////////////  initial login and get egrid image
+
+private class LongOperationGetEGRID extends AsyncTask<String, Void, Bitmap> {
+ 
+	  @Override
+	  protected Bitmap doInBackground(String... params) {
+	    // perform long running operation operation
+		  
+		 ClientConnectionManager cm = httpClient.getConnectionManager();
+		 
+		 if ( !cm.equals(null)){
+			Bitmap bm;
+			try {
+				bm = startSession();
+				return bm;
+			} catch (ClientProtocolException e) {
+				
+				
+			} catch (IOException e) {
+				
+			}
+			return null;
+		
+		 } else {
+			 return null;
+		 }
+		 
+	  }
+	 
+	 
+	  @Override
+       protected void onPostExecute(Bitmap result) {
+	    // execution of result of Long time consuming operation
+		 pd.dismiss();
+		  
+	
+		 
+		 
+		 Button b = (Button)findViewById(R.id.getegrid);
+		 b.setVisibility(4);
+		 ImageView iv = (ImageView)findViewById(R.id.EGRIDVw);
+		
+		 iv.setImageBitmap(result);
+		
+         utilities u = new utilities();
+		 
+		 
+		 String egridCode = null;
+		 if (result != null){
+			egridCode = u.convertBM(result);
+		 }else{
+			 egridCode = "No Egrid Loaded or Connection already active. Press GO";
+		 }
+		 
+		 TextView eg = (TextView)findViewById(R.id.tvEgridConvert);
+		 eg.setText(egridCode);	 
+		
+		
+		 
+ }
+	 
+	 
+	  @Override
+	  protected void onPreExecute() {
+	  // Things to be done before execution of long running operation. For example showing ProgessDialog
+		  pd = ProgressDialog.show(ctx, "Loading EGRID Image...","please wait", true, false);
+	  }
+	 
+	  
+	  @Override
+	  protected void onProgressUpdate(Void... values) {
+	      // Things to be done while execution of long running operation is in progress. For example updating ProgessDialog
+		  pd = ProgressDialog.show(ctx, "OCRing EGRID image.","please wait", true, false);
+	   }
+	}
+public String readuserdata(){
+	String usrdata = null;
+	 FileInputStream fis = null;
+        try {
+			fis = openFileInput("PcalData");
+        	} catch (FileNotFoundException e) {
+			
+		   
+			return "File Missing";
+		}
+			 StringBuffer fileContent = new StringBuffer("");
+
+		        byte[] buffer = new byte[1024];
+		        
+		        
+		        	@SuppressWarnings("unused")
+					int length = 0;
+					try {
+						while ((length = fis.read(buffer)) != -1) {
+						    fileContent.append(new String(buffer));
+						}
+					} catch (IOException e) {
+						return "File Missing";
+					}
+					
+					usrdata = (fileContent.toString());
+				    
+		      
+			
+			
+			
+		
+        return usrdata;
+		
+	
+}
+public String getImageUrl(String pfcResponse){
+	String url2 = null;
+	Document doc = Jsoup.parse(pfcResponse);
+   	Elements media = doc.select("[src]");
+   	 
+   	
+   	  for (org.jsoup.nodes.Element src : media) {  // get path of EGRID image from webpage
+   		  
+   		  String attrval = src.attributes().toString();
+             if (attrval.contains("captcha")){
+           	  
+           	  attrval = attrval.substring(6);
+           	  attrval = attrval.substring(0,attrval.length()-1);
+           	  
+           	  
+           	    String 	  url1 = "https://pilot.fedex.com" + attrval;
+           	    int imagelen = url1.indexOf("jpeg", 0);
+           	     url2 = url1.substring(0, imagelen + 4);
+             								}
+             
+   	  											}
+	return url2;
+	
+
+}
+public String getSessionId(String pfcResponse){
+	
+	Document doc = Jsoup.parse(pfcResponse);
+   	Elements cred = doc.select("[name]");
+   	 
+   	
+   	  for (org.jsoup.nodes.Element id : cred) {  // get path of EGRID image from webpage
+   		  
+   		  String attrval = id.attributes().toString();
+             if (attrval.contains("sessionID")){
+           	  int st = attrval.indexOf("value=") + 7;
+           	 
+           	  
+           //	  attrval = attrval.substring(6);
+           	  attrval = attrval.substring(st,attrval.length()-1);
+           	  sessionId = attrval;
+           	  
+           	  
+             								}
+             
+   	  											}
+	return sessionId;}
+////////////
+
+private class tripUpdateLongOperation extends AsyncTask<String, Void, String> {
+	 
+	  @Override
+	  protected String doInBackground(String... params) {
+	    // perform long running operation operation
+		 
+		  String user = params[0].toString();
+			 String pw= params[1].toString();
+			 String base = params[5].toString();
+			 String equip = params[6].toString();
+			 String zululocal = params[7].toString();
+			 String grd = params[2].toString();
+			 String prg = params[3].toString();
+			 String trp = params[4].toString();
+			 String  result =  loginDirectTripUpdate(user,pw,grd,prg,trp,base,equip,zululocal);
+			 
+			 
+		
+				
+				
+			
+		 
+		  return result;
+	    
+	  }
+	 
+	 
+	  @Override
+	  protected void onPostExecute(String result) {
+	    // execution of result of Long time consuming operation
+		// parse data and write to file
+		  	
+		  
+		  
+		  
+		    pd.dismiss();
+		    utilities util = new utilities();
+		    util.showaction(result, egridcalculator.this);
+		 
+		
+	  }
+	 
+	 
+	  @Override
+	  protected void onPreExecute() {
+	  // Things to be done before execution of long running operation. For example showing ProgessDialog
+		  
+		  pd = ProgressDialog.show(ctx, "Updating Trip Image...","please wait", true, false);
+	  
+	  }
+	 
+	  
+	  @Override
+	  protected void onProgressUpdate(Void... values) {
+	      // Things to be done while execution of long running operation is in progress. For example updating ProgessDialog
+	   }
+}
+
+////////////
+private class getMonthCalData extends AsyncTask<String, Void, String> {
+	 
+	  @Override
+	  protected String doInBackground(String... params) {
+	    // perform long running operation operation
+		  
+		 String user = params[0];
+		 
+		 try{
+		//DefaultHttpClient httpClient = AppSettings.getClient();
+		    
+		    
+		    //sync cookies
+		    
+		    Cookie sessionInfo;
+			List<Cookie> cookies = httpClient.getCookieStore().getCookies();
+
+			if (! cookies.isEmpty()){
+			        CookieSyncManager.createInstance(getApplicationContext());
+			        CookieManager cookieManager = CookieManager.getInstance();
+
+			        for(Cookie cookie : cookies){
+			                sessionInfo = cookie;
+			                String cookieString = sessionInfo.getName() + "=" + sessionInfo.getValue() + "; domain=" + sessionInfo.getDomain();
+			                cookieManager.setCookie("pilot.fedex.com", cookieString);
+			                CookieSyncManager.getInstance().sync();
+			        }
+			}
+			
+			
+	        HttpPost httpPost1 = new HttpPost("https://pilot.fedex.com/vips-bin/vipscgi?webad?"+user+"?"+ Month.trim() + "?????Z?S"); // gets scheduled month details
+		    HttpResponse response = httpClient.execute(httpPost1);
+		    localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
+		    HttpEntity resEntity = response.getEntity();
+		    String data1 = EntityUtils.toString(resEntity);
+		    resEntity.consumeContent();
+		    getTripDataFromCalDetail(data1);
+		    String result = "success";
+		    return result;
+		    
+		    
+		    
+		 } catch (IOException e) {
+	           Log.e("Exception", "IOException", e);
+	     } catch (Exception e) {
+	           Log.e("Exception", "General Exception", e);
+	    }
+		  
+		 
+		
+	    return null;
+	  }
+	 
+	 
+	  @Override
+	  protected void onPostExecute(String result) {
+	    // execution of result of Long time consuming operation
+		  pd.dismiss();
+		  if (result.equals("success")){
+		  Bundle bun = new Bundle();
+		  bun.putString("mnth", Month);
+		  Intent myIntent = new Intent(getBaseContext(), triplist.class);
+          myIntent.putExtras(bun);
+	      startActivityForResult(myIntent, 0);}
+
+	  }
+	 
+	 
+	  @Override
+	  protected void onPreExecute() {
+	  // Things to be done before execution of long running operation. For example showing ProgessDialog
+		  pd = ProgressDialog.show(ctx, "Loading Calendar for " + Month ,"please wait", true, false);
+	  }
+	 
+	  
+	  @Override
+	  protected void onProgressUpdate(Void... values) {
+	      // Things to be done while execution of long running operation is in progress. For example updating ProgessDialog
+	   }
+	}
+public String getMonthlyActivityData(String User, String Month) {
+	
+// need to log in with Egrid first !!!!!!!!!!!!!!!!!!!!
+
+	 try {
+		DefaultHttpClient httpClient = AppSettings.getClient();
+        HttpPost httpPost1 = new HttpPost("https://pilot.fedex.com/vips-bin/vipscgi?webad?"+User+"?"+ Month.trim() + "?????Z?S"); // gets scheduled month details
+	    HttpResponse response = httpClient.execute(httpPost1);
+	    localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
+	    HttpEntity resEntity = response.getEntity();
+	    String data1 = EntityUtils.toString(resEntity);
+	    resEntity.consumeContent();
+	    
+	   
+
+      
+      
+      
+      return data1;
+
+     } catch (IOException e) {
+           Log.e("Exception", "IOException", e);
+     } catch (Exception e) {
+           Log.e("Exception", "General Exception", e);
+    }
+	 
+
+return null;
+
+}
+public  void getTripDataFromCalDetail(String calData){
+	
+	//parse and load data to triplist activity 
+
+AlpaDataBaseHelper mdbh = new AlpaDataBaseHelper(egridcalculator.this.getApplicationContext());
+final SQLiteDatabase db = mdbh.getWritableDatabase(); 
+String tsql = "Delete from trips where bidMonth = '" + Month + "'";
+db.execSQL(tsql );
+db.close();
+
+
+	
+	
+	 if (calData != null) { 
+		 int startAt = calData.indexOf("<!--  B E G I N   M A I N   C O N T E N T  -->");
+		 int endAt = calData.indexOf("<!-- E N D   O F   M A I N   C O N T E N T -->");
+         String CalData = calData.substring(startAt, endAt);
+		
+                	  
+         String[] events = 	CalData.split("\n");
+                	
+	 
+	  //parse array here and load calendar StrDate Show EndDate Etim Blok  Pay
+	 String pairing = null,showdate = null, showtime = null, enddate = null, endtime = null, Blok = null,  Pay = null, tripdate;
+	 //String[] tripData = new String[events.length];
+	
+	 
+	 int lines=(events.length - 3);
+	 for (int x = 0;x < lines; x++) {
+		
+		 	if(events[x].toString().contains("webtr")){
+		 		// parse relevant data from text
+		 		
+		 		int pairingStart = events[x].indexOf(">") + 1;
+		 		int pairingEnd = pairingStart + 4;
+		 		pairing = events[x].substring(pairingStart, pairingEnd).trim();
+		 		int tripdateStart = events[x].lastIndexOf("?") + 1;
+		 		tripdate = events[x].substring(tripdateStart,tripdateStart + 7);
+		 		showdate = events[x].substring(pairingEnd + 37, pairingEnd + 44).trim();
+		 		showtime = events[x].substring(pairingEnd + 45, pairingEnd + 49).trim();
+		 		enddate = events[x].substring(pairingEnd + 50, pairingEnd + 57).trim();
+		 		endtime = events[x].substring(pairingEnd + 58, pairingEnd + 62).trim();
+		 		Blok = events[x].substring(pairingEnd + 63, pairingEnd + 68).trim();
+		 		Pay = events[x].substring(pairingEnd + 69, pairingEnd + 74).trim();
+		 	
+		 		
+		 		
+		 	
+		 	
+		 	 String TripDetails = getTripDetails(pairing,tripdate);
+			 // parse out the data
+			
+		 	int StartAt = TripDetails.indexOf("<!--  B E G I N   M A I N   C O N T E N T  -->");
+			int EndAt = TripDetails.indexOf("<!-- E N D   O F   M A I N   C O N T E N T -->");
+			String tripdata = TripDetails.substring(StartAt, EndAt);
+			String TripId = pairing + tripdate;
+			SaveHtmlData(tripdata, TripId);  // save html data to load to image when listing out trips
+			 
+		
+		     final SQLiteDatabase db1 = mdbh.getWritableDatabase(); 
+			
+			  try {
+		    	   db1.execSQL("Insert into trips Values (" + null  + ", " + "'" + pairing + "','" + showdate + "','" + showtime + "','" + enddate + "','" +  endtime + "','" + Blok + "','"  + Pay   + "','" + Month + "','" + tripdate + "')");		  
+		    	   	db1.close();
+		    	   		  
+		       				}catch (Exception e){
+		    	   				// should not be any records !
+		    	   			
+		    	   	  } 
+		      }
+	       }
+
+        }
+  }
+public String loginDirectTripUpdate(String User, String PWD, String Grid, String Pairing, String Showdate, String base, String equip, String zululocal) {
+	
+
+
+	 try {
+		 DefaultHttpClient httpClient = AppSettings.getClient();
+		 //sync cookies
+		 
+		 Cookie sessionInfo;
+			List<Cookie> cookies = httpClient.getCookieStore().getCookies();
+
+			if (! cookies.isEmpty()){
+			        CookieSyncManager.createInstance(getApplicationContext());
+			        CookieManager cookieManager = CookieManager.getInstance();
+
+			        for(Cookie cookie : cookies){
+			                sessionInfo = cookie;
+			                String cookieString = sessionInfo.getName() + "=" + sessionInfo.getValue() + "; domain=" + sessionInfo.getDomain();
+			                cookieManager.setCookie("pilot.fedex.com", cookieString);
+			                CookieSyncManager.getInstance().sync();
+			        }
+			}
+		 
+		 
+		 
+		 
+       HttpPost httpPost = new HttpPost("https://pilot.fedex.com/TwoFactorAuthentication/AuthenticationController/secondfactor");
+	    List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(5);
+
+	    nameValuePairs.add(new BasicNameValuePair("userId", User));
+	    nameValuePairs.add(new BasicNameValuePair("imagePath", imagePath));
+	    nameValuePairs.add(new BasicNameValuePair("redirectPath", "https://pilot.fedex.com/"));
+	    nameValuePairs.add(new BasicNameValuePair("sessionID", sessionId));
+	    nameValuePairs.add(new BasicNameValuePair("gridResponse", Grid));
+	    // Encode the entities to UTF-8
+	    httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs, "UTF-8"));
+	    // Response from the Http Request
+	    
+		
+	    HttpResponse response1 = httpClient.execute(httpPost);
+	    localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
+       HttpEntity resEntity1 = response1.getEntity();
+       //String data =  EntityUtils.toString(resEntity1);
+       
+       resEntity1.consumeContent();
+       
+     
+    
+       HttpPost httpPostUpdate = new HttpPost("https://pilot.fedex.com/vips-bin/vipscgi?webtr?"+Pairing.trim()+"?"+ base.trim() +  "?" + equip.trim() + "?" +  Showdate.trim() + "?N?Y?"+zululocal.trim()+"?"); // get trip
+		    HttpResponse response = httpClient.execute(httpPostUpdate);
+		    HttpEntity resEntity = response.getEntity();
+		    String data1 = EntityUtils.toString(resEntity);
+		   
+		  
+		    
+		    resEntity.consumeContent();
+		    
+		    String TripDetails = data1;
+			 // parse out the data
+			 int StartAt = TripDetails.indexOf("<!--  B E G I N   M A I N   C O N T E N T  -->");
+	       	int EndAt = TripDetails.indexOf("<!-- E N D   O F   M A I N   C O N T E N T -->");
+		    String tripdata = TripDetails.substring(StartAt, EndAt);
+		 
+			SaveHtmlData(tripdata, Pairing);  // save html data to load to image when listing out trips
+			
+			
+			
+		    
+		    
+		 	
+			
+			
+			tripdata = "Trip Updated";
+		
+			  Intent myIntent = new Intent(getBaseContext(), onlinelauncher.class);
+	          startActivityForResult(myIntent, 0);
+		    return null;
+		 
+		      } catch (IOException e) {
+		            Log.e("Exception", "IOException", e);
+		      } catch (Exception e) {
+		            Log.e("Exception", "General Exception", e);
+		     }
+	 
+	  return null;
+
+
+}
+public String getTripDetails(String tripnum,String dte){
+
+	
+
+	// tripnum shoud be like 83Sep12
+	tripDetails= "";
+	String data2 = readuserdata();
+  	final String[] logdata2 = data2.split(",");
+  	String base = logdata2[2].trim();
+   	String equip= logdata2[3].trim();
+  	String zululocal = logdata2[5].trim();
+	
+	try {
+		DefaultHttpClient httpClient = AppSettings.getClient();
+		
+		///sync cookies
+		
+		Cookie sessionInfo;
+		List<Cookie> cookies = httpClient.getCookieStore().getCookies();
+
+		if (! cookies.isEmpty()){
+		        CookieSyncManager.createInstance(getApplicationContext());
+		        CookieManager cookieManager = CookieManager.getInstance();
+
+		        for(Cookie cookie : cookies){
+		                sessionInfo = cookie;
+		                String cookieString = sessionInfo.getName() + "=" + sessionInfo.getValue() + "; domain=" + sessionInfo.getDomain();
+		                cookieManager.setCookie("pilot.fedex.com", cookieString);
+		                CookieSyncManager.getInstance().sync();
+		        }
+		}
+		
+		
+		String postString = "https://pilot.fedex.com/vips-bin/vipscgi?webtr?"+ tripnum +"?"+base.trim()+"?"+ equip + "?" + dte + "?N?Y?"+zululocal+"?";
+	    HttpPost httpPost = new HttpPost(postString); // gets scheduled month details
+	    HttpResponse response = httpClient.execute(httpPost);
+	    localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
+	    HttpEntity resEntity = response.getEntity();
+	   tripDetails = EntityUtils.toString(resEntity);
+	   resEntity.consumeContent();
+	  
+	   
+	   String src = "triprq";
+		  String botCode = Botchecker(tripDetails,src);
+		  
+		  if (botCode != null){
+			  // resubmit with botcode
+			 
+			   
+		  HttpPost httpPost2 = new HttpPost("https://pilot.fedex.com/vips-bin/vipscgi?webtr"); // + tripnum.trim()+"?" + base.trim()+"?"+equip.trim()+"?"+dte.trim()+"?"+"N?Y?"+botCode.toString()+"?"+ zululocal + "?");
+		   List<NameValuePair> nameValuePairs2 = new ArrayList<NameValuePair>(9);
+
+		    nameValuePairs2.add(new BasicNameValuePair("n001", tripnum.trim()));// base
+		    nameValuePairs2.add(new BasicNameValuePair("n002", base.trim())); //equip
+		    nameValuePairs2.add(new BasicNameValuePair("n003", equip.trim())); //equip
+		    nameValuePairs2.add(new BasicNameValuePair("n004", dte.trim())); // trip date
+		    nameValuePairs2.add(new BasicNameValuePair("n005", "Recap Format")); 
+		   nameValuePairs2.add(new BasicNameValuePair("n006", "on")); 
+		   
+		   nameValuePairs2.add(new BasicNameValuePair("nCTL", botCode.toString()));	
+		    nameValuePairs2.add(new BasicNameValuePair("nTRN", "webtr   "));
+		    nameValuePairs2.add(new BasicNameValuePair("n999", " Submit "));
+		    
+		  
+		    httpPost2.setEntity(new UrlEncodedFormEntity(nameValuePairs2, "UTF-8"));
+		    HttpResponse response2 = httpClient.execute(httpPost2);
+		    localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
+	        HttpEntity resEntity2 = response2.getEntity();
+	        tripDetails =  EntityUtils.toString(resEntity2);
+	        resEntity2.consumeContent();	
+		   
+		   }
+		   
+		    return tripDetails;
+	    
+	
+	
+	
+	} catch (IOException e) {
+         Log.e("Exception", "IOException", e);
+   } catch (Exception e) {
+         Log.e("Exception", "General Exception", e);
+  }
+	return null;
+
+	
+	
+	
+	
+}
+public void SaveHtmlData(final String HtmlData, String TripId){
+	
+	
+	  //set the path where we want to save the file
+File SDCardRoot = Environment.getExternalStorageDirectory();
+File dir = new File (SDCardRoot.getAbsolutePath() + "/FdxTrips");
+if(!dir.exists())
+{
+dir.mkdirs();
+}
+
+
+final File file = new File(dir, TripId);  //any name abc.html
+
+
+	    	 		byte[] data = new String(HtmlData).getBytes();
+	    	 			try {
+	    	 				FileOutputStream f = new FileOutputStream(file);
+	    	 	 
+	    	 				f = new FileOutputStream(file);
+	    	 				f.write(data);
+	    	 				f.flush();
+	    	 				f.close();
+	    	 	
+	    	 	} catch (IOException e) {
+	    	 	   utilities util = new utilities();
+	    	 	   String msg = "Error Writing trip to SD card";
+	    	 	   util.showaction(msg, egridcalculator.this);
+	    	 	}
+		
+
+}
+///////////
+
+
+///// PFC login
+public void loginDirectPFC(String User, String PWD, String Grid) {
+	
+
+
+	 try {
+		 
+		 
+		 
+       HttpPost httpPost = new HttpPost("https://pilot.fedex.com/TwoFactorAuthentication/AuthenticationController/secondfactor");
+	    List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(5);
+
+	   nameValuePairs.add(new BasicNameValuePair("userId", User));
+	   nameValuePairs.add(new BasicNameValuePair("imagePath", imagePath));
+	   nameValuePairs.add(new BasicNameValuePair("redirectPath", "https://pilot.fedex.com/"));
+   	   nameValuePairs.add(new BasicNameValuePair("sessionID", sessionId));
+	   nameValuePairs.add(new BasicNameValuePair("gridResponse", Grid));
+	   httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs, "UTF-8"));
+	 
+	     HttpResponse response1 = httpClient.execute(httpPost);
+	     localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
+         HttpEntity resEntity1 = response1.getEntity();
+         //String data =  EntityUtils.toString(resEntity1);
+         resEntity1.consumeContent();
+       
+         Intent myIntent1 = new Intent(getBaseContext(),  pcalbrows.class);
+		 startActivityForResult(myIntent1, 0);
+       
+          } catch (Exception e) {
+         //
+   }
+	
+	 
+}
+
+///////
+
+
+/// login routines //////
+public boolean isNetworkAvailable() {
+    ConnectivityManager cm = (ConnectivityManager) 
+    	getSystemService(Context.CONNECTIVITY_SERVICE);
+    NetworkInfo networkInfo = cm.getActiveNetworkInfo();
+    // if no network is available networkInfo will be null
+    // otherwise check if we are connected
+    if (networkInfo != null && networkInfo.isConnected()) {
+        return true;
+    }
+    return false;
+} 
+private Bitmap startSession() throws ClientProtocolException, IOException{
+	
+	
+	  
+	  
+	  if ((isNetworkAvailable()) && (SessionStarted == false)){
+		  DefaultHttpClient httpClient =  AppSettings.getClient();	  
+	  String data = readuserdata();
+	  if (data != "File Missing")   {
+	 
+		  String[] logdata = data.split(",");
+	  final String uid = logdata[0];
+	  final String pwd = logdata[1];
+	  
+	  
+	    HttpPost httpPost1 = new HttpPost("https://pilot.fedex.com/"); 
+	    HttpResponse response = httpClient.execute(httpPost1);
+	    localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
+	    HttpEntity resEntity = response.getEntity();
+	    String data1 = EntityUtils.toString(resEntity);
+	    resEntity.consumeContent();
+	
+
+	 
+	 if (data1.contains("SSO Login")){
+		
+		 //// post username and password to pfc to get egrid link page
+		 try {
+
+			 
+		     HttpPost httpPost = new HttpPost("https://pilot.fedex.com/TwoFactorAuthentication/AuthenticationController/firstfactor");
+		     List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+		     nameValuePairs.add(new BasicNameValuePair("userId", uid));
+			 nameValuePairs.add(new BasicNameValuePair("password", pwd));
+			 httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs, "UTF-8"));
+			 HttpResponse response1 = httpClient.execute(httpPost);
+			 localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
+		     HttpEntity resEntity1 = response1.getEntity();
+		     String pfcResponse =  EntityUtils.toString(resEntity1);
+		     resEntity1.consumeContent();
+		
+		  
+			         String ImageURL = getImageUrl(pfcResponse);
+		             sessionId = getSessionId(pfcResponse);
+		             redirect = "https://pilot.fedex.com/redirect/";
+		             imagePath = ImageURL;
+		             
+		             
+		         	HttpUriRequest request = new HttpGet(ImageURL);
+		           	HttpResponse response3 = httpClient.execute(request);
+		           	
+		           	// long contentLenght = response.getEntity().getContentLength();
+		             BufferedHttpEntity bufferedHttpEntity = new BufferedHttpEntity(response3.getEntity());
+		             
+		             
+		            Bitmap   bm = BitmapFactory.decodeStream(bufferedHttpEntity.getContent());
+		           
+		             SessionStarted = true;
+		    		 
+		    		 return bm;
+		  
+		 }	finally {}
+	
+	
+
+	 }else{
+		 
+		 // we may be already logged on !
+		
+		 
+		
+	 }
+	
+	  } else {
+		 
+		  Intent myIntent1 = new Intent(getBaseContext(), setUserPwd.class);
+		  startActivityForResult(myIntent1, 0);
+	  }
+	
+
+	  }
+	return null;
+
+}
+public String loginWithEGRID(String User, String PWD, String Grid) {
+	
+
+
+	 try {
+		DefaultHttpClient httpClient = AppSettings.getClient();
+       HttpPost httpPost = new HttpPost("https://pilot.fedex.com/TwoFactorAuthentication/AuthenticationController/secondfactor");
+	    List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(5);
+
+	    nameValuePairs.add(new BasicNameValuePair("userId", User));
+	    nameValuePairs.add(new BasicNameValuePair("imagePath", imagePath));
+	    nameValuePairs.add(new BasicNameValuePair("redirectPath",redirect));
+	    nameValuePairs.add(new BasicNameValuePair("sessionID", sessionId));
+	    nameValuePairs.add(new BasicNameValuePair("gridResponse", Grid));
+	    // Encode the entities to UTF-8
+	    httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs, "UTF-8"));
+	    // Response from the Http Request
+	    
+		
+	    HttpResponse response1 = httpClient.execute(httpPost);
+	    localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
+       HttpEntity resEntity1 = response1.getEntity();
+       String data =  EntityUtils.toString(resEntity1);
+       resEntity1.consumeContent();
+       
+    
+     if (data.contains("SSO Login")){
+    	 String errmsg = "Egrid Login failed";
+    	 return errmsg;
+    	 
+    
+     }
+      
+      
+      
+     
+
+     } catch (IOException e) {
+           Log.e("Exception", "IOException", e);
+     } catch (Exception e) {
+           Log.e("Exception", "General Exception", e);
+    }
+	 
+
+return "Login Success";
+
+}
+
+public String Botchecker(String pageData, String src){
+	
+	String LinkToDigits;
+	String botCode = null ;
+	Bitmap bm = null;
+	// search the string for occurance of ....  Please enter the control code shown below
+	
+	if (pageData.contains("Please enter the control code shown below to submit your request")) {
+		
+		// this a botpage
+		if (src.equals("otrq")){
+		LinkToDigits = "/vips-bin/vipscgi?webdgts??webdd";
+		}else{
+		LinkToDigits = "/vips-bin/vipscgi?webdgts??webtr";	
+		}
+		// go get the digits and display in alert dialog
+		
+		
+		
+
+		
+		 DefaultHttpClient httpClient = AppSettings.getClient();
+			 Cookie sessionInfo;
+				List<Cookie> cookies = httpClient.getCookieStore().getCookies();
+
+				if (! cookies.isEmpty()){
+				        CookieSyncManager.createInstance(ctx);
+				        CookieManager cookieManager = CookieManager.getInstance();
+
+				        for(Cookie cookie : cookies){
+		        	
+				        	   sessionInfo = cookie;
+				                String cookieString = sessionInfo.getName() + "=" + sessionInfo.getValue() + "; domain=" + sessionInfo.getDomain();
+				                cookieManager.setCookie("pilot.fedex.com", cookieString);
+				                CookieSyncManager.getInstance().sync();
+				        }
+				}
+			 	
+				try {
+				    HttpPost httpPost1 = new HttpPost("https://pilot.fedex.com/" + LinkToDigits);
+				    HttpResponse response = httpClient.execute(httpPost1);
+					localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
+				    HttpEntity resEntity = response.getEntity();
+				    String data1 = EntityUtils.toString(resEntity); //  this string should have links to digits
+				    resEntity.consumeContent();
+	
+				    Document doc = Jsoup.parse(data1);
+				    Elements media = doc.select("[SRC]");
+			   	 	
+			   	 	
+				    
+			   	  StringBuilder sb = new StringBuilder();
+			   	  for (org.jsoup.nodes.Element src1 : media) {  // get path of EGRID image from webpage
+			   		  
+			   		  String attrval = src1.attributes().toString();
+			             if (attrval.contains("/vipsfiles/bots/")){
+			           	  
+			           	  attrval = attrval.substring(attrval.length() - 11);
+			           	  attrval = attrval.substring(0,attrval.length()- 1);
+			           	 String ImageURL = "https://pilot.fedex.com/vipsfiles/bots/" + attrval.trim();
+			         
+			           	HttpUriRequest request = new HttpGet(ImageURL);
+			           	HttpResponse response1 = httpClient.execute(request);
+			           
+			             BufferedHttpEntity bufferedHttpEntity = new BufferedHttpEntity(response1.getEntity());
+
+			              bm = BitmapFactory.decodeStream(bufferedHttpEntity.getContent());
+			            
+			                  String digit = u.readBotCode(bm);
+			                  sb.append(digit.toString());
+			            }
+			             
+			   	  } // end for loop
+			   	
+			   	  botCode = sb.toString();
+			   	  return botCode;
+				
+				
+				
+				} catch (ClientProtocolException e) {
+					return "Protocol Exception";
+					} catch (IOException e) {
+					return "IOException";
+					}
+				
+	
+				} else {
+					
+				return null;
+
+				}
+	
+}
+
+
+
+////////////////////////////////////////////
+
+
+public String computeEgrid(String codePairs){
+	
+	String[] pairs = codePairs.split(" ");
+
+	String Col1 = null;
+	int row = 0;
+	String Result = "";
+	
+	UserDataHelper mdbh = new UserDataHelper(egridcalculator.this.getApplicationContext());
+    final SQLiteDatabase db = mdbh.getWritableDatabase();
+	
+	for (int i = 0 ; i<=2;i++){
+		
+		Col1 = pairs[i].substring(0,1);
+		row = Integer.parseInt(pairs[i].substring(1,2));
+		
+		Cursor c = db.rawQuery("Select " + Col1 + " from egrid where _id = " + row  ,null);
+		if (c.getCount() > 0) {
+		
+		c.moveToFirst();
+		Result =  Result + c.getString(0).toString();
+
+	}
+		Result = Result.trim();
+	c.close();	
+	
+}
+	
+	db.close();
+	return Result;
+}
+
+
+private class LongLoginDirectPFC extends AsyncTask<String, Void, String> {
+	 
+	  @Override
+	  protected String doInBackground(String... params) {
+	    // perform long running operation operation
+		  
+		  
+		 
+		 
+		  String[] pData = params[0].split(",");
+		  String  grd = pData[0];
+		  String uid = pData[1];
+			
+			 
+			
+			 try {
+				 
+				 
+				 
+			       HttpPost httpPost = new HttpPost("https://pilot.fedex.com/TwoFactorAuthentication/AuthenticationController/secondfactor");
+				    List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(5);
+
+				   nameValuePairs.add(new BasicNameValuePair("userId", uid));
+				   nameValuePairs.add(new BasicNameValuePair("imagePath", imagePath));
+				   nameValuePairs.add(new BasicNameValuePair("redirectPath", "https://pilot.fedex.com/"));
+			   	   nameValuePairs.add(new BasicNameValuePair("sessionID", sessionId));
+				   nameValuePairs.add(new BasicNameValuePair("gridResponse", grd));
+				   httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs, "UTF-8"));
+				 
+				     HttpResponse response1 = httpClient.execute(httpPost);
+				     localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
+			         HttpEntity resEntity1 = response1.getEntity();
+			         //String data =  EntityUtils.toString(resEntity1);
+			         resEntity1.consumeContent();
+			       
+			        
+			       
+			          } catch (Exception e) {
+			         //
+			   }
+			 
+		return null;
+	    
+	  }
+	 
+	 
+	  @Override
+	  protected void onPostExecute(String result) 
+	  {
+	    // execution of result of Long time consuming operation
+		// parse data and write to file
+		  	
+		  pd.dismiss();
+		  Intent myIntent1 = new Intent(getBaseContext(),  pcalbrows.class);
+			 startActivityForResult(myIntent1, 0);
+	  }
+	 
+	 
+	  @Override
+	  protected void onPreExecute()
+	  {
+	  // Things to be done before execution of long running operation. For example showing ProgessDialog
+		  
+		  pd = ProgressDialog.show(ctx, "Logging in to PFC","please wait", true, false);
+	  
+	  }
+	 
+	  
+	  @Override
+	  protected void onProgressUpdate(Void... values) 
+	  {
+	      // Things to be done while execution of long running operation is in progress. For example updating ProgessDialog
+	   }
+}
+
+private class LogOut extends AsyncTask<Void, Void, String> {
+	 
+	  @Override
+	  protected String doInBackground(Void... params) {
+	    // perform long running operation operation
+		  
+		  
+		
+		 ClientConnectionManager cm = httpClient.getConnectionManager();
+		  cm.shutdown();
+		 SessionStarted = false;
+		 
+		 
+		 
+		 
+		 return null;
+	    
+	  }
+	 
+	 
+	  @Override
+	  protected void onPostExecute(String result) {
+	    // execution of result of Long time consuming operation
+		// parse data and write to file
+		  	
+		  pd.dismiss();
+		  Toast.makeText(egridcalculator.this, "session closed !", Toast.LENGTH_LONG).show();
+		
+	  }
+	 
+	  @Override
+	  protected void onPreExecute() {
+	  
+		  pd = ProgressDialog.show(ctx, "Closing PFC Connection","please wait", true, false);
+	  
+	  }
+	 
+	 @Override
+	  protected void onProgressUpdate(Void... values) {
+	      
+	   }
+}
+
+
+
+private class LongLoginWithEgridGetCal extends AsyncTask<String, Void, String> {
+	 
+	  @Override
+	  protected String doInBackground(String... params) {
+	    // perform long running operation operation
+		  
+		  
+		 
+		 
+		  
+		  String  uid = params[0];
+		  String grd = params[2];
+			
+			 
+			
+		  try {
+				DefaultHttpClient httpClient = AppSettings.getClient();
+		       HttpPost httpPost = new HttpPost("https://pilot.fedex.com/TwoFactorAuthentication/AuthenticationController/secondfactor");
+			    List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(5);
+
+			    nameValuePairs.add(new BasicNameValuePair("userId", uid));
+			    nameValuePairs.add(new BasicNameValuePair("imagePath", imagePath));
+			    nameValuePairs.add(new BasicNameValuePair("redirectPath",redirect));
+			    nameValuePairs.add(new BasicNameValuePair("sessionID", sessionId));
+			    nameValuePairs.add(new BasicNameValuePair("gridResponse", grd));
+			    // Encode the entities to UTF-8
+			    httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs, "UTF-8"));
+			    // Response from the Http Request
+			    
+				
+			    HttpResponse response1 = httpClient.execute(httpPost);
+			    localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
+		       HttpEntity resEntity1 = response1.getEntity();
+		       String data =  EntityUtils.toString(resEntity1);
+		       resEntity1.consumeContent();
+		       
+		    
+		     if (data.contains("SSO Login"))
+		         {
+		    	 String errmsg = "Egrid Login failed";
+		    	 return errmsg;
+		    	 }
+		      
+		      
+		     } catch (IOException e) {
+		           Log.e("Exception", "IOException", e);
+		     } catch (Exception e) {
+		           Log.e("Exception", "General Exception", e);
+		    }
+			 
+
+		return "Login Success" + "," + uid;
+
+	    
+	  }
+	 
+	 
+	  @Override
+	  protected void onPostExecute(String result) {
+	    // execution of result of Long time consuming operation
+		// parse data and write to file
+		  	
+		 String LoginResult[] = result.split(",");
+		 
+		 if (LoginResult[0].toString().equals("Login Success"))
+			{
+			new getMonthCalData().execute(LoginResult[1]);  // user ID is passed
+			}else{
+				pd.dismiss();
+				Toast.makeText(egridcalculator.this, "Login Failed", Toast.LENGTH_LONG).show();
+			}
+	 }
+	 
+	 //////// Start routines for Various PFC Fucntions /////////////////////////////
+	  @Override
+	  protected void onPreExecute() {
+	  // Things to be done before execution of long running operation. For example showing ProgessDialog
+		  
+		  pd = ProgressDialog.show(ctx, "Logging in ","please wait", true, false);
+	  
+	  }
+	 
+	  
+	  @Override
+	  protected void onProgressUpdate(Void... values) {
+	      // Things to be done while execution of long running operation is in progress. For example updating ProgessDialog
+	   }
+}
+
+
+public void StartPFC(){
+	
+	 EditText etgrid = (EditText)findViewById(R.id.coderesult);
+	 final String grid = etgrid.getText().toString();
+	 // try login direct
+	 String data2 = readuserdata();
+   	  final String[] logdata2 = data2.split(",");
+   	ImageView iv =(ImageView)findViewById(R.id.EGRIDVw);
+   	iv.setVisibility(4); // sets egrid invisible
+
+   	  
+    String grd = grid.toString();
+		String uid = logdata2[0].toString();
+		String pwd = logdata2[1].toString();
+		
+		
+		
+		new LongLoginDirectPFC().execute(grd + "," + uid + "," + pwd);
+		// logins with grid data to set cookies
+		// start webview activity 
+	
+	
+	
+	
+}
+
+public void StartCal(){
+	
+	// get the egrid value
+	 EditText etgrid = (EditText)findViewById(R.id.coderesult);
+	 final String grid = etgrid.getText().toString();
+	 // try login direct
+	 String data2 = readuserdata();
+  	  final String[] logdata2 = data2.split(",");
+  	ImageView i2 =(ImageView)findViewById(R.id.EGRIDVw);
+  	i2.setVisibility(4); // sets egrid invisible
+
+
+  //	launch calendar object
+    	
+			
+			 Builder builder =  new AlertDialog.Builder(egridcalculator.this);
+			 FrameLayout fl = new FrameLayout(egridcalculator.this); 
+			final EditText input = new EditText(egridcalculator.this);
+		    Calendar c = Calendar.getInstance();
+		 
+		 SimpleDateFormat month_date = new SimpleDateFormat("MMMyy");
+		
+		   
+		 	String monthDate = month_date.format(c.getTime());
+			
+			 input.setGravity(Gravity.CENTER);
+			      fl.addView(input, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.FILL_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT));
+			      input.setHint("Enter MMMYY to Load");
+			      input.setText(monthDate);
+			          
+			       builder.setView(fl);
+			       builder.setTitle("Enter Month");
+			          
+			        builder.setPositiveButton("OK", new DialogInterface.OnClickListener(){
+			    	      public void onClick(DialogInterface d, int which) {
+			    	    	 
+			    	 	   Month = input.getText().toString();
+			    	 	   d.dismiss();
+			    	 	 new LongLoginWithEgridGetCal().execute(logdata2[0].toString(),logdata2[1],grid);
+			          }});
+			        
+			        
+			        
+			     builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
+						public void onClick(DialogInterface d, int which) {
+						d.dismiss();
+						Intent myIntent = new Intent(getBaseContext(), PocketCal20.class);
+		 	 		    startActivityForResult(myIntent, 0);
+		 	 		    }});
+			 
+			     builder.create().show();
+	
+	
+	
+	
+	
+}
+public void StartOpen(){
+	
+	 EditText etgrid = (EditText)findViewById(R.id.coderesult);
+	 final String grid = etgrid.getText().toString();
+	 // try login direct
+	 String data2 = readuserdata();
+   	  final String[] logdata2 = data2.split(",");
+   	ImageView igopen =(ImageView)findViewById(R.id.EGRIDVw);
+   	igopen.setVisibility(4); // sets egrid invisible
+ 
+	 Bundle bun = new Bundle();
+	     	
+	     	bun.putString("grd", grid.toString());
+			bun.putString("id", logdata2[0].toString());
+			bun.putString("pw",  logdata2[1].toString());
+			bun.putString("zl", logdata2[5].toString().trim());
+			bun.putString("sesID", sessionId);
+			bun.putString("redir", redirect);
+			bun.putString("ip", imagePath);
+			//get open time for the next 30 days
+			
+	
+			
+			Intent myIntent1 = new Intent(getBaseContext(), OpenTime.class);
+			myIntent1.putExtras(bun);
+		    startActivityForResult(myIntent1, 0);
+	
+	
+	
+}
+
+public void StartUpdate(){
+	// update the trip image
+	 Bundle b1 = egridcalculator.this.getIntent().getExtras(); 
+	 
+	String pairing = b1.getString("prg");
+	 String tripdate = b1.getString("show");
+	
+	 EditText etgrid = (EditText)findViewById(R.id.coderesult);
+	 String updategrid = etgrid.getText().toString();
+	 // try login direct
+	 String data2 = readuserdata();
+  	  final String[] logdata2 = data2.split(",");
+	
+   ImageView iupdate =(ImageView)findViewById(R.id.EGRIDVw);
+  	iupdate.setVisibility(4); // sets egrid invisible
+	
+	  new tripUpdateLongOperation().execute(logdata2[0],logdata2[1],updategrid,pairing,tripdate,logdata2[2],logdata2[3],logdata2[5]);
+	
+	
+}
+
+public void StartOTSvc(){
+	//get open time for the next 30 days
+		
+	 EditText etgrid = (EditText)findViewById(R.id.coderesult);
+	 final String grid = etgrid.getText().toString();
+	 // try login direct
+	 String data2 = readuserdata();
+  	  final String[] logdata2 = data2.split(",");
+  	ImageView igopen =(ImageView)findViewById(R.id.EGRIDVw);
+  	igopen.setVisibility(4); // sets egrid invisible
+
+	 Bundle bun = new Bundle();
+	     	
+	     	bun.putString("grd", grid.toString());
+			bun.putString("id", logdata2[0].toString());
+			bun.putString("pw",  logdata2[1].toString());
+			bun.putString("zl", logdata2[5].toString().trim());
+			bun.putString("sesID", sessionId);
+			bun.putString("redir", redirect);
+			bun.putString("ip", imagePath);
+		  
+			Intent myIntent1 = new Intent(getBaseContext(), OpenTimeR.class);
+			myIntent1.putExtras(bun);
+		    startActivityForResult(myIntent1, 0);
+	
+	
+}
+
+} // end class
+
+
+
+
+
+
+

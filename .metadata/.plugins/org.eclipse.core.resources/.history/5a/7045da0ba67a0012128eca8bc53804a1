@@ -1,0 +1,392 @@
+package com.yctc.alpaware;
+
+import java.io.File;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
+import com.actionbarsherlock.app.ActionBar;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Environment;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.MenuInflater;
+// license checker imports
+
+
+
+
+public class PocketCal20 extends SherlockActivity {
+    /** Called when the activity is first created. */
+	
+		public String DBpath = "/data/data/com.yctc.alpaware/databases/";
+	
+		 ActionBar actionBar;
+		 Context ctx = PocketCal20.this;
+		 
+		
+		
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+   
+        actionBar = getSupportActionBar();
+         
+        try {
+        	installCBAFiles();
+        	copyMiscFiles();
+        //	db.close();
+        	
+		} catch (IOException e) {
+		    e.printStackTrace();
+		}
+        
+       
+          
+
+}
+
+    public boolean onCreateOptionsMenu(com.actionbarsherlock.view.Menu menu){
+		MenuInflater inflater=getSupportMenuInflater();
+		inflater.inflate(R.menu.mainmenu, menu);
+		
+		
+		
+            			
+		
+		return true;
+		}	
+    
+    public boolean onOptionsItemSelected (com.actionbarsherlock.view.MenuItem item ){
+			
+		switch (item.getItemId()){
+		
+		case R.id.MECmnu :
+			  Intent myIntent = new Intent(ctx, mec.class);
+	          startActivityForResult(myIntent, 0);
+		return true;
+		case R.id.PFCmnu:
+			 Intent myIntent1 = new Intent(ctx, onlinelauncher.class);
+             startActivityForResult(myIntent1, 0);
+		return true;
+		case R.id.KCMmnu:
+			 Intent myIntent2 = new Intent(ctx, KCM.class);
+			 startActivityForResult(myIntent2, 0);
+		return true;
+		case R.id.IEmnu:
+			 Intent myIntent3 = new Intent(ctx, iemain.class);
+			 startActivityForResult(myIntent3, 0);
+		return true;
+		case R.id.CBAmnu:
+			 Intent myIntent4 = new Intent(ctx, cba.class);
+			 startActivityForResult(myIntent4, 0);
+		return true;
+		case R.id.ACmnu:
+			 Intent myIntent5 = new Intent(ctx, acequiplaunch.class);
+			 startActivityForResult(myIntent5, 0);
+		return true;
+		case R.id.FLTmnu:
+			 Intent myIntent6 = new Intent(ctx, fltlogmain.class);
+			 startActivityForResult(myIntent6, 0);
+		return true;
+		case R.id.EXPmnu:
+			 Intent myIntent7 = new Intent(ctx, explogmain.class);
+			 startActivityForResult(myIntent7, 0);
+		return true;
+		case R.id.FRQmnu:
+			 Intent myIntent8 = new Intent(ctx, freqs.class);
+			 startActivityForResult(myIntent8, 0);
+		return true;
+		case R.id.FDXmnu:
+			 String s = "FedEx.pdf";
+    			ShowFile(s);
+		return true;
+		case R.id.RHGmnu:
+			 Intent myIntent9 = new Intent(ctx, ramphotelmain.class);
+			 startActivityForResult(myIntent9, 0);
+		return true;
+		case R.id.JMPmnu:
+			 Intent myIntent10 = new Intent(ctx,jumpseatmain.class);
+			 startActivityForResult(myIntent10, 0);
+		return true;
+		case R.id.PDFmnu:
+			 Intent myIntent11 = new Intent(ctx,pdf.class);
+			 startActivityForResult(myIntent11, 0);
+		return true;
+		case R.id.FILmnu:
+			 Intent myIntent12 = new Intent(ctx,filemaintmain.class);
+			 startActivityForResult(myIntent12, 0);
+		return true;
+		case R.id.HLPmnu:
+			String s1 = "Help.pdf";
+        	ShowFile(s1);
+		return true;
+		case R.id.ABTmnu:
+			 Intent myIntent13 = new Intent(ctx,about.class);
+			 startActivityForResult(myIntent13, 0);
+		return true;
+		
+		
+		}
+		return false;
+    }
+			
+	public void installCBAFiles(){    
+		// install files to system if they don't already exist
+	File sd = new File(Environment.getExternalStorageDirectory().toString() + "/cba/");
+	
+	
+	//File cbadir = new File(CBApath);
+	if (sd.exists() == false) {
+	sd.mkdir(); }
+	
+	
+	 for (int i = 1; i <= 31;i++) {
+		 String filename = "Section" + i + ".pdf";
+	 File cbafile = new File(sd,filename);
+	 
+	 if (cbafile.exists()){
+		 
+	 }else{
+	
+	try {
+		InputStream in = this.getResources().getAssets().open(filename);
+		OutputStream out = new FileOutputStream(sd + "/" + filename); // Transfer bytes from in to out
+	    byte[] buf = new byte[1024]; 
+	    int len;
+	    while ((len = in.read(buf)) != -1)
+		{ out.write(buf, 0, len); 
+		}  in.close(); 
+	    out.flush();
+     	out.close();
+     	
+     	if (i==31){
+     	utilities util = new utilities();
+     	Context ctx = getApplicationContext();
+     	util.showaction("CBA files Installed to Sd Card",ctx);
+     	}
+	} catch (IOException e) {
+		
+		e.printStackTrace();
+	utilities util = new utilities();
+ 	Context ctx = getApplicationContext();
+ 	
+ 	util.showaction(" CBA file " + filename + " Install failed",ctx);}
+	} }
+	 
+	 for (int i = 1; i <= 7;i++) {
+		 String filename = "LOA" + i + ".pdf";
+	 File cbafile = new File(sd,filename);
+	 
+	 if (cbafile.exists()){
+		 
+	 }else{
+	
+	try {
+		InputStream in = this.getResources().getAssets().open(filename);
+		OutputStream out = new FileOutputStream(sd + "/" + filename); // Transfer bytes from in to out
+	    byte[] buf = new byte[1024]; 
+	    int len;
+	    while ((len = in.read(buf)) != -1)
+		{ out.write(buf, 0, len); 
+		}  in.close(); 
+	    out.flush();
+     	out.close();
+     	
+     	if (i==7){
+     	utilities util = new utilities();
+     	Context ctx = getApplicationContext();
+     	util.showaction("LOA files Installed to Sd Card",ctx);
+     	}
+	} catch (IOException e) {
+		
+		e.printStackTrace();
+	utilities util = new utilities();
+ 	Context ctx = getApplicationContext();
+ 	
+ 	util.showaction(" LOA Install failed",ctx);}
+	} }
+	 
+	 }
+	
+	
+	 void copyMiscFiles() throws IOException { 
+		 File sd = new File(Environment.getExternalStorageDirectory().toString() + "/cba/");
+     	
+     	if (sd.canWrite() == false) {
+     	sd.mkdir(); }
+     	
+     	
+     	
+    	
+    	
+    	 
+    	 File cbafile = new File(sd,"/TOC.pdf");
+    	 
+    	 if (cbafile.exists() == true){
+    		 // do nothing
+    	 }else{
+     	 InputStream in = getResources().getAssets().open("TOC.pdf"); 
+      	OutputStream out = new FileOutputStream(sd + "/TOC.pdf"); // Transfer bytes from in to out
+      	byte[] buf = new byte[1024]; 
+      	int len; 
+      	while ((len = in.read(buf)) > 0)
+      	{ out.write(buf, 0, len); 
+      	}  in.close(); 
+	    out.flush();
+     	out.close(); 
+    	 }     	
+     
+    	
+ 	
+    	
+ 	
+    	 File cbafile3 = new File(sd,"/cbaIndex.pdf");
+    	 
+    	 if (cbafile3.exists()){
+    		 // do nothing
+    	 }else{
+     	 InputStream in = getResources().getAssets().open("cbaIndex.pdf"); 
+      	OutputStream out = new FileOutputStream(sd + "/cbaIndex.pdf"); // Transfer bytes from in to out
+      	byte[] buf = new byte[1024]; 
+      	int len; 
+      	while ((len = in.read(buf)) > 0)
+      	{ out.write(buf, 0, len); 
+      	}  in.close(); 
+	    out.flush();
+     	out.close();
+     	
+    	 }
+     	
+     	File pdf1 = new File(sd,"/FedEx.pdf");
+   	 
+   	 if (pdf1.exists()){
+   		 // do nothing
+   	 }else{
+    	 InputStream in = getResources().getAssets().open("FedEx.pdf"); 
+     	OutputStream out = new FileOutputStream(sd + "/FedEx.pdf"); // Transfer bytes from in to out
+     	byte[] buf = new byte[1024]; 
+     	int len; 
+     	while ((len = in.read(buf)) > 0)
+     	{ out.write(buf, 0, len); 
+     	}  in.close(); 
+	    out.flush();
+    	out.close();
+    	
+    	
+   	 }
+    	File pdf2 = new File(sd,"/FTDTv2.pdf");
+      	 
+      	 if (pdf2.exists()){
+      		 // do nothing
+      	 }else{
+       	 InputStream in = getResources().getAssets().open("FTDTv2.pdf"); 
+        	OutputStream out = new FileOutputStream(sd + "/FTDTv2.pdf"); // Transfer bytes from in to out
+        	byte[] buf = new byte[1024]; 
+        	int len; 
+        	while ((len = in.read(buf)) > 0)
+        	{ out.write(buf, 0, len); 
+        	}  in.close(); 
+   	    out.flush();
+       	out.close();
+       	
+      	}
+     	File pdf3 = new File(sd,"/Jumpseat_Guide.pdf");
+       	 
+       	 if (pdf3.exists()){
+       		 // do nothing
+       	 }else{
+        	 InputStream in = getResources().getAssets().open("Jumpseat_Guide.pdf"); 
+         	OutputStream out = new FileOutputStream(sd + "/Jumpseat_Guide.pdf"); // Transfer bytes from in to out
+         	byte[] buf = new byte[1024]; 
+         	int len; 
+         	while ((len = in.read(buf)) > 0)
+         	{ out.write(buf, 0, len); 
+         	}  in.close(); 
+    	    out.flush();
+        	out.close();
+        	
+       	 }
+        	File pdf4 = new File(sd,"/Contract_Info.pdf");
+          	 
+          	 if (pdf4.exists()){
+          		 // do nothing
+          	 }else{
+           	 InputStream in = getResources().getAssets().open("Contract_Info.pdf"); 
+            	OutputStream out = new FileOutputStream(sd + "/Contract_Info.pdf"); // Transfer bytes from in to out
+            	byte[] buf = new byte[1024]; 
+            	int len; 
+            	while ((len = in.read(buf)) > 0)
+            	{ out.write(buf, 0, len); 
+            	}  in.close(); 
+       	    out.flush();
+           	out.close();
+           	
+          	}
+         	File pdf5 = new File(sd,"/Travel_Info.pdf");
+           	 
+           	 if (pdf5.exists()){
+           		 // do nothing
+           	 }else{
+            	 InputStream in = getResources().getAssets().open("Travel_Info.pdf"); 
+             	OutputStream out = new FileOutputStream(sd + "/Travel_Info.pdf"); // Transfer bytes from in to out
+             	byte[] buf = new byte[1024]; 
+             	int len; 
+             	while ((len = in.read(buf)) > 0)
+             	{ out.write(buf, 0, len); 
+             	}  in.close(); 
+        	    out.flush();
+            	out.close();
+           	 }
+           	File pdf6 = new File(sd,"/Help.pdf");
+          	 
+          	 if (pdf6.exists()){
+          		 // do nothing
+          	 }else{
+           	 InputStream in = getResources().getAssets().open("Help.pdf"); 
+            	OutputStream out = new FileOutputStream(sd + "/Help.pdf"); // Transfer bytes from in to out
+            	byte[] buf = new byte[1024]; 
+            	int len; 
+            	while ((len = in.read(buf)) > 0)
+            	{ out.write(buf, 0, len); 
+            	}  in.close(); 
+       	    out.flush();
+           	out.close();
+   
+        	
+       	utilities util = new utilities();
+       	Context ctx = getApplicationContext();
+       	
+     	util.showaction("Misc files Installed to Sd Card",ctx);}
+     	
+    	 }
+	
+	 void ShowFile(String s) {
+	    	
+	    	
+	    	Intent intent = new Intent();
+	    	 intent.setAction(android.content.Intent.ACTION_VIEW);
+	    	 File file = new File("mnt/sdcard/cba/" + s);
+	    	 intent.setDataAndType(Uri.fromFile(file), "application/pdf");  
+	    	 startActivity(intent);
+	    }
+	
+	
+}	 
+	
+
+
+	
+

@@ -1,0 +1,26 @@
+what,kind,bundleId,bundleVersion,description,time
+activated,editor,com.android.ide.eclipse.adt,12.0.0.v201106281929-138431,"com.android.ide.eclipse.editors.layout.LayoutEditor",1312383094315
+executed,command,org.eclipse.ui,3.5.2.M20100120-0800,"org.eclipse.ui.edit.delete",1312383108847
+error,log,,,"main.xml: Paint.setShadowLayer is not supported.",1312383118909
+error,log,,,"main.xml: Paint.setShadowLayer is not supported.",1312383118925
+error,log,,,"main.xml: Paint.setShadowLayer is not supported.",1312383118925
+error,log,,,"main.xml: Paint.setShadowLayer is not supported.",1312383118925
+error,log,,,"main.xml: Paint.setShadowLayer is not supported.",1312383118925
+error,log,,,"main.xml: Paint.setShadowLayer is not supported.",1312383118925
+error,log,,,"main.xml: Paint.setShadowLayer is not supported.",1312383118925
+error,log,,,"main.xml: Paint.setShadowLayer is not supported.",1312383118941
+error,log,,,"main.xml: Paint.setShadowLayer is not supported.",1312383118941
+error,log,,,"main.xml: Paint.setShadowLayer is not supported.",1312383118941
+error,log,,,"main.xml: Paint.setShadowLayer is not supported.",1312383118941
+error,log,,,"main.xml: Paint.setShadowLayer is not supported.",1312383157676
+error,log,,,"main.xml: Paint.setShadowLayer is not supported.",1312383157676
+error,log,,,"main.xml: Paint.setShadowLayer is not supported.",1312383157676
+error,log,,,"main.xml: Paint.setShadowLayer is not supported.",1312383157676
+error,log,,,"main.xml: Paint.setShadowLayer is not supported.",1312383157676
+error,log,,,"main.xml: Paint.setShadowLayer is not supported.",1312383157691
+error,log,,,"main.xml: Paint.setShadowLayer is not supported.",1312383157691
+error,log,,,"main.xml: Paint.setShadowLayer is not supported.",1312383157691
+error,log,,,"main.xml: Paint.setShadowLayer is not supported.",1312383157691
+error,log,,,"main.xml: Paint.setShadowLayer is not supported.",1312383157691
+error,log,,,"main.xml: Paint.setShadowLayer is not supported.",1312383157691
+error,log,,,"main.xml: Paint.setShadowLayer is not supported.",1312383161207

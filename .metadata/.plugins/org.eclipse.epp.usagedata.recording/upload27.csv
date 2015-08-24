@@ -1,0 +1,26 @@
+what,kind,bundleId,bundleVersion,description,time
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311728641090
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311728642137
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311728642152
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311728642246
+activated,view,org.eclipse.ui.console,3.4.0.v20090513,"org.eclipse.ui.console.ConsoleView",1311728646903
+activated,view,org.eclipse.ui.navigator.resources,3.4.1.M20090826-0800,"org.eclipse.ui.navigator.ProjectExplorer",1311728650637
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311728658731
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311728662262
+error,log,,,"Problems occurred when invoking code from plug-in: ""org.eclipse.jface"".",1311728662262
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311728679747
+error,log,,,"java.lang.NullPointerException",1311728679747
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311728679763
+executed,command,org.eclipse.ui.ide,3.5.2.M20100113-0800,"org.eclipse.ui.project.properties",1311728679794
+activated,view,org.eclipse.ui.console,3.4.0.v20090513,"org.eclipse.ui.console.ConsoleView",1311728685450
+activated,view,org.eclipse.ui.navigator.resources,3.4.1.M20090826-0800,"org.eclipse.ui.navigator.ProjectExplorer",1311728706372
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311728708310
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311728709888
+error,log,,,"Problems occurred when invoking code from plug-in: ""org.eclipse.jface"".",1311728709888
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311728723310
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311728727654
+error,log,,,"java.lang.NullPointerException",1311728727670
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311728727685
+executed,command,org.eclipse.ui,3.5.2.M20100120-0800,"org.eclipse.ui.file.properties",1311728727701
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311728740748
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311728742420

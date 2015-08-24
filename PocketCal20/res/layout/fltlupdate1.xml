@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+android:id="@+id/widget88"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+xmlns:android="http://schemas.android.com/apk/res/android">
+
+<RelativeLayout
+    android:id="@+id/r1"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <EditText
+        android:id="@+id/Et_outdate"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="YYYY-MM-DD"
+        android:textSize="@dimen/size14" >
+    </EditText>
+
+    <Button
+        android:id="@+id/B_pDate"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Et_outdate"
+        android:text="Set Date"
+        android:textSize="@dimen/size14" >
+    </Button>
+
+    <LinearLayout
+        android:id="@+id/LL_flt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_below="@id/B_pDate"
+        android:measureWithLargestChild="true"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dp5"
+        android:paddingRight="@dimen/dp5" >
+
+        <EditText
+            android:id="@+id/Et_flt"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:hint="Flt #"
+            android:inputType="number"
+            android:textSize="@dimen/size14" />
+		    <requestFocus />
+        <EditText
+            android:id="@+id/Et_tail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:ems="10"
+            android:hint="AC #"
+            android:inputType="number"
+            android:textSize="@dimen/size14" >
+
+            
+        </EditText>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LL_dest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/LL_flt"
+        android:paddingLeft="@dimen/dp5"
+        android:paddingRight="@dimen/dp5" >
+
+        <EditText
+            android:id="@+id/Et_frm"
+            android:layout_width="240px"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:hint="Org"
+            android:inputType="textCapCharacters"
+            android:textSize="@dimen/size14" />
+
+        <EditText
+            android:id="@+id/Et_to"
+            android:layout_width="240px"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:hint="Dest"
+            android:inputType="textCapCharacters"
+            android:textSize="@dimen/size14" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LL_blk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/LLtimes" >
+
+        <TextView
+            android:id="@+id/Et_blk"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:hint="Blk"
+            android:textSize="@dimen/size14" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LL_landing"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/LL_blk"
+        android:paddingLeft="@dimen/dp5"
+        android:paddingRight="@dimen/dp5" >
+
+        <Spinner
+            android:id="@+id/Et_land"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:clickable="true"
+            android:drawSelectorOnTop="true"
+            android:prompt="@string/landprompt"
+            android:textSize="@dimen/size14" />
+
+        <Spinner
+            android:id="@+id/Et_typ"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:drawSelectorOnTop="true"
+            android:prompt="@string/acprompt"
+            android:textSize="@dimen/size14" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LL_Cargo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/LL_landing" >
+
+        <EditText
+            android:id="@+id/Et_cargo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Cargo"
+            android:inputType="phone"
+            android:textSize="@dimen/size14" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LL_Comm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/LL_Cargo" >
+
+        <EditText
+            android:id="@+id/Et_comm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Notes"
+            android:textSize="@dimen/size14" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LLtimes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/LL_dest"
+        android:paddingLeft="@dimen/dp5"
+        android:paddingRight="@dimen/dp5" >
+
+        <EditText
+            android:id="@+id/Et_out"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:digits="0123456789:"
+            android:hint="Out"
+            android:inputType="number"
+            android:text="0000"
+            android:textSize="@dimen/size14" />
+
+        <EditText
+            android:id="@+id/Et_in"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:digits="0123456789:"
+            android:ems="10"
+            android:hint="In"
+            android:inputType="number"
+            android:text="0000"
+            android:textSize="@dimen/size14" />
+
+    </LinearLayout>
+
+</RelativeLayout>
+
+</ScrollView>

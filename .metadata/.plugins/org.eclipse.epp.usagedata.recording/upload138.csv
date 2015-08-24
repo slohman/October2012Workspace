@@ -1,0 +1,26 @@
+what,kind,bundleId,bundleVersion,description,time
+started,bundle,org.eclipse.wst.ws.service.policy,1.0.103.v200905151848,"org.eclipse.wst.ws.service.policy",1312382520523
+started,bundle,org.eclipse.wst.command.env,1.0.408.v200903110045,"org.eclipse.wst.command.env",1312382520539
+started,bundle,org.eclipse.wst.ws,1.1.103.v200903111822,"org.eclipse.wst.ws",1312382520539
+started,bundle,org.eclipse.compare,3.5.2.r35x_20100113-0800,"org.eclipse.compare",1312382520820
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312382528726
+closed,editor,org.eclipse.jdt.ui,3.5.2.r352_v20100106-0800,"org.eclipse.jdt.ui.CompilationUnitEditor",1312382532586
+error,log,,,"Unable to create editor ID org.eclipse.jdt.ui.CompilationUnitEditor: The file does not exist.",1312382532633
+opened,editor,org.eclipse.jdt.ui,3.5.2.r352_v20100106-0800,"org.eclipse.jdt.ui.CompilationUnitEditor",1312382532695
+opened,editor,org.eclipse.jdt.ui,3.5.2.r352_v20100106-0800,"org.eclipse.jdt.ui.CompilationUnitEditor",1312382532695
+closed,editor,org.eclipse.jdt.ui,3.5.2.r352_v20100106-0800,"org.eclipse.jdt.ui.CompilationUnitEditor",1312382532695
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312382532711
+executed,command,org.eclipse.ltk.ui.refactoring,3.4.101.r352_v20100209,"org.eclipse.ltk.ui.refactoring.commands.deleteResources",1312382532726
+executed,command,org.eclipse.ui,3.5.2.M20100120-0800,"org.eclipse.ui.edit.delete",1312382532726
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312382535633
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312382550023
+executed,command,org.eclipse.ui,3.5.2.M20100120-0800,"org.eclipse.ui.file.import",1312382550023
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312382553242
+started,bundle,org.eclipse.pde.core,3.5.101.v20100104,"org.eclipse.pde.core",1312382571180
+error,log,,,"Failed to load properties file for project 'PocketCal20'",1312382572618
+error,log,,,"Failed to load properties file for project 'PocketCal20'",1312382572680
+error,log,,,"Failed to load properties file for project 'PocketCal20'",1312382572680
+error,log,,,"Failed to load properties file for project 'PocketCal20'",1312382575805
+error,log,,,"Failed to load properties file for project 'PocketCal20'",1312382577368
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312382580321
+executed,command,org.eclipse.ui,3.5.2.M20100120-0800,"org.eclipse.ui.file.import",1312382580337

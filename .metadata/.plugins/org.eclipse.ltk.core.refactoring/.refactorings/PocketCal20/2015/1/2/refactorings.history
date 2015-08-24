@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;PocketCal20/assets/75_76_Card.pdf&apos; to &apos;Card.pdf&apos;" description="Rename resource &apos;75_76_Card.pdf&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="assets/75_76_Card.pdf" name="Card.pdf" stamp="1420860927303" updateReferences="true"/>
+</session>

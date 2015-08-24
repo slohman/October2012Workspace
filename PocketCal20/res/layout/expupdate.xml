@@ -1,0 +1,72 @@
+<ScrollView android:id="@+id/ScrollView01" 
+android:layout_width="fill_parent" 
+android:layout_height="wrap_content" 
+xmlns:android="http://schemas.android.com/apk/res/android">
+		<RelativeLayout 
+			android:id="@+id/LinearLayout01" 
+			android:layout_width="fill_parent" 
+			android:orientation="vertical"
+			android:layout_height="wrap_content">
+
+		
+		
+
+<EditText android:layout_height="wrap_content" 
+android:id="@+id/Exp_date" 
+android:layout_width="fill_parent" 
+android:layout_alignParentLeft="true"
+android:layout_alignParentTop="true"
+android:hint="YYYY-MM-DD"
+android:textSize="@dimen/size14">
+</EditText>
+
+<Button android:id="@+id/B_setExpDate" 
+android:layout_height="wrap_content" 
+android:text="Set Exp Date" 
+android:layout_width="wrap_content"  
+android:layout_below="@+id/Exp_date" 
+android:textSize="@dimen/size14"/>
+
+<EditText android:layout_height="wrap_content" 
+android:id="@+id/Exp_amt" 
+android:layout_width="fill_parent" 
+android:layout_alignParentLeft="true"
+android:hint="Exp Amount ###.##"
+android:inputType="numberDecimal"
+android:layout_below="@+id/B_setExpDate" 
+android:textSize="@dimen/size14"/>
+
+<EditText android:layout_height="wrap_content" 
+android:id="@+id/Exp_City"
+android:layout_width="fill_parent" 
+android:layout_alignParentLeft="true"
+android:hint="Exp City ###"
+android:layout_below="@+id/Exp_amt" 
+android:textSize="@dimen/size14"/>
+
+<Spinner android:layout_height="wrap_content" 
+android:drawSelectorOnTop="true"
+android:id="@+id/Exp_Cat" 
+android:layout_width="350px" 
+android:textSize="@dimen/size14" 
+android:layout_below="@+id/Exp_City"
+android:prompt="@string/ExpTyp"/>
+
+<EditText  
+android:hint="Exp Notes" 
+android:id="@+id/Exp_comm" 
+android:layout_width="480px"
+android:layout_height="50pt" 
+android:layout_below="@+id/Exp_Cat" 
+android:textSize="@dimen/size14"/>
+
+<Button android:id="@+id/B_PIX" 
+android:layout_height="wrap_content" 
+android:text="Camera" 
+android:layout_width="wrap_content"  
+android:layout_below="@+id/Exp_comm" 
+android:textSize="@dimen/size14"/>
+
+
+</RelativeLayout>
+</ScrollView>

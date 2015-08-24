@@ -1,0 +1,26 @@
+what,kind,bundleId,bundleVersion,description,time
+activated,view,org.eclipse.ui.console,3.4.0.v20090513,"org.eclipse.ui.console.ConsoleView",1311727977780
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311727980140
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311728004156
+activated,view,org.eclipse.ui.navigator.resources,3.4.1.M20090826-0800,"org.eclipse.ui.navigator.ProjectExplorer",1311728004171
+activated,perspective,org.eclipse.debug.ui,3.5.2.v20091028_r352,"org.eclipse.debug.ui.DebugPerspective",1311728009250
+activated,view,org.eclipse.ui.console,3.4.0.v20090513,"org.eclipse.ui.console.ConsoleView",1311728009250
+activated,view,org.eclipse.debug.ui,3.5.2.v20091028_r352,"org.eclipse.debug.ui.DebugView",1311728011250
+executed,command,org.eclipse.debug.ui,3.5.2.v20091028_r352,"org.eclipse.debug.ui.commands.Terminate",1311728011328
+error,log,,,"Unable to create editor ID com.android.ide.eclipse.editors.resources.ResourcesEditor: Invalid Input: Must be IFileEditorInput",1311728011672
+opened,editor,com.android.ide.eclipse.adt,12.0.0.v201106281929-138431,"com.android.ide.eclipse.editors.resources.ResourcesEditor",1311728011734
+opened,editor,com.android.ide.eclipse.adt,12.0.0.v201106281929-138431,"com.android.ide.eclipse.editors.resources.ResourcesEditor",1311728011734
+activated,editor,com.android.ide.eclipse.adt,12.0.0.v201106281929-138431,"com.android.ide.eclipse.editors.resources.ResourcesEditor",1311728011734
+activated,perspective,org.eclipse.jst.j2ee.ui,1.1.301.v201001252130,"org.eclipse.jst.j2ee.J2EEPerspective",1311728013922
+activated,view,org.eclipse.ui.navigator.resources,3.4.1.M20090826-0800,"org.eclipse.ui.navigator.ProjectExplorer",1311728016281
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311728036235
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311728151862
+activated,editor,com.android.ide.eclipse.adt,12.0.0.v201106281929-138431,"com.android.ide.eclipse.editors.resources.ResourcesEditor",1311728157284
+activated,editor,com.android.ide.eclipse.adt,12.0.0.v201106281929-138431,"com.android.ide.eclipse.editors.manifest.ManifestEditor",1311728157331
+closed,editor,com.android.ide.eclipse.adt,12.0.0.v201106281929-138431,"com.android.ide.eclipse.editors.resources.ResourcesEditor",1311728157331
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311728161096
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311728291833
+activated,view,org.eclipse.ui.navigator.resources,3.4.1.M20090826-0800,"org.eclipse.ui.navigator.ProjectExplorer",1311728294630
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311728299568
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311728333334
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311728333350

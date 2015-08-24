@@ -1,0 +1,26 @@
+what,kind,bundleId,bundleVersion,description,time
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311729390261
+activated,view,org.eclipse.ui.navigator.resources,3.4.1.M20090826-0800,"org.eclipse.ui.navigator.ProjectExplorer",1311729394386
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311729415214
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311729421605
+error,log,,,"Unhandled event loop exception",1311729421605
+activated,editor,com.android.ide.eclipse.adt,12.0.0.v201106281929-138431,"com.android.ide.eclipse.editors.manifest.ManifestEditor",1311729423949
+opened,editor,com.android.ide.eclipse.adt,12.0.0.v201106281929-138431,"com.android.ide.eclipse.editors.manifest.ManifestEditor",1311729425292
+activated,editor,com.android.ide.eclipse.adt,12.0.0.v201106281929-138431,"com.android.ide.eclipse.editors.manifest.ManifestEditor",1311729425324
+closed,editor,com.android.ide.eclipse.adt,12.0.0.v201106281929-138431,"com.android.ide.eclipse.editors.manifest.ManifestEditor",1311729425324
+activated,view,org.eclipse.ui.navigator.resources,3.4.1.M20090826-0800,"org.eclipse.ui.navigator.ProjectExplorer",1311729427652
+started,bundle,org.eclipse.jdt.debug,3.5.0.v20090526,"org.eclipse.jdt.debug",1311729431324
+started,bundle,org.eclipse.jdt.debug.ui,3.4.1.v20090811_r351,"org.eclipse.jdt.debug.ui",1311729431683
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311729433715
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311729434824
+error,log,,,"Problems occurred when invoking code from plug-in: ""org.eclipse.jface"".",1311729434840
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311729443308
+error,log,,,"java.lang.NullPointerException",1311729443308
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311729443340
+executed,command,org.eclipse.ui.ide,3.5.2.M20100113-0800,"org.eclipse.ui.project.properties",1311729443355
+activated,editor,com.android.ide.eclipse.adt,12.0.0.v201106281929-138431,"com.android.ide.eclipse.editors.manifest.ManifestEditor",1311729456590
+activated,view,org.eclipse.ui.navigator.resources,3.4.1.M20090826-0800,"org.eclipse.ui.navigator.ProjectExplorer",1311729461731
+activated,editor,com.android.ide.eclipse.adt,12.0.0.v201106281929-138431,"com.android.ide.eclipse.editors.manifest.ManifestEditor",1311729464309
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311729464371
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311729466528
+activated,view,org.eclipse.ui.navigator.resources,3.4.1.M20090826-0800,"org.eclipse.ui.navigator.ProjectExplorer",1311729466590

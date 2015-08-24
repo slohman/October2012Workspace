@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+
+xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content">
+
+<LinearLayout
+  	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical"
+	android:padding="5dp">
+
+    <Button
+        android:id="@+id/officers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/MECOfflbl"
+        android:textSize="@dimen/size14" 
+        android:padding="5dip" 
+        />
+
+<Button android:id="@+id/reps"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center_horizontal"
+		android:textSize="@dimen/size14"
+		android:text="@string/MecReps"
+		 android:padding="5dip"/>
+		
+
+
+<Button android:id="@+id/bevp"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:textSize="@dimen/size14"
+		android:text="@string/evp" 
+		android:clickable="true"/>
+		
+		<Button android:id="@+id/meccomm"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:textSize="@dimen/size14"
+		android:text="@string/MecComm"
+		android:paddingBottom="5dip" />
+		
+		
+		
+		<Button android:id="@+id/staff"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:textSize="@dimen/size14"
+		android:text="@string/staff"
+		android:paddingBottom="5dip" />
+		
+		<Button android:id="@+id/accidentincident"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:textSize="@dimen/size14"
+		android:text="@string/accident"
+		android:paddingBottom="5dip" />
+		
+		<Button android:id="@+id/nationalctc"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:textSize="@dimen/size14"
+		android:text="@string/national"
+		android:paddingBottom="5dip" />
+		
+		<Button android:id="@+id/officeinfo"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:textSize="@dimen/size14"
+		android:text="@string/MecCtc"
+		android:paddingBottom="5dip" />
+		
+		
+</LinearLayout>
+</ScrollView>

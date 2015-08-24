@@ -1,0 +1,627 @@
+package com.yctc.alpaware;
+
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+
+import android.app.AlertDialog.Builder;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.drawable.Drawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.HandlerThread;
+
+import android.util.Log;
+
+import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.FrameLayout;
+
+import android.widget.ImageView;
+import android.widget.Toast;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
+import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.ParseException;
+
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.CookieStore;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.protocol.ClientContext;
+
+import org.apache.http.impl.client.BasicCookieStore;
+import org.apache.http.impl.client.DefaultHttpClient;
+
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.protocol.BasicHttpContext;
+import org.apache.http.protocol.HttpContext;
+
+import org.apache.http.util.EntityUtils;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
+import android.widget.TextView;
+
+
+public class egridcalculator extends Activity{
+
+	 public static final int Main_Menu =0;
+	 public static final int New_Result=1;
+	 public static final int Do_action = 2;
+	
+	 String Col1;
+	 int row1;
+	 
+	 String Month = "";
+	 String action;
+	    
+	   
+	HttpClient httpClient = new DefaultHttpClient();  
+	 CookieStore cookieStore = new BasicCookieStore();
+	 HttpContext localContext = new BasicHttpContext();
+	 Button getegrid = (Button)findViewById(R.id.getegrid);
+	
+	 
+	
+
+
+	 
+	 
+	
+	 @Override
+	    public void onCreate(Bundle Icicle) {
+		 super.onCreate(Icicle);
+	     setContentView(R.layout.egridresult1);
+	     
+	    
+	     Bundle b = this.getIntent().getExtras(); 
+		 action =  b.getString("AId");
+	 	     
+	     
+	     Button A = (Button) findViewById(R.id.A);
+         A.setOnClickListener(new View.OnClickListener() {
+             public void onClick(View view) {
+                 Col1="A";
+                 row1=0;
+             }});;
+        Button B = (Button) findViewById(R.id.B);
+        B.setOnClickListener(new View.OnClickListener() {
+              public void onClick(View view) {
+              Col1="B";
+              row1=0;
+                 }});;
+         Button C = (Button) findViewById(R.id.C);
+         C.setOnClickListener(new View.OnClickListener() {
+                     public void onClick(View view) {
+                         Col1="C";
+                         row1=0;
+                     }});;
+         Button D = (Button) findViewById(R.id.D);
+         D.setOnClickListener(new View.OnClickListener() {
+                      public void onClick(View view) {
+                      Col1="D";
+                      row1=0;
+                         }});;
+        Button E = (Button) findViewById(R.id.E);
+        E.setOnClickListener(new View.OnClickListener() {
+                      public void onClick(View view) {
+                      Col1="E";
+                      row1=0;
+                             }});;
+        Button F = (Button) findViewById(R.id.F);
+        F.setOnClickListener(new View.OnClickListener() {
+                      public void onClick(View view) {
+                      Col1="F";
+                      row1=0;
+                                 }});;
+        Button G = (Button) findViewById(R.id.G);
+        G.setOnClickListener(new View.OnClickListener() {
+                      public void onClick(View view) {
+                      Col1="G";
+                      row1=0;
+        }});;
+        Button H = (Button) findViewById(R.id.H);
+        H.setOnClickListener(new View.OnClickListener() {
+                     public void onClick(View view) {
+                     Col1="H";
+                     row1=0;
+        }});;
+        Button I = (Button) findViewById(R.id.I);
+        I.setOnClickListener(new View.OnClickListener() {
+                     public void onClick(View view) {
+                     Col1="I";
+                     row1=0;
+        }});;
+        Button J = (Button) findViewById(R.id.J);
+        J.setOnClickListener(new View.OnClickListener() {
+                     public void onClick(View view) {
+                     Col1="J";
+                     row1=0;
+        }});;
+        Button b1 = (Button) findViewById(R.id.num1);
+        b1.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                row1=1;
+                calcGrid(Col1,row1);
+                
+            }});;
+       Button b2 = (Button) findViewById(R.id.num2);
+       b2.setOnClickListener(new View.OnClickListener() {
+             public void onClick(View view) {
+             row1=2;
+             calcGrid(Col1,row1);
+                }});;
+        Button b3 = (Button) findViewById(R.id.num3);
+        b3.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View view) {
+                       row1=3;
+                       calcGrid(Col1,row1);
+                    }});;
+        Button b4 = (Button) findViewById(R.id.num4);
+        b4.setOnClickListener(new View.OnClickListener() {
+                     public void onClick(View view) {
+                    row1=4;
+                    calcGrid(Col1,row1);
+                        }});;
+       Button b5 = (Button) findViewById(R.id.num5);
+       b5.setOnClickListener(new View.OnClickListener() {
+                     public void onClick(View view) {
+                     row1=5;
+                     calcGrid(Col1,row1);
+                            }});;
+                            
+  
+        	 
+                          
+
+        	  boolean NA = isNetworkAvailable();
+             final ProgressDialog PDialog = ProgressDialog.show(egridcalculator.this, "", "Loading EGRID Image");
+        	
+             
+             if (NA) { // checks to see if we have a network
+        		 
+        	
+           	new Thread() {
+           	  public void run() {
+			try {
+				 String data = readuserdata();
+	         	  String[] logdata = data.split(",");
+	         	  final String uid = logdata[0];
+	         	  final String pwd = logdata[1];
+				
+				 String ImgLink = null;
+				 ImgLink = getEGRIDlink(uid,pwd,httpClient);
+				 
+				 
+				// loadEGRID(ImgLink); // gets the image and loads the Image View
+				    String 	  url1 = "https://pilot.fedex.com" + ImgLink;
+				    InputStream is = (InputStream) new URL(url1).getContent();
+				    Drawable d = Drawable.createFromStream(is, "src name");
+				    ImageView i =(ImageView)findViewById(R.id.EGRIDVw);
+
+					
+				    i.setImageDrawable(d);
+				 //   Button getegrid = (Button)findViewById(R.id.getegrid);
+				    getegrid.setVisibility(4); //hide
+			
+			} catch (ParseException e) {
+				 PDialog.dismiss();	
+					} catch (IOException e) {
+						 PDialog.dismiss();	
+					}// gets URL link to EGRID Image
+        	 
+			
+			 PDialog.dismiss();	
+			
+           	  }
+           	  }.start();
+           	  
+          }else{
+        	  utilities u = new utilities();
+    		  Context ctx = egridcalculator.this;
+    		  u.showaction("No Network", ctx);
+          		}
+           	
+	 }     	
+        	 
+      
+           	                      
+	 
+	 
+      
+	  	  public boolean onCreateOptionsMenu(Menu menu){
+				menu.add(0,Main_Menu,0,"Main Menu");
+				menu.add(0,New_Result,1,"New Code");
+				menu.add(0,Do_action,2,"Go");
+				
+				
+				return true;
+				}
+
+			public boolean onOptionsItemSelected (MenuItem item ){
+				switch (item.getItemId()){
+				case Main_Menu :
+					
+					
+					Intent myIntent = new Intent(getBaseContext(), PocketCal20.class);	
+					startActivityForResult(myIntent, 0);
+					
+				return true;
+				
+			case New_Result :
+				
+				TextView res = (TextView)findViewById(R.id.coderesult);
+				res.setText("");
+				
+			return true;
+			
+			case Do_action :
+				
+
+				
+				 
+				 
+				 if (action.equals("pfc")) {
+					 String data = readuserdata();
+		           	  String[] logdata = data.split(",");
+		           	 loginpfc(logdata[0],logdata[1]);   }// 0 = userid 1 = pwd       
+				
+				 if (action.equals("getCal")) {
+					
+					// get the egrid value
+					 EditText etgrid = (EditText)findViewById(R.id.coderesult);
+					 final String grid = etgrid.getText().toString();
+					 // try login direct
+					 String data2 = readuserdata();
+		           	  final String[] logdata2 = data2.split(",");
+		           	ImageView i =(ImageView)findViewById(R.id.EGRIDVw);
+		           	i.setVisibility(4); // sets egrid invisible
+
+
+		           //	launch calendar object
+		             	
+		      			
+		      			 Builder builder =  new AlertDialog.Builder(this);
+		      			 FrameLayout fl = new FrameLayout(this); 
+		      			final EditText input = new EditText(this);
+		      		    Calendar c = Calendar.getInstance();  SimpleDateFormat month_date = new SimpleDateFormat("MMMyy");
+		      		 	String monthDate = month_date.format(c.getTime());
+		      			
+		      			 input.setGravity(Gravity.CENTER);
+		      			      fl.addView(input, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.FILL_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT));
+		      			      input.setHint("Enter MMMYY to Load");
+		      			      input.setText(monthDate);
+		      			          
+		      			       builder.setView(fl);
+		      			       builder.setTitle("Enter Month");
+		      			          
+		      			        builder.setPositiveButton("OK", new DialogInterface.OnClickListener(){
+		      			    	      public void onClick(DialogInterface d, int which) {
+		      			    	 		
+		      			    	 	   Month = input.getText().toString();
+		      			    	 	   d.dismiss();
+		      			    	 	
+		      					 Bundle bun = new Bundle();
+		      			     	bun.putString("mnth", Month);
+		      			     	bun.putString("grd", grid.toString());
+		    	      			bun.putString("id", logdata2[0].toString());
+		    	      			bun.putString("pw",  logdata2[1].toString());
+		    	      			bun.putString("bse", logdata2[2].toString());
+		    	      			bun.putString("eq",  logdata2[3].toString());
+		    	      			
+		    	      			
+		      			   	 	Intent myIntent = new Intent(getBaseContext(), calendar.class);
+		      			   	 	myIntent.putExtras(bun);
+		      			 	 	startActivityForResult(myIntent, 0); 
+		      			    	 	    
+		      		                                                                       }});
+		      			       
+		      			     					
+		      			      builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
+		      						public void onClick(DialogInterface d, int which) {
+		      						d.dismiss();
+		      						Intent myIntent = new Intent(getBaseContext(), PocketCal20.class);
+		      		 	 		    startActivityForResult(myIntent, 0);
+		      		 	 		    }});
+		      			 
+		      			     builder.create().show();
+		      		      }
+				    if (action.equals("getOpen")) {
+					 
+					 // getOPen Time here
+				      }
+				    
+				    
+				    
+				    
+				   
+				
+			return true;
+			
+			
+				
+				}
+				return false;
+				}
+	    	
+	
+	
+	 
+	
+	 
+
+private void   calcGrid(String Col1, int row){
+	// read data from egrid table with or statements
+	
+	UserDataHelper mdbh = new UserDataHelper(this.getApplicationContext());
+    final SQLiteDatabase db = mdbh.getWritableDatabase();
+	
+	final Cursor c = db.rawQuery("Select " + Col1 + " from egrid where _id = " + row1  ,null);
+	c.moveToFirst();
+	String Result =  c.getString(0).toString();
+	
+	
+	TextView res = (TextView)findViewById(R.id.coderesult);
+	
+	res.setText ( res.getText().toString() +  Result) ;
+	c.close();
+	db.close();
+	
+	
+	
+	
+}
+
+
+
+
+public String readuserdata(){
+	String usrdata = null;
+	 FileInputStream fis = null;
+        try {
+			fis = openFileInput("PcalData");
+			
+			 StringBuffer fileContent = new StringBuffer("");
+
+		        byte[] buffer = new byte[1024];
+		        
+		        try {
+		        	@SuppressWarnings("unused")
+					int length = 0;
+					while ((length = fis.read(buffer)) != -1) {
+					    fileContent.append(new String(buffer));
+					}
+					
+					usrdata = (fileContent.toString());
+				    
+		        } catch (IOException e) {
+					return null;
+	}
+			
+			
+			
+		} catch (FileNotFoundException e) {
+			
+		    
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setMessage("User ID/Pswd No found. Input Now?")
+			       .setCancelable(false)
+			       .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+			           public void onClick(DialogInterface dialog, int id) {
+			        	   Intent myIntent = new Intent(getBaseContext(), setUserPwd.class);	
+							startActivityForResult(myIntent, 0);   
+			           }
+			       })
+			       .setNegativeButton("No", new DialogInterface.OnClickListener() {
+			           public void onClick(DialogInterface dialog, int id) {
+			                dialog.cancel();
+			                Intent myIntent = new Intent(getBaseContext(), PocketCal20.class);	
+							startActivityForResult(myIntent, 0);   
+			               
+			           }
+			       });
+			
+			AlertDialog alert = builder.create();
+			alert.show();
+			return null;
+		}
+        return usrdata;
+		
+	
+}
+
+public String getEGRIDlink(String UID,String PWD, HttpClient httpclient) throws ParseException, IOException{
+	
+	
+	
+ String uid = UID;
+ String pwd = PWD;
+ 
+ ImageView i =(ImageView)findViewById(R.id.EGRIDVw);
+ 
+ i.setImageResource(0);
+ 
+ 			
+ 
+// HttpClient httpClient = new DefaultHttpClient();
+ HttpPost httpPost = new HttpPost("https://pilot.fedex.com/passport/login_with_grid");
+
+
+ try {
+
+
+    List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+
+    nameValuePairs.add(new BasicNameValuePair("uid", uid));
+    nameValuePairs.add(new BasicNameValuePair("password", pwd));
+    // Encode the entities to UTF-8
+    httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs, "UTF-8"));
+    // Response from the Http Request
+    HttpResponse response = httpclient.execute(httpPost);
+    localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
+
+    HttpEntity resEntity = response.getEntity();
+ 
+ 
+  if (resEntity != null) { 
+           
+           	String pfcResponse = EntityUtils.toString(resEntity);
+           	Document doc = Jsoup.parse(pfcResponse);
+           	Elements media = doc.select("[src]");
+           	 
+           	
+           	  for (org.jsoup.nodes.Element src : media) {  // get path of EGRID image from webpage
+           		  
+           		  String attrval = src.attributes().toString();
+                     if (attrval.contains("captcha"))  {
+                   	  
+                   	  attrval = attrval.substring(6);
+                   	  attrval = attrval.substring(0,attrval.length()-1);
+                   	  return attrval;
+                     }
+                  }
+           	}
+ 
+ 
+ 
+ 
+ } catch (IOException e) {
+    Log.e("Exception", "IOException", e);
+ } catch (Exception e) {
+    Log.e("Exception", "General Exception", e);
+ }
+               
+      
+		return null;
+   
+	
+}	
+private void loadEGRID(String url)     {
+      try{
+    String 	  url1 = "https://pilot.fedex.com" + url;
+    InputStream is = (InputStream) new URL(url1).getContent();
+    Drawable d = Drawable.createFromStream(is, "src name");
+    ImageView i =(ImageView)findViewById(R.id.EGRIDVw);
+
+	
+    i.setImageDrawable(d);
+   
+   
+  }catch (Exception e) {
+   Toast.makeText(this,"Error Loading EGRID", Toast.LENGTH_LONG).show();
+    }
+      
+      
+}
+public void loginpfc(String user, String pwd) {
+	
+	 EditText etgrid = (EditText)findViewById(R.id.coderesult);
+	 String grid = etgrid.getText().toString();
+	 String pfcuri;
+	 pfcuri = "https://pilot.fedex.com/passport/login_with_grid?uid="+user.trim()+"&password="+pwd.trim()+"&GRIDSTRING="+grid.trim();
+	 
+	
+	 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(pfcuri));
+	 startActivity(browserIntent);
+	
+}
+
+
+public String getFltPlan(HttpClient httpClient) throws Exception, IOException {
+	
+	
+	
+	
+	HttpGet request = new HttpGet("https://pilot.fedex.com/fpsweb/releaseByCrew.jsp");
+	HttpResponse response = null;
+	try {
+		response = httpClient.execute(request);
+	} catch (ClientProtocolException e) {
+		
+		e.printStackTrace();
+	} catch (IOException e) {
+		
+		e.printStackTrace();
+	}
+
+	String html = "";
+	InputStream in = response.getEntity().getContent();
+	BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+	StringBuilder str = new StringBuilder();
+	String line = null;
+	while((line = reader.readLine()) != null)
+	{
+	    str.append(line);
+	}
+	in.close();
+	html = str.toString();
+	return html;
+
+		   
+			
+}	
+	 
+	
+	
+
+	
+
+
+
+
+public boolean isNetworkAvailable() {
+    ConnectivityManager cm = (ConnectivityManager) 
+    	getSystemService(Context.CONNECTIVITY_SERVICE);
+    NetworkInfo networkInfo = cm.getActiveNetworkInfo();
+    // if no network is available networkInfo will be null
+    // otherwise check if we are connected
+    if (networkInfo != null && networkInfo.isConnected()) {
+        return true;
+    }
+    return false;
+} 
+
+
+
+
+
+
+	 
+
+
+} // end class
+
+
+
+
+
+
+

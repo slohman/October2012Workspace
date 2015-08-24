@@ -1,0 +1,328 @@
+<ScrollView android:id="@+id/ScrollView01" 
+android:layout_width="fill_parent" 
+android:layout_height="fill_parent" 
+xmlns:android="http://schemas.android.com/apk/res/android">
+
+		<LinearLayout
+		android:id="@+id/L1"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical">
+
+ 			<Button android:text="Tail #" 
+			android:id="@+id/lTailNum" 
+			android:gravity="center_horizontal"
+			android:textSize="@dimen/size14"
+			android:layout_width="fill_parent"
+			android:textColor ="@color/white"
+			android:background="@drawable/alpabtn"
+			android:layout_height="wrap_content">
+			</Button>
+
+			
+ 			
+ 			
+ 			<Button android:text="Type" 
+			android:id="@+id/lTYP" 
+			android:textSize="@dimen/size14"
+			android:gravity="center_horizontal"
+			android:layout_width="fill_parent"
+			android:textColor ="@color/white"
+			android:background="@drawable/alpabtn"
+			android:layout_height="wrap_content">
+			</Button>
+			
+			 			
+ 			
+ 			<Button
+ 			android:text="EFB " 
+			android:id="@+id/lEFB" 
+			android:textSize="@dimen/size14"
+			android:layout_alignParentLeft="true"
+			android:gravity="center_horizontal"
+			android:layout_width="fill_parent"
+			android:textColor ="@color/white"
+			android:background="@drawable/alpabtn" 
+			android:paddingTop="6pt"
+			android:layout_height="wrap_content">
+			</Button>
+ 			
+ 			
+ 			
+ 			<Button android:text="RAAS " 
+			android:id="@+id/lRAAS" 
+			android:textSize="@dimen/size14"
+			android:gravity="center_horizontal"
+			android:layout_width="fill_parent"
+			android:textColor ="@color/white"
+			android:background="@drawable/alpabtn" 
+			android:paddingTop="6pt"
+			android:layout_height="wrap_content">
+			</Button>>
+ 			
+ 			
+ 			
+ 			<Button android:text="Crew Rest " 
+			android:id="@+id/lCrest" 
+			android:textSize="@dimen/size14"
+			android:gravity="center_horizontal"
+			android:layout_width="fill_parent"
+			android:textColor ="@color/white"
+			android:background="@drawable/alpabtn" 
+			android:paddingTop="6pt"
+			android:layout_height="wrap_content">
+			</Button>
+ 			
+ 			
+ 			
+ 			<Button android:text="FANS " 
+			android:id="@+id/lFANS" 
+			android:textSize="@dimen/size14"
+			android:gravity="center_horizontal"
+			android:layout_width="fill_parent"
+			android:textColor ="@color/white"
+			android:background="@drawable/alpabtn" 
+			android:paddingTop="6pt"
+			android:layout_height="wrap_content">
+			</Button>
+ 			
+ 			
+ 			
+ 			<Button android:text="SOLIDBULK" 
+			android:id="@+id/lBULK" 
+			android:textSize="@dimen/size14"
+			android:gravity="center_horizontal"
+			android:layout_width="fill_parent"
+			android:textColor ="@color/white"
+			android:background="@drawable/alpabtn" 
+			android:paddingTop="3pt"
+			android:layout_height="wrap_content">
+			</Button>
+ 			
+ 			
+ 			
+ 			<Button android:text="HUD" 
+			android:id="@+id/lHUD" 
+			android:textSize="@dimen/size14"
+			android:gravity="center_horizontal"
+			android:layout_width="fill_parent"
+			android:textColor ="@color/white"
+			android:background="@drawable/alpabtn" 
+			android:paddingTop="3pt"
+			android:layout_height="wrap_content">
+			</Button>
+ 			
+ 			
+ 			
+ 			<Button android:text="Fire SS" 
+			android:id="@+id/lFSS" 
+			android:textSize="@dimen/size14"
+			android:gravity="center_horizontal"
+			android:layout_width="fill_parent"
+			android:textColor ="@color/white"
+			android:background="@drawable/alpabtn" 
+			android:paddingTop="5pt"
+			android:layout_height="wrap_content">
+			</Button>
+ 			
+ 			
+ 			
+ 			<Button android:text="Animal Chrt" 
+			android:id="@+id/lACHART" 
+			android:textSize="@dimen/size14"
+			android:gravity="center_horizontal"
+			android:layout_width="fill_parent"
+			android:textColor ="@color/white"
+			android:background="@drawable/alpabtn" 
+			android:paddingTop="5pt"
+			android:layout_height="wrap_content">
+			</Button>
+ 			
+ 			<Button android:text="SAT" 
+			android:id="@+id/lSAT" 
+			android:textSize="@dimen/size14"
+			android:gravity="center_horizontal"
+			android:layout_width="fill_parent"
+			android:textColor ="@color/white"
+			android:background="@drawable/alpabtn" 
+			android:paddingTop="5pt"
+			android:layout_height="wrap_content">
+			</Button>
+ 			
+ 			<Button android:text="HF DLINK" 
+			android:id="@+id/lHFDLINK" 
+			android:textSize="@dimen/size14"
+			android:gravity="center_horizontal"
+			android:layout_width="fill_parent"
+			android:textColor ="@color/white"
+			android:background="@drawable/alpabtn" 
+			android:paddingTop="5pt"
+			android:layout_height="wrap_content">
+			</Button>
+			
+			
+ 			
+ 			
+ 			<Button android:text="CATIII" 
+			android:id="@+id/lCATIII" 
+			android:textSize="@dimen/size14"
+			android:gravity="center_horizontal"
+			android:layout_width="fill_parent"
+			android:textColor ="@color/white"
+			android:background="@drawable/alpabtn" 
+			android:paddingTop="5pt"
+			android:layout_height="wrap_content">
+			</Button>
+ 			
+ 			
+ 			
+ 			<Button android:text="EGPWS" 
+			android:id="@+id/lEGPWS" 
+			android:textSize="@dimen/size14"
+			android:gravity="center_horizontal"
+			android:layout_width="fill_parent"
+			android:textColor ="@color/white"
+			android:background="@drawable/alpabtn" 
+			android:paddingTop="5pt"
+			android:layout_height="wrap_content">
+			</Button>
+ 			
+ 			
+ 			<Button android:text="RVSM" 
+			android:id="@+id/lRVSM" 
+			android:textSize="@dimen/size14"
+			android:gravity="center_horizontal"
+			android:layout_width="fill_parent"
+			android:textColor ="@color/white"
+			android:background="@drawable/alpabtn" 
+			android:paddingTop="5pt"
+			android:layout_height="wrap_content">
+			</Button>
+ 			
+ 			
+ 			<Button android:text="GPS" 
+			android:id="@+id/lGPS" 
+			android:textSize="@dimen/size14"
+			android:gravity="center_horizontal"
+			android:layout_width="fill_parent"
+			android:textColor ="@color/white"
+			android:background="@drawable/alpabtn" 
+			android:paddingTop="5pt"
+			android:layout_height="wrap_content">
+			</Button>
+ 			
+ 			
+ 			
+ 			<Button android:text="HF" 
+			android:id="@+id/lHF" 
+			android:textSize="@dimen/size14"
+			android:gravity="center_horizontal"
+			android:layout_width="fill_parent"
+			android:textColor ="@color/white"
+			android:background="@drawable/alpabtn" 
+			android:paddingTop="5pt"
+			android:layout_height="wrap_content">
+			</Button>
+ 			
+ 			
+ 			
+ 			<Button android:text="VNAV" 
+			android:id="@+id/lVNAV" 
+			android:textSize="@dimen/size14"
+			android:gravity="center_horizontal"
+			android:layout_width="fill_parent"
+			android:textColor ="@color/white"
+			android:background="@drawable/alpabtn" 
+			android:paddingTop="5pt"
+			android:layout_height="wrap_content">
+			</Button>
+ 			
+ 			
+ 			
+ 			<Button android:text="INTL OK" 
+			android:id="@+id/lINTLOK" 
+			android:textSize="@dimen/size14"
+			android:gravity="center_horizontal"
+			android:layout_width="fill_parent"
+			android:textColor ="@color/white"
+			android:background="@drawable/alpabtn" 
+			android:paddingTop="5pt"
+			android:layout_height="wrap_content">
+			</Button>
+ 			
+ 			
+ 			<Button android:text="ASIAN OPS" 
+			android:id="@+id/lASIANOPS" 
+			android:textSize="@dimen/size14"
+			android:gravity="center_horizontal"
+			android:layout_width="fill_parent"
+			android:textColor ="@color/white"
+			android:background="@drawable/alpabtn" 
+			android:paddingTop="5pt"
+			android:layout_height="wrap_content">
+			</Button>
+ 			
+ 			
+ 			
+ 			<Button android:text="RNAV" 
+			android:id="@+id/lRNAV" 
+			android:textSize="@dimen/size14"
+			android:gravity="center_horizontal"
+			android:layout_width="fill_parent"
+			android:textColor ="@color/white"
+			android:background="@drawable/alpabtn" 
+			android:paddingTop="3pt"
+			android:layout_height="wrap_content">
+			</Button>
+ 			
+ 			
+ 			<Button android:text="EUR OPS" 
+			android:id="@+id/lEUROPS" 
+			android:textSize="@dimen/size14"
+			android:gravity="center_horizontal"
+			android:layout_width="fill_parent"
+			android:textColor ="@color/white"
+			android:background="@drawable/alpabtn" 
+			android:paddingTop="5pt"
+			android:layout_height="wrap_content">
+			</Button>
+ 			
+ 			
+ 			
+ 			<Button android:text="SBY GEN" 
+			android:id="@+id/lSBYGEN" 
+			android:textSize="@dimen/size14"
+			android:gravity="center_horizontal"
+			android:layout_width="fill_parent"
+			android:textColor ="@color/white"
+			android:background="@drawable/alpabtn" 
+			android:paddingTop="5pt"
+			android:layout_height="wrap_content">
+			</Button>
+ 			
+ 		
+ 			
+ 			<Button android:hint="Comments" 
+			android:id="@+id/txtAComm" 
+			android:textSize="@dimen/size14"
+			android:gravity="center_horizontal"
+			android:layout_width="fill_parent"
+			android:textColor ="@color/white"
+			android:background="@drawable/alpabtn"  
+			android:paddingTop="5pt"
+			android:layout_height="wrap_content">
+			</Button>
+ 			
+ 			<Button android:text="Main Menu" 
+			android:id="@+id/bmainmenu" 
+			android:textSize="@dimen/size14"
+			android:gravity="center_horizontal"
+			android:layout_width="fill_parent"
+			android:textColor ="@color/white"
+			android:background="@drawable/alpabtn" 
+			android:paddingTop="5pt"
+			android:layout_height="wrap_content">
+			</Button>
+
+</LinearLayout>
+</ScrollView>

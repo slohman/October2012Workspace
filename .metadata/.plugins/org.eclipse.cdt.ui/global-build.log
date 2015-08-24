@@ -1,0 +1,48 @@
+
+**** Build of configuration Default for project OpenCV Sample - face-detection ****
+
+\ndk-build.cmd 
+
+Error: Cannot run program "\ndk-build.cmd": Launching failed
+
+**** Build Finished ****
+
+**** Build of configuration Default for project OpenCV Tutorial 3 - Add Native OpenCV ****
+
+\ndk-build.cmd 
+
+Error: Cannot run program "\ndk-build.cmd": Launching failed
+
+**** Build Finished ****
+
+**** Build of configuration Default for project OpenCV Tutorial 4 - Mix Java+Native OpenCV ****
+
+\ndk-build.cmd 
+
+Error: Cannot run program "\ndk-build.cmd": Launching failed
+
+**** Build Finished ****
+
+**** Build of configuration Default for project OpenCV Sample - face-detection ****
+
+\ndk-build.cmd 
+
+Error: Cannot run program "\ndk-build.cmd": Launching failed
+
+**** Build Finished ****
+
+**** Build of configuration Default for project OpenCV Tutorial 3 - Add Native OpenCV ****
+
+\ndk-build.cmd 
+
+Error: Cannot run program "\ndk-build.cmd": Launching failed
+
+**** Build Finished ****
+
+**** Build of configuration Default for project OpenCV Tutorial 4 - Mix Java+Native OpenCV ****
+
+\ndk-build.cmd 
+
+Error: Cannot run program "\ndk-build.cmd": Launching failed
+
+**** Build Finished ****

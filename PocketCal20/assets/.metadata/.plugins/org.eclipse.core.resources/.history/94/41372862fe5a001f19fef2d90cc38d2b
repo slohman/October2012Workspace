@@ -1,0 +1,122 @@
+package com.arroyoseco.Remote;
+
+public class  ServerActivity extends Activity {
+	002	 
+	003	    private TextView serverStatus;
+	004	 
+	005	    // default ip
+	006	    public static String SERVERIP = "10.0.2.15";
+	007	 
+	008	    // designate a port
+	009	    public static final int SERVERPORT = 8080;
+	010	 
+	011	    private Handler handler = new Handler();
+	012	 
+	013	    private ServerSocket serverSocket;
+	014	 
+	015	    @Override
+	016	    protected void onCreate(Bundle savedInstanceState) {
+	017	        super.onCreate(savedInstanceState);
+	018	        setContentView(R.layout.server);
+	019	        serverStatus = (TextView) findViewById(R.id.server_status);
+	020	 
+	021	        SERVERIP = getLocalIpAddress();
+	022	 
+	023	        Thread fst = new Thread(new ServerThread());
+	024	        fst.start();
+	025	    }
+	026	 
+	027	    public class ServerThread implements Runnable {
+	028	 
+	029	        public void run() {
+	030	            try {
+	031	                if (SERVERIP != null) {
+	032	                    handler.post(new Runnable() {
+	033	                        @Override
+	034	                        public void run() {
+	035	                            serverStatus.setText("Listening on IP: " + SERVERIP);
+	036	                        }
+	037	                    });
+	038	                    serverSocket = new ServerSocket(SERVERPORT);
+	039	                    while (true) {
+	040	                        // listen for incoming clients
+	041	                        Socket client = serverSocket.accept();
+	042	                        handler.post(new Runnable() {
+	043	                            @Override
+	044	                            public void run() {
+	045	                                serverStatus.setText("Connected.");
+	046	                            }
+	047	                        });
+	048	 
+	049	                        try {
+	050	                            BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
+	051	                            String line = null;
+	052	                            while ((line = in.readLine()) != null) {
+	053	                                Log.d("ServerActivity", line);
+	054	                                handler.post(new Runnable() {
+	055	                                    @Override
+	056	                                    public void run() {
+	057	                                        // do whatever you want to the front end
+	058	                                        // this is where you can be creative
+	059	                                    }
+	060	                                });
+	061	                            }
+	062	                            break;
+	063	                        } catch (Exception e) {
+	064	                            handler.post(new Runnable() {
+	065	                                @Override
+	066	                                public void run() {
+	067	                                    serverStatus.setText("Oops. Connection interrupted. Please reconnect your phones.");
+	068	                                }
+	069	                            });
+	070	                            e.printStackTrace();
+	071	                        }
+	072	                    }
+	073	                } else {
+	074	                    handler.post(new Runnable() {
+	075	                        @Override
+	076	                        public void run() {
+	077	                            serverStatus.setText("Couldn't detect internet connection.");
+	078	                        }
+	079	                    });
+	080	                }
+	081	            } catch (Exception e) {
+	082	                handler.post(new Runnable() {
+	083	                    @Override
+	084	                    public void run() {
+	085	                        serverStatus.setText("Error");
+	086	                    }
+	087	                });
+	088	                e.printStackTrace();
+	089	            }
+	090	        }
+	091	    }
+	092	 
+	093	    // gets the ip address of your phone's network
+	094	    private String getLocalIpAddress() {
+	095	        try {
+	096	            for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();) {
+	097	                NetworkInterface intf = en.nextElement();
+	098	                for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();) {
+	099	                    InetAddress inetAddress = enumIpAddr.nextElement();
+	100	                    if (!inetAddress.isLoopbackAddress()) { return inetAddress.getHostAddress().toString(); }
+	101	                }
+	102	            }
+	103	        } catch (SocketException ex) {
+	104	            Log.e("ServerActivity", ex.toString());
+	105	        }
+	106	        return null;
+	107	    }
+	108	 
+	109	    @Override
+	110	    protected void onStop() {
+	111	        super.onStop();
+	112	        try {
+	113	             // make sure you close the socket upon exiting
+	114	             serverSocket.close();
+	115	         } catch (IOException e) {
+	116	             e.printStackTrace();
+	117	         }
+	118	    }
+	119	 
+	120	}

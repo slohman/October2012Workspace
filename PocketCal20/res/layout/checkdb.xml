@@ -1,0 +1,42 @@
+<ScrollView android:id="@+id/ScrollView01" 
+android:layout_width="fill_parent" 
+android:layout_height="wrap_content" 
+xmlns:android="http://schemas.android.com/apk/res/android">
+
+    
+<LinearLayout
+		    android:id="@+id/LinearLayout01"
+		    android:layout_width="fill_parent"
+		    android:layout_height="match_parent"
+		    android:orientation="vertical" >
+		    
+			<Button
+			    android:id="@+id/btnCheckDB"
+			    android:layout_width="match_parent"
+			    android:layout_height="50dp"
+			    android:layout_gravity="bottom"
+			    android:text="Check DB Version" />
+
+			<TextView
+			    android:id="@+id/tvInstalledVersion"
+			    android:layout_width="match_parent"
+			    android:layout_height="50dp"
+			    android:gravity="left"
+			    android:text="Installed Version" />
+
+			<TextView
+			    android:id="@+id/tvLatestVersion"
+			    android:layout_width="match_parent"
+			    android:layout_height="51dp"
+			    android:gravity="left"
+			    android:lines="@integer/one"
+			    android:text="Available Version" />
+
+			<Button
+			    android:id="@+id/btnGetNewDB"
+			    android:layout_width="match_parent"
+			    android:layout_height="wrap_content"
+			    android:text="Get New Database" />
+			
+</LinearLayout>
+</ScrollView>

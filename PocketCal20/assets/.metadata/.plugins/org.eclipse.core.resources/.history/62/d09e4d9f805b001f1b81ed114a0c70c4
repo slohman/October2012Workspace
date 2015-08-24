@@ -1,0 +1,54 @@
+package com.arroyoseco.Remote;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+import android.content.Context;
+import android.util.Log;
+import android.widget.Toast;
+
+public class TCPServer implements Runnable{
+
+    public static final String SERVERIP = "97.207.206.178";
+    public static final int SERVERPORT = 81;
+    public void run() {
+         try {
+              Log.d("TCP", "S: Connecting...");
+
+              ServerSocket serverSocket = new ServerSocket(SERVERPORT);
+              while (true) {
+                 Socket client = serverSocket.accept();
+                 Log.d("TCP", "S: Receiving...");
+                 Context context = getApplicationContext();
+                 CharSequence text = "Hello toast!";
+                 int duration = Toast.LENGTH_SHORT;
+
+
+                 Toast toast = Toast.makeText(context, text, duration);
+                 toast.show();
+                 try {
+                      BufferedReader in = new BufferedReader(new
+InputStreamReader(client.getInputStream()));
+                      String str = in.readLine();
+                      Log.d("TCP", "S: Received: '" + str + "'");
+                    } catch(Exception e) {
+                        Log.e("TCP", "S: Error", e);
+                    } finally {
+                         client.close();
+                         Log.d("TCP", "S: Done.");
+                    }
+
+              }
+
+         } catch (Exception e) {
+           Log.e("TCP", "S: Error", e);
+         }
+    }
+	private Context getApplicationContext() {
+		// TODO Auto-generated method stub
+		
+		return null;
+	}
+}

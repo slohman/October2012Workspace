@@ -1,0 +1,275 @@
+package com.yctc.alpaware;
+
+import java.io.File;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Environment;
+import android.view.View;
+import android.widget.Button;
+// license checker imports
+
+
+
+
+public class PocketCal20 extends Activity {
+    /** Called when the activity is first created. */
+	
+		public String DBpath = "/data/data/com.yctc.alpaware/databases/";
+	
+		
+		
+		
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+        
+        
+        AlpaDataBaseHelper db= new AlpaDataBaseHelper(this);
+        db.open();
+        	// creates the database dir if it isn't here
+       
+       
+         
+        try {
+        	installCBAFiles();
+        	copyMiscFiles();
+        	
+		} catch (IOException e) {
+		    e.printStackTrace();
+		}
+        
+       
+        
+
+        Button next = (Button) findViewById(R.id.CBA);
+        next.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent myIntent = new Intent(view.getContext(), cba.class);
+                startActivityForResult(myIntent, 0);
+            }});;
+    Button bmec = (Button) findViewById(R.id.MEC);
+    bmec.setOnClickListener(new View.OnClickListener() {
+        public void onClick(View view) {
+            Intent myIntent = new Intent(view.getContext(), mec.class);
+            startActivityForResult(myIntent, 0);
+        }});;
+        Button bie = (Button) findViewById(R.id.INTEMER);
+        bie.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent myIntent = new Intent(view.getContext(), iemain.class);
+                startActivityForResult(myIntent, 0);
+            }});;
+            Button bcal = (Button) findViewById(R.id.BidMonth);
+            bcal.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View view) {
+                    Intent myIntent = new Intent(view.getContext(), calmain.class);
+                    startActivityForResult(myIntent, 0);
+                }});;
+                
+                Button bnotes = (Button) findViewById(R.id.Personal);
+                bnotes.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View view) {
+                        Intent myIntent = new Intent(view.getContext(), noteslaunch.class);
+                        startActivityForResult(myIntent, 0);
+                    }});;
+                
+                Button acdata = (Button) findViewById(R.id.ACCDATA);
+                acdata.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View view) {
+                        Intent myIntent = new Intent(view.getContext(), acequiplaunch.class);
+                        startActivityForResult(myIntent, 0);
+                    }});;
+                    Button hoteldata = (Button) findViewById(R.id.RampHotel);
+                    hoteldata.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View view) {
+                            Intent myIntent = new Intent(view.getContext(), ramphotelmain.class);
+                            startActivityForResult(myIntent, 0);
+                        }});;     
+                    Button begridcalc = (Button) findViewById(R.id.egridcalc);
+                    begridcalc.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View view) {
+                            Intent myIntent = new Intent(view.getContext(), egridcalculator.class);
+                            startActivityForResult(myIntent, 0);
+                        }});;
+        Button bmaint = (Button) findViewById(R.id.FileMaint);
+        bmaint.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent myIntent = new Intent(view.getContext(), filemaintmain.class);
+                startActivityForResult(myIntent, 0);
+            }});;
+            Button blogbook = (Button) findViewById(R.id.LogBook);
+            blogbook.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View view) {
+                    Intent myIntent = new Intent(view.getContext(), fltlogmain.class);
+                    startActivityForResult(myIntent, 0);
+                }});;
+                Button bExpLog = (Button) findViewById(R.id.ExpLogLogBook);
+                bExpLog.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View view) {
+                        Intent myIntent = new Intent(view.getContext(), explogmain.class);
+                        startActivityForResult(myIntent, 0);
+                    }});;
+                    Button babout= (Button) findViewById(R.id.About);
+                    babout.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View view) {
+                            Intent myIntent = new Intent(view.getContext(), about.class);
+                            startActivityForResult(myIntent, 0);
+                        }});;
+                        
+                        Button jseat= (Button) findViewById(R.id.JmpSeat);
+                       jseat.setOnClickListener(new View.OnClickListener() {
+                            public void onClick(View view) {
+                                Intent myIntent = new Intent(view.getContext(), jumpseatmain.class);
+                                startActivityForResult(myIntent, 0);
+                            }});;
+
+}
+
+	
+
+			
+	public void installCBAFiles(){    
+		// install files to system if they don't already exist
+	File sd = new File(Environment.getExternalStorageDirectory().toString() + "/cba/");
+	String CBApath	= "/mnt/sdcard/cba/";
+	
+	//File cbadir = new File(CBApath);
+	if (sd.exists() == false) {
+	sd.mkdir(); }
+	
+	
+	 for (int i = 1; i <= 31;i++) {
+		 String filename = "section" + i + ".pdf";
+	 File cbafile = new File(sd,filename);
+	 
+	 if (cbafile.exists()){
+		 
+	 }else{
+	
+	try {
+		InputStream in = this.getResources().getAssets().open(filename);
+		OutputStream out = new FileOutputStream(sd + "/" + filename); // Transfer bytes from in to out
+	    byte[] buf = new byte[1024]; 
+	    int len;
+	    while ((len = in.read(buf)) != -1)
+		{ out.write(buf, 0, len); 
+		}  in.close(); 
+	    out.flush();
+     	out.close();
+     	
+     	if (i==31){
+     	utilities util = new utilities();
+     	Context ctx = getApplicationContext();
+     	util.showaction("CBA files Installed to Sd Card",ctx);
+     	}
+	} catch (IOException e) {
+		
+		e.printStackTrace();
+	utilities util = new utilities();
+ 	Context ctx = getApplicationContext();
+ 	
+ 	util.showaction(" Install failed",ctx);}
+	} }
+	 
+	 }
+	
+	
+	 void copyMiscFiles() throws IOException { 
+		 File sd = new File(Environment.getExternalStorageDirectory().toString() + "/cba/");
+     	//File cbadir = new File("/mnt/sdcard/cba/");
+     	if (sd.canWrite() == false) {
+     	sd.mkdir(); }
+     	
+     	
+     	
+    	
+    	
+    	 
+    	 File cbafile = new File(sd,"/toc.pdf");
+    	 
+    	 if (cbafile.exists() == true){
+    		 // do nothing
+    	 }else{
+     	 InputStream in = getResources().getAssets().open("toc.pdf"); 
+      	OutputStream out = new FileOutputStream(sd + "/toc.pdf"); // Transfer bytes from in to out
+      	byte[] buf = new byte[1024]; 
+      	int len; 
+      	while ((len = in.read(buf)) > 0)
+      	{ out.write(buf, 0, len); 
+      	}  in.close(); 
+	    out.flush();
+     	out.close(); 
+    	 }     	
+     
+    	 File cbafile1 = new File(sd,"/charts.pdf");
+    	 
+    	 if (cbafile1.exists()){
+    		 // do nothing
+    	 }else{
+     	 InputStream in = getResources().getAssets().open("charts.pdf"); 
+      	OutputStream out = new FileOutputStream(sd + "/charts.pdf"); // Transfer bytes from in to out
+      	byte[] buf = new byte[1024]; 
+      	int len; 
+      	while ((len = in.read(buf)) > 0)
+      	{ out.write(buf, 0, len); 
+      	}  in.close(); 
+	    out.flush();
+     	out.close(); 
+    	 }     	
+ 	
+    	 File cbafile2 = new File(sd,"/loa.pdf");
+    	 
+    	 if (cbafile2.exists()){
+    		 // do nothing
+    	 }else{
+     	 InputStream in = getResources().getAssets().open("loa.pdf"); 
+      	OutputStream out = new FileOutputStream(sd + "/loa.pdf"); // Transfer bytes from in to out
+      	byte[] buf = new byte[1024]; 
+      	int len; 
+      	while ((len = in.read(buf)) > 0)
+      	{ out.write(buf, 0, len); 
+      	}  in.close(); 
+	    out.flush();
+     	out.close();
+    	 } 
+ 	
+    	 File cbafile3 = new File(sd,"/cbaIndex.pdf");
+    	 
+    	 if (cbafile3.exists()){
+    		 // do nothing
+    	 }else{
+     	 InputStream in = getResources().getAssets().open("cbaIndex.pdf"); 
+      	OutputStream out = new FileOutputStream(sd + "/cbaIndex.pdf"); // Transfer bytes from in to out
+      	byte[] buf = new byte[1024]; 
+      	int len; 
+      	while ((len = in.read(buf)) > 0)
+      	{ out.write(buf, 0, len); 
+      	}  in.close(); 
+	    out.flush();
+     	out.close();
+     	utilities util = new utilities();
+     	Context ctx = getApplicationContext();
+     	
+     	util.showaction("Misc CBA files Installed to Sd Card",ctx);}
+     	
+    	 } 
+     
+     
+     
+	 
+	
+	 
+	
+}
+
+	
+

@@ -1,0 +1,26 @@
+what,kind,bundleId,bundleVersion,description,time
+activated,editor,org.eclipse.jdt.ui,3.5.2.r352_v20100106-0800,"org.eclipse.jdt.ui.CompilationUnitEditor",1312392741217
+activated,view,org.eclipse.ui.navigator.resources,3.4.1.M20090826-0800,"org.eclipse.ui.navigator.ProjectExplorer",1312392758842
+activated,editor,com.android.ide.eclipse.adt,12.0.0.v201106281929-138431,"com.android.ide.eclipse.editors.layout.LayoutEditor",1312392763311
+error,log,,,"Unhandled event loop exception",1312392786796
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312392809124
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312392817468
+error,log,,,"Unhandled event loop exception",1312392817499
+activated,view,org.eclipse.ui.navigator.resources,3.4.1.M20090826-0800,"org.eclipse.ui.navigator.ProjectExplorer",1312392847406
+started,bundle,org.eclipse.wst.xsl.launching,1.0.0.v200904241348,"org.eclipse.wst.xsl.launching",1312392850453
+executed,command,org.eclipse.debug.ui,3.5.2.v20091028_r352,"org.eclipse.debug.ui.commands.RunLast",1312392850453
+started,bundle,org.eclipse.wst.xsl.jaxp.launching,1.0.0.v200904240436,"org.eclipse.wst.xsl.jaxp.launching",1312392850516
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312392850688
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312392852250
+opened,editor,org.eclipse.wst.xml.ui,1.1.2.v201001222130,"org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart",1312392884126
+activated,editor,org.eclipse.wst.xml.ui,1.1.2.v201001222130,"org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart",1312392884438
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312392892048
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312392912142
+activated,view,org.eclipse.ui.navigator.resources,3.4.1.M20090826-0800,"org.eclipse.ui.navigator.ProjectExplorer",1312392912220
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312392914517
+closed,editor,org.eclipse.wst.xml.ui,1.1.2.v201001222130,"org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart",1312392916376
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1312392916423
+executed,command,org.eclipse.ui,3.5.2.M20100120-0800,"org.eclipse.ui.edit.delete",1312392916454
+activated,view,org.eclipse.ui.console,3.4.0.v20090513,"org.eclipse.ui.console.ConsoleView",1312392928611
+activated,view,org.eclipse.ui.navigator.resources,3.4.1.M20090826-0800,"org.eclipse.ui.navigator.ProjectExplorer",1312392931345
+executed,command,org.eclipse.debug.ui,3.5.2.v20091028_r352,"org.eclipse.debug.ui.commands.RunLast",1312392936908

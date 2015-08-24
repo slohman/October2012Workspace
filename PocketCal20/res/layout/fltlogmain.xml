@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content">
+	
+
+<LinearLayout
+	
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical"
+	android:padding="5dp">
+	<Button
+	    android:id="@+id/enterflight"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:paddingBottom="10dip"
+	    android:text="@string/enterFlt"
+	    android:textSize="@dimen/size14" />
+	<Button
+	    android:id="@+id/listflights"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:paddingBottom="10dip"
+	    android:text="@string/listeditFlt"
+	    android:textSize="@dimen/size14" />
+	  
+	  <Button
+		android:id="@+id/reports"
+		android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:paddingBottom="10dip"
+	    android:text="@string/reports"
+	    android:textSize="@dimen/size14" />
+			
+
+		<Button
+		android:id="@+id/filemaint"
+		android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:paddingBottom="10dip"
+	    android:text="@string/fltfilemaint"
+	    android:textSize="@dimen/size14" />
+
+	</LinearLayout>
+</ScrollView>

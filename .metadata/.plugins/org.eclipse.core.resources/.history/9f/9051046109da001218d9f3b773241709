@@ -1,0 +1,810 @@
+package com.yctc.alpaware;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.CookieStore;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.client.protocol.ClientContext;
+import org.apache.http.cookie.Cookie;
+import org.apache.http.entity.BufferedHttpEntity;
+import org.apache.http.impl.client.BasicCookieStore;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.protocol.BasicHttpContext;
+import org.apache.http.protocol.HttpContext;
+import org.apache.http.util.EntityUtils;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
+
+import android.app.IntentService;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Environment;
+import android.util.Log;
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
+
+
+public class OTIntentSvc extends IntentService {
+	  
+	 private NotificationManager mNM;
+
+	    // Unique Identification Number for the Notification.
+	    // We use it on Notification start, and to cancel it.
+	   DefaultHttpClient httpClient = AppSettings.getClient();
+	   
+	   CookieStore cookieStore = new BasicCookieStore();
+		 HttpContext localContext = new BasicHttpContext();
+		 utilities util = new utilities();
+		 HttpEntity tripDetailEntity;
+		 String tripDetails;
+		 int updateSec;
+	     utilities u = new utilities();
+	     int notifID = 1;
+	     String msg = "";
+	     Context ctx = OTIntentSvc.this;
+	     
+	    
+
+	
+	
+	public OTIntentSvc() {
+		super("OTIntentSvc");
+		
+	}
+	
+  
+
+
+	@Override
+	protected void onHandleIntent(Intent intent) {
+
+
+		final String uid = intent.getStringExtra("UID");
+    	final String pwd = intent.getStringExtra("PWD");
+    	final String grid = intent.getStringExtra("GRID");
+    	final String base = intent.getStringExtra("BASE");
+    	final String equip = intent.getStringExtra("EQUIP");
+    	final String seat = intent.getStringExtra("SEAT");
+    	final String stDate = intent.getStringExtra("StartDate");
+    	final String enDate = intent.getStringExtra("EndDate");
+    	mNM = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+    	
+    	
+  
+    		msg="OT Service Started";
+	        generateNotification(ctx,msg);
+    	
+				String[] OTdata = new String[8];
+				   OTdata[0] = uid; // uid
+		           OTdata[1] = pwd; // password
+		           OTdata[2] = grid; // grid
+		           OTdata[3] = base; // base
+		           OTdata[4] = equip; // equip
+		           OTdata[5] = seat; // seat
+		           OTdata[6] = stDate; // start date
+		           OTdata[7] = enDate; //end date
+    	   
+		           
+		           
+		           try{
+	        			   String OTDataString = loginDirectGetOpenTime(OTdata);
+	        	 		   boolean success =  storeOpenTime(OTDataString);
+	        	 		
+	        			
+	        			 if (success){
+	        				 msg = "OTUpdate Succeeded";
+	        			  generateNotification(ctx,msg);
+	        			 }else{
+	        				 msg= "Open TIme Update Failed";
+	        				 generateNotification(ctx,msg);	 
+	        			 } 
+	        			 }catch (Exception e){
+	        				 msg= "Open TIme Update Failed";
+	        				 generateNotification(ctx,msg);	
+	        			 }
+		
+	}
+	  public String loginDirectGetOpenTime(String[] Data) {
+			
+
+
+			 try { 
+				 
+				
+				 
+				
+				// DefaultHttpClient httpClient = AppSettings.getClient();
+
+					Cookie sessionInfo;
+					List<Cookie> cookies = httpClient.getCookieStore().getCookies();
+
+					if (! cookies.isEmpty()){
+					        CookieSyncManager.createInstance(getApplicationContext());
+					        CookieManager cookieManager = CookieManager.getInstance();
+
+					        for(Cookie cookie : cookies){
+			        	
+					        	   sessionInfo = cookie;
+					                String cookieString = sessionInfo.getName() + "=" + sessionInfo.getValue() + "; domain=" + sessionInfo.getDomain();
+					                cookieManager.setCookie("pilot.fedex.com", cookieString);
+					                CookieSyncManager.getInstance().sync();
+					        }
+					}
+
+	          
+	         // change to get open time string
+					    
+					   
+				        HttpPost httpPost = new HttpPost("https://pilot.fedex.com/vips-bin/vipscgi?webdd");
+					    List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(9);
+
+					    nameValuePairs.add(new BasicNameValuePair("n001", Data[3]));// base
+					    nameValuePairs.add(new BasicNameValuePair("n002", Data[4])); //equip
+					    nameValuePairs.add(new BasicNameValuePair("n003",Data[5])); //seat
+					    nameValuePairs.add(new BasicNameValuePair("n004", Data[6])); // start date
+					    nameValuePairs.add(new BasicNameValuePair("n005", Data[7])); //end date
+					    nameValuePairs.add(new BasicNameValuePair("n006", "Open+Time+Only")); 
+					    nameValuePairs.add(new BasicNameValuePair("n007", "on"));
+					    
+					    
+					    
+					    // Encode the entities to UTF-8
+					    httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs, "UTF-8"));
+					    // Response from the Http Request
+					    
+						
+					    HttpResponse response1 = httpClient.execute(httpPost);
+					    localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
+				       HttpEntity resEntity1 = response1.getEntity();
+				       String data =  EntityUtils.toString(resEntity1);
+				       resEntity1.consumeContent();	
+				       
+				       // check for bot and repost if necessary
+				    
+				      String src = "otrq";
+				      String botCode = Botchecker(data,src);
+				       if (botCode != null){
+				    	   
+				    	  
+				    //	   Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);	   
+				   // 	    vibrator.vibrate(1000); 
+					        msg="BotCode "+ botCode + " sent";
+					        generateNotification(ctx,msg);
+				    	 
+						
+
+
+					        HttpPost httpPost1 = new HttpPost("https://pilot.fedex.com/vips-bin/vipscgi?webdd");
+						    List<NameValuePair> nameValuePairs1 = new ArrayList<NameValuePair>(10);
+
+						    nameValuePairs1.add(new BasicNameValuePair("n001", Data[3]));// base
+						    nameValuePairs1.add(new BasicNameValuePair("n002", Data[4])); //equip
+						    nameValuePairs1.add(new BasicNameValuePair("n003", Data[5])); //seat
+						    nameValuePairs1.add(new BasicNameValuePair("n004", Data[6])); // start date
+						    nameValuePairs1.add(new BasicNameValuePair("n005", Data[7])); //end date
+						    nameValuePairs1.add(new BasicNameValuePair("n006", "Open Time Only")); 
+						    nameValuePairs1.add(new BasicNameValuePair("n007", "on"));
+						    nameValuePairs1.add(new BasicNameValuePair("nCTL", botCode.toString()));	
+						    nameValuePairs1.add(new BasicNameValuePair("nTRN", "webdd   "));
+						    nameValuePairs1.add(new BasicNameValuePair("n999", " Submit "));
+						    
+				    	  
+				    	   httpPost1.setEntity(new UrlEncodedFormEntity(nameValuePairs1, "UTF-8"));
+						    HttpResponse response2 = httpClient.execute(httpPost1);
+						    localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
+					       HttpEntity resEntity2 = response2.getEntity();
+					       String data2 =  EntityUtils.toString(resEntity2);
+					       resEntity2.consumeContent();	
+				    	   
+				    	
+				    	return data2;
+				    	 
+				    	   
+				    	 }else{
+				    		 
+				    		 //no bot blocker
+				    		 
+				    		 return data;
+				    	 }
+			
+		 
+		      } catch (IOException e) {
+		           this.stopSelf();
+		      } catch (Exception e) {
+		          this.stopSelf();  
+		     }
+			 
+		 
+		 return null;
+		
+	}
+	  public  boolean storeOpenTime(String OpenTimeData){
+			
+			//parse and load data to triplist activity 
+		 
+		 boolean success  = false;
+		
+
+		AlpaDataBaseHelper mdbh = new AlpaDataBaseHelper(this.getApplicationContext());
+	
+		
+	//	  android.os.Debug.waitForDebugger();
+
+			
+			
+			 if (OpenTimeData != null) { 
+				 int startAt = OpenTimeData.indexOf("<!--  B E G I N   M A I N   C O N T E N T  -->");
+				 int endAt = OpenTimeData.indexOf("<!-- E N D   O F   M A I N   C O N T E N T -->");
+		         String CalData = OpenTimeData.substring(startAt, endAt);
+				
+		                	  
+		         String[] events = 	CalData.split("\n");
+		                	
+			 
+			  //parse array here and load calendar StrDate Show EndDate Etim Blok  Pay
+			 String pairing = null,showdate = null, showtime = null, enddate = null, endtime = null, Pay = null, tripdate,RV,Type;
+			 //String[] tripData = new String[events.length];
+			  //set the path where we want to save the file
+			//  File SDCardRoot = Environment.getExternalStorageDirectory();
+			//  File dir = new File (SDCardRoot.getAbsolutePath() + "/FdxOTTrips");
+			//  deleteDirectory(dir);
+			  
+			  
+			// determine whether trip exists in database already
+		 		// if does skip it 
+		 		// if trip exists in database but not in new opentime array of trips delete it from the saved database
+		 		// if trip does not exists in current databse add it and mark it as new. It will color code green
+		 		// in the trip listing activity
+			  
+			 
+			 int lines=(events.length - 3);
+			 // build array of new trips to check if they have been assigned
+			 
+			int tripcount = 0;
+			
+			// this gets the pairing and tripdate of the new downloaded opentime
+			// count the number of trips first to dimension the array
+			 for (int x = 0;x<lines; x++){
+				 if(events[x].toString().contains("webtr")){
+					 tripcount = tripcount +1 ;
+				 }
+			 }
+			 
+			 // load the array with the new pairing and tripdates
+			 String[] newOTtrips = new String[tripcount];
+			 int y = 0;
+			 for (int x = 0;x<lines; x++){
+				 
+				 if(events[x].toString().contains("webtr")){
+					int tripstart = events[x].indexOf(">");
+				 	int	tripend = events[x].indexOf("</");
+					pairing = events[x].substring(tripstart + 1 , tripend).trim();
+				    tripdate = events[x].substring(tripend + 13, tripend + 18).trim();
+				    RV = events[x].substring(tripend + 5,tripend + 7 ).trim();
+			 		Type = events[x].substring(tripend + 8, tripend + 12);
+			 		showdate = events[x].substring(tripend + 19 , tripend + 24);
+			 		showtime = events[x].substring(tripend + 25, tripend + 29);
+			 		enddate = events[x].substring(tripend + 30, tripend + 35);
+			 		endtime = events[x].substring(tripend + 36, tripend + 40);
+			 		Pay = events[x].substring(tripend + 41, tripend + 46);
+					 
+					 newOTtrips[y] = pairing+","+tripdate+","+RV+","+Type+","+showdate+","+showtime+","+enddate+","+endtime+","+Pay;
+					 y=y+1;
+				 }
+			 }
+			 loadOTTempTable(newOTtrips);// put new trips into temp OT table
+			 deleteAssignedTrips();
+			 
+			 
+			 
+			 for (int x = 0;x < newOTtrips.length; x++) {
+				
+				 
+				 		String[] tripInfo = newOTtrips[x].split(",");
+				 	
+				 		
+				 		pairing = tripInfo[0];
+				 		tripdate = tripInfo[1];
+				 		
+				 		boolean exists = pairingExistsInTable(pairing,tripdate);
+				 		
+				 		
+				 		if (!exists){ // trip exists in the database already so skip it
+				 			
+				 		RV = tripInfo[2];
+				 		Type = tripInfo[3];
+				 		
+				 		showdate = tripInfo[4];
+				 		showtime = tripInfo[5];
+				 		enddate = tripInfo[6];
+				 		endtime = tripInfo[7];
+				 		Pay = tripInfo[8];
+				 		
+				 	
+				 	
+				 	 String TripDetails = getTripDetails(pairing,tripdate); // pass to ex and get trip deatils for database//
+					 // parse out the data
+					
+				 	int StartAt = TripDetails.indexOf("<!--  B E G I N   M A I N   C O N T E N T  -->");
+					int EndAt = TripDetails.indexOf("<!-- E N D   O F   M A I N   C O N T E N T -->");
+					// look for botcheck code //
+					
+					
+					String tripdata = TripDetails.substring(StartAt, EndAt);
+					String TripId = pairing + " " + showdate;
+					SaveHtmlData(tripdata, TripId);  // save html data to load to image when listing out trips
+					 int status = 1; //this is a new trip so mark the status true =1
+				
+				     final SQLiteDatabase db1 = mdbh.getWritableDatabase(); 
+					
+					  try {
+				    	   db1.execSQL("Insert into opentime Values (" + null  + ", " + "'" + pairing + "','" + RV + "','" + Type + "','" + tripdate + "','" +  showdate+ "','" +  showtime  + "','" + enddate + "','" + endtime + "','" + Pay + "','" + status +   "')");		  
+				    	   	db1.close();
+				    	   	  success=true;
+				       				}catch (Exception e){
+				       					db1.close();
+				    	   			success=false;
+				    	   			}  
+				 	}
+				 		
+				 	success=true;
+				 		
+					
+				 	
+			 }
+			 success=true;
+			
+}
+			
+		return success;	 
+
+}
+			 
+public void SaveHtmlData(final String HtmlData, String TripId){
+					
+					
+				  //set the path where we want to save the file
+			  File SDCardRoot = Environment.getExternalStorageDirectory();
+			  File dir = new File (SDCardRoot.getAbsolutePath() + "/FdxOTTrips");
+			  if(!dir.exists())
+			  {
+			  dir.mkdirs();
+			  }
+		
+			  
+			 
+			  final File file = new File(dir, TripId);  //any name abc.html
+			  
+
+				    	 		byte[] data = new String(HtmlData).getBytes();
+				    	 			try {
+				    	 				FileOutputStream f = new FileOutputStream(file);
+				    	 	 
+				    	 				f = new FileOutputStream(file);
+				    	 				f.write(data);
+				    	 				f.flush();
+				    	 				f.close();
+				    	 	
+				    	 	} catch (IOException e) {
+				    	 	  
+				    	 	}
+			  		
+}
+
+public String getTripDetails(String tripnum,String dte){
+
+	
+
+	// tripnum shoud be like 83Sep12
+	tripDetails= "";
+	String data2 = readuserdata();
+	final String[] logdata2 = data2.split(",");
+	String base = logdata2[2].trim();
+ 	String equip= logdata2[3].trim();
+	String zululocal = logdata2[5].trim();
+	
+
+  
+	
+	
+	
+	
+	try {
+		
+		
+		///sync cookies
+		
+		Cookie sessionInfo;
+		List<Cookie> cookies = httpClient.getCookieStore().getCookies();
+
+		if (! cookies.isEmpty()){
+		        CookieSyncManager.createInstance(getApplicationContext());
+		        CookieManager cookieManager = CookieManager.getInstance();
+
+		        for(Cookie cookie : cookies){
+		                sessionInfo = cookie;
+		                String cookieString = sessionInfo.getName() + "=" + sessionInfo.getValue() + "; domain=" + sessionInfo.getDomain();
+		                cookieManager.setCookie("pilot.fedex.com", cookieString);
+		                CookieSyncManager.getInstance().sync();
+		        }
+		}
+		
+		
+		 HttpPost httpPost = new HttpPost("https://pilot.fedex.com/vips-bin/vipscgi?webtr?" + tripnum.trim()+"?" + base.trim()+"?"+equip.trim()+"?"+dte.trim()+"?"+"N?Y?"+ zululocal + "?");
+		    HttpResponse response1 = httpClient.execute(httpPost);
+		    localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
+	        HttpEntity resEntity1 = response1.getEntity();
+	        tripDetails =  EntityUtils.toString(resEntity1);
+	        resEntity1.consumeContent();	
+	   // check for bot code //
+	   String src = "triprq";
+	  String botCode = Botchecker(tripDetails,src);
+	  
+	  if (botCode != null){
+		  msg="BotCode "+ botCode + " sent";
+	        generateNotification(ctx,msg);
+	        
+	       
+		   
+	  HttpPost httpPost2 = new HttpPost("https://pilot.fedex.com/vips-bin/vipscgi?webtr"); // + tripnum.trim()+"?" + base.trim()+"?"+equip.trim()+"?"+dte.trim()+"?"+"N?Y?"+botCode.toString()+"?"+ zululocal + "?");
+	   List<NameValuePair> nameValuePairs2 = new ArrayList<NameValuePair>(9);
+
+	    nameValuePairs2.add(new BasicNameValuePair("n001", tripnum.trim()));// base
+	    nameValuePairs2.add(new BasicNameValuePair("n002", base.trim())); //equip
+	    nameValuePairs2.add(new BasicNameValuePair("n003", equip.trim())); //equip
+	    nameValuePairs2.add(new BasicNameValuePair("n004", dte.trim())); // trip date
+	    nameValuePairs2.add(new BasicNameValuePair("n005", "Recap Format")); 
+	   nameValuePairs2.add(new BasicNameValuePair("n006", "on")); 
+	   
+	   nameValuePairs2.add(new BasicNameValuePair("nCTL", botCode.toString()));	
+	    nameValuePairs2.add(new BasicNameValuePair("nTRN", "webtr   "));
+	    nameValuePairs2.add(new BasicNameValuePair("n999", " Submit "));
+	    
+	  
+	    httpPost2.setEntity(new UrlEncodedFormEntity(nameValuePairs2, "UTF-8"));
+	    HttpResponse response2 = httpClient.execute(httpPost2);
+	    localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
+      HttpEntity resEntity2 = response2.getEntity();
+      tripDetails =  EntityUtils.toString(resEntity2);
+      resEntity2.consumeContent();	
+	   
+	   }
+	   
+	    return tripDetails;
+	
+	
+	
+	} catch (IOException e) {
+       Log.e("Exception", "IOException", e);
+ } catch (Exception e) {
+       Log.e("Exception", "General Exception", e);
+}
+	return null;
+
+	
+	
+	
+	
+}
+
+public String Botchecker(String pageData, String src){
+	
+	String LinkToDigits;
+	String botCode = null ;
+	Bitmap bm = null;
+	// search the string for occurance of ....  Please enter the control code shown below
+	
+	if (pageData.contains("Please enter the control code shown below to submit your request")) {
+		
+		// this a botpage
+		if (src.equals("otrq")){
+		LinkToDigits = "/vips-bin/vipscgi?webdgts??webdd";
+		}else{
+		LinkToDigits = "/vips-bin/vipscgi?webdgts??webtr";	
+		}
+		// go get the digits and display in alert dialog
+		
+		
+		
+
+		
+		// DefaultHttpClient httpClient = AppSettings.getClient();
+			 Cookie sessionInfo;
+				List<Cookie> cookies = httpClient.getCookieStore().getCookies();
+
+				if (! cookies.isEmpty()){
+				        CookieSyncManager.createInstance(this);
+				        CookieManager cookieManager = CookieManager.getInstance();
+
+				        for(Cookie cookie : cookies){
+		        	
+				        	   sessionInfo = cookie;
+				                String cookieString = sessionInfo.getName() + "=" + sessionInfo.getValue() + "; domain=" + sessionInfo.getDomain();
+				                cookieManager.setCookie("pilot.fedex.com", cookieString);
+				                CookieSyncManager.getInstance().sync();
+				        }
+				}
+			 	
+				try {
+				    HttpPost httpPost1 = new HttpPost("https://pilot.fedex.com/" + LinkToDigits);
+				    HttpResponse response = httpClient.execute(httpPost1);
+					localContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
+				    HttpEntity resEntity = response.getEntity();
+				    String data1 = EntityUtils.toString(resEntity); //  this string should have links to digits
+				    resEntity.consumeContent();
+	
+				    Document doc = Jsoup.parse(data1);
+				    Elements media = doc.select("[SRC]");
+			   	 	
+			   	 	
+				    
+			   	  StringBuilder sb = new StringBuilder();
+			   	  for (org.jsoup.nodes.Element src1 : media) {  // get path of EGRID image from webpage
+			   		  
+			   		  String attrval = src1.attributes().toString();
+			             if (attrval.contains("/vipsfiles/bots/")){
+			           	  
+			           	  attrval = attrval.substring(attrval.length() - 11);
+			           	  attrval = attrval.substring(0,attrval.length()- 1);
+			           	 String ImageURL = "https://pilot.fedex.com/vipsfiles/bots/" + attrval.trim();
+			         
+			           	HttpUriRequest request = new HttpGet(ImageURL);
+			           	HttpResponse response1 = httpClient.execute(request);
+			           
+			             BufferedHttpEntity bufferedHttpEntity = new BufferedHttpEntity(response1.getEntity());
+
+			              bm = BitmapFactory.decodeStream(bufferedHttpEntity.getContent());
+			            
+			              String digit = u.readBotCode(bm);
+		                  sb.append(digit.toString());
+			            }
+			             
+			   	  } // end for loop
+			   	
+			   	  botCode = sb.toString();
+			   			   	  return botCode;
+				
+				
+				
+				} catch (ClientProtocolException e) {
+					return "Protocol Exception";
+					} catch (IOException e) {
+					return "IOException";
+					}
+				
+	
+				} else {
+					
+				return null;
+
+				}
+	
+}
+
+
+////////////////////////////////////////////
+
+public static void deleteFile(File path) {
+   
+  if( path.exists() ) {
+     
+              path.delete();
+          }
+ 
+}
+
+public String readuserdata(){
+	String usrdata = null;
+	 FileInputStream fis = null;
+      try {
+			fis = openFileInput("PcalData");
+			
+			 StringBuffer fileContent = new StringBuffer("");
+
+		        byte[] buffer = new byte[1024];
+		        
+		        try {
+		        	@SuppressWarnings("unused")
+					int length = 0;
+					while ((length = fis.read(buffer)) != -1) {
+					    fileContent.append(new String(buffer));
+					}
+					
+					usrdata = (fileContent.toString());
+				    
+		        } catch (IOException e) {
+					return null;
+	}
+			
+			
+			
+		} catch (FileNotFoundException e) {
+			
+			return null;
+			
+		}
+			      
+			
+			
+		
+      return usrdata;
+}	
+	
+	
+
+	
+	public void deleteTripFromOPenTimeTable(){
+		AlpaDataBaseHelper mdbh = new AlpaDataBaseHelper(this.getApplicationContext());
+		final SQLiteDatabase db = mdbh.getWritableDatabase(); 
+		String tsql = "Delete from opentime";
+		db.execSQL(tsql );
+		db.close();
+	}
+	
+	public Boolean pairingExistsInTable(String pairing, String tripdate){
+		
+		AlpaDataBaseHelper mdbh = new AlpaDataBaseHelper(this.getApplicationContext());
+		final SQLiteDatabase db = mdbh.getWritableDatabase(); 
+		final Cursor c = db.rawQuery("Select 1 from opentime where pairing ='" + pairing +"' and tripDate ='" + tripdate + "'" ,null);
+		
+		if (c.getCount()>0){
+			c.close();
+			db.close();
+			return true;
+	
+		}else{
+			
+			c.close();
+			db.close();
+			return false;
+		}
+	}
+	
+	public void markTripStatus(int status, String pairing, String tripdate){
+		AlpaDataBaseHelper mdbh = new AlpaDataBaseHelper(this.getApplicationContext());
+		final SQLiteDatabase db = mdbh.getWritableDatabase(); 
+		db.execSQL("Udpdate opentime set New = "+ status + " where pairing = '" + pairing + "' and tripdate = '"+ tripdate + "'" ,null);
+		db.close();
+	}
+	
+
+	
+	public void loadOTTempTable(String[] trips){
+		// delete all the temp table trips and reload it
+		
+		AlpaDataBaseHelper mdbh = new AlpaDataBaseHelper(this.getApplicationContext());
+		final SQLiteDatabase db = mdbh.getWritableDatabase(); 
+		String tsql = "Delete from tmpOpenTime"; // clean out the table from the last run
+		db.execSQL(tsql );
+		
+		
+		int numberOfTrips = trips.length;
+		if (numberOfTrips > 0){
+		     for (int i = 0;i < numberOfTrips;i++){
+		    	String[] TripData = trips[i].split(",");
+			   String pairing = TripData[0];
+			   String tripdate = TripData[1];
+			
+			  db.execSQL("Insert into tmpOpenTime Values (" + null  + ", " + "'" + pairing + "','" + tripdate +   "')");		  
+			 
+		     }
+		}else{
+			  db.close();	
+		}
+		db.close();
+	}
+	
+	
+	public void deleteAssignedTrips(){
+		
+		//remove trips from that have been assigned
+		
+		// get the current database
+		
+		AlpaDataBaseHelper mdbh = new AlpaDataBaseHelper(this.getApplicationContext());
+		final SQLiteDatabase db = mdbh.getWritableDatabase(); 
+		final SQLiteDatabase db1 = mdbh.getWritableDatabase();
+		final Cursor c = db.rawQuery("Select _id,pairing,tripdate from opentime", null);
+		int opentripcount = c.getCount();
+		if(opentripcount >0){
+			c.moveToFirst();
+			
+			for(int i=0;i<c.getCount();i++){
+				String pairing = c.getString(c.getColumnIndex("pairing"));
+	 		    String tripdate = c.getString(c.getColumnIndex("TripDate"));
+	 		    int id = c.getInt(c.getColumnIndex("_id"));
+				
+				
+				
+				Cursor c1 = db1.rawQuery("select _id from tmpOpenTime where pairing = '" +pairing+ "' and tripdate ='"+tripdate+"'", null);
+				boolean exists = (c1.getCount() >0);
+				c1.close();
+					if (!exists){
+						db1.execSQL("Delete from opentime where _id = " + id  );
+						
+						//delete pairing image from SDcard
+						String filename = pairing+ " "+tripdate;
+						deleteOpenTimeFromSDCard(filename);
+						
+					}
+				c.moveToNext(); // get next record
+			}
+			
+		c.close();
+		
+		db.close();
+		db1.close();
+		}
+        c.close();
+		
+		db.close();
+		db1.close();
+	}
+		
+		public void deleteOpenTimeFromSDCard(String filename){
+			
+			  File SDCardRoot = Environment.getExternalStorageDirectory();
+			  File file = new File (SDCardRoot.getAbsolutePath() + "/FdxOTTrips/");
+			  if( file.exists() ) {
+				     
+	              file.delete();
+	          }
+			  
+		}		
+			
+		private static void generateNotification(Context context, String message) {
+		    int icon = R.drawable.alpalogo;
+		    long when = System.currentTimeMillis();
+		    NotificationManager notificationManager = (NotificationManager)
+		            context.getSystemService(Context.NOTIFICATION_SERVICE);
+		    Notification notification = new Notification(icon, message, when);
+
+		    String title = context.getString(R.string.app_name);
+
+		    Intent notificationIntent = new Intent(context, onlinelauncher.class);
+		    // set intent so it does not start a new activity
+		    notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+		            Intent.FLAG_ACTIVITY_SINGLE_TOP);
+		    PendingIntent intent =
+		            PendingIntent.getActivity(context, 0, notificationIntent, 0);
+		    notification.setLatestEventInfo(context, title, message, intent);
+		    notification.flags |= Notification.FLAG_AUTO_CANCEL;
+
+		    // Play default notification sound
+		    notification.defaults |= Notification.DEFAULT_SOUND;
+
+		    // Vibrate if vibrate is enabled
+		    notification.defaults |= Notification.DEFAULT_VIBRATE;
+		    notificationManager.notify(0, notification);      
+
+		}
+		
+		
+		
+		
+		
+		
+		}	
+		

@@ -1,0 +1,35 @@
+package com.arroyoseco.Remote;
+
+import android.R.string;
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+public class pump extends Activity{
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+	    super.onCreate(savedInstanceState);
+	    setContentView(R.layout.pump);
+	    
+	    Button pmp = (Button) findViewById(R.id.Pump); 
+	    pmp.setOnLongClickListener(new View.OnLongClickListener() {
+	        public boolean onLongClick(View view) {
+	        TCP stcp = new TCP();
+	        getip ipaddr = new getip();
+	        String addr = ipaddr.getLocalIpAddress();
+	        stcp.SendCommand("@60"+addr);
+	        return true;
+}});;
+final Button ip1 = (Button) findViewById(R.id.ipaddr);
+ip1.setOnLongClickListener(new View.OnLongClickListener() {
+	 public boolean onLongClick(View view) {
+       
+        getip ipaddr = new getip();
+        String addr = ipaddr.getLocalIpAddress();
+        ip1.setText(addr);
+      
+		   return true;
+    }});;
+}}

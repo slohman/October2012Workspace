@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete 6 elements from project &apos;PocketCal20&apos;&#x0A;- Original project: &apos;PocketCal20&apos;&#x0A;- Original elements:&#x0A;     CHANGELOG.md&#x0A;     checkstyle.xml&#x0A;     CONTRIBUTING.md&#x0A;     LICENSE.txt&#x0A;     pom.xml&#x0A;     README.md" description="Delete elements" element1="libs/pom.xml" element2="libs/CONTRIBUTING.md" element3="libs/LICENSE.txt" element4="libs/CHANGELOG.md" element5="libs/README.md" element6="libs/checkstyle.xml" elements="0" flags="589830" id="org.eclipse.jdt.ui.delete" resources="6" stamp="1376525210869" subPackages="false" version="1.0"/>
+</session>

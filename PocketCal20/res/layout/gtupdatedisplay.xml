@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+xmlns:android="http://schemas.android.com/apk/res/android"
+ android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+<LinearLayout 
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+    
+<TextView 
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/recid"
+    android:textSize="@dimen/size14"
+    android:padding="5px"/>
+    
+    
+    
+<EditText 
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/upcityid"
+    android:textSize="@dimen/size16"
+    android:padding="5px"/>
+    
+<EditText  
+    
+    android:id="@+id/upcity"
+    android:layout_width="fill_parent"
+        android:layout_below="@+id/cityid"
+      android:layout_alignParentLeft="true"
+    android:layout_height="wrap_content"
+     android:textSize="@dimen/size14"
+     android:padding="5px"/>
+    
+   <EditText  
+    
+    android:id="@+id/upstate"
+    android:layout_width="fill_parent"
+        
+      android:layout_alignParentLeft="true"
+    android:layout_height="wrap_content"
+     android:textSize="@dimen/size14"
+     android:padding="5px"/>
+    
+    
+
+    
+<EditText 
+    android:id="@+id/upramptel"
+    android:gravity="left"
+    
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:textSize="@dimen/size14"
+    android:padding="5px"/>
+    
+    
+<EditText 
+    android:id="@+id/upramptel1"
+    android:gravity="left"
+    
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:textSize="@dimen/size14"
+      android:padding="5px"/>
+    
+<EditText 
+    android:id="@+id/upramptel2"
+    android:gravity="left"
+   android:layout_width="fill_parent"
+     android:layout_alignParentLeft="true"
+    android:layout_height="wrap_content"
+    
+    android:textSize="@dimen/size14"
+    
+    android:padding="5px"/>
+    
+
+<EditText  
+    android:id="@+id/uprampemail"
+    android:gravity="left"
+    android:layout_width="fill_parent"
+   
+    android:layout_height="wrap_content"
+    android:textSize="@dimen/size14"
+    
+    
+    android:padding="5px"/>
+    
+
+    
+<EditText 
+    android:id="@+id/uphotelname"
+    android:gravity="left"
+
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:textSize="@dimen/size14"
+    
+    android:padding="5px"/>
+    
+    
+<EditText 
+    android:id="@+id/uphotelnum"
+    android:gravity="left"
+    android:layout_width="fill_parent"
+  
+    android:layout_height="wrap_content"
+    android:textSize="@dimen/size14"
+    
+    android:padding="5px"/>
+    
+ 
+    
+<EditText 
+    android:id="@+id/upgtinfo"
+    android:gravity="left"
+    android:layout_width="fill_parent"
+   
+    android:layout_height="wrap_content"
+      android:textSize="@dimen/size14"
+    
+    android:padding="5px"/>
+    
+    
+<EditText 
+    android:id="@+id/upnotes"
+    android:gravity="left"
+    android:layout_width="fill_parent"
+   
+    android:layout_height="wrap_content"
+      android:textSize="@dimen/size14"
+    
+    android:padding="5px"/>
+    
+
+</LinearLayout>
+</ScrollView>

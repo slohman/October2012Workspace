@@ -1,0 +1,23 @@
+package com.arroyoseco.Remote;
+
+import android.app.Activity;
+import android.os.Bundle;
+
+public class UDPconnection extends Activity {
+    /** Called when the activity is first created. */
+    public void onCreate(Bundle icicle) {
+        super.onCreate(icicle);
+        setContentView(R.layout.main);
+       
+        Thread sThread = new Thread(new Server());
+        Thread cThread = new Thread(new Client());
+       
+        sThread.start();
+        try {
+               Thread.sleep(500);
+          } catch (InterruptedException e) { }
+       
+          cThread.start();
+    }
+}
+

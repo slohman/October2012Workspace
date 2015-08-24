@@ -1,0 +1,57 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="top"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/begrid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.24"
+        android:text="Get Egrid"
+        android:textSize="@dimen/size12" />
+
+    <Button
+        android:id="@+id/bwebsite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.08"
+        android:text="WebSite (PFC)" />
+
+    <Button
+        android:id="@+id/bgetopentime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.04"
+        android:text="Get OpenTime" />
+
+    <Button
+        android:id="@+id/bstopautoopentime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.05"
+        android:text="Stop Auto Open Time" />
+
+    <Button
+        android:id="@+id/bviewsavedopentime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.05"
+        android:text="View Saved OpenTime" />
+
+    <Button
+        android:id="@+id/bgetcalendar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.06"
+        android:text="Get/Update Calendar" />
+
+    <Button
+        android:id="@+id/bviewsavedcalendar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.05"
+        android:text="View Saved Calendar" />
+
+</LinearLayout>

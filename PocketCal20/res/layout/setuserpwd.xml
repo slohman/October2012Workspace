@@ -1,0 +1,102 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:gravity = "center_vertical">
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <EditText
+                android:id="@+id/setUID"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="UserID"
+                android:text="UID" />
+
+            <EditText
+                android:id="@+id/setPWD"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="Vips Password"
+                android:inputType="textPassword"
+                android:text="VipsPassWord" />
+
+            <EditText
+                android:id="@+id/etBase"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="Base (LAX,MEM,ANC,HKG,EUR)"
+                android:text="Base" />
+
+            <EditText
+                android:id="@+id/etEq"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="Equiment ( 11,77,72,30,57)"
+                android:text="Equipment" />
+
+            <EditText
+                android:id="@+id/seat"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="Cap/FO"
+                android:inputType="textPersonName"
+                android:text="Cap/FO" >
+
+                <requestFocus />
+            </EditText>
+
+            <EditText
+                android:id="@+id/tzorlocal"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="Z for Zulu L for Local/Trip Update"
+                android:inputType="textPersonName"
+                android:text="(Z) or  (L)ocal Time/Trip Update" />
+
+            <EditText
+                android:id="@+id/BWlvl"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="BW LEvel"
+                android:inputType="textPersonName"
+                android:text="SET BW level (try 1015)" />
+
+            <EditText
+                android:id="@+id/etkadelay"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="number"
+                android:lines="1"
+                android:paddingBottom="0dp"
+                android:text="Keep Alive Delay (Minutes)" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

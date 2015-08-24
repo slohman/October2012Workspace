@@ -1,0 +1,61 @@
+<resources>
+
+    <string-array name="aircraft">
+        
+        <item>757</item>
+        <item>MD11</item>
+        <item>MD10</item>
+        <item>777</item>
+        <item>A300</item>
+        <item>A310</item>
+        <item>767</item>
+        
+    </string-array>
+    
+     <string-array name="imageYN">
+        <item>Image- Yes</item>
+        <item>Image- No</item>
+     </string-array>
+    
+     <string-array name="pilots">
+        <item>Captain</item>
+        <item>FO</item>
+        <item>DHD FLT</item>
+        
+     </string-array>
+     
+     
+     <string-array name="ExpenseCat">
+        <item>Air Tran</item>
+        <item>Ground Tran</item>
+        <item>Food</item>
+         <item>Entertainment</item>
+        <item>Tips</item>
+        <item>Bag Fees</item>
+        <item>Parking</item>
+        <item>Depature Fees</item>
+        <item>Exchange Fees</item>
+         <item>Misc Exp</item>
+     </string-array>
+     <string-array name="Base">
+         <item>MEM</item>
+         <item>LAX</item>
+         <item>ANC</item>
+         <item>HKG</item>
+         <item>EUR</item>
+    </string-array>
+     <string-array name="equip">
+         <item>11</item>
+         <item>30</item>
+         <item>77</item>
+         <item>75</item>
+         <item>27</item>
+         <item>76</item>
+     </string-array>
+     <string-array name="seat">
+         <item >Cap</item>
+         <item >F/O</item>
+         <item >ALL</item>
+     </string-array>
+    
+</resources>

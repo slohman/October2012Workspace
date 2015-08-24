@@ -1,0 +1,26 @@
+what,kind,bundleId,bundleVersion,description,time
+os,sysinfo,,,"win32",1312146913332
+arch,sysinfo,,,"x86",1312146913332
+ws,sysinfo,,,"win32",1312146913332
+locale,sysinfo,,,"en_US",1312146913332
+processors,sysinfo,,,"2",1312146913332
+java.runtime.name,sysinfo,,,"Java(TM) SE Runtime Environment",1312146913332
+java.runtime.version,sysinfo,,,"1.6.0_26-b03",1312146913332
+java.specification.name,sysinfo,,,"Java Platform API Specification",1312146913332
+java.specification.vendor,sysinfo,,,"Sun Microsystems Inc.",1312146913332
+java.specification.version,sysinfo,,,"1.6",1312146913332
+java.vendor,sysinfo,,,"Sun Microsystems Inc.",1312146913332
+java.version,sysinfo,,,"1.6.0_26",1312146913332
+java.vm.info,sysinfo,,,"mixed mode",1312146913332
+java.vm.name,sysinfo,,,"Java HotSpot(TM) Client VM",1312146913332
+java.vm.specification.name,sysinfo,,,"Java Virtual Machine Specification",1312146913332
+java.vm.specification.vendor,sysinfo,,,"Sun Microsystems Inc.",1312146913332
+java.vm.specification.version,sysinfo,,,"1.0",1312146913332
+java.vm.vendor,sysinfo,,,"Sun Microsystems Inc.",1312146913332
+java.vm.version,sysinfo,,,"20.1-b02",1312146913332
+started,bundle,com.android.ide.eclipse.traceview,12.0.0.v201106281929-138431,"com.android.ide.eclipse.traceview",1312146913520
+started,bundle,org.eclipse.jst.j2ee.web,1.1.301.v200911302230,"org.eclipse.jst.j2ee.web",1312146913801
+started,bundle,org.eclipse.jsch.core,1.1.100.I20090430-0408,"org.eclipse.jsch.core",1312146913973
+started,bundle,org.eclipse.team.cvs.core,3.3.200.I20090430-0408,"org.eclipse.team.cvs.core",1312146914067
+started,bundle,org.eclipse.jst.jsf.ui,1.2.3.v201001271707,"org.eclipse.jst.jsf.ui",1312146914395
+started,bundle,org.eclipse.wst.wsi.ui,1.0.500.v200901141851,"org.eclipse.wst.wsi.ui",1312146914801

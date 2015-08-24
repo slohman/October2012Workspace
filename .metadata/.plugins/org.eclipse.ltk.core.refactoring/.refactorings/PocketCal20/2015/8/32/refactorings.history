@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;&apos; to &apos;com.yctc.alpaware.gthoteldisplay.LoadScreen(...)&apos;&#x0A;- Original project: &apos;PocketCal20&apos;&#x0A;- Destination element: &apos;com.yctc.alpaware.gthoteldisplay.LoadScreen(...)&apos;&#x0A;- Original element: &apos;com.yctc.alpaware.gthoteldisplay.LoadScreen(...)&apos;" description="Copy method" destination="/src&lt;com.yctc.alpaware{gthoteldisplay.java[gthoteldisplay~LoadScreen~QCursor;" element1="/src&lt;com.yctc.alpaware{gthoteldisplay.java[gthoteldisplay~LoadScreen~QCursor;" flags="589830" id="org.eclipse.jdt.ui.copy" members="1" policy="org.eclipse.jdt.ui.copyMembers" stamp="1438609776768" version="1.0"/>
+</session>

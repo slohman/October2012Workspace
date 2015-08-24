@@ -1,0 +1,26 @@
+what,kind,bundleId,bundleVersion,description,time
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311729658875
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311729658891
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311729658938
+executed,command,org.eclipse.ui,3.5.2.M20100120-0800,"org.eclipse.ui.file.import",1311729658938
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311729659031
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311729659031
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311729659063
+started,bundle,org.eclipse.pde.core,3.5.101.v20100104,"org.eclipse.pde.core",1311729659109
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311729660109
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311729660109
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311729660203
+activated,view,org.eclipse.ui.console,3.4.0.v20090513,"org.eclipse.ui.console.ConsoleView",1311729664875
+executed,command,org.eclipse.ui,3.5.2.M20100120-0800,"org.eclipse.ui.edit.copy",1311729669407
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311729671172
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311729808675
+activated,view,org.eclipse.ui.navigator.resources,3.4.1.M20090826-0800,"org.eclipse.ui.navigator.ProjectExplorer",1311729811987
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311729819191
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311729820706
+executed,command,org.eclipse.ltk.ui.refactoring,3.4.101.r352_v20100209,"org.eclipse.ltk.ui.refactoring.commands.deleteResources",1311729820722
+executed,command,org.eclipse.ui,3.5.2.M20100120-0800,"org.eclipse.ui.edit.delete",1311729820722
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311729825206
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311729863942
+executed,command,org.eclipse.ui,3.5.2.M20100120-0800,"org.eclipse.ui.file.import",1311729863957
+activated,view,org.eclipse.ui.console,3.4.0.v20090513,"org.eclipse.ui.console.ConsoleView",1311729873754
+started,bundle,org.eclipse.wst.xsl.debug.ui,1.0.0.v200904240436,"org.eclipse.wst.xsl.debug.ui",1311729883629

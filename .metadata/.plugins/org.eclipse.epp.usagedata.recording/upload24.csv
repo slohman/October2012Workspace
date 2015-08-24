@@ -1,0 +1,26 @@
+what,kind,bundleId,bundleVersion,description,time
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311728333381
+executed,command,org.eclipse.ui,3.5.2.M20100120-0800,"org.eclipse.ui.file.import",1311728333381
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311728333522
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311728333522
+started,bundle,org.eclipse.pde.core,3.5.101.v20100104,"org.eclipse.pde.core",1311728333725
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311728334068
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311728334084
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311728334334
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311728335412
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311728335412
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311728369569
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311728372554
+executed,command,org.eclipse.ui.ide,3.5.2.M20100113-0800,"org.eclipse.ui.project.cleanAction",1311728372554
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311728372882
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311728372882
+error,log,,,"Failed to load properties file for project 'ArroyoRemote'",1311728372944
+started,bundle,org.eclipse.ui.views.properties.tabbed,3.5.0.I20090429-1800,"org.eclipse.ui.views.properties.tabbed",1311728384647
+opened,view,org.eclipse.ui.views,3.4.1.M20090826-0800,"org.eclipse.ui.views.PropertySheet",1311728384726
+activated,view,org.eclipse.ui.views,3.4.1.M20090826-0800,"org.eclipse.ui.views.PropertySheet",1311728384757
+opened,view,org.eclipse.ui.ide,3.5.2.M20100113-0800,"org.eclipse.ui.views.AllMarkersView",1311728386538
+activated,view,org.eclipse.ui.ide,3.5.2.M20100113-0800,"org.eclipse.ui.views.AllMarkersView",1311728386538
+deactivated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311728444586
+started,bundle,org.eclipse.equinox.p2.ui,1.0.101.R35x_v20090819,"org.eclipse.equinox.p2.ui",1311728460493
+started,bundle,org.eclipse.equinox.p2.ui.sdk,1.0.100.v20090520-1905,"org.eclipse.equinox.p2.ui.sdk",1311728460493
+activated,workbench,org.eclipse.ui.workbench,3.5.2.M20100113-0800,"",1311728465633

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    
+    
+    android:weightSum="1">
+<TextView 
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="Duty Time Calculator"
+    android:padding="5px"
+    
+    />
+
+<RelativeLayout
+    android:id="@+id/relativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="0.15" >
+
+    <TextView android:id="@+id/Farlimit" android:gravity="center_horizontal" android:layout_height="wrap_content" android:padding="5px" android:hint="FAR" android:layout_width="104dp" android:textSize="@dimen/size14" android:background="@color/white" android:textColor="@color/black" android:layout_alignParentTop="true" android:layout_alignParentRight="true"></TextView>
+    <TextView android:id="@+id/schedLimit" android:gravity="center_horizontal" android:layout_height="wrap_content" android:padding="5px" android:hint="Sched" android:layout_width="104dp" android:textSize="@dimen/size14" android:background="@color/white" android:textColor="@color/black" android:layout_alignParentTop="true" android:layout_alignParentLeft="true"></TextView>
+    <TextView android:id="@+id/opLimit" android:gravity="center_vertical|center_horizontal" android:layout_height="wrap_content" android:hint="Oper" android:background="@color/white" android:textColor="@color/black" android:layout_alignParentTop="true" android:layout_centerHorizontal="true" android:layout_alignBottom="@+id/schedLimit" android:layout_width="104dp" android:textSize="@dimen/size14"></TextView>
+</RelativeLayout>
+
+<TextView
+    android:id="@+id/kcmdetails"
+    android:layout_width="match_parent"
+    android:layout_height="33dp"
+    android:text="Select Base"
+    android:textSize="@dimen/size12" >
+</TextView>
+
+<RadioGroup
+    android:id="@+id/radioGroup1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:weightSum="1" >
+
+    <RadioButton
+        android:id="@+id/lax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LAX"
+        android:textSize="22dp" >
+</RadioButton>
+
+    <RadioButton
+        android:id="@+id/hkg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HKG"
+        android:textSize="22sp" >
+</RadioButton>
+
+    <RadioButton
+        android:id="@+id/anc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ANC"
+        android:textSize="22sp" >
+</RadioButton>
+
+    <RadioButton
+        android:id="@+id/mem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MEM"
+        android:textSize="22sp" >
+</RadioButton>
+
+    <RadioButton
+        android:id="@+id/cgn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CGN"
+        android:textSize="22sp" >
+</RadioButton>
+</RadioGroup>
+
+
+<RelativeLayout android:layout_width="match_parent" android:id="@+id/relativeLayout2" android:layout_height="wrap_content" android:layout_weight="0.20">
+
+    <EditText
+        android:id="@+id/dutystartMM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="30dp"
+        android:layout_toRightOf="@+id/dutystartHH"
+        android:fitsSystemWindows="false"
+        android:gravity="bottom"
+        android:hint="MM"
+        android:inputType="phone"
+        android:textColor="@color/white"
+        android:textSize="@dimen/size12" >
+</EditText>
+
+    <EditText
+        android:id="@+id/dutystartHH"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/dutystartMM"
+        android:layout_marginLeft="70dp"
+        android:gravity="bottom"
+        android:hint="HH"
+        android:inputType="phone"
+        android:textColor="@color/white"
+        android:textSize="@dimen/size12" >
+
+        <requestFocus></requestFocus>
+    </EditText>
+</RelativeLayout>
+
+<Button
+    android:id="@+id/calcduty"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="0.16"
+    android:text="Calc Duty Limits"
+    android:textSize="@dimen/size12" >
+</Button>
+<CheckBox android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/dst" android:text="DST" android:textSize="@dimen/size12"></CheckBox>
+
+</LinearLayout>

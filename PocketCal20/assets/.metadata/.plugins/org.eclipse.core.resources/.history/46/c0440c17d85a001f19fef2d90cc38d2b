@@ -1,0 +1,80 @@
+package com.arroyoseco.Remote;
+
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.io.Reader;
+import java.net.InetAddress;
+import java.net.Socket;
+
+import android.content.SharedPreferences;
+import android.util.Log;
+
+public class TCPclient implements Runnable {
+
+    public static final String DEFAULT_SERVERIP = "24.199.2.138";
+    public static final int SERVERPORT = 81;
+    public static String message = "";
+     public SharedPreferences prefs;
+     public static final String PREFS_NAME = "MyPrefsFile";
+     DataOutputStream os=null;
+     DataInputStream is = null; 
+     String out = null; 
+     
+     
+    public void run() {
+         try {
+           
+           /*SharedPreferences settings = this.
+           public String server = settings.getString("SERVERIP","DEFAULT_SERVERIP");
+           settings.*/
+
+           InetAddress serverAddr = InetAddress.getByName(DEFAULT_SERVERIP);
+           //InetAddress serverAddr = InetAddress.getByName();
+           
+           Log.d("TCP", "C: Connecting...");
+           Socket socket = new Socket(serverAddr, TCPclient.SERVERPORT);
+           //String message = "CHAN +\n";
+               try {
+                Log.d("TCP", "C: Sending: '" + message + "'");
+                os = new DataOutputStream(socket.getOutputStream());
+                is = new DataInputStream(socket.getInputStream()); 
+                byte[] buf = new byte[100];
+                int readLen = 0;
+                boolean listening = true; 
+                
+                
+                
+				if ((readLen = is.read(buf, 0, 100)) != -1){
+                    out = new String(buf, 0, readLen-1);
+                    Log.d("TCP", out);
+                    os.writeBytes("gotit"); 
+                    
+                    
+                    
+                Log.d("TCP", out);
+                os.writeBytes("gotit"); 
+                String message = in.readLine(); 
+                Log.d("TCP", "C: Sent.");
+                  Log.d("TCP", "C: Done.");
+                 
+             } catch(Exception e) {
+                 Log.e("TCP", "S: Error", e);
+                } finally {
+                  socket.close();
+                }
+         } catch (Exception e) {
+              Log.e("TCP", "C: Error", e);
+         }
+    }
+
+	private Reader InputStreamWriter(InputStream in) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+    } 
