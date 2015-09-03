@@ -838,7 +838,7 @@ private  BroadcastReceiver egridrec = new BroadcastReceiver(){
 		    	List<Cookie> cookies = httpClient.getCookieStore().getCookies();
 
 				if (! cookies.isEmpty()){
-				        CookieSyncManager.createInstance(getApplicationContext());
+				        
 				        CookieManager cookieManager = CookieManager.getInstance();
 
 				        for(Cookie cookie : cookies){
@@ -846,7 +846,7 @@ private  BroadcastReceiver egridrec = new BroadcastReceiver(){
 				        	   sessionInfo = cookie;
 				                String cookieString = sessionInfo.getName() + "=" + sessionInfo.getValue() + "; domain=" + sessionInfo.getDomain();
 				                cookieManager.setCookie("pilot.fedex.com", cookieString);
-				                CookieSyncManager.getInstance().sync();
+				                
 				        }
 				}
 		    }

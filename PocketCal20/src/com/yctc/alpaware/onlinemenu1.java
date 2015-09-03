@@ -20,6 +20,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -67,8 +68,9 @@ public class onlinemenu1 extends SherlockActivity{
 		 Button bWebsite = (Button)findViewById(R.id.bwebsite);
 			     bWebsite.setOnClickListener(new View.OnClickListener() {
 				        public void onClick(View view) {
-				            Intent egridIntent = new Intent(getBaseContext(), pcalbrows1.class);	
-				        	startActivityForResult(egridIntent, 0);
+				        	
+				           Intent egridIntent = new Intent(getBaseContext(), pcalbrows1.class);	
+				           startActivityForResult(egridIntent, 0);
 				        }});
 			     
 		Button bGetopentime = (Button)findViewById(R.id.bgetopentime);

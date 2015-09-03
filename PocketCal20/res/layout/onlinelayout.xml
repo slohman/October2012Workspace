@@ -6,11 +6,10 @@
 
     <Button
         android:id="@+id/begrid"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.24"
-        android:text="Get Egrid"
-        android:textSize="@dimen/size12" />
+        android:layout_weight="0.14"
+        android:text="Get Egrid" />
 
     <Button
         android:id="@+id/bwebsite"

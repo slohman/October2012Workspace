@@ -12,11 +12,13 @@
     <Button
         android:id="@+id/installMainDB"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="60dp"
         android:paddingBottom="10dp"
         android:paddingTop="10dp"
         android:text="@string/installMainDB"
-        android:textSize="@dimen/size10" />
+        android:textColor="@color/white"
+        android:typeface="normal" />
 
     <Button
         android:id="@+id/installuserDB"
@@ -25,15 +27,14 @@
         android:paddingBottom="10dp"
         android:paddingTop="10dp"
         android:text="@string/installUserDB"
-        android:textSize="@dimen/size10" />
+        android:textColor="@color/white" />
    
     <Button
         android:id="@+id/SaveuserDB"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="5pt"
-        android:text="@string/saveUserDB"
-        android:textSize="@dimen/size10" />
+        android:text="@string/saveUserDB" />
 
     <Button
         android:id="@+id/restoreUserDB"
@@ -43,8 +44,7 @@
         android:paddingBottom="10dp"
         android:paddingTop="10dp"
         android:shadowColor="#ffffff"
-        android:text="@string/restoreUserDB"
-        android:textSize="@dimen/size10" />
+        android:text="@string/restoreUserDB" />
 
     <Button
         android:id="@+id/emailUserDB"
@@ -55,8 +55,7 @@
         android:paddingTop="10dp"
         android:shadowColor="#ffffff"
         android:text="@string/emailUserDB"
-        android:textColor="@color/white"
-        android:textSize="@dimen/size10" />
+        android:textColor="@color/white" />
 
     <Button
         android:id="@+id/loadEGRID"
@@ -68,8 +67,7 @@
         android:paddingTop="10dp"
         android:shadowColor="#ffffff"
         android:text="@string/loadEGRID"
-        android:textColor="@color/white"
-        android:textSize="@dimen/size10" />
+        android:textColor="@color/white" />
 
     <Button
         android:id="@+id/setUserNamePwd"
@@ -81,9 +79,8 @@
         android:paddingTop="10dp"
         android:shadowColor="#ffffff"
         android:text="@string/setUserNamePwd"
-        android:textColor="@color/white"
-        android:textSize="@dimen/size10" />
-   
+        android:textColor="@color/white" />
+
     <Button
         android:id="@+id/btnVer"
         android:layout_width="fill_parent"
@@ -93,8 +90,7 @@
         android:paddingTop="10dp"
         android:shadowColor="#ffffff"
         android:text="@string/checkVer"
-        android:textColor="@color/white"
-        android:textSize="@dimen/size10" />
+        android:textColor="@color/white" />
    
     <Button
         android:id="@+id/btnocr"
@@ -102,8 +98,13 @@
         android:layout_height="wrap_content"
         android:paddingBottom="10dp"
         android:text="Load OCR file"
-        android:textColor="@color/white"
-        android:textSize="@dimen/size10" />
+        android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/cleanfiles"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Clean Dowloaded FIles" />
 
 </LinearLayout>
 

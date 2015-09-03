@@ -26,65 +26,65 @@
 		android:nextFocusDown="@+id/INTEMER" 
 		android:clickable="true"/>
 
-	<Button android:id="@+id/loadegriddata1"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:textColor="#0000DD"
-		android:textSize="@dimen/size14"
-		android:gravity="center_horizontal"
-		android:text="Load Row 1 ABC8...." 
-		android:background="@drawable/alpabtn"
-		android:paddingTop="5pt" 
-		android:paddingRight="1pt"
-		android:paddingBottom="5pt" 
-		/>
-		<Button android:id="@+id/loadegriddata2"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:textColor="#0000DD"
-		android:textSize="@dimen/size14"
-		android:gravity="center_horizontal"
-		android:text="Load Row 2 ABC8...." 
-		android:background="@drawable/alpabtn"
-		android:paddingTop="5pt" 
-		android:paddingRight="1pt"
-		android:paddingBottom="5pt" 
-		/>
-		<Button android:id="@+id/loadegriddata3"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:textColor="#0000DD"
-		android:textSize="@dimen/size14"
-		android:gravity="center_horizontal"
-		android:text="Load Row 3 ABC8...." 
-		android:background="@drawable/alpabtn"
-		android:paddingTop="5pt" 
-		android:paddingRight="1pt"
-		android:paddingBottom="5pt" 
-		/>
-		<Button android:id="@+id/loadegriddata4"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:textColor="#0000DD"
-		android:textSize="@dimen/size14"
-		android:gravity="center_horizontal"
-		android:text="Load Row 4 ABC8...." 
-		android:background="@drawable/alpabtn"
-		android:paddingTop="5pt" 
-		android:paddingRight="1pt"
-		android:paddingBottom="5pt" 
-		/>
-		<Button android:id="@+id/loadegriddata5"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:textColor="#0000DD"
-		android:textSize="@dimen/size14"
-		android:gravity="center_horizontal"
-		android:text="Load Row 5 ABC8...." 
-		android:background="@drawable/alpabtn"
-		android:paddingTop="5pt" 
-		android:paddingRight="1pt"
-		android:paddingBottom="5pt" 
-		/>
+	<Button
+	    android:id="@+id/loadegriddata1"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:background="@drawable/alpabtn"
+	    android:gravity="center_horizontal"
+	    android:paddingBottom="5pt"
+	    android:paddingRight="1pt"
+	    android:paddingTop="5pt"
+	    android:text="Load Row 1 ABC8...."
+	    android:textColor="#0000DD" />
+
+		<Button
+		    android:id="@+id/loadegriddata2"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:background="@drawable/alpabtn"
+		    android:gravity="center_horizontal"
+		    android:paddingBottom="5pt"
+		    android:paddingRight="1pt"
+		    android:paddingTop="5pt"
+		    android:text="Load Row 2 ABC8...."
+		    android:textColor="#0000DD" />
+
+		<Button
+		    android:id="@+id/loadegriddata3"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:background="@drawable/alpabtn"
+		    android:gravity="center_horizontal"
+		    android:paddingBottom="5pt"
+		    android:paddingRight="1pt"
+		    android:paddingTop="5pt"
+		    android:text="Load Row 3 ABC8...."
+		    android:textColor="#0000DD" />
+
+		<Button
+		    android:id="@+id/loadegriddata4"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:background="@drawable/alpabtn"
+		    android:gravity="center_horizontal"
+		    android:paddingBottom="5pt"
+		    android:paddingRight="1pt"
+		    android:paddingTop="5pt"
+		    android:text="Load Row 4 ABC8...."
+		    android:textColor="#0000DD" />
+
+		<Button
+		    android:id="@+id/loadegriddata5"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:background="@drawable/alpabtn"
+		    android:gravity="center_horizontal"
+		    android:paddingBottom="5pt"
+		    android:paddingRight="1pt"
+		    android:paddingTop="5pt"
+		    android:text="Load Row 5 ABC8...."
+		    android:textColor="#0000DD" />
+
 		</LinearLayout>
 		</ScrollView>

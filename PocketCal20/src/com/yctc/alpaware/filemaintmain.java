@@ -213,7 +213,36 @@ public class filemaintmain extends SherlockActivity{
            	 new fileDownLoadDictionary().execute(url1);
      	}});
   
-    
+    Button btnClean = (Button) findViewById(R.id.cleanfiles);
+    btnClean.setOnClickListener(new View.OnClickListener() {
+     	public void onClick(View view) {
+     		 //delete all files in the downloads dir
+     		
+     		 Builder b =  new AlertDialog.Builder(filemaintmain.this);
+	             
+             b.setTitle("Delete All files in Pdf Directory?");
+    		
+     b.setPositiveButton("OK", new DialogInterface.OnClickListener(){
+    	  	 	public void onClick(DialogInterface d, int which) {
+    	  	 		d.dismiss();
+    	  	 		final File destinationDir = new File (Environment.getExternalStorageDirectory(), "PFCFiles");
+    	     		for(File file: destinationDir.listFiles()) file.delete();
+            }});
+      	b.setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
+			public void onClick(DialogInterface d, int which) {
+			d.dismiss();
+			
+			 }});
+
+  b.create().show();
+     		
+     		
+     		
+     		
+     		
+     		
+     		
+     	}}); 
   
 
 	

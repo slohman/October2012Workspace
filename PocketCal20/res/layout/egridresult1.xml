@@ -18,41 +18,35 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight=".1"
-            android:text="A"
-            android:textSize="@dimen/size12" />
+            android:text="A" />
 
         <Button
             android:id="@+id/B"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight=".10"
-            android:text="B"
-            android:textSize="@dimen/size12" />
+            android:text="B" />
 
         <Button
             android:id="@+id/C"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            
             android:layout_weight=".1"
-            android:text="C"
-            android:textSize="@dimen/size12" />
+            android:text="C" />
 
         <Button
             android:id="@+id/D"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight=".1"
-            android:text="D"
-            android:textSize="@dimen/size12" />
+            android:text="D" />
 
         <Button
             android:id="@+id/E"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight=".1"
-            android:text="E"
-            android:textSize="@dimen/size12" />
+            android:text="E" />
 
     </LinearLayout>
 
@@ -69,41 +63,36 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight=".1"
-            android:text="F"
-            android:textSize="@dimen/size12" />
+            android:text="F" />
 
         <Button
             android:id="@+id/G"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight=".10"
-            android:text="G"
-            android:textSize="@dimen/size12" />
+            android:text="G" />
 
         <Button
             android:id="@+id/H"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            
             android:layout_weight=".1"
-            android:text="H"
-            android:textSize="@dimen/size12" />
+            android:text="H" />
 
         <Button
             android:id="@+id/I"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight=".1"
-            android:text="I"
-            android:textSize="@dimen/size12" />
+            android:text="I" />
 
         <Button
             android:id="@+id/J"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight=".1"
-            android:text="J"
-            android:textSize="@dimen/size12" />
+            android:text="J" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -119,41 +108,36 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight=".1"
-            android:text="1"
-            android:textSize="@dimen/size12" />
+            android:text="1" />
 
         <Button
             android:id="@+id/num2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight=".10"
-            android:text="2"
-            android:textSize="@dimen/size12" />
+            android:text="2" />
 
         <Button
             android:id="@+id/num3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-           
             android:layout_weight=".1"
-            android:text="3"
-            android:textSize="@dimen/size12" />
+            android:text="3" />
 
         <Button
             android:id="@+id/num4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight=".1"
-            android:text="4"
-            android:textSize="@dimen/size12" />
+            android:text="4" />
 
         <Button
             android:id="@+id/num5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight=".1"
-            android:text="5"
-            android:textSize="@dimen/size12" />
+            android:text="5" />
+
     </LinearLayout>
 
     <ImageView
@@ -176,8 +160,7 @@
         android:ems="10"
         android:gravity="center_horizontal"
         android:inputType="none"
-        android:textColor="@color/white"
-        android:textSize="@dimen/size16" >
+        android:textColor="@color/white" >
 
         <requestFocus />
     </EditText>
@@ -190,8 +173,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
         android:contentDescription="result of EGRID OCR"
-        
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="@dimen/size12" />
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>

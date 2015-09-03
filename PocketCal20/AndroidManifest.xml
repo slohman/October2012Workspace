@@ -3,7 +3,7 @@
 	 android:installLocation="auto"
 	package="com.yctc.alpaware"
       
-      android:versionName="2.1" android:versionCode="100">
+      android:versionName="2.1.01" android:versionCode="102">
        
       <uses-sdk android:minSdkVersion="14" 
           android:targetSdkVersion="21"/>
